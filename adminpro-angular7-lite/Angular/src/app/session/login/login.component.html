@@ -1,3 +1,26 @@
-<p>
-  login works!
-</p>
+<div id="login" class="container">
+    <div fxFlexFill>
+        <div id="logo">
+            <img src="../../../assets/images/logaso.png" srcset="">
+        </div>
+
+        <div id="form">
+            <mat-card>
+                <mat-card-content fxLayout.gt-xs="row" fxLayout="column">
+                    <form fxLayout="column">
+                        <mat-form-field>
+                            <input matInput placeholder="Email" required type="email">
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input matInput placeholder="Password" type="password">
+                        </mat-form-field>
+                    </form>
+                </mat-card-content>
+                <mat-card-actions>
+                    <button mat-raised-button color="primary">Iniciar Sesión</button>
+                </mat-card-actions>
+            </mat-card>
+        </div>
+    </div>
+
+</div>

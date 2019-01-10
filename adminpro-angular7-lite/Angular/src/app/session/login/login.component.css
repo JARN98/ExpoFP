@@ -1,0 +1,15 @@
+#logo {
+    width: 45%;
+}
+
+#logo img {
+    width: 100%;
+}
+
+#form {
+    width: 50%;
+}
+
+#form mat-form-field {
+    width: 90%;
+}
