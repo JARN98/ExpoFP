@@ -1,0 +1,137 @@
+{
+	"info": {
+		"_postman_id": "fae137c9-bac9-4d5a-822a-a8fab9fcd481",
+		"name": "Expo FP",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Registro",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "Jose",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "Jose@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "access_token",
+							"value": "mastÑLDSAFKÑLDSKFJÑLerKey",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "1234",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{UrlDev}}/users",
+					"host": [
+						"{{UrlDev}}"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "jose@gmail.com",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "jose",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "access_token",
+							"value": "mastÑLDSAFKÑLDSKFJÑLerKey",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{UrlDev}}/auth",
+					"host": [
+						"{{UrlDev}}"
+					],
+					"path": [
+						"auth"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "6f327688-9ba0-4f10-bd91-fafb6b634740",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "ea1768d6-2109-47ab-a6d0-278abae38760",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "4a9d4e58-6158-43b2-83ed-85e4a5105375",
+			"key": "UrlDev",
+			"value": "http://localhost:9000",
+			"type": "string"
+		}
+	]
+}
