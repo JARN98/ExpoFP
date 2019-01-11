@@ -1,12 +1,12 @@
 {
 	"info": {
-		"_postman_id": "fae137c9-bac9-4d5a-822a-a8fab9fcd481",
+		"_postman_id": "0033857b-9f63-4e61-9ec3-8707797fcc5c",
 		"name": "Expo FP",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "Registro",
+			"name": "Registro(Dev)",
 			"request": {
 				"method": "POST",
 				"header": [
@@ -55,7 +55,7 @@
 			"response": []
 		},
 		{
-			"name": "Login",
+			"name": "Login(Dev)",
 			"request": {
 				"auth": {
 					"type": "basic",
@@ -102,6 +102,75 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Listar usuarios (admin)(Dev)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Registro(Prod)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "admin",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "admin@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "access_token",
+							"value": "oDUV7u5ZzJIc81W7SR1eqFXD0qNCbPWp",
+							"type": "text"
+						},
+						{
+							"key": "role",
+							"value": "admin",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{UrlProd}}/users",
+					"host": [
+						"{{UrlProd}}"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"event": [
@@ -128,9 +197,15 @@
 	],
 	"variable": [
 		{
-			"id": "4a9d4e58-6158-43b2-83ed-85e4a5105375",
+			"id": "ac1bb0c6-9bec-4f0a-8f07-a6d97d52f4d8",
 			"key": "UrlDev",
 			"value": "http://localhost:9000",
+			"type": "string"
+		},
+		{
+			"id": "5ed7b710-0d6b-4e14-b380-06c928069044",
+			"key": "UrlProd",
+			"value": "http://localhost:8080",
 			"type": "string"
 		}
 	]
