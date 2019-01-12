@@ -1,0 +1,27 @@
+<div fxFlexFill fxLayoutAlign="center center" fxLayout="row">
+  <form fxLayout="column" fxFlexFill [formGroup]="form">
+      <mat-form-field class="example-full-width">
+          <input matInput placeholder="Título..." [formControl]="form.controls['title']">
+      </mat-form-field>
+
+      <mat-form-field>
+          <input matInput placeholder="Autores" [formControl]="form.controls['autores']">
+      </mat-form-field>
+
+      <mat-form-field>
+          <input matInput placeholder="Curso" [formControl]="form.controls['curso']">
+      </mat-form-field>
+
+      <mat-form-field>
+          <input matInput placeholder="Imagenes" [formControl]="form.controls['img']">
+      </mat-form-field>
+
+      <mat-form-field>
+          <textarea matInput placeholder="Descripción" [formControl]="form.controls['descripcion']"></textarea>
+      </mat-form-field>
+
+      <div fxLayoutAlign="end end">
+          <button fxFlex="20%" (click)="addProject()">Añadir</button>
+      </div>
+  </form>
+</div>

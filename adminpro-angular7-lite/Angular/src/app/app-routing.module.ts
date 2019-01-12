@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { FullComponent } from './layouts/full/full.component';
+import { AddProjectComponent } from './dialogs/add-project/add-project.component';
 
 export const Approutes: Routes = [
   {
@@ -17,6 +18,19 @@ export const Approutes: Routes = [
       {
         path: 'component',
         loadChildren: './component/component.module#ComponentsModule'
+      }
+    ]
+  },
+  {
+    path: 'prueba1',
+    component: AddProjectComponent
+  },
+  {
+    path: 'session',
+    children: [
+      {
+        path: '',
+        loadChildren: './session/session.module#SessionModule'
       }
     ]
   },
