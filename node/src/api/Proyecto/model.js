@@ -26,8 +26,25 @@ const proyectoSchema = new Schema({
   comentarios: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Comentario'
-  }
-}, {
+  },
+  ultimosComentarios: [{
+    autor: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User'
+    },
+    contenido: {
+      type: String,
+      required: true
+    },
+    valoracion: {
+      type: Number
+    },
+    valido: {
+      type: Boolean
+    }
+  }]
+},
+{
   timestamps: true,
   toJSON: {
     virtuals: true,

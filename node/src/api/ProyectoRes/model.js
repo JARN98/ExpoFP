@@ -6,8 +6,7 @@ const proyectoResSchema = new Schema({
     required: true
   },
   imagen: {
-    type: String,
-    required: true
+    type: String
   },
   curso: {
     type: String,
