@@ -16,6 +16,7 @@ import { NgbdtypeheadBasicComponent } from './typehead/typehead.component';
 import { CardsComponent } from './card/card.component';
 import { ButtonsComponent } from './buttons/buttons.component';
 import { FullComponent } from '../layouts/full/full.component';
+import { ListaProyectosComponent } from './lista-proyectos/lista-proyectos.component';
 
 export const ComponentsRoutes: Routes = [
   {
@@ -30,6 +31,18 @@ export const ComponentsRoutes: Routes = [
             { title: 'Dashboard', url: '/dashboard' },
             { title: 'ngComponent' },
             { title: 'Progressbar' }
+          ]
+        }
+      },
+      {
+        path: 'proyectos',
+        component: ListaProyectosComponent,
+        data: {
+          title: 'Proyectos',
+          urls: [
+            { title: 'Dashboard', url: '/dashboard' },
+            { title: 'ngComponent' },
+            { title: 'Proyectos' }
           ]
         }
       },
