@@ -15,19 +15,21 @@ export const create = async ({ bodymen: { body } }, res, next) => {
     .then(success(res, 201))
     .catch(next)
 
-  console.log(store.get('comentario'));
-
-  
+  console.log(store.get('comentario'))
 
   await Proyecto.findById(store.get('idProyectoComentario'))
     .then(notFound(res))
     .then((proyecto) => {
       if (proyecto) {
-        console.log(proyecto);
-        
+        console.log(proyecto)
+
+        if (proyecto.ultimosComentarios.length >= 5) {
+          delete proyecto.ultimosComentarios.shift()
+        }
+
         proyecto.ultimosComentarios.push(store.get('comentario'))
 
-        proyecto.save();
+        proyecto.save()
       } else {
         return null
       }
@@ -35,10 +37,6 @@ export const create = async ({ bodymen: { body } }, res, next) => {
     .then(success(res))
     .catch(next)
 }
-
-
-
-
 
 export const index = ({ querymen: { query, select, cursor } }, res, next) =>
   Comentario.count(query)

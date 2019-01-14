@@ -3,8 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthService } from './auth.service';
 import { Observable } from 'rxjs';
 import { User } from '../models/user';
-
-const userUrl = '';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +21,7 @@ export class ListUsuarioService {
       })
     };
 
-    return this.http.get<User[]>(`${userUrl}/user/all`, requestOptions);
+    return this.http.get<User[]>(`${environment.ApiUrl}/user/all`, requestOptions);
   }
 
   /*
