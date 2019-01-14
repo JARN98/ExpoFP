@@ -24,6 +24,10 @@ export const ComponentsRoutes: Routes = [
     path: '',
     children: [
       {
+        path: 'listaUsuarios',
+        component: UsuarioListComponent
+      },
+      {
         path: 'progressbar',
         component: NgbdpregressbarBasicComponent,
         data: {

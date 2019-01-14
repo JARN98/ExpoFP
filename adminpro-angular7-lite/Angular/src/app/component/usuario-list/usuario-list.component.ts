@@ -31,9 +31,9 @@ export class UsuarioListComponent implements OnInit {
         verticalPosition: 'top'
       });
     }, error =>  {
-      this.snackBar.open('Error al obtener usuarios', 'Cerrar', {
-        duration: 3000,
-      });
+      // this.snackBar.open('Error al obtener usuarios', 'Cerrar', {
+      //   duration: 3000,
+      // });
     });
 
 
