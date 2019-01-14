@@ -25,6 +25,12 @@ import { ButtonsComponent } from './buttons/buttons.component';
 import { UsuarioListComponent } from './usuario-list/usuario-list.component';
 import { ListaProyectosComponent } from './lista-proyectos/lista-proyectos.component';
 import { MatTableModule } from '@angular/material/table';
+import { FilterPipeModule } from 'ngx-filter-pipe';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { MatCardModule } from '@angular/material/card';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatIconModule } from '@angular/material/icon';
+
 
 
 
@@ -37,7 +43,13 @@ import { MatTableModule } from '@angular/material/table';
     ReactiveFormsModule,
     JsonpModule,
     NgbModule,
-    MatTableModule
+    MatTableModule,
+    FilterPipeModule,
+    NgxPaginationModule,
+    MatCardModule,
+    FlexLayoutModule,
+    MatIconModule
+  
   ],
   declarations: [
     NgbdpregressbarBasicComponent,
@@ -56,7 +68,9 @@ import { MatTableModule } from '@angular/material/table';
     CardsComponent,
     ButtonsComponent,
     UsuarioListComponent,
-    ListaProyectosComponent
+    ListaProyectosComponent,
+    
+    
   ]
 })
 export class ComponentsModule {}

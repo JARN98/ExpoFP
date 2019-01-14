@@ -1,37 +1,24 @@
-Hola!
-
-<!--<input style="margin-left:2%" type="text" [(ngModel)]="proyectoFilter.name" placeholder="Buscar por nombre">
-<div fxLayoutAlign="start start" fxFlex="100">
-
-
-    <div fxLayout="row wrap" fxLayoutGap="20px">
-
-        <mat-card class="example-card" *ngFor="let proyecto of listaproyectos | filterBy: proyectoFilter | paginate: { itemsPerPage: 14,
-            currentPage: p}">
-            <mat-card-header>
-                <div mat-card-avatar class="example-header-image"></div>
-                <mat-card-title>{{proyecto.nombre}}</mat-card-title>
-                <mat-card-subtitle>{{categoria.id}}</mat-card-subtitle>
-            </mat-card-header>
-            <img src="../../../assets/images/categorias.png" alt="Niño leyendo">
-            <mat-card-content>
-
-            </mat-card-content>-->
-           <!-- <mat-card-actions>
-                <button mat-button class="mat-light-blue-A700" (click)="openDialogAddCategory(categoria)">Editar</button>
-                <button mat-button class="mat-red-A700" (click)="openDialogDeleteCategory(categoria)">Borrar</button>
-            </mat-card-actions>-->
-        <!--</mat-card>
-        <div fxLayoutAlign="end end" fxFlex="30%">
-            <pagination-controls *ngIf="(listaCategorias | filterBy: categoriaFilter).length >= 14" (pageChange)="p = $event" previousLabel="Anterior" nextLabel="Siguiente">
-            </pagination-controls>
+<div class="row">
+     <input style="margin-bottom: 4%; margin-left:1%;" type="text" [(ngModel)]="proyectoFilter.nombre" placeholder="Buscar por nombre">
+        <div class="col-12">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6" *ngFor="let proyecto of listaProyectosRes | filterBy: proyectoFilter | paginate: { itemsPerPage: 14,
+                        currentPage: p}">
+                    <div class="card text-center" >
+                        <img class="card-img-top img-responsive" src={{proyecto.imagen}} alt="Card image cap">
+                        <div class="card-body">
+                            <h4 class="card-title">{{proyecto.nombre}} - {{proyecto.curso}}</h4>
+                            <a href="#" class="btn btn-primary" style="width:40%;">Ver</a>
+                        </div>
+                    </div>
+                    </div>
+                <div>
+                    <pagination-controls *ngIf="(listaProyectosRes | filterBy: proyectoFilter) >= 14" (pageChange)="p = $event" previousLabel="Anterior" nextLabel="Siguiente">
+                    </pagination-controls>
+                </div>
+            <div style="margin-bottom: 4%;" class="boton mat-light-blue-A700">
+                <mat-icon class="medio">add</mat-icon>
+            </div>
         </div>
     </div>
-</div>-->
-
-<!--<div fxLayoutAlign="end end" style="margin-right:4%;">
-    <div style="margin-bottom: 4%;" class="boton mat-light-blue-A700" (click)="openDialogAddCategory(null)">
-        <mat-icon class="medio">add</mat-icon>
-    </div>
 </div>
--->

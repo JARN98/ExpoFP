@@ -27,6 +27,13 @@ import { MatInputModule } from '@angular/material/input';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogModule } from '@angular/material/dialog';
+import { FilterPipeModule } from 'ngx-filter-pipe';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
+
+
+
 
 
 
@@ -64,7 +71,11 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     MatInputModule,
     FlexLayoutModule,
     MatSnackBarModule,
-    MatDialogModule
+    MatDialogModule,
+    FilterPipeModule,
+    NgxPaginationModule,
+    MatCardModule,
+    MatIconModule
 
   ],
   providers: [

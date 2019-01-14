@@ -4,4 +4,6 @@ export interface ListProjectsResponse {
     imagen: String;
     curso: String;
     proyecto: String;
+    createdAt: String;
+    updatedAt: String;
 }

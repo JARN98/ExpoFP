@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-/*import { ListProjectsResponse } from 'src/app/interfaces/list-projects-res.interface';
-import { ListProjectsResService } from 'src/app/services/list-projects-res.service';*/
-import { FilterPipe } from 'ngx-filter-pipe';
 import { ListProjectsResponse } from '../../interfaces/list-projects-res.interface';
 import { ListProjectsResService } from '../../services/list-projects-res.service';
+import { ListApiResponse } from '../../interfaces/list-api.interface';
 
 @Component({
   selector: 'app-lista-proyectos',
@@ -11,20 +9,21 @@ import { ListProjectsResService } from '../../services/list-projects-res.service
   styleUrls: ['./lista-proyectos.component.css']
 })
 export class ListaProyectosComponent implements OnInit {
+  listaApi: ListApiResponse;
   listaProyectosRes: ListProjectsResponse[];
-  collection: any[];
   proyectoFilter: any = { nombre: '' };
-  p: Number = 1;
 
-  constructor(private projectService: ListProjectsResService,
-    /*private filterPipe: FilterPipe*/) { }
+  constructor(private projectService: ListProjectsResService) { }
 
   ngOnInit() {
+    this.getAllProyectos()
   }
-  getAllCategoria() {
+  getAllProyectos() {
     this.projectService.listProjectsRes().subscribe(lista => {
-      this.listaProyectosRes = lista;
-      this.collection = lista;
+      this.listaApi = lista;
+      this.listaProyectosRes = this.listaApi.rows;
+      console.log(this.listaProyectosRes);
+     
     }, error => {
       console.error(error);
     });
