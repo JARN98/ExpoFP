@@ -1,23 +1,23 @@
-<div id="login" class="container">
-    <div fxFlexFill>
-        <div fxLayout="row" fxFlexFill fxLayoutAlign="center center">
-            <div id="logo" fxFlex="50%">
-                <img src="../../../assets/images/logaso.png" srcset="">
+<div id="login" class="container" fxFlexFill>
+    <div fxFlexFill fxLayoutAlign="center center">
+        <div fxLayout="column" fxFlex=40% fxLayoutAlign="center center">
+            <div id="logo" fxFlexFill fxLayoutAlign="center center">
+                <img src="../../../assets/images/gallery/chair4.png" srcset="">
             </div>
 
-            <div id="form" fxFlex="45%">
+            <div id="form" fxFlexFill>
                 <mat-card>
                     <mat-card-content fxLayout.gt-xs="row" fxLayout="column">
-                        <form fxLayout="column">
+                        <form fxLayout="column" fxFlexFill>
                             <mat-form-field>
-                                <input matInput placeholder="Email" required type="email">
+                                <input  matInput  placeholder="Email" required type="email">
                             </mat-form-field>
                             <mat-form-field>
-                                <input matInput placeholder="Password" type="password">
+                                <input matInput  placeholder="Password" type="password">
                             </mat-form-field>
                         </form>
                     </mat-card-content>
-                    <mat-card-actions>
+                    <mat-card-actions fxLayoutAlign="center">
                         <button mat-raised-button color="primary">Iniciar Sesión</button>
                     </mat-card-actions>
                 </mat-card>
