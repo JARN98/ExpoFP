@@ -8,6 +8,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { RouterModule } from '@angular/router';
 import { Sessionroutes } from './session-routing.module';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [LoginComponent],
@@ -17,7 +18,8 @@ import { Sessionroutes } from './session-routing.module';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    MatCardModule
+    MatCardModule,
+    FlexLayoutModule
   ]
 })
 export class SessionModule { }
