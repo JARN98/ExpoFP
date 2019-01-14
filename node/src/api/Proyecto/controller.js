@@ -1,12 +1,27 @@
 import { success, notFound } from '../../services/response/'
 import { Proyecto } from '.'
+import { ProyectoRes } from '../ProyectoRes'
 
-export const create = ({ bodymen: { body } }, res, next) =>
-  Proyecto.create(body)
-    .then((proyecto) => proyecto.view(true))
+const store = require('store')
+
+export const create = async ({ bodymen: { body } }, res, next) => {
+  const crearProyecto = await Proyecto.create(body)
+    .then((proyecto) => {
+      store.set('idProyecto', proyecto.view(true).id)
+      return proyecto.view(true)
+    })
     .then(success(res, 201))
     .catch(next)
 
+  const CrearProyectoRes = await ProyectoRes.create({
+    nombre: body.nombre,
+    curso: body.curso,
+    proyecto: store.get('idProyecto')
+  })
+    .then(proyectoRes => proyectoRes.view(true))
+    .then(success(res, 201))
+    .catch(next)
+}
 export const index = ({ querymen: { query, select, cursor } }, res, next) =>
   Proyecto.count(query)
     .then(count => Proyecto.find(query, select, cursor)

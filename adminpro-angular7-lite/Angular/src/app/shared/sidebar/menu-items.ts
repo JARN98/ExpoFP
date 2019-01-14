@@ -1,36 +1,18 @@
 import { RouteInfo } from './sidebar.metadata';
 
 export const ROUTES: RouteInfo[] = [
+ 
   {
-    path: '',
-    title: 'Personal',
-    icon: '',
-    class: 'nav-small-cap',
-    label: '',
-    labelClass: '',
-    extralink: true,
-    submenu: []
-  },
-  {
-    path: '/starter',
-    title: 'Starter Page',
-    icon: 'mdi mdi-gauge',
+    path: '/component/proyectos',
+    title: 'Proyectos',
+    icon: 'mdi mdi-white-balance-incandescent',
     class: '',
     label: '',
     labelClass: '',
     extralink: false,
     submenu: []
   },
-  {
-    path: '',
-    title: 'UI Components',
-    icon: '',
-    class: 'nav-small-cap',
-    label: '',
-    labelClass: '',
-    extralink: true,
-    submenu: []
-  },
+ /*
   {
     path: '/component/accordion',
     title: 'Accordion',
@@ -160,5 +142,5 @@ export const ROUTES: RouteInfo[] = [
     labelClass: '',
     extralink: false,
     submenu: []
-  }
+  }*/
 ];
