@@ -1,0 +1,5 @@
+	LUNES 14 ENERO 2018
+	-J. Antonio: Hacer coleccion embebida de último comentarios del proyecto. (API)
+	-Cristóbal: Listar proyecto en card (Angular)
+	-Juan: Tabla usuarios (Angular)
+	-Alejandro: login y registro (Angular)
