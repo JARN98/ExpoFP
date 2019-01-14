@@ -24,7 +24,10 @@ import { CardsComponent } from './card/card.component';
 import { ButtonsComponent } from './buttons/buttons.component';
 import { UsuarioListComponent } from './usuario-list/usuario-list.component';
 import { ListaProyectosComponent } from './lista-proyectos/lista-proyectos.component';
-import {MatTableModule} from '@angular/material/table';
+import { MatTableModule } from '@angular/material/table';
+
+
+
 
 @NgModule({
   imports: [

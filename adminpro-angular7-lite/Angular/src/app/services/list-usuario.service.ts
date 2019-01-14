@@ -25,6 +25,7 @@ export class ListUsuarioService {
     return this.http.get<User[]>(`${userUrl}/user/all`, requestOptions);
   }
 
+  /*
   deleteUsuario(usuario: User): Observable<User> {
     console.log(usuario.id);
     
@@ -38,6 +39,7 @@ export class ListUsuarioService {
 
     return this.http.delete<User>(`${userUrl}/user/${usuario.id}`, requestOptions);
   }
+  */
 
   refresh(): void {
     window.location.reload();

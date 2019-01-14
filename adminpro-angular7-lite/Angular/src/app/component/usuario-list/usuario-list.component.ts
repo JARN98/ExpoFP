@@ -39,6 +39,7 @@ export class UsuarioListComponent implements OnInit {
 
   }
 
+  /*
   deleteUsuario(element: User) {    
     console.log(element.id);
     
@@ -49,5 +50,5 @@ export class UsuarioListComponent implements OnInit {
     }, error => console.error(error)
     );
   }
-
+  */
 }
