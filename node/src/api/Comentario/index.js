@@ -7,7 +7,7 @@ import { schema } from './model'
 export Comentario, { schema } from './model'
 
 const router = new Router()
-const { autor, contenido, valoracion, valido } = schema.tree
+const { autor, contenido, valoracion, valido, proyecto } = schema.tree
 
 /**
  * @api {post} /Comentarios Create comentario
@@ -23,7 +23,7 @@ const { autor, contenido, valoracion, valido } = schema.tree
  */
 router.post('/',
   token({ required: true }),
-  body({ autor, contenido, valoracion, valido }),
+  body({ autor, contenido, valoracion, valido, proyecto }),
   create)
 
 /**

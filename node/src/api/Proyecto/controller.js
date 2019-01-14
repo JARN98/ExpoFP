@@ -16,6 +16,7 @@ export const create = async ({ bodymen: { body } }, res, next) => {
   const CrearProyectoRes = await ProyectoRes.create({
     nombre: body.nombre,
     curso: body.curso,
+    imagenes: body.imagen[0],
     proyecto: store.get('idProyecto')
   })
     .then(proyectoRes => proyectoRes.view(true))

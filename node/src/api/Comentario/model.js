@@ -13,7 +13,13 @@ const comentarioSchema = new Schema({
     type: Number
   },
   valido: {
-    type: Boolean
+    type: Boolean,
+    default: true
+  },
+  proyecto: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Proyecto',
+    required: true
   }
 }, {
   timestamps: true,
@@ -32,6 +38,7 @@ comentarioSchema.methods = {
       contenido: this.contenido,
       valoracion: this.valoracion,
       valido: this.valido,
+      proyecto: this.proyecto,
       createdAt: this.createdAt,
       updatedAt: this.updatedAt
     }
