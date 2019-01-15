@@ -1,0 +1,84 @@
+<div class="row">
+	<div class="col-md-6 col-xlg-5">
+		<div class="card">
+			<div class="card-body">
+				<h3 class="card-title">Título del proyecto</h3>
+				<h6 class="card-subtitle">Imagenes</h6>
+				<ngb-carousel>
+					<ng-template ngbSlide>
+						<img src="assets/images/big/img1.jpg" alt="Random first slide">
+						<div class="carousel-caption">
+							<h3 class="text-white font-bold">First slide label</h3>
+							<p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+						</div>
+					</ng-template>
+					<ng-template ngbSlide>
+						<img src="assets/images/big/img2.jpg" alt="Random second slide">
+						<div class="carousel-caption">
+							<h3 class="text-white font-bold">Second slide label</h3>
+							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+						</div>
+					</ng-template>
+					<ng-template ngbSlide>
+						<img src="assets/images/big/img3.jpg" alt="Random third slide">
+						<div class="carousel-caption">
+							<h3 class="text-white font-bold">Third slide label</h3>
+							<p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+						</div>
+					</ng-template>
+        </ngb-carousel>
+        <br>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-6">
+    <div class="card card-outline-inverse">
+        <div class="card-header">
+            <h4 class="m-b-0 text-white">Descripción del proyecto</h4>
+        </div>
+        <div class="card-body">
+            <h3 class="card-title">Special title treatment</h3>
+            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut convallis a lorem nec ullamcorper. Vivamus 
+              id mi purus. Sed tristique leo sit amet risus viverra cursus. Sed nibh odio, finibus a quam non, vestibulum hendrerit ligula. 
+              Aenean vel leo ligula. Morbi vestibulum leo odio. Integer pretium sollicitudin luctus. Mauris mi tellus, facilisis a tempus vel, 
+              tincidunt in tellus. Ut in sem vitae nisi tristique interdum. Nunc aliquam purus et nunc convallis, sit amet consectetur magna cursus.
+            </p>
+
+            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut convallis a lorem nec ullamcorper. Vivamus 
+                id mi purus. Sed tristique leo sit amet risus viverra cursus. Sed nibh odio, finibus a quam non, vestibulum hendrerit ligula. 
+                Aenean vel leo ligula. Morbi vestibulum leo odio. Integer pretium sollicitudin luctus. Mauris mi tellus, facilisis a tempus vel, 
+                tincidunt in tellus. Ut in sem vitae nisi tristique interdum. Nunc aliquam purus et nunc convallis, sit amet consectetur magna cursus.
+            </p>
+
+            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut convallis a lorem nec ullamcorper. Vivamus 
+                id mi purus. Sed tristique leo sit amet risus viverra cursus. Sed nibh odio, finibus a quam non, vestibulum hendrerit ligula. 
+                Aenean vel leo ligula. Morbi vestibulum leo odio. Integer pretium sollicitudin luctus. Mauris mi tellus, facilisis a tempus vel, 
+                tincidunt in tellus. Ut in sem vitae nisi tristique interdum. Nunc aliquam purus et nunc convallis, sit amet consectetur magna cursus.
+            </p>
+            <h6 class="card-subtitle">Componente 1</h6>
+            <h6 class="card-subtitle">Componente 2</h6>
+            <h6 class="card-subtitle">Componente 3</h6>
+            <h6 class="card-subtitle">Componente 4</h6>
+        </div>
+    </div>
+</div>
+</div>
+<div class="col-md-11">
+    <div class="card">
+        <div class="card-body">
+            <h3 class="card-title">Usuario</h3>
+            <h6 class="card-subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut convallis a lorem nec ullamcorper. Vivamus 
+                id mi purus. Sed tristique leo sit amet risus viverra cursus. Sed nibh odio, finibus a quam non, vestibulum hendrerit ligula. 
+                Aenean vel leo ligula. Morbi vestibulum leo odio. Integer pretium sollicitudin luctus. Mauris mi tellus, facilisis a tempus vel.</h6>
+            <ngb-rating [(rate)]="currentRate">
+                <ng-template let-fill="fill">
+                    <span class="star" [class.filled]="fill === 100">&#9733;</span>
+                </ng-template>
+            </ngb-rating>
+
+            <div class="m-t-10">Valoración:
+                <b>{{currentRate}}</b>
+            </div>
+        </div>
+    </div>
+</div>

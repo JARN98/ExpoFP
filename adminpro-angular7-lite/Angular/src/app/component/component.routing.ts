@@ -18,6 +18,7 @@ import { ButtonsComponent } from './buttons/buttons.component';
 import { FullComponent } from '../layouts/full/full.component';
 import { UsuarioListComponent } from './usuario-list/usuario-list.component';
 import { ListaProyectosComponent } from './lista-proyectos/lista-proyectos.component';
+import { ProyectoDetalladoComponent } from './proyecto-detallado/proyecto-detallado.component';
 
 export const ComponentsRoutes: Routes = [
   {
@@ -26,6 +27,10 @@ export const ComponentsRoutes: Routes = [
       {
         path: 'listaUsuarios',
         component: UsuarioListComponent
+      },
+      {
+        path: 'proyectoDetallado',
+        component: ProyectoDetalladoComponent
       },
       {
         path: 'progressbar',
