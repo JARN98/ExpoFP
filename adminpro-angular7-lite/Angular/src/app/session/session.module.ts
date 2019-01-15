@@ -9,6 +9,8 @@ import { MatCardModule } from '@angular/material/card';
 import { RouterModule } from '@angular/router';
 import { Sessionroutes } from './session-routing.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { SessionService } from '../services/session.service';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
   declarations: [LoginComponent],
@@ -19,7 +21,11 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatInputModule,
     MatButtonModule,
     MatCardModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatTabsModule
+  ],
+  providers: [
+    SessionService
   ]
 })
 export class SessionModule { }

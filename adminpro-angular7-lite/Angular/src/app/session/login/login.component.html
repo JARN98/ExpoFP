@@ -1,26 +1,79 @@
-<div id="login" class="container" fxFlexFill>
+<div id="login" class="container" fxFlexFill fxLayoutAlign="center center">
     <div fxFlexFill fxLayoutAlign="center center">
-        <div fxLayout="column" fxFlex=40% fxLayoutAlign="center center">
+        <div fxLayout="row" fxFlex=40% fxLayoutAlign="center center">
             <div id="logo" fxFlexFill fxLayoutAlign="center center">
                 <img src="../../../assets/images/gallery/chair4.png" srcset="">
             </div>
 
             <div id="form" fxFlexFill>
-                <mat-card>
-                    <mat-card-content fxLayout.gt-xs="row" fxLayout="column">
-                        <form fxLayout="column" fxFlexFill>
-                            <mat-form-field>
-                                <input  matInput  placeholder="Email" required type="email">
-                            </mat-form-field>
-                            <mat-form-field>
-                                <input matInput  placeholder="Password" type="password">
-                            </mat-form-field>
+                <mat-tab-group mat-stretch-tabs class="example-stretched-tabs mat-elevation-z4" id="loginsignup">
+                    <mat-tab label="Login">
+                        <form class="example-form">
+                            <table class="login" cellspacing="0">
+                                <tr>
+                                    <td>
+                                        <mat-form-field class="login">
+                                            <input matInput name="email" type="text" />
+                                        </mat-form-field>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <mat-form-field class="login">
+                                            <input matInput name="password" type="password" />
+                                        </mat-form-field>
+                                    </td>
+                                </tr>
+                                <button mat-raised-button color="primary" id="login_boton" (click)="doLogin()">Login</button>
+                            </table>
                         </form>
-                    </mat-card-content>
-                    <mat-card-actions fxLayoutAlign="center">
-                        <button mat-raised-button color="primary">Iniciar Sesión</button>
-                    </mat-card-actions>
-                </mat-card>
+                    </mat-tab>
+                    <mat-tab label="Signup">
+                        <form class="example-form">
+                            <table class="signup" cellspacing="0">
+                                <tr>
+                                    <td>
+                                        <mat-form-field class="signup">
+                                            <input matInput name="nombre" placeholder="Nombre">
+                                        </mat-form-field>
+                                    </td>
+                                    <td>
+                                        <mat-form-field class="signup">
+                                            <input matInput name="apellidos" placeholder="Apellidos">
+                                        </mat-form-field>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <mat-form-field class="signup">
+                                            <input matInput name="email" type="email" placeholder="Email">
+                                        </mat-form-field>
+                                    </td>
+                                    <td>
+                                        <mat-form-field class="signup">
+                                            <input matInput name="username" placeholder="Username">
+                                        </mat-form-field>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <mat-form-field class="signup">
+                                            <input matInput name="password" type="password" placeholder="Contraseña">
+                                        </mat-form-field>
+                                    </td>
+                                    <td>
+                                        <mat-form-field class="signup">
+                                            <input matInput name="repetir_password" type="password" placeholder="Repetir contraseña">
+                                        </mat-form-field>
+                                    </td>
+                                </tr>
+                                <tr>
+                                </tr>
+                            </table>
+                        </form>
+                    </mat-tab>
+                </mat-tab-group>
             </div>
         </div>
 

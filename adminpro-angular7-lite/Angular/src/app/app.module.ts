@@ -31,6 +31,7 @@ import { FilterPipeModule } from 'ngx-filter-pipe';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
+import { MatTabsModule } from '@angular/material';
 
 
 
@@ -75,7 +76,9 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     FilterPipeModule,
     NgxPaginationModule,
     MatCardModule,
-    MatIconModule
+    MatIconModule,
+    MatTabsModule,
+    MatInputModule
 
   ],
   providers: [

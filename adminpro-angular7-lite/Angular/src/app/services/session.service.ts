@@ -20,7 +20,11 @@ export class SessionService {
   constructor(private http: HttpClient) { }
 
   login(loginDto: LoginDto): Observable<LoginResponse> {
-    return this.http.post<LoginResponse>(`${authUrl}/login`, loginDto, requestOptions);
+    return this.http.post<LoginResponse>(`${authUrl}`, loginDto, requestOptions);
+  }
+
+  loginGoogle(loginDto: LoginDto): Observable<LoginResponse> {
+    return this.http.post<LoginResponse>(`${authUrl}/google`, loginDto, requestOptions);
   }
 
   setLoginData(loginResponse: LoginResponse) {
