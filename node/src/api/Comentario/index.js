@@ -63,4 +63,8 @@ router.delete('/:id',
   token({ required: true, roles: ['admin'] }),
   destroy)
 
+
+
+  
+
 export default router
