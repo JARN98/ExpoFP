@@ -17,10 +17,10 @@ export class ListProjectsResService {
         'Content-Type': 'application/json',
         // 'Authorization': `Bearer ${localStorage.getItem('token')}`,
         // tslint:disable-next-line:max-line-length
-        'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjMzkxMWUzN2Q2Y2IxMmE2NWM4NzRhMSIsImlhdCI6MTU0NzI0NDAwM30.45W8T5O8SuKPWXlchqufm5sHGTQkMtdFui9TteAPS94`,
+        'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjM2JhODE5ODdjYzYyMzI5NDUzZmEyOCIsImlhdCI6MTU0NzY0MzMyMn0.u0SQXERjLrbcb-CuggqtAjn2Wsbb7k2K7GS5a_djMs8`,
         'Access-Control-Allow-Origin': '*'
       })
     };
-    return this.http.get<ListApiResponse>(`http://localhost:9000/ProyectoRes`, requestOptions);
+    return this.http.get<ListApiResponse>(`http://localhost:8080/ProyectoRes`, requestOptions);
   }
 }
