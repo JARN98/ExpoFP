@@ -17,7 +17,7 @@ export class ListProjectsResService {
         'Content-Type': 'application/json',
         // 'Authorization': `Bearer ${localStorage.getItem('token')}`,
         // tslint:disable-next-line:max-line-length
-        'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjM2JhODE5ODdjYzYyMzI5NDUzZmEyOCIsImlhdCI6MTU0NzY0MzMyMn0.u0SQXERjLrbcb-CuggqtAjn2Wsbb7k2K7GS5a_djMs8`,
+        'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjM2JhODE5ODdjYzYyMzI5NDUzZmEyOCIsImlhdCI6MTU0NzY3MDUyM30.MM1CqSKhCNNP4DVx7UtCnlxl4O3TJbKJRUwMHnDTYo4`,
         'Access-Control-Allow-Origin': '*'
       })
     };
