@@ -1,24 +1,28 @@
 <div class="row">
-     <input style="margin-bottom: 4%; margin-left:1%;" type="text" [(ngModel)]="proyectoFilter.nombre" placeholder="Buscar por nombre">
-        <div class="col-12">
-                <div class="row">
-                    <div class="col-lg-3 col-md-6" *ngFor="let proyecto of listaProyectosRes | filterBy: proyectoFilter | paginate: { itemsPerPage: 14,
+    <input style="margin-bottom: 4%; margin-left:1%;" type="text" [(ngModel)]="proyectoFilter.nombre" placeholder="Buscar por nombre">
+    <div class="col-12">
+        <div class="row">
+            <div class="col-lg-3 col-md-6" *ngFor="let proyecto of listaProyectosRes | filterBy: proyectoFilter | paginate: { itemsPerPage: 14,
                         currentPage: p}">
-                    <div class="card text-center" >
-                        <img class="card-img-top img-responsive" src={{proyecto.imagen}} alt="Card image cap">
-                        <div class="card-body">
-                            <h4 class="card-title">{{proyecto.nombre}} - {{proyecto.curso}}</h4>
-                            <a href="#" class="btn btn-primary" style="width:40%;">Ver</a>
-                        </div>
+                <div class="card text-center">
+                    <img class="card-img-top img-responsive" src={{proyecto.imagen}} alt="Card image cap">
+                    <div class="card-body">
+                        <h4 class="card-title">{{proyecto.nombre}} - {{proyecto.curso}}</h4>
+                        <a href="#" class="btn btn-primary" style="width:40%;">Ver</a>
                     </div>
-                    </div>
-                <div>
-                    <pagination-controls *ngIf="(listaProyectosRes | filterBy: proyectoFilter) >= 14" (pageChange)="p = $event" previousLabel="Anterior" nextLabel="Siguiente">
-                    </pagination-controls>
                 </div>
+            </div>
+            <div>
+                <pagination-controls *ngIf="(listaProyectosRes | filterBy: proyectoFilter) >= 14" (pageChange)="p = $event"
+                    previousLabel="Anterior" nextLabel="Siguiente">
+                </pagination-controls>
+            </div>
             <div style="margin-bottom: 4%;" class="boton mat-light-blue-A700">
                 <mat-icon class="medio">add</mat-icon>
             </div>
         </div>
     </div>
+</div>
+<div class="botonAniadir">
+    <button type="button" class="btn btn-success btn-circle btn-lg"><i class="fa fa-link"></i> </button>
 </div>

@@ -29,3 +29,10 @@
     transform: translateY(12%);
     color: #fff;
 }
+
+.botonAniadir{
+    position: fixed;
+    margin-left: 70%;
+    /* margin-bottom: 30%; */
+    margin-top: 14%;
+}
