@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "0033857b-9f63-4e61-9ec3-8707797fcc5c",
+		"_postman_id": "e8878c0c-cdc7-4c8e-a9ed-06e8124df022",
 		"name": "Expo FP",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -106,6 +106,16 @@
 		{
 			"name": "Listar usuarios (admin)(Dev)",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjMzkxMWUzN2Q2Y2IxMmE2NWM4NzRhMSIsImlhdCI6MTU0NzI0NDAwM30.45W8T5O8SuKPWXlchqufm5sHGTQkMtdFui9TteAPS94",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
 				"body": {
@@ -113,7 +123,13 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": ""
+					"raw": "{{UrlDev}}/users",
+					"host": [
+						"{{UrlDev}}"
+					],
+					"path": [
+						"users"
+					]
 				}
 			},
 			"response": []
@@ -168,6 +184,216 @@
 					"path": [
 						"users"
 					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar ProyectoRes(Dev)",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjMzkxMWUzN2Q2Y2IxMmE2NWM4NzRhMSIsImlhdCI6MTU0NzI0NDAwM30.45W8T5O8SuKPWXlchqufm5sHGTQkMtdFui9TteAPS94",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{UrlDev}}/ProyectoRes",
+					"host": [
+						"{{UrlDev}}"
+					],
+					"path": [
+						"ProyectoRes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear ProyectoRes(Dev) {Esta funcionalidad es temporal}",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjMzkxMWUzN2Q2Y2IxMmE2NWM4NzRhMSIsImlhdCI6MTU0NzI0NDAwM30.45W8T5O8SuKPWXlchqufm5sHGTQkMtdFui9TteAPS94",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "nombre",
+							"value": "Proyecto1",
+							"type": "text"
+						},
+						{
+							"key": "imagen",
+							"value": "DIEGO.jpg",
+							"type": "text"
+						},
+						{
+							"key": "curso",
+							"value": "2DAM",
+							"type": "text"
+						},
+						{
+							"key": "proyecto",
+							"value": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{UrlDev}}/ProyectoRes",
+					"host": [
+						"{{UrlDev}}"
+					],
+					"path": [
+						"ProyectoRes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear proyecto(Dev)(admin)",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjMzkxMWUzN2Q2Y2IxMmE2NWM4NzRhMSIsImlhdCI6MTU0NzI0NDAwM30.45W8T5O8SuKPWXlchqufm5sHGTQkMtdFui9TteAPS94",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "nombre",
+							"value": "Proyecto1",
+							"type": "text"
+						},
+						{
+							"key": "descripcion",
+							"value": "uno to weno",
+							"type": "text"
+						},
+						{
+							"key": "curso",
+							"value": "2DAM",
+							"type": "text"
+						},
+						{
+							"key": "imagenes",
+							"value": "DIEGO.jpg",
+							"type": "text"
+						},
+						{
+							"key": "autores",
+							"value": "El jose el cristobal el juan y el blazquez",
+							"type": "text"
+						},
+						{
+							"key": "valoracionMedia",
+							"value": "10",
+							"type": "text"
+						},
+						{
+							"key": "comentarios",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "{{UrlDev}}/Proyectos",
+					"host": [
+						"{{UrlDev}}"
+					],
+					"path": [
+						"Proyectos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear comentario de un proyecto (Dev)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Subir imagen",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete proyecto(Dev)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": ""
 				}
 			},
 			"response": []

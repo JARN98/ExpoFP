@@ -2,7 +2,7 @@ import { success, notFound } from '../../services/response/'
 import { Proyecto } from '.'
 import { ProyectoRes } from '../ProyectoRes'
 
-const store = require('store')
+  const store = require('store')
 
 export const create = async ({ bodymen: { body } }, res, next) => {
   const crearProyecto = await Proyecto.create(body)
@@ -16,7 +16,7 @@ export const create = async ({ bodymen: { body } }, res, next) => {
   const CrearProyectoRes = await ProyectoRes.create({
     nombre: body.nombre,
     curso: body.curso,
-    // imagenes: body.imagen[0],
+    imagen: body.imagenes,
     proyecto: store.get('idProyecto')
   })
     .then(proyectoRes => proyectoRes.view(true))

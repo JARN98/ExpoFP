@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ListProjectsResponse } from '../interfaces/list-projects-res.interface';
 import { Observable } from 'rxjs';
 import { ListApiResponse } from '../interfaces/list-api.interface';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +22,6 @@ export class ListProjectsResService {
         'Access-Control-Allow-Origin': '*'
       })
     };
-    return this.http.get<ListApiResponse>(`http://localhost:8080/ProyectoRes`, requestOptions);
+    return this.http.get<ListApiResponse>(`${environment.ApiUrl}/ProyectoRes`, requestOptions);
   }
 }
