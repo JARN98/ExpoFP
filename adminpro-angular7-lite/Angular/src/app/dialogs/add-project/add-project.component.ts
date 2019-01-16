@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { AddProjectService } from '../../services/add-project.service';
 import { ProjectDto } from '../../dto/addpro.dto';
+import { MatDialogRef } from '@angular/material';
 
 @Component({
   selector: 'app-add-project',
@@ -13,7 +14,8 @@ export class AddProjectComponent implements OnInit {
   addProjectDto: ProjectDto;
 
   constructor(private fb: FormBuilder,
-    private addProjectService: AddProjectService) {
+    private addProjectService: AddProjectService,
+    public dialogRef: MatDialogRef<AddProjectComponent>) {
   }
 
   ngOnInit() {
@@ -34,7 +36,7 @@ export class AddProjectComponent implements OnInit {
       this.form.controls['descripcion'].value);
 
     this.addProjectService.addPro(this.addProjectDto).subscribe(proyecto => {
-
+      this.dialogRef.close();
     }, error => {
       console.error(error);
 
