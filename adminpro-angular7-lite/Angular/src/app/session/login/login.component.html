@@ -13,14 +13,14 @@
                                 <tr>
                                     <td>
                                         <mat-form-field class="login">
-                                            <input matInput name="email" type="text" />
+                                            <input matInput name="email" type="text" placeholder="email" [(ngModel)]="email" />
                                         </mat-form-field>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
                                         <mat-form-field class="login">
-                                            <input matInput name="password" type="password" />
+                                            <input matInput name="password" type="password" placeholder="password" [(ngModel)]="password" />
                                         </mat-form-field>
                                     </td>
                                 </tr>
@@ -70,6 +70,7 @@
                                 </tr>
                                 <tr>
                                 </tr>
+                                <button mat-raised-button color="primary" id="signup_boton">Registrarse</button>
                             </table>
                         </form>
                     </mat-tab>

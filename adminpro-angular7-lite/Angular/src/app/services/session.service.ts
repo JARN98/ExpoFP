@@ -4,7 +4,8 @@ import { LoginDto } from '../dto/login.dto';
 import { Observable } from 'rxjs';
 import { LoginResponse } from '../interfaces/loginresponse.interface';
 
-const authUrl = `http://localhost:9000/auth`;
+const authUrl = `http://localhost:8080/auth`;
+const masterKey = 'oDUV7u5ZzJIc81W7SR1eqFXD0qNCbPWp';
 
 const requestOptions = {
   headers: new HttpHeaders({
@@ -20,7 +21,7 @@ export class SessionService {
   constructor(private http: HttpClient) { }
 
   login(loginDto: LoginDto): Observable<LoginResponse> {
-    return this.http.post<LoginResponse>(`${authUrl}`, loginDto, requestOptions);
+    return this.http.post<LoginResponse>(`${authUrl}`, masterKey, requestOptions);
   }
 
   loginGoogle(loginDto: LoginDto): Observable<LoginResponse> {

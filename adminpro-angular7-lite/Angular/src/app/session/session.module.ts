@@ -11,6 +11,7 @@ import { Sessionroutes } from './session-routing.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SessionService } from '../services/session.service';
 import { MatTabsModule } from '@angular/material/tabs';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [LoginComponent],
@@ -22,7 +23,8 @@ import { MatTabsModule } from '@angular/material/tabs';
     MatButtonModule,
     MatCardModule,
     FlexLayoutModule,
-    MatTabsModule
+    MatTabsModule,
+    FormsModule
   ],
   providers: [
     SessionService
