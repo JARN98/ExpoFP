@@ -3,7 +3,7 @@ import { SessionService } from '../../services/session.service';
 import { Router } from '@angular/router';
 import { LoginDto } from '../../dto/login.dto';
 import { AuthService } from '../../services/auth.service';
-import { UserDto } from 'src/app/dto/adduser.dto';
+import { UserDto } from '../../dto/adduser.dto';
 
 
 @Component({

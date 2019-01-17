@@ -4,6 +4,7 @@ import { FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Identifiers } from '@angular/compiler';
 import { Proyect } from '../../models/proyect';
+import { OneProjectService } from '../../services/one-project.service';
 
 @Component({
   selector: 'app-proyecto-detallado',
@@ -47,7 +48,7 @@ export class ProyectoDetalladoComponent implements OnInit {
   hovered = 0;
   readonly = false;
   ctrl = new FormControl(null, Validators.required);
-  proyect: Proyect;
+  proyect: any;
 
   toggle() {
     if (this.ctrl.disabled) {
@@ -57,7 +58,8 @@ export class ProyectoDetalladoComponent implements OnInit {
     }
   }
 
-  constructor(config: NgbCarouselConfig) { 
+  constructor(config: NgbCarouselConfig,
+    private oneProjectService: OneProjectService) { 
 
     config.interval = 10000;
     config.wrap = false;
@@ -70,16 +72,16 @@ export class ProyectoDetalladoComponent implements OnInit {
   }
 
   ngOnInit() {
-    // let id = +this._route.snapshot.paramMap.get('id');
-    // this.proyect = {
-    //   "id": id,
-    //   "nombre": "sadasdsdad",
-    //   "descripcion": "asndcansnacnasncnacnnjnacn",
-    //   "curso": "2DAM",
-    //   "autores": "ñasdfrgvfwe",
-    //   "img": "asdaddda",
-    //   "valoracioMedia": 5
-    // }
+    this.getOneProject();
+  }
+
+  getOneProject() {
+    this.oneProjectService.getOneProject().subscribe(proyecto => {
+      console.log(proyecto);
+      this.proyect = proyecto;
+    }, err => {
+      console.log(err);
+    });
   }
 
 }
