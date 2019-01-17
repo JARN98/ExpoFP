@@ -8,6 +8,17 @@
 <!-- User profile and search -->
 <!-- ============================================================== -->
 <ul class="navbar-nav my-lg-0 float-right">
+        
+    <li [class.active]="showMenu === topNavItem.title" *ngFor="let topNavItem of topNavItems" [routerLinkActive]="topNavItem.submenu.length != 0 ? '' : 'active'" style="margin:15px;">
+        <div class="nav-small-cap" *ngIf="topNavItem.extralink === true">{{topNavItem.title}}</div>
+        <a [routerLink]="topNavItem.class === '' ? [topNavItem.path] : null" [ngClass]="[topNavItem.class]" *ngIf="!topNavItem.extralink;"
+            (click)="addExpandClass(topNavItem.title)">
+                <i [ngClass]="[topNavItem.icon]"></i>
+                <span class="hide-menu">{{topNavItem.title}}
+                    <span *ngIf="topNavItem.label != '' " [ngClass]="[topNavItem.labelClass]">{{topNavItem.label}}</span>
+                        </span>
+            </a>
+        </li>
     
     
     <!-- ============================================================== -->

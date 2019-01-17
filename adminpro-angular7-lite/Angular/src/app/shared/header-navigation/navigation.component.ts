@@ -6,12 +6,14 @@ import {
   NgbCarouselConfig
 } from '@ng-bootstrap/ng-bootstrap';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
+import { ROUTES } from './menu-items';
 declare var $: any;
 @Component({
   selector: 'app-navigation',
   templateUrl: './navigation.component.html'
 })
 export class NavigationComponent implements AfterViewInit {
+  public topNavItems: any[];
   @Output() toggleSidebar = new EventEmitter<void>();
 
   public config: PerfectScrollbarConfigInterface = {};
@@ -82,6 +84,10 @@ export class NavigationComponent implements AfterViewInit {
       time: '9:00 AM'
     }
   ];
+  ngOnInit(): void {
+    this.topNavItems = ROUTES.filter(topNavItem => topNavItem);
+    
+  }
 
   ngAfterViewInit() {}
 }

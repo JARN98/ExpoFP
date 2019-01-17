@@ -3,6 +3,7 @@ import { SessionService } from '../../services/session.service';
 import { Router } from '@angular/router';
 import { LoginDto } from '../../dto/login.dto';
 import { AuthService } from '../../services/auth.service';
+import { UserDto } from 'src/app/dto/adduser.dto';
 
 
 @Component({
@@ -14,8 +15,8 @@ export class LoginComponent implements OnInit {
 
   email: string;
   password: string;
-  firstname: string;
-  lastname: string;
+  name: string;
+  picture: string;
 
   constructor(private loginService: AuthService, private router: Router) { }
 
@@ -31,6 +32,16 @@ export class LoginComponent implements OnInit {
       console.log('Error en petición de login');
     }
     );
+  }
+
+  doSignup() {
+    const userDto = new UserDto(this.email, this.password, this.name, this.picture);
+    this.loginService.registro(userDto).subscribe(signupResp => {
+      this.loginService.setLoginData(signupResp);
+      this.router.navigate ( [ '/component/proyectos' ] );
+    }, error => {
+      console.log('Error en el registro');
+    })
   }
 
 }
