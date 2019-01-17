@@ -8,7 +8,7 @@
                     <img class="card-img-top img-responsive" src={{proyecto.imagen}} alt="Card image cap">
                     <div class="card-body">
                         <h4 class="card-title">{{proyecto.nombre}} - {{proyecto.curso}}</h4>
-                        <a href="#" class="btn btn-primary" style="width:40%;">Ver</a>
+                        <a [routerLink]="['/proyectoDetallado', proyect.id]" class="btn btn-primary" style="width:40%;">Ver</a>
                     </div>
                 </div>
             </div>
