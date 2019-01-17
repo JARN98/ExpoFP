@@ -4,6 +4,8 @@ import { LoginDto } from '../dto/login.dto';
 import { Observable } from 'rxjs';
 import { LoginResponse } from '../interfaces/login-response.interface';
 import { environment } from '../..//environments/environment';
+import { UsuarioCreateDto } from '../dto/usuario.dto';
+import { UserDto } from '../dto/adduser.dto';
 
 const authUrl = '';
 
@@ -37,6 +39,24 @@ export class AuthService {
     }
     const metaKey = new Metakey('oDUV7u5ZzJIc81W7SR1eqFXD0qNCbPWp');
     return this.http.post<LoginResponse>(`${environment.ApiUrl}/auth`, metaKey, requestOptions);
+  }
+
+  registro(userDto: UserDto): Observable<LoginResponse> {
+    const requestOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Basic ` + btoa(`${userDto.email}:${userDto.password}`)
+      })
+    };
+    class Metakey {
+      access_token: String;
+
+      constructor(access_token: String) {
+        this.access_token = access_token;
+      }
+    }
+    const metaKey = new Metakey('oDUV7u5ZzJIc81W7SR1eqFXD0qNCbPWp');
+    return this.http.post<LoginResponse>(`${environment.ApiUrl}/users`, metaKey, requestOptions);
   }
 
   setLoginData(loginResponse: LoginResponse) {

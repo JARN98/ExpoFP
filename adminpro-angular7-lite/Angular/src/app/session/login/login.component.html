@@ -34,24 +34,19 @@
                                 <tr>
                                     <td>
                                         <mat-form-field class="signup">
-                                            <input matInput name="nombre" placeholder="Nombre">
+                                            <input matInput name="nombre" placeholder="Nombre" [(ngModel)]="name">
                                         </mat-form-field>
                                     </td>
                                     <td>
                                         <mat-form-field class="signup">
-                                            <input matInput name="apellidos" placeholder="Apellidos">
+                                            <input matInput name="picture" placeholder="Foto" [(ngModel)]="picture">
                                         </mat-form-field>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
                                         <mat-form-field class="signup">
-                                            <input matInput name="email" type="email" placeholder="Email">
-                                        </mat-form-field>
-                                    </td>
-                                    <td>
-                                        <mat-form-field class="signup">
-                                            <input matInput name="username" placeholder="Username">
+                                            <input matInput name="email" type="email" placeholder="Email" [(ngModel)]="email">
                                         </mat-form-field>
                                     </td>
 
@@ -59,7 +54,7 @@
                                 <tr>
                                     <td>
                                         <mat-form-field class="signup">
-                                            <input matInput name="password" type="password" placeholder="Contraseña">
+                                            <input matInput name="password" type="password" placeholder="Contraseña" [(ngModel)]="password">
                                         </mat-form-field>
                                     </td>
                                     <td>
@@ -70,7 +65,7 @@
                                 </tr>
                                 <tr>
                                 </tr>
-                                <button mat-raised-button color="primary" id="signup_boton">Registrarse</button>
+                                <button mat-raised-button color="primary" id="signup_boton" (click)="doSignup()">Registrarse</button>
                             </table>
                         </form>
                     </mat-tab>
