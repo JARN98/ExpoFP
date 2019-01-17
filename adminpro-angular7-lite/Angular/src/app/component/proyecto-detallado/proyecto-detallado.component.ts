@@ -3,7 +3,7 @@ import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 import { FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Identifiers } from '@angular/compiler';
-import { Proyect } from 'src/app/models/proyect';
+import { Proyect } from '../../models/proyect';
 
 @Component({
   selector: 'app-proyecto-detallado',
@@ -57,7 +57,7 @@ export class ProyectoDetalladoComponent implements OnInit {
     }
   }
 
-  constructor(config: NgbCarouselConfig, private _route: ActivatedRoute) { 
+  constructor(config: NgbCarouselConfig) { 
 
     config.interval = 10000;
     config.wrap = false;
@@ -66,20 +66,20 @@ export class ProyectoDetalladoComponent implements OnInit {
     config.showNavigationArrows = true;
     config.showNavigationIndicators = true;
 
-    console.log(this._route.snapshot.paramMap.get('id'));
+    // console.log(this._route.snapshot.paramMap.get('id'));
   }
 
   ngOnInit() {
-    let id = +this._route.snapshot.paramMap.get('id');
-    this.proyect = {
-      "id": id,
-      "nombre": "sadasdsdad",
-      "descripcion": "asndcansnacnasncnacnnjnacn",
-      "curso": "2DAM",
-      "autores": "ñasdfrgvfwe",
-      "img": "asdaddda",
-      "valoracioMedia": 5
-    }
+    // let id = +this._route.snapshot.paramMap.get('id');
+    // this.proyect = {
+    //   "id": id,
+    //   "nombre": "sadasdsdad",
+    //   "descripcion": "asndcansnacnasncnacnnjnacn",
+    //   "curso": "2DAM",
+    //   "autores": "ñasdfrgvfwe",
+    //   "img": "asdaddda",
+    //   "valoracioMedia": 5
+    // }
   }
 
 }

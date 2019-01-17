@@ -4,6 +4,7 @@ import { ListProjectsResService } from '../../services/list-projects-res.service
 import { ListApiResponse } from '../../interfaces/list-api.interface';
 import { MatDialog } from '@angular/material';
 import { AddProjectComponent } from '../../dialogs/add-project/add-project.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-lista-proyectos',
@@ -16,7 +17,8 @@ export class ListaProyectosComponent implements OnInit {
   proyectoFilter: any = { nombre: '' };
 
   constructor(private projectService: ListProjectsResService,
-    public dialog: MatDialog) { }
+    public dialog: MatDialog,
+    private router: Router) { }
 
   ngOnInit() {
     this.getAllProyectos();
@@ -26,7 +28,7 @@ export class ListaProyectosComponent implements OnInit {
       this.listaApi = lista;
       this.listaProyectosRes = this.listaApi.rows;
       console.log(this.listaProyectosRes);
-     
+
     }, error => {
       console.error(error);
     });
@@ -41,5 +43,10 @@ export class ListaProyectosComponent implements OnInit {
       this.getAllProyectos();
     });
 
-}
+  }
+
+  VerProyecto(proyecto) {
+    localStorage.setItem('idDeProyecto', proyecto);
+    this.router.navigate(['component/proyectoDetallado']);
+  }
 }

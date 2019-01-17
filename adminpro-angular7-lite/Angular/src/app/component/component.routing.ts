@@ -29,7 +29,7 @@ export const ComponentsRoutes: Routes = [
         component: UsuarioListComponent
       },
       {
-        path: 'proyectoDetallado/:id',
+        path: 'proyectoDetallado',
         component: ProyectoDetalladoComponent
       },
       {
