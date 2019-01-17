@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
   }
 
   doSignup() {
-    const userDto = new UserDto(this.email, this.password, this.name, this.picture);
+    const userDto = new UserDto(this.email, this.password, this.name, this.picture, 'user');
     this.loginService.registro(userDto).subscribe(signupResp => {
       this.loginService.setLoginData(signupResp);
       this.router.navigate ( [ '/component/proyectos' ] );
