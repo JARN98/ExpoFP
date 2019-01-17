@@ -4,7 +4,6 @@ import { LoginDto } from '../dto/login.dto';
 import { Observable } from 'rxjs';
 import { LoginResponse } from '../interfaces/login-response.interface';
 import { environment } from '../..//environments/environment';
-const jwtDecode = require('jwt-decode');
 
 const authUrl = '';
 
