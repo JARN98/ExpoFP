@@ -10,20 +10,12 @@ export const Approutes: Routes = [
     path: '',
     component: FullComponent,
     children: [
-      { path: '', redirectTo: '/component/proyectos', pathMatch: 'full' },
-      {
-        path: 'starter',
-        loadChildren: './starter/starter.module#StarterModule'
-      },
+      { path: '', redirectTo: '/session', pathMatch: 'full' },
       {
         path: 'component',
         loadChildren: './component/component.module#ComponentsModule'
       }
     ]
-  },
-  {
-    path: 'prueba1',
-    component: AddProjectComponent
   },
   {
     path: 'session',
