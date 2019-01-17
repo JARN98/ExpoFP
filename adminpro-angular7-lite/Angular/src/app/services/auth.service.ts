@@ -44,19 +44,10 @@ export class AuthService {
   registro(userDto: UserDto): Observable<LoginResponse> {
     const requestOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': `Basic ` + btoa(`${userDto.email}:${userDto.password}`)
+        'Content-Type': 'application/json'
       })
     };
-    class Metakey {
-      access_token: String;
-
-      constructor(access_token: String) {
-        this.access_token = access_token;
-      }
-    }
-    const metaKey = new Metakey('oDUV7u5ZzJIc81W7SR1eqFXD0qNCbPWp');
-    return this.http.post<LoginResponse>(`${environment.ApiUrl}/users`, metaKey, requestOptions);
+    return this.http.post<LoginResponse>(`${environment.ApiUrl}/users`, userDto, requestOptions);
   }
 
   setLoginData(loginResponse: LoginResponse) {

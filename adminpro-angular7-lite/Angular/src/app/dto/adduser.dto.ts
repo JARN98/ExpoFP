@@ -4,12 +4,13 @@ export class UserDto {
     name: String;
     picture: String;
     role: String;
+    access_token: String = 'oDUV7u5ZzJIc81W7SR1eqFXD0qNCbPWp';
 
-    constructor(e: String, pw: String, n: String, pt: String, r: String){
-        e = this.email;
-        pw = this.password;
-        n = this.name;
-        pt = this.picture
-        r = this.role;
+    constructor(email: String, password: String, name: String, picture: String, role: String) {
+        this.email = email;
+        this.password = password;
+        this.name = name;
+        this.picture = picture;
+        this.role = role;
     }
 }
