@@ -4,18 +4,25 @@
         <mat-form-field class="example-full-width">
             <input matInput placeholder="Título..." [formControl]="form.controls['title']">
         </mat-form-field>
-        <div *ngIf="form.controls['title'].invalid && (form.controls['title'].dirty || form.controls['title'].touched)"
-            class="alert alert-danger">
+        <div *ngIf="form.controls['title'].invalid && (form.controls['title'].dirty || form.controls['title'].touched)" class="alert alert-danger">
             <div *ngIf="form.controls['title'].errors.required">
                 El título es necesario
             </div>
         </div>
 
+
+
         <mat-form-field>
-            <input matInput placeholder="Autores..." [formControl]="form.controls['autores']">
+            <!-- <input matInput placeholder="Autores..." [formControl]="form.controls['autores']"> -->
+            <mat-chip-list #chipList>
+                <mat-chip *ngFor="let autor of autores" [selectable]="selectable" [removable]="removable" (removed)="remove(autor)">
+                    {{autor.nombre}}
+                    <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                </mat-chip>
+                <input placeholder="Autores..." [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event)">
+            </mat-chip-list>
         </mat-form-field>
-        <div *ngIf="form.controls['autores'].invalid && (form.controls['autores'].dirty || form.controls['autores'].touched)"
-            class="alert alert-danger">
+        <div *ngIf="form.controls['autores'].invalid && (form.controls['autores'].dirty || form.controls['autores'].touched)" class="alert alert-danger">
             <div *ngIf="form.controls['autores'].errors.required">
                 Los autores son necesario
             </div>
@@ -24,8 +31,7 @@
         <mat-form-field>
             <input matInput placeholder="Curso..." [formControl]="form.controls['curso']">
         </mat-form-field>
-        <div *ngIf="form.controls['curso'].invalid && (form.controls['curso'].dirty || form.controls['curso'].touched)"
-            class="alert alert-danger">
+        <div *ngIf="form.controls['curso'].invalid && (form.controls['curso'].dirty || form.controls['curso'].touched)" class="alert alert-danger">
             <div *ngIf="form.controls['curso'].errors.required">
                 El curso es necesario
             </div>
@@ -39,8 +45,7 @@
         <mat-form-field>
             <textarea matInput placeholder="Descripción..." [formControl]="form.controls['descripcion']"></textarea>
         </mat-form-field>
-        <div *ngIf="form.controls['descripcion'].invalid && (form.controls['descripcion'].dirty || form.controls['descripcion'].touched)"
-            class="alert alert-danger">
+        <div *ngIf="form.controls['descripcion'].invalid && (form.controls['descripcion'].dirty || form.controls['descripcion'].touched)" class="alert alert-danger">
             <div *ngIf="form.controls['descripcion'].errors.required">
                 La descripción es necesaria
             </div>

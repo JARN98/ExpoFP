@@ -4,7 +4,7 @@ export interface CreateProjectResponse {
     descripcion: String;
     curso: String;
     imagenes: String;
-    autores: String;
+    autores: String[];
     valoracionMedia: Number;
     createdAt: String;
     updatedAt: String;

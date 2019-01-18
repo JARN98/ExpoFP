@@ -32,6 +32,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material';
 import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
+import { MatChipsModule } from '@angular/material/chips'
 
 
 
@@ -79,7 +80,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     MatCardModule,
     MatIconModule,
     MatTabsModule,
-    MatInputModule
+    MatInputModule,
+    MatChipsModule
 
   ],
   providers: [
