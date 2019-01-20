@@ -1,11 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { AddProjectService } from '../../services/add-project.service';
 import { ProjectDto } from '../../dto/addpro.dto';
 import { MatDialogRef } from '@angular/material';
-import {COMMA, ENTER} from '@angular/cdk/keycodes';
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { Autor } from '../../interfaces/autor.interface'
 import { MatChipInputEvent } from '@angular/material/chips'
+import { UploadImageDto } from '../../dto/uploadimage.dto';
+import { UploadImageImgurService } from '../../services/upload-image-imgur.service';
+// const j = require('jquery');
+var ImagenB64: File = null;
 
 @Component({
   selector: 'app-add-project',
@@ -15,8 +19,10 @@ import { MatChipInputEvent } from '@angular/material/chips'
 export class AddProjectComponent implements OnInit {
   public form: FormGroup;
   addProjectDto: ProjectDto;
-  autores: Autor[]=[
+  uploadImageDto: UploadImageDto;
+  autores: Autor[] = [
   ];
+  urlImagen: any;
 
   visible: boolean = true;
   selectable: boolean = true;
@@ -26,32 +32,62 @@ export class AddProjectComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
     private addProjectService: AddProjectService,
-    public dialogRef: MatDialogRef<AddProjectComponent>) {
+    private uploadImageImgurService: UploadImageImgurService,
+    public dialogRef: MatDialogRef<AddProjectComponent>,
+    private cd: ChangeDetectorRef) {
   }
 
   ngOnInit() {
     this.form = this.fb.group({
       title: [null, Validators.compose([Validators.required])],
-      autores: [null, Validators.compose([Validators.required])],
+      autores: [null],
       curso: [null, Validators.compose([Validators.required])],
       img: [null],
       descripcion: [null, Validators.compose([Validators.required])]
     });
   }
+  foto64() {
+    const Image: any = document.getElementById('fotoInput');
 
-  addProject() {
-    this.addProjectDto = new ProjectDto(this.form.controls['title'].value,
-      this.form.controls['autores'].value,
-      this.form.controls['curso'].value,
-      this.form.controls['img'].value,
-      this.form.controls['descripcion'].value);
 
-    this.addProjectService.addPro(this.addProjectDto).subscribe(proyecto => {
+    if (Image.files && Image.files[0]) {
+      var visor = new FileReader();
+      visor.onload = function (e) {
+        // document.getElementById('visorArchivo').innerHTML = 
+        // '<embed src="'+e.target.result+'" width="500" height="375" />';
+        ImagenB64 = Image.files[0];
+      };
+
+      visor.readAsDataURL(Image.files[0]);
+    }
+
+    this.uploadImageDto = new UploadImageDto(ImagenB64);
+
+    this.uploadImageImgurService.UploadImage(this.uploadImageDto).subscribe(imagen => {
+
+      this.urlImagen = imagen.data.link;
+    }, err => {
+      console.log('nanai');
+
+      console.log(err);
+    });
+  }
+
+  async addProject() {
+
+    await this.newMethod();
+
+    await this.addProjectService.addPro(this.addProjectDto).subscribe(proyecto => {
       this.dialogRef.close();
     }, error => {
       console.error(error);
 
     });
+  }
+
+  private newMethod() {
+    // tslint:disable-next-line:max-line-length
+    this.addProjectDto = new ProjectDto(this.form.controls['title'].value, this.form.controls['autores'].value, this.form.controls['curso'].value, this.urlImagen, this.form.controls['descripcion'].value);
   }
 
   add(event: MatChipInputEvent): void {
@@ -60,7 +96,7 @@ export class AddProjectComponent implements OnInit {
 
     // Add our fruit
     if ((value || '').trim()) {
-      this.autores.push({nombre: value.trim()});
+      this.autores.push({ nombre: value.trim() });
     }
 
     // Reset the input value
@@ -76,5 +112,4 @@ export class AddProjectComponent implements OnInit {
       this.autores.splice(index, 1);
     }
   }
-
 }

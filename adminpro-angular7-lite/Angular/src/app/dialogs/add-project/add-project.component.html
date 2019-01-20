@@ -4,7 +4,8 @@
         <mat-form-field class="example-full-width">
             <input matInput placeholder="Título..." [formControl]="form.controls['title']">
         </mat-form-field>
-        <div *ngIf="form.controls['title'].invalid && (form.controls['title'].dirty || form.controls['title'].touched)" class="alert alert-danger">
+        <div *ngIf="form.controls['title'].invalid && (form.controls['title'].dirty || form.controls['title'].touched)"
+            class="alert alert-danger">
             <div *ngIf="form.controls['title'].errors.required">
                 El título es necesario
             </div>
@@ -19,10 +20,12 @@
                     {{autor.nombre}}
                     <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
                 </mat-chip>
-                <input placeholder="Autores..." [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event)">
+                <input placeholder="Autores..." [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                    [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event)">
             </mat-chip-list>
         </mat-form-field>
-        <div *ngIf="form.controls['autores'].invalid && (form.controls['autores'].dirty || form.controls['autores'].touched)" class="alert alert-danger">
+        <div *ngIf="form.controls['autores'].invalid && (form.controls['autores'].dirty || form.controls['autores'].touched)"
+            class="alert alert-danger">
             <div *ngIf="form.controls['autores'].errors.required">
                 Los autores son necesario
             </div>
@@ -31,7 +34,8 @@
         <mat-form-field>
             <input matInput placeholder="Curso..." [formControl]="form.controls['curso']">
         </mat-form-field>
-        <div *ngIf="form.controls['curso'].invalid && (form.controls['curso'].dirty || form.controls['curso'].touched)" class="alert alert-danger">
+        <div *ngIf="form.controls['curso'].invalid && (form.controls['curso'].dirty || form.controls['curso'].touched)"
+            class="alert alert-danger">
             <div *ngIf="form.controls['curso'].errors.required">
                 El curso es necesario
             </div>
@@ -39,16 +43,18 @@
 
 
         <mat-form-field>
-            <input matInput placeholder="Imagenes..." [formControl]="form.controls['img']">
-        </mat-form-field>
-
-        <mat-form-field>
             <textarea matInput placeholder="Descripción..." [formControl]="form.controls['descripcion']"></textarea>
         </mat-form-field>
-        <div *ngIf="form.controls['descripcion'].invalid && (form.controls['descripcion'].dirty || form.controls['descripcion'].touched)" class="alert alert-danger">
+        <div *ngIf="form.controls['descripcion'].invalid && (form.controls['descripcion'].dirty || form.controls['descripcion'].touched)"
+            class="alert alert-danger">
             <div *ngIf="form.controls['descripcion'].errors.required">
                 La descripción es necesaria
             </div>
+        </div>
+
+        <div class="form-group">
+            <!-- <input type="file" class="form-control-file" id="exampleFormControlFile1" [formControl]="form.controls['img']"> -->
+            <input type="file" (change)="foto64()" id="fotoInput" />
         </div>
 
         <div fxLayoutAlign="end end">
