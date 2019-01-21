@@ -4,6 +4,7 @@ import auth from './auth'
 import proyecto from './Proyecto'
 import comentario from './Comentario'
 import proyectoRes from './ProyectoRes'
+import pregunta from './pregunta'
 
 const router = new Router()
 
@@ -35,5 +36,6 @@ router.use('/auth', auth)
 router.use('/Proyectos', proyecto)
 router.use('/Comentarios', comentario)
 router.use('/ProyectoRes', proyectoRes)
+router.use('/preguntas', pregunta)
 
 export default router
