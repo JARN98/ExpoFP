@@ -4,6 +4,7 @@ import { AuthService } from './auth.service';
 import { Observable } from 'rxjs';
 import { User } from '../models/user';
 import { environment } from '../../environments/environment';
+import { ListApiResponse } from '../interfaces/list-api.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -12,16 +13,17 @@ export class ListUsuarioService {
 
   constructor(private http: HttpClient, private authService: AuthService) { }
 
-  listUser(): Observable<User[]> {
+  listUsuarios(): Observable<ListApiResponse> {
     const requestOptions = {
       headers: new HttpHeaders({
-        'Content-Type' : 'application/json',
-        'Authorization': `Bearer ${this.authService.getToken()}`,
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+        // tslint:disable-next-line:max-line-length
+        // 'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjM2JhODE5ODdjYzYyMzI5NDUzZmEyOCIsImlhdCI6MTU0NzY3MDUyM30.MM1CqSKhCNNP4DVx7UtCnlxl4O3TJbKJRUwMHnDTYo4`,
         'Access-Control-Allow-Origin': '*'
       })
     };
-
-    return this.http.get<User[]>(`${environment.ApiUrl}/user/all`, requestOptions);
+    return this.http.get<ListApiResponse>(`${environment.ApiUrl}/users`, requestOptions);
   }
 
   /*
