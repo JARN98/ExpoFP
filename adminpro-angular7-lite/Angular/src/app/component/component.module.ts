@@ -31,7 +31,6 @@ import { MatCardModule } from '@angular/material/card';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatIconModule } from '@angular/material/icon';
 import { ProyectoDetalladoComponent } from './proyecto-detallado/proyecto-detallado.component';
-import { NgxImageCompressService } from 'ngx-image-compress';
 
 
 
@@ -50,8 +49,7 @@ import { NgxImageCompressService } from 'ngx-image-compress';
     NgxPaginationModule,
     MatCardModule,
     FlexLayoutModule,
-    MatIconModule,
-    NgxImageCompressService
+    MatIconModule
   
   ],
   declarations: [

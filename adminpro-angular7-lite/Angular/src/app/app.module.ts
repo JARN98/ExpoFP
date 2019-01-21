@@ -83,14 +83,14 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     MatTabsModule,
     MatInputModule,
     MatChipsModule,
-    NgxImageCompressService
+
 
   ],
   providers: [
     {
       provide: PERFECT_SCROLLBAR_CONFIG,
-      useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
-    },
+      useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG,
+    }, NgxImageCompressService,
     { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: true } }
   ],
   entryComponents: [
@@ -98,4 +98,4 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }
