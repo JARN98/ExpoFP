@@ -27,7 +27,8 @@ export class AuthService {
     const requestOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'Authorization': `Basic ` + btoa(`${loginDto.email}:${loginDto.password}`)
+        'Authorization': `Basic ` + btoa(`${loginDto.email}:${loginDto.password}`),
+        'Access-Control-Allow-Origin': '*'
       })
     };
     class Metakey {

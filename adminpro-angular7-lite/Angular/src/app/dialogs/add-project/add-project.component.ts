@@ -51,6 +51,7 @@ export class AddProjectComponent implements OnInit {
       descripcion: [null, Validators.compose([Validators.required])]
     });
   }
+
   foto64() {
     const Image: any = document.getElementById('fotoInput');
 
@@ -58,17 +59,26 @@ export class AddProjectComponent implements OnInit {
     if (Image.files && Image.files[0]) {
       var visor = new FileReader();
       visor.onload = function (e) {
-        // document.getElementById('visorArchivo').innerHTML = 
-        // '<embed src="'+e.target.result+'" width="500" height="375" />';
-        ImagenB64 = Image.files[0];
-      };
+        console.log('si');
 
+        // document.getElementById('visorArchivo').innerHTML = 
+        // '<embed src="'+e.target.result+'" width="500" height="375" />';        
+        ImagenB64 = Image.files[0];
+        
+      };
       visor.readAsDataURL(Image.files[0]);
+      this.uploadImageDto = new UploadImageDto(Image.files[0]);
     }
 
-    this.uploadImageDto = new UploadImageDto(ImagenB64);
+
+
+
+    
+
 
     this.uploadImageImgurService.UploadImage(this.uploadImageDto).subscribe(imagen => {
+      console.log(imagen);
+
 
       this.urlImagen = imagen.data.link;
     }, err => {
@@ -76,6 +86,7 @@ export class AddProjectComponent implements OnInit {
 
       console.log(err);
     });
+    
   }
   compressFile() {
     this.imageCompress.uploadFile().then(({image, orientation}) => {
