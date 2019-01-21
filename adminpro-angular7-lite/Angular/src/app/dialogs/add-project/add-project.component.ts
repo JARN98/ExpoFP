@@ -10,8 +10,10 @@ import { UploadImageDto } from '../../dto/uploadimage.dto';
 import { UploadImageImgurService } from '../../services/upload-image-imgur.service';
 import { NgxImageCompressService } from 'ngx-image-compress';
 import { DOC_ORIENTATION } from 'ngx-image-compress/lib/image-compress';
+import { UploadImageDetailsDto } from '../../dto/uploadimagesdetails.dto';
 // const j = require('jquery');
 var ImagenB64: File = null;
+var ImagenesB64: File[] = null;
 
 @Component({
   selector: 'app-add-project',
@@ -22,6 +24,7 @@ export class AddProjectComponent implements OnInit {
   public form: FormGroup;
   addProjectDto: ProjectDto;
   uploadImageDto: UploadImageDto;
+  uploadImageDetailsDto: UploadImageDetailsDto;
   autores: Autor[] = [
   ];
   urlImagen: any;
@@ -70,6 +73,39 @@ export class AddProjectComponent implements OnInit {
       this.uploadImageDto = new UploadImageDto(Image.files[0]);
     }
 
+  }
+
+  fotos64() {
+    const Image: any = document.getElementById('fotosInput');
+    console.log(Image);
+
+
+
+
+    if (Image.files && Image.files[0]) {
+      const visor = new FileReader();
+      visor.onload = function (e) {
+        // ImagenesB64 = Image.files;
+        // console.log(Image.files);
+
+      };
+
+      for (let index = 0; index < Image.files.length; index++) {
+        visor.readAsDataURL(Image.files[index]);
+      }
+
+      this.uploadImageDetailsDto = new UploadImageDetailsDto();
+
+      for (let index = 0; index < Image.files.length; index++) {
+        const element = Image.files[index];
+        this.uploadImageDetailsDto.image.push(element);
+      }
+
+
+      console.log(this.uploadImageDetailsDto);
+
+
+    }
   }
 
   addProject() {
