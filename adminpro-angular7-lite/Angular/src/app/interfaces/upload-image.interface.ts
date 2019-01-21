@@ -1,3 +1,5 @@
 export interface UploadImageResponse {
-    url: String;
+    data: {
+        link: String;
+    }
 }
