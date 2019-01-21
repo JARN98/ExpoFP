@@ -8,7 +8,7 @@ export Proyecto, { schema } from './model'
 const fileUpload = require('express-fileupload');
 
 const router = new Router()
-const { nombre, descripcion, curso, imagenes, autores, valoracionMedia, comentarios } = schema.tree
+const { nombre, descripcion, curso, imagenes, autores, valoracionMedia, comentarios, imagenesDetalladas } = schema.tree
 
 /**
  * @api {post} /Proyectos Create proyecto
@@ -27,7 +27,7 @@ const { nombre, descripcion, curso, imagenes, autores, valoracionMedia, comentar
  */
 router.post('/',
   token({ required: true, roles: ['admin'] }),
-  body({ nombre, descripcion, curso, imagenes, autores, valoracionMedia, comentarios }),
+  body({ nombre, descripcion, curso, imagenes, autores, valoracionMedia, comentarios, imagenesDetalladas }),
   create)
 
 /**

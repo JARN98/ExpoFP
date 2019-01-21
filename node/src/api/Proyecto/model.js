@@ -16,6 +16,9 @@ const proyectoSchema = new Schema({
     imagenes: [{
         type: String
     }],
+    imagenesDetalladas: [{
+        type: String
+    }],
     autores: [{
         type: String
     }],
@@ -60,6 +63,7 @@ proyectoSchema.methods = {
             descripcion: this.descripcion,
             curso: this.curso,
             imagenes: this.imagenes,
+            imagenesDetalladas: this.imagenesDetalladas,
             autores: this.autores,
             valoracionMedia: this.valoracionMedia,
             comentarios: this.comentarios,

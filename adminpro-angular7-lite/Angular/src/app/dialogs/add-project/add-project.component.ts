@@ -59,46 +59,40 @@ export class AddProjectComponent implements OnInit {
         // document.getElementById('visorArchivo').innerHTML = 
         // '<embed src="'+e.target.result+'" width="500" height="375" />';        
         ImagenB64 = Image.files[0];
-        
+
       };
       visor.readAsDataURL(Image.files[0]);
       this.uploadImageDto = new UploadImageDto(Image.files[0]);
     }
 
+  }
 
-
-
-    
-
+  addProject() {
 
     this.uploadImageImgurService.UploadImage(this.uploadImageDto).subscribe(imagen => {
       console.log(imagen);
 
 
       this.urlImagen = imagen.data.link;
+      console.log(this.urlImagen);
+      this.CrearDtoProyecto();
+      this.addProjectService.addPro(this.addProjectDto).subscribe(proyecto => {
+        this.dialogRef.close();
+      }, error => {
+        console.error(error);
+
+      });
+
     }, err => {
       console.log('nanai');
 
       console.log(err);
     });
-    
   }
 
-  async addProject() {
-
-    await this.newMethod();
-
-    await this.addProjectService.addPro(this.addProjectDto).subscribe(proyecto => {
-      this.dialogRef.close();
-    }, error => {
-      console.error(error);
-
-    });
-  }
-
-  private newMethod() {
+  private CrearDtoProyecto() {
     // tslint:disable-next-line:max-line-length
-    this.addProjectDto = new ProjectDto(this.form.controls['title'].value, this.form.controls['autores'].value, this.form.controls['curso'].value, this.urlImagen, this.form.controls['descripcion'].value);
+    this.addProjectDto = new ProjectDto(this.form.controls['title'].value, this.autores, this.form.controls['curso'].value, this.urlImagen, this.form.controls['descripcion'].value);
   }
 
   add(event: MatChipInputEvent): void {
