@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { AddProjectService } from '../../services/add-project.service';
 import { ProjectDto } from '../../dto/addpro.dto';
 import { MatDialogRef } from '@angular/material';
@@ -13,7 +13,7 @@ import { DOC_ORIENTATION } from 'ngx-image-compress/lib/image-compress';
 import { UploadImageDetailsDto } from '../../dto/uploadimagesdetails.dto';
 // const j = require('jquery');
 var ImagenB64: File = null;
-var ImagenesB64: File[] = null;
+var ImagenesB64: File[];
 
 @Component({
   selector: 'app-add-project',
@@ -28,6 +28,7 @@ export class AddProjectComponent implements OnInit {
   autores: Autor[] = [
   ];
   urlImagen: any;
+  urlImagenes: String[];
   imgResultBeforeCompress = ImagenB64;
   imgResultAfterCompress;
 
@@ -51,6 +52,7 @@ export class AddProjectComponent implements OnInit {
       autores: [null],
       curso: [null, Validators.compose([Validators.required])],
       img: [null],
+      imagenes: [null],
       descripcion: [null, Validators.compose([Validators.required])]
     });
   }
@@ -58,65 +60,68 @@ export class AddProjectComponent implements OnInit {
   foto64() {
     const Image: any = document.getElementById('fotoInput');
 
-
     if (Image.files && Image.files[0]) {
       var visor = new FileReader();
       visor.onload = function (e) {
-        console.log('si');
-
-        // document.getElementById('visorArchivo').innerHTML = 
-        // '<embed src="'+e.target.result+'" width="500" height="375" />';        
         ImagenB64 = Image.files[0];
-
       };
       visor.readAsDataURL(Image.files[0]);
       this.uploadImageDto = new UploadImageDto(Image.files[0]);
     }
-
   }
-
+  
   fotos64() {
     const Image: any = document.getElementById('fotosInput');
-    console.log(Image);
+    console.log(Image.files);
 
 
-
-
+    // console.log(this.form.get('imagenes') as FormArray);
     if (Image.files && Image.files[0]) {
       const visor = new FileReader();
       visor.onload = function (e) {
-        // ImagenesB64 = Image.files;
-        // console.log(Image.files);
 
       };
 
-      for (let index = 0; index < Image.files.length; index++) {
-        visor.readAsDataURL(Image.files[index]);
+      for (var i = 0; i < Image.files.length; i++) {
+        visor.readAsDataURL(Image.files[i]);
+
       }
 
-      this.uploadImageDetailsDto = new UploadImageDetailsDto();
+      ImagenesB64 = Image.files;
 
-      for (let index = 0; index < Image.files.length; index++) {
-        const element = Image.files[index];
-        this.uploadImageDetailsDto.image.push(element);
-      }
-
-
+      this.uploadImageDetailsDto.image = ImagenesB64;
       console.log(this.uploadImageDetailsDto);
-
 
     }
   }
 
   addProject() {
 
+
     this.uploadImageImgurService.UploadImage(this.uploadImageDto).subscribe(imagen => {
       console.log(imagen);
 
 
       this.urlImagen = imagen.data.link;
-      console.log(this.urlImagen);
-      this.compressFile();
+      if (this.uploadImageDetailsDto.image != null) {
+        for (let index = 0; index < this.uploadImageDetailsDto.image.length; index++) {
+          this.uploadImageDto = new UploadImageDto(this.uploadImageDetailsDto.image[index]);
+          this.uploadImageImgurService.UploadImage(this.uploadImageDto).subscribe(img => {
+            if (this.uploadImageDetailsDto.image[index] == this.uploadImageDetailsDto.image[-1]) {
+              this.compressFile();
+            }
+            this.urlImagenes.push(img.data.link)
+
+
+          }, err => {
+            console.log(err);
+          })
+        }
+        console.log(this.urlImagenes);
+      } else {
+        this.compressFile();
+      }
+
 
     }, err => {
       console.log('nanai');
@@ -132,15 +137,14 @@ export class AddProjectComponent implements OnInit {
       this.imageCompress.compressFile(image, orientation, 50, 50).then(
         result => {
           this.imgResultAfterCompress = result;
-          console.log(result);
           console.warn('Size in bytes is now:', this.imageCompress.byteCount(result));
           this.CrearDtoProyecto();
           this.addProjectService.addPro(this.addProjectDto).subscribe(proyecto => {
             this.dialogRef.close();
           }, error => {
             console.error(error);
-
           });
+
         }
       );
     });
@@ -148,7 +152,7 @@ export class AddProjectComponent implements OnInit {
 
   private CrearDtoProyecto() {
     // tslint:disable-next-line:max-line-length
-    this.addProjectDto = new ProjectDto(this.form.controls['title'].value, this.form.controls['autores'].value, this.form.controls['curso'].value, this.imgResultAfterCompress, this.form.controls['descripcion'].value);
+    this.addProjectDto = new ProjectDto(this.form.controls['title'].value, this.form.controls['autores'].value, this.form.controls['curso'].value, this.imgResultAfterCompress, this.form.controls['descripcion'].value, this.urlImagenes);
   }
 
   add(event: MatChipInputEvent): void {

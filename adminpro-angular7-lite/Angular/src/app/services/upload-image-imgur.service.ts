@@ -13,8 +13,6 @@ export class UploadImageImgurService {
   constructor(private http: HttpClient) { }
 
   UploadImage(dto: UploadImageDto): Observable<UploadImageResponse> {
-    console.log(dto.image);
-    
     const requestOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'multipart/form-data',
