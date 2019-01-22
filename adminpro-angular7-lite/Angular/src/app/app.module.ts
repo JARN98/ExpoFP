@@ -34,16 +34,7 @@ import { MatTabsModule } from '@angular/material';
 import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 import { MatChipsModule } from '@angular/material/chips';
 import { NgxImageCompressService } from 'ngx-image-compress';
-
-
-
-
-
-
-
-
-
-
+import { ChartsModule } from 'ng2-charts/ng2-charts';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -83,7 +74,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     MatTabsModule,
     MatInputModule,
     MatChipsModule,
-
+    ChartsModule
 
   ],
   providers: [
