@@ -1,7 +1,7 @@
 export class UploadImageDetailsDto {
-    image: File[];
+    image: Array<any>;
 
-    constructor(image?: File[]) {
+    constructor(image?: Array<any>) {
         this.image = image;
     }
 }

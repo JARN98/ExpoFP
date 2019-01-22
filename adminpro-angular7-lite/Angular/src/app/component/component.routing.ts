@@ -20,6 +20,7 @@ import { UsuarioListComponent } from './usuario-list/usuario-list.component';
 import { ListaProyectosComponent } from './lista-proyectos/lista-proyectos.component';
 import { ProyectoDetalladoComponent } from './proyecto-detallado/proyecto-detallado.component';
 
+
 export const ComponentsRoutes: Routes = [
   {
     path: '',

@@ -33,7 +33,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { ProyectoDetalladoComponent } from './proyecto-detallado/proyecto-detallado.component';
 import { EncuestaComponent } from './encuesta/encuesta.component';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
-import {MatListModule} from '@angular/material/list';
+import { MatListModule } from '@angular/material/list';
 
 @NgModule({
   imports: [
@@ -51,7 +51,7 @@ import {MatListModule} from '@angular/material/list';
     MatIconModule,
     ChartsModule,
     MatListModule
-  
+
   ],
   declarations: [
     NgbdpregressbarBasicComponent,
@@ -73,8 +73,8 @@ import {MatListModule} from '@angular/material/list';
     ListaProyectosComponent,
     ProyectoDetalladoComponent,
     EncuestaComponent,
-    
-    
+
+
   ]
 })
-export class ComponentsModule {}
+export class ComponentsModule { }

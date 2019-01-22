@@ -4,16 +4,19 @@ import { AddProjectService } from '../../services/add-project.service';
 import { ProjectDto } from '../../dto/addpro.dto';
 import { MatDialogRef } from '@angular/material';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { Autor } from '../../interfaces/autor.interface'
-import { MatChipInputEvent } from '@angular/material/chips'
+import { Autor } from '../../interfaces/autor.interface';
+import { MatChipInputEvent } from '@angular/material/chips';
 import { UploadImageDto } from '../../dto/uploadimage.dto';
 import { UploadImageImgurService } from '../../services/upload-image-imgur.service';
 import { NgxImageCompressService } from 'ngx-image-compress';
 import { DOC_ORIENTATION } from 'ngx-image-compress/lib/image-compress';
 import { UploadImageDetailsDto } from '../../dto/uploadimagesdetails.dto';
+import { UrlImagenesDto } from '../../dto/urlimagenes.dto';
+
 // const j = require('jquery');
-var ImagenB64: File = null;
-var ImagenesB64: File[];
+let ImagenB64: File = null;
+let ImagenesB64: File[];
+let urlImagenes: String[];
 
 @Component({
   selector: 'app-add-project',
@@ -28,14 +31,14 @@ export class AddProjectComponent implements OnInit {
   autores: Autor[] = [
   ];
   urlImagen: any;
-  urlImagenes: String[];
+  dtoImagenUpload: UploadImageDto;
   imgResultBeforeCompress = ImagenB64;
   imgResultAfterCompress;
 
-  visible: boolean = true;
-  selectable: boolean = true;
-  removable: boolean = true;
-  addOnBlur: boolean = true;
+  visible = true;
+  selectable = true;
+  removable = true;
+  addOnBlur = true;
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
 
   constructor(private fb: FormBuilder,
@@ -61,7 +64,7 @@ export class AddProjectComponent implements OnInit {
     const Image: any = document.getElementById('fotoInput');
 
     if (Image.files && Image.files[0]) {
-      var visor = new FileReader();
+      const visor = new FileReader();
       visor.onload = function (e) {
         ImagenB64 = Image.files[0];
       };
@@ -69,8 +72,9 @@ export class AddProjectComponent implements OnInit {
       this.uploadImageDto = new UploadImageDto(Image.files[0]);
     }
   }
-  
+
   fotos64() {
+    this.uploadImageDetailsDto = null;
     const Image: any = document.getElementById('fotosInput');
     console.log(Image.files);
 
@@ -79,19 +83,18 @@ export class AddProjectComponent implements OnInit {
     if (Image.files && Image.files[0]) {
       const visor = new FileReader();
       visor.onload = function (e) {
-
+        // ImagenesB64 = Image.files;
       };
 
-      for (var i = 0; i < Image.files.length; i++) {
-        visor.readAsDataURL(Image.files[i]);
+      this.uploadImageDetailsDto = new UploadImageDetailsDto();
+      // for (let i = 0; i < Image.files.length; i++) {
+        visor.readAsDataURL(Image.files[1]);
+        // visor.readAsDataURL(Image.files[0]);
+      // }
 
-      }
+      // handleFiles = Image.files;
 
-      ImagenesB64 = Image.files;
-
-      this.uploadImageDetailsDto.image = ImagenesB64;
-      console.log(this.uploadImageDetailsDto);
-
+      this.uploadImageDetailsDto.image = Image.files;
     }
   }
 
@@ -99,25 +102,34 @@ export class AddProjectComponent implements OnInit {
 
 
     this.uploadImageImgurService.UploadImage(this.uploadImageDto).subscribe(imagen => {
-      console.log(imagen);
+      console.log(this.uploadImageDetailsDto.image);
 
 
       this.urlImagen = imagen.data.link;
       if (this.uploadImageDetailsDto.image != null) {
         for (let index = 0; index < this.uploadImageDetailsDto.image.length; index++) {
-          this.uploadImageDto = new UploadImageDto(this.uploadImageDetailsDto.image[index]);
-          this.uploadImageImgurService.UploadImage(this.uploadImageDto).subscribe(img => {
-            if (this.uploadImageDetailsDto.image[index] == this.uploadImageDetailsDto.image[-1]) {
+          this.dtoImagenUpload = new UploadImageDto(this.uploadImageDetailsDto.image[index]);
+          this.uploadImageImgurService.UploadImage(this.dtoImagenUpload).subscribe(img => {
+            if (urlImagenes === undefined) {
+              urlImagenes = [img.data.link];
+            } else {
+              urlImagenes.push(img.data.link);
+            }
+            console.log('imagen' + urlImagenes);
+
+            let num = this.uploadImageDetailsDto.image.length - 1;
+
+
+            if (index === num) {
               this.compressFile();
             }
-            this.urlImagenes.push(img.data.link)
 
 
           }, err => {
             console.log(err);
-          })
+          });
         }
-        console.log(this.urlImagenes);
+        console.log(urlImagenes);
       } else {
         this.compressFile();
       }
@@ -151,8 +163,12 @@ export class AddProjectComponent implements OnInit {
   }
 
   private CrearDtoProyecto() {
+    console.log('Creando proyecto');
+    console.log(urlImagenes);
+
+
     // tslint:disable-next-line:max-line-length
-    this.addProjectDto = new ProjectDto(this.form.controls['title'].value, this.form.controls['autores'].value, this.form.controls['curso'].value, this.imgResultAfterCompress, this.form.controls['descripcion'].value, this.urlImagenes);
+    this.addProjectDto = new ProjectDto(this.form.controls['title'].value, this.form.controls['autores'].value, this.form.controls['curso'].value, this.imgResultAfterCompress, this.form.controls['descripcion'].value, urlImagenes);
   }
 
   add(event: MatChipInputEvent): void {

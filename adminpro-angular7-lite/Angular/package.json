@@ -49,6 +49,7 @@
     "ngx-perfect-scrollbar": "^7.2.0",
     "ngx-pipes": "^2.3.6",
     "popper.js": "^1.12.5",
+    "react-file-reader": "^1.1.4",
     "rxjs": "^6.3.3",
     "rxjs-compat": "^6.0.0-rc.0",
     "sass-loader": "^7.1.0",
