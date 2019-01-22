@@ -1,0 +1,12 @@
+<div fxFlex="100%" fxFlexFill>
+  <mat-list fxFlexFill *ngFor="let pregunta of preguntas">
+    <h3 mat-subheader>{{pregunta.pregunta}}</h3>
+    <mat-list-item>
+      <mat-icon mat-list-icon>folder</mat-icon>
+      <h4 mat-line>{{pregunta.respuestaA}}</h4>
+      <h4 mat-line>{{pregunta.respuestaB}}</h4>
+      <h4 mat-line>{{pregunta.respuestaC}}</h4>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+  </mat-list>
+</div>

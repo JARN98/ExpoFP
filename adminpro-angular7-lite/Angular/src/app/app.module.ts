@@ -35,6 +35,9 @@ import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/d
 import { MatChipsModule } from '@angular/material/chips';
 import { NgxImageCompressService } from 'ngx-image-compress';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
+// import { EncuestaComponent } from './app/component/encuesta/encuesta.component';
+import { EncuestaComponent } from './component/encuesta/encuesta.component';
+
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -50,7 +53,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     NavigationComponent,
     BreadcrumbComponent,
     SidebarComponent,
-    AddProjectComponent
+    AddProjectComponent,
+    EncuestaComponent
   ],
   imports: [
     CommonModule,

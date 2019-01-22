@@ -31,10 +31,9 @@ import { MatCardModule } from '@angular/material/card';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatIconModule } from '@angular/material/icon';
 import { ProyectoDetalladoComponent } from './proyecto-detallado/proyecto-detallado.component';
-
-
-
-
+import { EncuestaComponent } from './encuesta/encuesta.component';
+import { ChartsModule } from 'ng2-charts/ng2-charts';
+import {MatListModule} from '@angular/material/list';
 
 @NgModule({
   imports: [
@@ -49,7 +48,9 @@ import { ProyectoDetalladoComponent } from './proyecto-detallado/proyecto-detall
     NgxPaginationModule,
     MatCardModule,
     FlexLayoutModule,
-    MatIconModule
+    MatIconModule,
+    ChartsModule,
+    MatListModule
   
   ],
   declarations: [
@@ -71,6 +72,7 @@ import { ProyectoDetalladoComponent } from './proyecto-detallado/proyecto-detall
     UsuarioListComponent,
     ListaProyectosComponent,
     ProyectoDetalladoComponent,
+    EncuestaComponent,
     
     
   ]
