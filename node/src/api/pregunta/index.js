@@ -7,7 +7,7 @@ import { schema } from './model'
 export Pregunta, { schema } from './model'
 
 const router = new Router()
-const { pregunta, respuestas } = schema.tree
+const { pregunta, respuestaA, respuestaB, respuestaC } = schema.tree
 
 /**
  * @api {post} /preguntas Create pregunta
@@ -24,7 +24,7 @@ const { pregunta, respuestas } = schema.tree
  */
 router.post('/',
   token({ required: true, roles: ['admin'] }),
-  body({ pregunta, respuestas }),
+  body({ pregunta, respuestaA, respuestaB, respuestaC }),
   create)
 
 /**
@@ -62,7 +62,7 @@ router.get('/:id',
  * @apiError 404 Pregunta not found.
  */
 router.put('/:id',
-  body({ pregunta, respuestas }),
+  body({ pregunta, respuestaA, respuestaB, respuestaC }),
   update)
 
 /**

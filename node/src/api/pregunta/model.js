@@ -4,7 +4,13 @@ const preguntaSchema = new Schema({
   pregunta: {
     type: String
   },
-  respuestas: {
+  respuestaA: {
+    type: String
+  },
+  respuestaB: {
+    type: String
+  },
+  respuestaC: {
     type: String
   }
 }, {
@@ -21,7 +27,9 @@ preguntaSchema.methods = {
       // simple view
       id: this.id,
       pregunta: this.pregunta,
-      respuestas: this.respuestas,
+      respuestaA: this.respuestaA,
+      respuestaB: this.respuestaB,
+      respuestaC: this.respuestaC,
       createdAt: this.createdAt,
       updatedAt: this.updatedAt
     }
