@@ -16,7 +16,7 @@ import { ListUsuariosResponse } from '../../interfaces/list-usuarios';
 export class UsuarioListComponent implements OnInit {
   listaApi: ListApiResponse;
   listaUsuariosRes: ListUsuariosResponse[];
-  displayedColumns: string[] = ['userId', 'username', 'email'];
+  displayedColumns: string[] = ['username', 'email', 'acciones'];
   dataSource: ListUsuariosResponse[];
 
   constructor(private listUsuarioService: ListUsuarioService, private authService: AuthService,
@@ -38,7 +38,6 @@ export class UsuarioListComponent implements OnInit {
     });
   }
 
-  /*
   deleteUsuario(element: User) {    
     console.log(element.id);
     
@@ -49,5 +48,5 @@ export class UsuarioListComponent implements OnInit {
     }, error => console.error(error)
     );
   }
-  */
+
 }

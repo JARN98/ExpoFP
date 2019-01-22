@@ -26,7 +26,7 @@ export class ListUsuarioService {
     return this.http.get<ListApiResponse>(`${environment.ApiUrl}/users`, requestOptions);
   }
 
-  /*
+  
   deleteUsuario(usuario: User): Observable<User> {
     console.log(usuario.id);
     
@@ -38,9 +38,9 @@ export class ListUsuarioService {
       })
     };
 
-    return this.http.delete<User>(`${userUrl}/user/${usuario.id}`, requestOptions);
+    return this.http.delete<User>(`${environment.ApiUrl}/users/${usuario.id}`, requestOptions);
   }
-  */
+  
 
   refresh(): void {
     window.location.reload();
