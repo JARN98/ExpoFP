@@ -10,7 +10,6 @@ export const Approutes: Routes = [
     path: '',
     component: FullComponent,
     children: [
-      { path: '', redirectTo: '/session/login', pathMatch: 'full' },
       {
         path: 'component',
         loadChildren: './component/component.module#ComponentsModule'
@@ -26,8 +25,5 @@ export const Approutes: Routes = [
       }
     ]
   },
-  {
-    path: '**',
-    redirectTo: '/starter'
-  }
+  { path: '', redirectTo: '/session/login', pathMatch: 'full' },
 ];

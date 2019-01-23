@@ -1,3 +1,5 @@
+import { LoginResponse } from './login-response.interface';
+
 export interface ListProjectsResponse {
     id: String;
     nombre: String;
@@ -11,7 +13,7 @@ export interface ListProjectsResponse {
 }
 
 export interface UltimosComentarios {
-    autor: String;
+    autor: LoginResponse;
     contenido: String;
     valoracion: Number;
     valido: Boolean;

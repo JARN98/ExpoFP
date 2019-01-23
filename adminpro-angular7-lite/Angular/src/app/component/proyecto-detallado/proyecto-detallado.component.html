@@ -1,36 +1,36 @@
 <div class="row">
-	<div class="col-md-6 col-xlg-5">
-		<div class="card">
-			<div class="card-body">
-				<h3 class="card-title">{{proyect.nombre}}</h3>
-				<h6 class="card-subtitle">Imagenes</h6>
-				<ngb-carousel>
-					<ng-template ngbSlide *ngFor="let imagen of listaImagenes">
-						<img src="{{imagen}}" alt="Random first slide">
-						<div class="carousel-caption">
-							<h3 class="text-white font-bold">Imagenes del proyecto {{proyect.nombre}}</h3>
-							<p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-						</div>
-					</ng-template>
-        </ngb-carousel>
-        <br>
-			</div>
-		</div>
-	</div>
-	<div class="col-md-6">
-    <div class="card card-outline-inverse">
-        <div class="card-header">
-            <h4 class="m-b-0 text-white">Descripción del proyecto</h4>
-        </div>
-        <div class="card-body">
-            <!-- <h3 class="card-title">Special title treatment</h3> -->
-            <p class="card-text">{{proyect.descripcion}}
-            </p>
-
-            <h6 class="card-subtitle">{{proyect.autores}}</h6>
+    <div class="col-md-6 col-xlg-5">
+        <div class="card">
+            <div class="card-body">
+                <h3 class="card-title">{{proyect.nombre}}</h3>
+                <h6 class="card-subtitle">Imagenes</h6>
+                <ngb-carousel>
+                    <ng-template ngbSlide *ngFor="let imagen of listaImagenes" >
+                        <img class="img-fluid" src="{{imagen}}" alt="Random first slide">
+                        <div class="carousel-caption">
+                            <h3 class="text-white font-bold">Imagenes del proyecto {{proyect.nombre}}</h3>
+                            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                        </div>
+                    </ng-template>
+                </ngb-carousel>
+                <br>
+            </div>
         </div>
     </div>
-</div>
+    <div class="col-md-6">
+        <div class="card card-outline-inverse">
+            <div class="card-header">
+                <h4 class="m-b-0 text-white">Descripción del proyecto</h4>
+            </div>
+            <div class="card-body">
+                <!-- <h3 class="card-title">Special title treatment</h3> -->
+                <p class="card-text">{{proyect.descripcion}}
+                </p>
+
+                <h6 class="card-subtitle">{{proyect.autores}}</h6>
+            </div>
+        </div>
+    </div>
 </div>
 <div *ngFor="let comentario of ultimosComentarios" class="col-md-11">
     <div class="card">
