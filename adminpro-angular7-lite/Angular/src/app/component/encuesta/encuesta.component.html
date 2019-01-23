@@ -12,7 +12,7 @@
                         <canvas baseChart [legend]=false [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType" [options]="pieChartOptions" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
                     </div>
                 </div>
-                <i class="mdi mdi-chart-pie"></i>
+                <i class="mdi mdi-chart-pie" (click)="randomizeType()"></i>
                 <h4 mat-line>A - {{pregunta.respuestaA}}</h4>
                 <h4 mat-line>B - {{pregunta.respuestaB}}</h4>
                 <h4 mat-line *ngIf="pregunta.respuestaC!=null">C - {{pregunta.respuestaC}}</h4>

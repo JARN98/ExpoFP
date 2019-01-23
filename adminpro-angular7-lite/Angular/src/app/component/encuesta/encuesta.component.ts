@@ -61,7 +61,9 @@ export class EncuestaComponent implements OnInit {
 
   }
 
-  
+  public randomizeType():void {
+    this.pieChartType = this.pieChartType === 'doughnut' ? 'pie' : 'doughnut';
+  }
 
   // events on slice click
   public chartClicked(e: any): void {
