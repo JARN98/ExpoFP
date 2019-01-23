@@ -19,6 +19,7 @@ import { FullComponent } from '../layouts/full/full.component';
 import { UsuarioListComponent } from './usuario-list/usuario-list.component';
 import { ListaProyectosComponent } from './lista-proyectos/lista-proyectos.component';
 import { ProyectoDetalladoComponent } from './proyecto-detallado/proyecto-detallado.component';
+import { EncuestaComponent } from './encuesta/encuesta.component';
 
 
 export const ComponentsRoutes: Routes = [
@@ -56,6 +57,10 @@ export const ComponentsRoutes: Routes = [
             { title: 'Proyectos' }
           ]
         }
+      },
+      {
+        path: 'encuesta',
+        component: EncuestaComponent
       },
       {
         path: 'pagination',

@@ -1,12 +1,12 @@
 {
 	"info": {
-		"_postman_id": "e8878c0c-cdc7-4c8e-a9ed-06e8124df022",
+		"_postman_id": "6d5a545c-4a5a-42ca-bdcf-cf14cff6140b",
 		"name": "Expo FP",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "Registro(Dev)",
+			"name": "Registro(Prod)",
 			"request": {
 				"method": "POST",
 				"header": [
@@ -22,30 +22,35 @@
 					"urlencoded": [
 						{
 							"key": "name",
-							"value": "Jose",
-							"type": "text"
-						},
-						{
-							"key": "email",
-							"value": "Jose@gmail.com",
-							"type": "text"
-						},
-						{
-							"key": "access_token",
-							"value": "mastÑLDSAFKÑLDSKFJÑLerKey",
+							"value": "admin",
 							"type": "text"
 						},
 						{
 							"key": "password",
-							"value": "1234",
+							"value": "admin",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "admin@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "access_token",
+							"value": "oDUV7u5ZzJIc81W7SR1eqFXD0qNCbPWp",
+							"type": "text"
+						},
+						{
+							"key": "role",
+							"value": "admin",
 							"type": "text"
 						}
 					]
 				},
 				"url": {
-					"raw": "{{UrlDev}}/users",
+					"raw": "{{UrlProd}}/users",
 					"host": [
-						"{{UrlDev}}"
+						"{{UrlProd}}"
 					],
 					"path": [
 						"users"
@@ -104,18 +109,8 @@
 			"response": []
 		},
 		{
-			"name": "Listar usuarios (admin)(Dev)",
+			"name": "Delete proyecto(Dev)",
 			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjMzkxMWUzN2Q2Y2IxMmE2NWM4NzRhMSIsImlhdCI6MTU0NzI0NDAwM30.45W8T5O8SuKPWXlchqufm5sHGTQkMtdFui9TteAPS94",
-							"type": "string"
-						}
-					]
-				},
 				"method": "GET",
 				"header": [],
 				"body": {
@@ -123,98 +118,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{UrlDev}}/users",
-					"host": [
-						"{{UrlDev}}"
-					],
-					"path": [
-						"users"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Registro(Prod)",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/x-www-form-urlencoded",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "urlencoded",
-					"urlencoded": [
-						{
-							"key": "name",
-							"value": "admin",
-							"type": "text"
-						},
-						{
-							"key": "password",
-							"value": "admin",
-							"type": "text"
-						},
-						{
-							"key": "email",
-							"value": "admin@gmail.com",
-							"type": "text"
-						},
-						{
-							"key": "access_token",
-							"value": "oDUV7u5ZzJIc81W7SR1eqFXD0qNCbPWp",
-							"type": "text"
-						},
-						{
-							"key": "role",
-							"value": "admin",
-							"type": "text"
-						}
-					]
-				},
-				"url": {
-					"raw": "{{UrlProd}}/users",
-					"host": [
-						"{{UrlProd}}"
-					],
-					"path": [
-						"users"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Listar ProyectoRes(Dev)",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjMzkxMWUzN2Q2Y2IxMmE2NWM4NzRhMSIsImlhdCI6MTU0NzI0NDAwM30.45W8T5O8SuKPWXlchqufm5sHGTQkMtdFui9TteAPS94",
-							"type": "string"
-						}
-					]
-				},
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
 					"raw": ""
-				},
-				"url": {
-					"raw": "{{UrlDev}}/ProyectoRes",
-					"host": [
-						"{{UrlDev}}"
-					],
-					"path": [
-						"ProyectoRes"
-					]
 				}
 			},
 			"response": []
@@ -273,6 +177,37 @@
 					],
 					"path": [
 						"ProyectoRes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar usuarios (admin)(Dev)",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjMzkxMWUzN2Q2Y2IxMmE2NWM4NzRhMSIsImlhdCI6MTU0NzI0NDAwM30.45W8T5O8SuKPWXlchqufm5sHGTQkMtdFui9TteAPS94",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{UrlDev}}/users",
+					"host": [
+						"{{UrlDev}}"
+					],
+					"path": [
+						"users"
 					]
 				}
 			},
@@ -369,6 +304,37 @@
 			"response": []
 		},
 		{
+			"name": "Listar ProyectoRes(Dev)",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjMzkxMWUzN2Q2Y2IxMmE2NWM4NzRhMSIsImlhdCI6MTU0NzI0NDAwM30.45W8T5O8SuKPWXlchqufm5sHGTQkMtdFui9TteAPS94",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{UrlDev}}/ProyectoRes",
+					"host": [
+						"{{UrlDev}}"
+					],
+					"path": [
+						"ProyectoRes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Subir imagen",
 			"request": {
 				"method": "GET",
@@ -384,16 +350,154 @@
 			"response": []
 		},
 		{
-			"name": "Delete proyecto(Dev)",
+			"name": "Registro(Dev)",
 			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "Jose",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "Jose@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "access_token",
+							"value": "mastÑLDSAFKÑLDSKFJÑLerKey",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "1234",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{UrlDev}}/users",
+					"host": [
+						"{{UrlDev}}"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Pregunta",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjNDYwYjIwYmI4NGZiMTQxMTczM2E0OCIsImlhdCI6MTU0ODA5NDI0MH0.Sm07N8xQnSRBsr97NvLQkToIwARi30WXaIJ8BpvgxCY",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
 				"body": {
-					"mode": "raw",
-					"raw": ""
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "pregunta",
+							"value": "¿Migue o Luismi?",
+							"type": "text"
+						},
+						{
+							"key": "respuestas",
+							"value": "los dos",
+							"type": "text"
+						}
+					]
 				},
 				"url": {
-					"raw": ""
+					"raw": "{{UrlDev}}/preguntas",
+					"host": [
+						"{{UrlDev}}"
+					],
+					"path": [
+						"preguntas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear pregunta",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjNDg0OGJiOWQ2MDM3NTk3Yjk0MTU1NyIsImlhdCI6MTU0ODI0MTA4M30.78Lhi7U5W-fb3anYovyBUNzHr-OT8o6oM_9aeRg8uGE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "pregunta",
+							"value": "¿Mamá o Papá?",
+							"type": "text"
+						},
+						{
+							"key": "respuestaA",
+							"value": "Miguel",
+							"type": "text"
+						},
+						{
+							"key": "respuestaB",
+							"value": "Luismi",
+							"type": "text"
+						},
+						{
+							"key": "respuestaC",
+							"value": "Ambos",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{UrlDev}}/preguntas",
+					"host": [
+						"{{UrlDev}}"
+					],
+					"path": [
+						"preguntas"
+					]
 				}
 			},
 			"response": []
