@@ -19,7 +19,7 @@ export class EncuestaComponent implements OnInit {
   /*DATOS GRÁFICO*/
   public pieChartLabels: string[] = ["A", "B", "C"];
   public pieChartData: number[] = [21, 39, 10];
-  public pieChartType: string = 'pie';
+  public pieChartType: string = 'doughnut';
   public pieChartOptions: any = {
     'backgroundColor': [
       "#FF6384",
