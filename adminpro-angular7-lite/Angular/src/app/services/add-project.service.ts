@@ -13,6 +13,8 @@ export class AddProjectService {
   constructor(private http: HttpClient) { }
 
   addPro(projectDto: ProjectDto): Observable<CreateProjectResponse> {
+    console.log(projectDto);
+    
     const requestOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',

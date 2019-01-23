@@ -6,14 +6,14 @@ export class ProjectDto {
     curso: String;
     imagenes: String;
     descripcion: String;
-    imagenesDetallado: String[];
+    imagenesDetalladas: String[];
 
-    constructor (nombre: String, autores: Autor[], curso: String, img: String, descripcion: String, imagenesDetallado?: String[]) {
+    constructor (nombre: String, autores: Autor[], curso: String, img: String, descripcion: String, imagenesDetalladas: String[]) {
         this.nombre = nombre;
         this.autores = autores;
         this.curso = curso;
         this.imagenes = img;
         this.descripcion = descripcion;
-        this.imagenesDetallado = imagenesDetallado;
+        this.imagenesDetalladas = imagenesDetalladas;
     }
 }
