@@ -32,8 +32,6 @@ export class AddProjectComponent implements OnInit {
   ];
   urlImagen: any;
   dtoImagenUpload: UploadImageDto;
-  imgResultBeforeCompress = ImagenB64;
-  imgResultAfterCompress;
 
   visible = true;
   selectable = true;
@@ -87,12 +85,6 @@ export class AddProjectComponent implements OnInit {
       };
 
       this.uploadImageDetailsDto = new UploadImageDetailsDto();
-      // for (let i = 0; i < Image.files.length; i++) {
-        visor.readAsDataURL(Image.files[1]);
-        // visor.readAsDataURL(Image.files[0]);
-      // }
-
-      // handleFiles = Image.files;
 
       this.uploadImageDetailsDto.image = Image.files;
     }
@@ -119,11 +111,14 @@ export class AddProjectComponent implements OnInit {
 
             let num = this.uploadImageDetailsDto.image.length - 1;
 
-
             if (index === num) {
-              this.compressFile();
+              this.CrearDtoProyecto();
+              this.addProjectService.addPro(this.addProjectDto).subscribe(proyecto => {
+                this.dialogRef.close();
+              }, error => {
+                console.error(error);
+              });
             }
-
 
           }, err => {
             console.log(err);
@@ -131,7 +126,12 @@ export class AddProjectComponent implements OnInit {
         }
         console.log(urlImagenes);
       } else {
-        this.compressFile();
+        this.CrearDtoProyecto();
+        this.addProjectService.addPro(this.addProjectDto).subscribe(proyecto => {
+          this.dialogRef.close();
+        }, error => {
+          console.error(error);
+        });
       }
 
 
@@ -142,25 +142,6 @@ export class AddProjectComponent implements OnInit {
     });
 
   }
-  compressFile() {
-    this.imageCompress.uploadFile().then(({ image, orientation }) => {
-      this.urlImagen = image;
-      console.warn('Size in bytes was:', this.imageCompress.byteCount(image));
-      this.imageCompress.compressFile(image, orientation, 50, 50).then(
-        result => {
-          this.imgResultAfterCompress = result;
-          console.warn('Size in bytes is now:', this.imageCompress.byteCount(result));
-          this.CrearDtoProyecto();
-          this.addProjectService.addPro(this.addProjectDto).subscribe(proyecto => {
-            this.dialogRef.close();
-          }, error => {
-            console.error(error);
-          });
-
-        }
-      );
-    });
-  }
 
   private CrearDtoProyecto() {
     console.log('Creando proyecto');
@@ -168,7 +149,7 @@ export class AddProjectComponent implements OnInit {
 
 
     // tslint:disable-next-line:max-line-length
-    this.addProjectDto = new ProjectDto(this.form.controls['title'].value, this.form.controls['autores'].value, this.form.controls['curso'].value, this.imgResultAfterCompress, this.form.controls['descripcion'].value, urlImagenes);
+    this.addProjectDto = new ProjectDto(this.form.controls['title'].value, this.form.controls['autores'].value, this.form.controls['curso'].value, this.urlImagen, this.form.controls['descripcion'].value, urlImagenes);
   }
 
   add(event: MatChipInputEvent): void {
