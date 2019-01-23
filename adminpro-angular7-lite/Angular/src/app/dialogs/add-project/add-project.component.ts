@@ -88,7 +88,7 @@ export class AddProjectComponent implements OnInit {
 
       this.uploadImageDetailsDto = new UploadImageDetailsDto();
       // for (let i = 0; i < Image.files.length; i++) {
-        visor.readAsDataURL(Image.files[1]);
+        // visor.readAsDataURL(Image.files[1]);
         // visor.readAsDataURL(Image.files[0]);
       // }
 
@@ -115,7 +115,7 @@ export class AddProjectComponent implements OnInit {
             } else {
               urlImagenes.push(img.data.link);
             }
-            console.log('imagen' + urlImagenes);
+            console.log(urlImagenes);
 
             let num = this.uploadImageDetailsDto.image.length - 1;
 
