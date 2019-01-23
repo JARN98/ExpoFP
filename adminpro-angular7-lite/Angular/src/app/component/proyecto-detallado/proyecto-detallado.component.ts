@@ -49,6 +49,8 @@ export class ProyectoDetalladoComponent implements OnInit {
   readonly = false;
   ctrl = new FormControl(null, Validators.required);
   proyect: any;
+  listaImagenes:any;
+  ultimosComentarios:any;
 
   toggle() {
     if (this.ctrl.disabled) {
@@ -79,6 +81,8 @@ export class ProyectoDetalladoComponent implements OnInit {
     this.oneProjectService.getOneProject().subscribe(proyecto => {
       console.log(proyecto);
       this.proyect = proyecto;
+      this.listaImagenes = proyecto.imagenesDetalladas;
+      this.ultimosComentarios = proyecto.ultimosComentarios;
     }, err => {
       console.log(err);
     });

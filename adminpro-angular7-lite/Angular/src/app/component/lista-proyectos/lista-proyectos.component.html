@@ -2,10 +2,10 @@
     <input style="margin-bottom: 4%; margin-left:1%;" type="text" [(ngModel)]="proyectoFilter.nombre" placeholder="Buscar por nombre">
     <div class="col-12">
         <div class="row">
-            <div class="col-lg-3 col-md-6" *ngFor="let proyecto of listaProyectosRes | filterBy: proyectoFilter | paginate: { itemsPerPage: 14,
+            <div class="col-lg-3 col-md-6" style="height:300px"*ngFor="let proyecto of listaProyectosRes | filterBy: proyectoFilter | paginate: { itemsPerPage: 14,
                         currentPage: p}">
                 <div class="card text-center">
-                    <img class="card-img-top img-responsive" src={{proyecto.imagen}} alt="Card image cap">
+                    <img class="card-img-top img-responsive" style="object-fit:scale-down; height:150px" src={{proyecto.imagen}} alt="Card image cap">
                     <div class="card-body">
                         <h4 class="card-title">{{proyecto.nombre}} - {{proyecto.curso}}</h4>
                         <button (click)="VerProyecto(proyecto.proyecto)" class="btn btn-primary" style="width:40%;">Ver</button>

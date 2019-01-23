@@ -16,7 +16,7 @@ import { UrlImagenesDto } from '../../dto/urlimagenes.dto';
 // const j = require('jquery');
 let ImagenB64: File = null;
 let ImagenesB64: File[];
-let urlImagenes: String[];
+
 
 @Component({
   selector: 'app-add-project',
@@ -28,6 +28,7 @@ export class AddProjectComponent implements OnInit {
   addProjectDto: ProjectDto;
   uploadImageDto: UploadImageDto;
   uploadImageDetailsDto: UploadImageDetailsDto;
+  urlImagenes: any;
   autores: Autor[] = [
   ];
   urlImagen: any;
@@ -74,7 +75,6 @@ export class AddProjectComponent implements OnInit {
   fotos64() {
     this.uploadImageDetailsDto = null;
     const Image: any = document.getElementById('fotosInput');
-    console.log(Image.files);
 
 
     // console.log(this.form.get('imagenes') as FormArray);
@@ -94,7 +94,6 @@ export class AddProjectComponent implements OnInit {
 
 
     this.uploadImageImgurService.UploadImage(this.uploadImageDto).subscribe(imagen => {
-      console.log(this.uploadImageDetailsDto.image);
 
 
       this.urlImagen = imagen.data.link;
@@ -102,17 +101,21 @@ export class AddProjectComponent implements OnInit {
         for (let index = 0; index < this.uploadImageDetailsDto.image.length; index++) {
           this.dtoImagenUpload = new UploadImageDto(this.uploadImageDetailsDto.image[index]);
           this.uploadImageImgurService.UploadImage(this.dtoImagenUpload).subscribe(img => {
-            if (urlImagenes === undefined) {
-              urlImagenes = [img.data.link];
+            if (this.urlImagenes === undefined) {
+              this.urlImagenes = [img.data.link];
             } else {
-              urlImagenes.push(img.data.link);
+              this.urlImagenes.push(img.data.link);
             }
+<<<<<<< HEAD
             console.log(urlImagenes);
+=======
+>>>>>>> 095864f937113c83b4fe792939ecd0a66e696c7e
 
             let num = this.uploadImageDetailsDto.image.length - 1;
 
             if (index === num) {
-              this.CrearDtoProyecto();
+              this.addProjectDto = new ProjectDto(this.form.controls['title'].value, this.autores, this.form.controls['curso'].value, this.urlImagen, this.form.controls['descripcion'].value, this.urlImagenes);
+              
               this.addProjectService.addPro(this.addProjectDto).subscribe(proyecto => {
                 this.dialogRef.close();
               }, error => {
@@ -124,9 +127,9 @@ export class AddProjectComponent implements OnInit {
             console.log(err);
           });
         }
-        console.log(urlImagenes);
+      
       } else {
-        this.CrearDtoProyecto();
+        this.addProjectDto = new ProjectDto(this.form.controls['title'].value, this.autores, this.form.controls['curso'].value, this.urlImagen, this.form.controls['descripcion'].value, this.urlImagenes);
         this.addProjectService.addPro(this.addProjectDto).subscribe(proyecto => {
           this.dialogRef.close();
         }, error => {
@@ -141,15 +144,6 @@ export class AddProjectComponent implements OnInit {
       console.log(err);
     });
 
-  }
-
-  private CrearDtoProyecto() {
-    console.log('Creando proyecto');
-    console.log(urlImagenes);
-
-
-    // tslint:disable-next-line:max-line-length
-    this.addProjectDto = new ProjectDto(this.form.controls['title'].value, this.form.controls['autores'].value, this.form.controls['curso'].value, this.urlImagen, this.form.controls['descripcion'].value, urlImagenes);
   }
 
   add(event: MatChipInputEvent): void {
