@@ -106,10 +106,6 @@ export class AddProjectComponent implements OnInit {
             } else {
               this.urlImagenes.push(img.data.link);
             }
-<<<<<<< HEAD
-            console.log(urlImagenes);
-=======
->>>>>>> 095864f937113c83b4fe792939ecd0a66e696c7e
 
             let num = this.uploadImageDetailsDto.image.length - 1;
 

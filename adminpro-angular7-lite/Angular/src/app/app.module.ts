@@ -38,6 +38,7 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
 // import { EncuestaComponent } from './app/component/encuesta/encuesta.component';
 // import { EncuestaComponent } from './component/encuesta/encuesta.component';
 import {MatListModule} from '@angular/material/list';
+import { AddPreguntaComponent } from './dialogs/add-pregunta/add-pregunta.component';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -54,6 +55,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     BreadcrumbComponent,
     SidebarComponent,
     AddProjectComponent,
+    AddPreguntaComponent,
   ],
   imports: [
     CommonModule,
@@ -89,7 +91,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: true } }
   ],
   entryComponents: [
-    AddProjectComponent
+    AddProjectComponent,
+    AddPreguntaComponent
   ],
   bootstrap: [AppComponent]
 })

@@ -3,6 +3,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ListApiResponse } from '../interfaces/list-api.interface';
 import { environment } from '../../environments/environment';
+import { PreguntaDto } from '../dto/addPregunta.dto';
+import { CreatePreguntaResponse } from '../interfaces/add-pregunta.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -21,5 +23,18 @@ export class EncuestaService {
       })
     };
     return this.http.get<ListApiResponse>(`${environment.ApiUrl}/preguntas`, requestOptions);
+  }
+
+  addPregunta(preguntaDto: PreguntaDto): Observable<CreatePreguntaResponse> {
+    console.log(preguntaDto);
+    
+    const requestOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+        'Access-Control-Allow-Origin': '*'
+      })
+    };
+    return this.http.post<CreatePreguntaResponse>(`${environment.ApiUrl}/preguntas`, preguntaDto, requestOptions);
   }
 }

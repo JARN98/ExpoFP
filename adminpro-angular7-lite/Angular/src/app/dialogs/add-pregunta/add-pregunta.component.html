@@ -1,0 +1,41 @@
+<h1>Añadir una pregunta</h1>
+<div fxFlexFill fxLayoutAlign="center center" fxLayout="row">
+    <form fxLayout="column" fxFlexFill [formGroup]="form">
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Pregunta" [formControl]="form.controls['pregunta']">
+        </mat-form-field>
+        <div *ngIf="form.controls['pregunta'].invalid && (form.controls['pregunta'].dirty || form.controls['pregunta'].touched)" class="alert alert-danger">
+            <div *ngIf="form.controls['pregunta'].errors.required">
+                Pregunta necesaria
+            </div>
+        </div>
+
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Respuesta A" [formControl]="form.controls['respuestaA']">
+        </mat-form-field>
+        <div *ngIf="form.controls['respuestaA'].invalid && (form.controls['respuestaA'].dirty || form.controls['respuestaA'].touched)" class="alert alert-danger">
+            <div *ngIf="form.controls['respuestaA'].errors.required">
+                Mínimo 2 respuestas
+            </div>
+        </div>
+
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Respuesta B" [formControl]="form.controls['respuestaB']">
+        </mat-form-field>
+        <div *ngIf="form.controls['respuestaB'].invalid && (form.controls['respuestaB'].dirty || form.controls['respuestaB'].touched)" class="alert alert-danger">
+            <div *ngIf="form.controls['respuestaB'].errors.required">
+                Mínimo 2 respuestas
+            </div>
+        </div>
+
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Respuesta C" [formControl]="form.controls['respuestaC']">
+        </mat-form-field>
+
+
+
+        <div fxLayoutAlign="end end">
+            <button type="button" class="btn btn-rounded btn-primary" fxFlex="20%" [disabled]="!form.valid" (click)="addPregunta()">Añadir</button>
+        </div>
+    </form>
+</div>
