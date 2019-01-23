@@ -16,6 +16,21 @@ export class EncuestaComponent implements OnInit {
   listaApi: ListApiResponse;
   preguntas: Pregunta[];
 
+  /*DATOS GRÁFICO*/
+  public pieChartLabels: string[] = ["A", "B", "C"];
+  public pieChartData: number[] = [21, 39, 10];
+  public pieChartType: string = 'pie';
+  public pieChartOptions: any = {
+    'backgroundColor': [
+      "#FF6384",
+      "#4BC0C0",
+      "#FFCE56",
+      "#E7E9ED",
+      "#36A2EB"
+    ]
+  }
+  /*FIN DATOS GRÁFICO*/
+
   constructor(private encuestaService: EncuestaService,
     private router: Router,
     public dialog: MatDialog) { }
@@ -24,7 +39,7 @@ export class EncuestaComponent implements OnInit {
     this.getAllPreguntas();
   }
 
-  getAllPreguntas(){
+  getAllPreguntas() {
     this.encuestaService.listPreguntas().subscribe(list => {
       this.listaApi = list;
       this.preguntas = this.listaApi.rows;
@@ -35,6 +50,7 @@ export class EncuestaComponent implements OnInit {
   }
 
   openDialogAddPregunta() {
+
     const dialogoAddRec = this.dialog.open(AddPreguntaComponent, {
       width: '50%',
     });
@@ -43,6 +59,18 @@ export class EncuestaComponent implements OnInit {
       this.getAllPreguntas();
     });
 
+  }
+
+  
+
+  // events on slice click
+  public chartClicked(e: any): void {
+    console.log(e);
+  }
+
+  // event on pie chart slice hover
+  public chartHovered(e: any): void {
+    console.log(e);
   }
 
 }

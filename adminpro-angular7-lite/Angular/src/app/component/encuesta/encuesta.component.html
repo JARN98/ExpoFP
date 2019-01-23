@@ -9,6 +9,11 @@
             <h4 mat-line>B - {{pregunta.respuestaB}}</h4>
             <h4 mat-line *ngIf="pregunta.respuestaC!=null">C - {{pregunta.respuestaC}}</h4>
         </mat-list-item>
+        <div class="container" id="grafico">
+            <div class="col-sm-4 text-center">
+                <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType" [options]="pieChartOptions" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+            </div>
+        </div>
         <mat-divider></mat-divider>
     </mat-list>
     <button (click)="openDialogAddPregunta()" type="button" class="btn btn-success btn-circle btn-lg mat-fab-bottom-right" style="z-index: 9;"><i class="fa fa-link"></i> </button>
