@@ -67,6 +67,7 @@ proyectoSchema.methods = {
             autores: this.autores,
             valoracionMedia: this.valoracionMedia,
             comentarios: this.comentarios,
+            ultimosComentarios: this.ultimosComentarios,
             createdAt: this.createdAt,
             updatedAt: this.updatedAt
         }

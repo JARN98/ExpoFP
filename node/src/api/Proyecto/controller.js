@@ -37,7 +37,7 @@ export const index = ({ querymen: { query, select, cursor } }, res, next) =>
 export const show = ({ params }, res, next) =>
   Proyecto.findById(params.id)
     .then(notFound(res))
-    .then((proyecto) => proyecto ? proyecto.view() : null)
+    .then((proyecto) => proyecto ? proyecto.view(true) : null)
     .then(success(res))
     .catch(next)
 

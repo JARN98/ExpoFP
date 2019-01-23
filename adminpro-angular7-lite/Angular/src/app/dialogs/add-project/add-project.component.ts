@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder, Validators, FormArray } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AddProjectService } from '../../services/add-project.service';
 import { ProjectDto } from '../../dto/addpro.dto';
 import { MatDialogRef } from '@angular/material';
@@ -9,13 +9,10 @@ import { MatChipInputEvent } from '@angular/material/chips';
 import { UploadImageDto } from '../../dto/uploadimage.dto';
 import { UploadImageImgurService } from '../../services/upload-image-imgur.service';
 import { NgxImageCompressService } from 'ngx-image-compress';
-import { DOC_ORIENTATION } from 'ngx-image-compress/lib/image-compress';
 import { UploadImageDetailsDto } from '../../dto/uploadimagesdetails.dto';
-import { UrlImagenesDto } from '../../dto/urlimagenes.dto';
 
 // const j = require('jquery');
 let ImagenB64: File = null;
-let ImagenesB64: File[];
 
 
 @Component({
@@ -43,9 +40,7 @@ export class AddProjectComponent implements OnInit {
   constructor(private fb: FormBuilder,
     private addProjectService: AddProjectService,
     private uploadImageImgurService: UploadImageImgurService,
-    public dialogRef: MatDialogRef<AddProjectComponent>,
-    private cd: ChangeDetectorRef,
-    private imageCompress: NgxImageCompressService) {
+    public dialogRef: MatDialogRef<AddProjectComponent>) {
   }
 
   ngOnInit() {
@@ -64,7 +59,7 @@ export class AddProjectComponent implements OnInit {
 
     if (Image.files && Image.files[0]) {
       const visor = new FileReader();
-      visor.onload = function (e) {
+      visor.onload = function () {
         ImagenB64 = Image.files[0];
       };
       visor.readAsDataURL(Image.files[0]);
@@ -80,7 +75,7 @@ export class AddProjectComponent implements OnInit {
     // console.log(this.form.get('imagenes') as FormArray);
     if (Image.files && Image.files[0]) {
       const visor = new FileReader();
-      visor.onload = function (e) {
+      visor.onload = function () {
         // ImagenesB64 = Image.files;
       };
 
@@ -106,17 +101,14 @@ export class AddProjectComponent implements OnInit {
             } else {
               this.urlImagenes.push(img.data.link);
             }
-<<<<<<< HEAD
-            console.log(urlImagenes);
-=======
->>>>>>> 095864f937113c83b4fe792939ecd0a66e696c7e
 
-            let num = this.uploadImageDetailsDto.image.length - 1;
+            const num = this.uploadImageDetailsDto.image.length - 1;
 
             if (index === num) {
+              // tslint:disable-next-line:max-line-length
               this.addProjectDto = new ProjectDto(this.form.controls['title'].value, this.autores, this.form.controls['curso'].value, this.urlImagen, this.form.controls['descripcion'].value, this.urlImagenes);
-              
-              this.addProjectService.addPro(this.addProjectDto).subscribe(proyecto => {
+
+              this.addProjectService.addPro(this.addProjectDto).subscribe(() => {
                 this.dialogRef.close();
               }, error => {
                 console.error(error);
@@ -127,10 +119,11 @@ export class AddProjectComponent implements OnInit {
             console.log(err);
           });
         }
-      
+
       } else {
+        // tslint:disable-next-line:max-line-length
         this.addProjectDto = new ProjectDto(this.form.controls['title'].value, this.autores, this.form.controls['curso'].value, this.urlImagen, this.form.controls['descripcion'].value, this.urlImagenes);
-        this.addProjectService.addPro(this.addProjectDto).subscribe(proyecto => {
+        this.addProjectService.addPro(this.addProjectDto).subscribe(() => {
           this.dialogRef.close();
         }, error => {
           console.error(error);
