@@ -21,8 +21,14 @@ export class FullComponent implements OnInit {
   constructor(public router: Router) {}
 
   ngOnInit() {
+    
+
     if (this.router.url === '/') {
-      this.router.navigate(['/dashboard/dashboard1']);
+      if (localStorage.getItem('token') == null)
+            this.router.navigate(['/session/login']);
+      else
+            this.router.navigate(['component/proyectos']);
+      
     }
     this.handleLayout();
   }
