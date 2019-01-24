@@ -29,13 +29,13 @@ export const create = async ({ bodymen: { body } }, res, next) => {
         proyecto.ultimosComentarios.push(store.get('comentario'))
         proyecto.comentarios.push(store.get('comentario').id);
 
-        proyecto.save();
+
 
       } else {
         return null
       }
 
-      let result;
+      var result = 0;
 
 
 
@@ -43,36 +43,21 @@ export const create = async ({ bodymen: { body } }, res, next) => {
         proyecto.valoracionMedia = store.get('valoracion');
         proyecto.save();
       } else {
-        // console.log();
+        Comentario.find({ "proyecto": proyecto.id })
+          .then(comentariote => {
+            comentariote.forEach(element => {
+              if (element.valoracion != undefined) {
+                result = result + element.valoracion;
+              }
+            });
 
-        // forEach(element => {
-        //   result = result + element.valoracion
-        // });
-        // console.log(proyecto.view(true).valoracionMedia);
-        var valoraciones = [];
-        proyecto.view(true).comentarios.forEach(element => {
-          Comentario.findById(element)
-            .then(comentario => {
-              valoraciones.push(comentario.valoracion);
-            })
-            .then(console.log('VALORACIONES:::::: ' + valoraciones))
-            .catch(next)
-        });
+            result = result / comentariote.length;
 
-        
-
-
-
-        // for (let index = 0; index < proyecto.comentarios.length; index++) {
-        //   const element = proyecto.comentarios[index];
-
-        //   result = result + element;
-
-        // }
-
-        // proyecto.valoracionMedia = result / proyecto.comentarios.length
-
-        // proyecto.save();
+            proyecto.valoracionMedia = result;
+            proyecto.save();
+          })
+          .catch(next);
+          
       }
     })
     .then(success(res))
