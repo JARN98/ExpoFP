@@ -26,10 +26,10 @@ const proyectoSchema = new Schema({
         type: Number,
         default: 0
     },
-    comentarios: {
+    comentarios: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Comentario'
-    },
+    }],
     ultimosComentarios: [{
         autor: {
             type: mongoose.Schema.Types.ObjectId,

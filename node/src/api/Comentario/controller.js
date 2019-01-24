@@ -9,29 +9,70 @@ export const create = async ({ bodymen: { body } }, res, next) => {
     .then((comentario) => {
       store.set('idProyectoComentario', comentario.view(true).proyecto)
       store.set('comentario', comentario)
-
+      store.set('valoracion', comentario.view(true).valoracion)
+      comentario.save();
       return comentario.view(true)
+
     })
     .then(success(res, 201))
     .catch(next)
-
-  console.log(store.get('comentario'))
 
   await Proyecto.findById(store.get('idProyectoComentario'))
     .then(notFound(res))
     .then((proyecto) => {
       if (proyecto) {
-        console.log(proyecto)
 
         if (proyecto.ultimosComentarios.length >= 5) {
           delete proyecto.ultimosComentarios.shift()
         }
 
         proyecto.ultimosComentarios.push(store.get('comentario'))
+        proyecto.comentarios.push(store.get('comentario').id);
 
-        proyecto.save()
+        proyecto.save();
+
       } else {
         return null
+      }
+
+      let result;
+
+
+
+      if (proyecto.view(true).valoracionMedia == 0) {
+        proyecto.valoracionMedia = store.get('valoracion');
+        proyecto.save();
+      } else {
+        // console.log();
+
+        // forEach(element => {
+        //   result = result + element.valoracion
+        // });
+        // console.log(proyecto.view(true).valoracionMedia);
+        var valoraciones = [];
+        proyecto.view(true).comentarios.forEach(element => {
+          Comentario.findById(element)
+            .then(comentario => {
+              valoraciones.push(comentario.valoracion);
+            })
+            .then(console.log('VALORACIONES:::::: ' + valoraciones))
+            .catch(next)
+        });
+
+        
+
+
+
+        // for (let index = 0; index < proyecto.comentarios.length; index++) {
+        //   const element = proyecto.comentarios[index];
+
+        //   result = result + element;
+
+        // }
+
+        // proyecto.valoracionMedia = result / proyecto.comentarios.length
+
+        // proyecto.save();
       }
     })
     .then(success(res))
