@@ -1,15 +1,18 @@
 <div fxFlex="100%" fxFlexFill>
     <mat-list fxFlexFill *ngFor="let pregunta of preguntas">
-        <h1 mat-subheader>{{pregunta.pregunta}}</h1>
+        <h1 mat-subheader *ngIf="isAdmin()">{{pregunta.pregunta}}<i class="mdi mdi-delete" (click)="deletePregunta(pregunta.id)"></i></h1>
         <mat-card>
-            <mat-list-item>
+            <mat-list-item *ngIf="isAdmin()">
                 <mat-icon mat-list-icon>
                     <i class="mdi mdi-hand-pointing-right"></i>
                 </mat-icon>
 
                 <div class="container" id="grafico">
                     <div class="col-sm-4 text-center">
-                        <canvas baseChart [legend]=false [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType" [options]="pieChartOptions" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+                        <canvas baseChart [legend]=false [data]="pieChartData"
+                            [labels]="pieChartLabels" [chartType]="pieChartType"
+                            [options]="pieChartOptions" (chartHover)="chartHovered($event)"
+                            (chartClick)="chartClicked($event)"></canvas>
                     </div>
                 </div>
                 <i class="mdi mdi-chart-pie" (click)="randomizeType()"></i>
@@ -21,5 +24,7 @@
 
         <mat-divider></mat-divider>
     </mat-list>
-    <button (click)="openDialogAddPregunta()" type="button" class="btn btn-success btn-circle btn-lg mat-fab-bottom-right" style="z-index: 9;"><i class="fa fa-link"></i> </button>
+    <button *ngIf="isAdmin()" (click)="openDialogAddPregunta()"
+        type="button" class="btn btn-success btn-circle btn-lg mat-fab-bottom-right"
+        style="z-index: 9;"><i class="fa fa-link"></i> </button>
 </div>

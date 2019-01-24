@@ -7,6 +7,7 @@ import {
 } from '@ng-bootstrap/ng-bootstrap';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { ROUTES } from './menu-items';
+import { Router } from '@angular/router';
 declare var $: any;
 @Component({
   selector: 'app-navigation',
@@ -16,8 +17,12 @@ export class NavigationComponent implements AfterViewInit {
   public topNavItems: any[];
   @Output() toggleSidebar = new EventEmitter<void>();
 
+  img: string;
+  email: string;
+  nombre: string;
+
   public config: PerfectScrollbarConfigInterface = {};
-  constructor(private modalService: NgbModal) {}
+  constructor(private modalService: NgbModal, private router: Router) {}
 
   public showSearch = false;
 
@@ -86,7 +91,20 @@ export class NavigationComponent implements AfterViewInit {
   ];
   ngOnInit(): void {
     this.topNavItems = ROUTES.filter(topNavItem => topNavItem);
+    this.setUserInfo();
     
+  }
+  setUserInfo(){
+    this.img = localStorage.getItem('img');
+    console.log(this.img);
+    this.email = localStorage.getItem('email');
+    console.log(this.email);
+    this.nombre = localStorage.getItem('name');
+    console.log(this.nombre);
+  }
+  logout(){
+    localStorage.clear();
+    this.router.navigate(['/session/login']);
   }
 
   ngAfterViewInit() {}

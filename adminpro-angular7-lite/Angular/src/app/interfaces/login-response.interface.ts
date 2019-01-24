@@ -5,6 +5,8 @@ export interface LoginResponse {
 
 export interface User {
     name: string;
+    picture: string;
     email: string;
     role: string;
+    
 }

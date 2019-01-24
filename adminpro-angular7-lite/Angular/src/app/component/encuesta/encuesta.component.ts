@@ -5,6 +5,7 @@ import { EncuestaService } from '../../services/encuesta.service';
 import { Router } from '@angular/router';
 import { AddPreguntaComponent } from '../../dialogs/add-pregunta/add-pregunta.component';
 import { MatDialog } from '@angular/material';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-encuesta',
@@ -33,7 +34,7 @@ export class EncuestaComponent implements OnInit {
 
   constructor(private encuestaService: EncuestaService,
     private router: Router,
-    public dialog: MatDialog) { }
+    public dialog: MatDialog, private authService: AuthService) { }
 
   ngOnInit() {
     this.getAllPreguntas();
@@ -47,6 +48,14 @@ export class EncuestaComponent implements OnInit {
     }, error => {
       console.error(error);
     });
+  }
+
+  deletePregunta(id: number) {
+    this.encuestaService.deletePregunta(id).subscribe(result => {
+      this.getAllPreguntas();
+    }), error => {
+      console.error(error);
+    }
   }
 
   openDialogAddPregunta() {
@@ -73,6 +82,10 @@ export class EncuestaComponent implements OnInit {
   // event on pie chart slice hover
   public chartHovered(e: any): void {
     console.log(e);
+  }
+
+  isAdmin(){
+    return this.authService.isAdmin();
   }
 
 }

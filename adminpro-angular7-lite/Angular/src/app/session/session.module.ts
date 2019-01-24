@@ -9,7 +9,7 @@ import { MatCardModule } from '@angular/material/card';
 import { RouterModule } from '@angular/router';
 import { Sessionroutes } from './session-routing.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { SessionService } from '../services/session.service';
+//import { SessionService } from '../services/session.service';
 import { MatTabsModule } from '@angular/material/tabs';
 import { FormsModule } from '@angular/forms';
 
@@ -27,7 +27,7 @@ import { FormsModule } from '@angular/forms';
     FormsModule
   ],
   providers: [
-    SessionService
+    //SessionService
   ]
 })
 export class SessionModule { }
