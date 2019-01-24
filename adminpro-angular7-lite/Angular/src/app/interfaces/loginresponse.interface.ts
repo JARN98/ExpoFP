@@ -1,6 +1,8 @@
 export interface LoginResponse {
     token: string;
-    nombre: string;
+    name: string;
     email: string;
+    picture: string;
     role: string;
+    
 }

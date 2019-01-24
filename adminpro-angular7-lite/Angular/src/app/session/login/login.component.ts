@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { SessionService } from '../../services/session.service';
+import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { LoginDto } from '../../dto/login.dto';
-import { AuthService } from '../../services/auth.service';
 import { UserDto } from '../../dto/adduser.dto';
 
 

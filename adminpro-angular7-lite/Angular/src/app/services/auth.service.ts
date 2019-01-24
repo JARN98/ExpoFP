@@ -56,6 +56,7 @@ export class AuthService {
     localStorage.setItem('name', loginResponse.user.name);
     localStorage.setItem('email', loginResponse.user.email);
     localStorage.setItem('role', loginResponse.user.role);
+    localStorage.setItem('img', loginResponse.user.picture);
 
   }
 
