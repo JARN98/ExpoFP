@@ -62,4 +62,8 @@ export class AuthService {
   getToken(): string {
     return localStorage.getItem('token');
   }
+
+  isAdmin() {
+    return localStorage.getItem('role') == 'admin';
+  }
 }
