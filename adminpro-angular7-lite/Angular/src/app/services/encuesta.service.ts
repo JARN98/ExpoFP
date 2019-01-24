@@ -37,4 +37,15 @@ export class EncuestaService {
     };
     return this.http.post<CreatePreguntaResponse>(`${environment.ApiUrl}/preguntas`, preguntaDto, requestOptions);
   }
+
+  deletePregunta(id: number) {
+    const requestOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+        'Access-Control-Allow-Origin': '*'
+      })
+    };
+    return this.http.delete(`${environment.ApiUrl}/preguntas/${id}`, requestOptions)
+  }
 }

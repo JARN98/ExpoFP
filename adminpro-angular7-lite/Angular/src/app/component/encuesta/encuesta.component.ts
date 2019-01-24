@@ -50,6 +50,14 @@ export class EncuestaComponent implements OnInit {
     });
   }
 
+  deletePregunta(id: number) {
+    this.encuestaService.deletePregunta(id).subscribe(result => {
+      this.getAllPreguntas();
+    }), error => {
+      console.error(error);
+    }
+  }
+
   openDialogAddPregunta() {
 
     const dialogoAddRec = this.dialog.open(AddPreguntaComponent, {
