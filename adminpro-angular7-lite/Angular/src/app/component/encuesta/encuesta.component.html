@@ -1,6 +1,6 @@
 <div fxFlex="100%" fxFlexFill>
     <mat-list fxFlexFill *ngFor="let pregunta of preguntas">
-        <h1 mat-subheader *ngIf="isAdmin()">{{pregunta.pregunta}}</h1>
+        <h1 mat-subheader *ngIf="isAdmin()">{{pregunta.pregunta}}<i class="mdi mdi-delete" (click)="deletePregunta(pregunta.id)"></i></h1>
         <mat-card>
             <mat-list-item *ngIf="isAdmin()">
                 <mat-icon mat-list-icon>
