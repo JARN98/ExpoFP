@@ -34,6 +34,7 @@ import { ProyectoDetalladoComponent } from './proyecto-detallado/proyecto-detall
 import { EncuestaComponent } from './encuesta/encuesta.component';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { MatListModule } from '@angular/material/list';
+import { MatRadioModule, MatButtonModule } from '@angular/material';
 
 @NgModule({
   imports: [
@@ -50,7 +51,9 @@ import { MatListModule } from '@angular/material/list';
     FlexLayoutModule,
     MatIconModule,
     ChartsModule,
-    MatListModule
+    MatListModule,
+    MatRadioModule,
+    MatButtonModule
 
   ],
   declarations: [

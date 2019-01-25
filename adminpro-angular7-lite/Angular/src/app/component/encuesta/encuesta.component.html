@@ -1,4 +1,5 @@
-<div fxFlex="100%" fxFlexFill>
+<!--**ENCUESTA (ADMIN)-->
+<div fxFlex="100%" fxFlexFill *ngIf="isAdmin()">
     <mat-list fxFlexFill *ngFor="let pregunta of preguntas">
         <h1 mat-subheader *ngIf="isAdmin()">{{pregunta.pregunta}}<i class="mdi mdi-delete" (click)="deletePregunta(pregunta.id)"></i></h1>
         <mat-card>
@@ -9,10 +10,7 @@
 
                 <div class="container" id="grafico">
                     <div class="col-sm-4 text-center">
-                        <canvas baseChart [legend]=false [data]="pieChartData"
-                            [labels]="pieChartLabels" [chartType]="pieChartType"
-                            [options]="pieChartOptions" (chartHover)="chartHovered($event)"
-                            (chartClick)="chartClicked($event)"></canvas>
+                        <canvas baseChart [legend]=false [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType" [options]="pieChartOptions" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
                     </div>
                 </div>
                 <i class="mdi mdi-chart-pie" (click)="randomizeType()"></i>
@@ -24,7 +22,45 @@
 
         <mat-divider></mat-divider>
     </mat-list>
-    <button *ngIf="isAdmin()" (click)="openDialogAddPregunta()"
-        type="button" class="btn btn-success btn-circle btn-lg mat-fab-bottom-right"
-        style="z-index: 9;"><i class="fa fa-link"></i> </button>
+    <button *ngIf="isAdmin()" (click)="openDialogAddPregunta()" type="button" class="btn btn-success btn-circle btn-lg mat-fab-bottom-right" style="z-index: 9;"><i class="fa fa-link"></i> </button>
+</div>
+<!--**FORMULARIO ENCUESTA (USER)-->
+<div id="form" fxFlexFill *ngIf="!isAdmin()">
+    <div fxFlexFill *ngFor="let pregunta of preguntas">
+
+        <h2 mat-subheader>{{pregunta.pregunta}}</h2>
+
+        <mat-card>
+
+            <!-- <mat-icon mat-list-icon>
+                <i class="mdi mdi-hand-pointing-right"></i>
+            </mat-icon> -->
+
+            <mat-radio-group class="example-radio-group">
+                <h4 mat-line>
+                    <mat-radio-button value="pregunta.respuestaA" class="md-warn" color="primary">
+                        A - {{pregunta.respuestaA}}
+                    </mat-radio-button>
+                </h4>
+                <h4 mat-line>
+                    <mat-radio-button value="pregunta.respuestaB" class="example-radio-button" color="primary">
+                        B - {{pregunta.respuestaB}}
+                    </mat-radio-button>
+                </h4>
+                <h4 mat-line>
+                    <mat-radio-button *ngIf="pregunta.respuestaC!=null" value="pregunta.respuestaC" class="example-radio-button" color="primary">
+                        C - {{pregunta.respuestaC}}
+                    </mat-radio-button>
+                </h4>
+            </mat-radio-group>
+
+        </mat-card>
+
+    </div>
+    <br>
+    <div fxFlexFill>
+        <button mat-raised-button color="primary" fxFlex="100%">¡ENVIAR ENCUESTA!</button>
+    </div>
+
+
 </div>

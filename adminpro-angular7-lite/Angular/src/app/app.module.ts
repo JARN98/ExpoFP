@@ -30,7 +30,7 @@ import { FilterPipeModule } from 'ngx-filter-pipe';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
-import { MatTabsModule } from '@angular/material';
+import { MatTabsModule, MatRadioModule } from '@angular/material';
 import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 import { MatChipsModule } from '@angular/material/chips';
 import { NgxImageCompressService } from 'ngx-image-compress';
@@ -39,6 +39,8 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
 // import { EncuestaComponent } from './component/encuesta/encuesta.component';
 import {MatListModule} from '@angular/material/list';
 import { AddPreguntaComponent } from './dialogs/add-pregunta/add-pregunta.component';
+// import {MatRadioModule} from '@angular/material/radio';
+import {MatButtonModule} from '@angular/material/button';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -80,7 +82,9 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     MatInputModule,
     MatChipsModule,
     ChartsModule,
-    MatListModule
+    MatListModule,
+    MatRadioModule,
+    MatButtonModule
 
   ],
   providers: [
