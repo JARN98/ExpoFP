@@ -10,7 +10,8 @@ export const ROUTES: RouteInfo[] = [
     label: '',
     labelClass: '',
     extralink: false,
-    submenu: []
+    submenu: [],
+    admin: true
   },
   {
     path: '/component/encuesta',
@@ -20,7 +21,8 @@ export const ROUTES: RouteInfo[] = [
     label: '',
     labelClass: '',
     extralink: false,
-    submenu: []
+    submenu: [],
+    admin: false
   },
  
 ];
