@@ -32,6 +32,19 @@
         </div>
     </div>
 </div>
+<div class="col-md-11">
+	<div class="card card-outline-info">
+		<div class="card-header">
+			<h4 class="m-b-0 text-white">Añade un comentario</h4>
+		</div>
+		<div class="card-body">
+			<input _ngcontent-c2="" class="form-control" id="exampleInputPassword1" placeholder="comentario" type="comentario">
+			<br>
+			<br>
+			<a href="#" class="btn btn-inverse" (click)="addComentario()">Comentar</a>
+		</div>
+	</div>
+</div>
 <div *ngFor="let comentario of ultimosComentarios" class="col-md-11">
     <div class="card">
         <div class="card-body">

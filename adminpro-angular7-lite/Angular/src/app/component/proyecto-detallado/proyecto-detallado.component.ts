@@ -6,6 +6,10 @@ import { Identifiers } from '@angular/compiler';
 import { Proyect } from '../../models/proyect';
 import { OneProjectService } from '../../services/one-project.service';
 
+import { from } from 'rxjs';
+import { AddComentarioService } from '../../services/add-comentario.service';
+import { ComentarioDto } from '../../dto/addcometario.dto';
+
 @Component({
   selector: 'app-proyecto-detallado',
   templateUrl: './proyecto-detallado.component.html',
@@ -49,8 +53,10 @@ export class ProyectoDetalladoComponent implements OnInit {
   readonly = false;
   ctrl = new FormControl(null, Validators.required);
   proyect: any;
-  listaImagenes:any;
-  ultimosComentarios:any;
+  autor: string;
+  contenido: string;
+  valoracion: number;
+  valido: boolean;
 
   toggle() {
     if (this.ctrl.disabled) {
@@ -61,12 +67,12 @@ export class ProyectoDetalladoComponent implements OnInit {
   }
 
   constructor(config: NgbCarouselConfig,
-    private oneProjectService: OneProjectService) { 
+    private oneProjectService: OneProjectService,
+    private addComentarioService: AddComentarioService,) { 
 
     config.interval = 10000;
     config.wrap = false;
     config.keyboard = false;
-
     config.showNavigationArrows = true;
     config.showNavigationIndicators = true;
 
@@ -81,11 +87,16 @@ export class ProyectoDetalladoComponent implements OnInit {
     this.oneProjectService.getOneProject().subscribe(proyecto => {
       console.log(proyecto);
       this.proyect = proyecto;
-      this.listaImagenes = proyecto.imagenesDetalladas;
-      this.ultimosComentarios = proyecto.ultimosComentarios;
     }, err => {
       console.log(err);
     });
   }
 
+  addComentario() {
+    const comentarioDto = new ComentarioDto(this.proyect, this.autor, this.valoracion, this.valido);
+    this.addComentarioService.createComentario(comentarioDto).subscribe(
+      comentario => {
+        console.log(comentario);
+      });
+  }
 }
