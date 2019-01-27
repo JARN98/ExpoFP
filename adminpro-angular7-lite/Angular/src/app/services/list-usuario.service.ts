@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { User } from '../models/user';
 import { environment } from '../../environments/environment';
 import { ListApiResponse } from '../interfaces/list-api.interface';
+import { NewPassDto } from '../dto/newpass.dto';
 
 @Injectable({
   providedIn: 'root'
@@ -39,6 +40,19 @@ export class ListUsuarioService {
     };
 
     return this.http.delete<User>(`${environment.ApiUrl}/users/${usuario.id}`, requestOptions);
+  }
+
+  updatePass(id: string, email: string, password: string, newPassword: NewPassDto): Observable<User> {
+    const requestOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Basic ` + btoa(`${email}:${password}`),
+        'Access-Control-Allow-Origin': '*'
+      })
+    };
+
+    return this.http.put<User>(`${environment.ApiUrl}/users/${id}/password`, newPassword , requestOptions);
+
   }
   
 

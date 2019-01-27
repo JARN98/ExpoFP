@@ -12,6 +12,13 @@
 	- [Retrieve comentario](#retrieve-comentario)
 	- [Retrieve comentarios](#retrieve-comentarios)
 	
+- [Pregunta](#pregunta)
+	- [Create pregunta](#create-pregunta)
+	- [Delete pregunta](#delete-pregunta)
+	- [Retrieve pregunta](#retrieve-pregunta)
+	- [Retrieve preguntas](#retrieve-preguntas)
+	- [Update pregunta](#update-pregunta)
+	
 - [Proyecto](#proyecto)
 	- [Create proyecto](#create-proyecto)
 	- [Delete proyecto](#delete-proyecto)
@@ -117,6 +124,74 @@
 | limit			| Number			| **optional** <p>Amount of returned items.</p>							|
 | sort			| String[]			| **optional** <p>Order of returned items.</p>							|
 | fields			| String[]			| **optional** <p>Fields to be returned.</p>							|
+
+# Pregunta
+
+## Create pregunta
+
+
+
+	POST /preguntas
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>admin access token.</p>							|
+| pregunta			| 			|  <p>Pregunta's pregunta.</p>							|
+| respuestas			| 			|  <p>Pregunta's respuestas.</p>							|
+
+## Delete pregunta
+
+
+
+	DELETE /preguntas/:id
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>admin access token.</p>							|
+
+## Retrieve pregunta
+
+
+
+	GET /preguntas/:id
+
+
+## Retrieve preguntas
+
+
+
+	GET /preguntas
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| q			| String			| **optional** <p>Query to search.</p>							|
+| page			| Number			| **optional** <p>Page number.</p>							|
+| limit			| Number			| **optional** <p>Amount of returned items.</p>							|
+| sort			| String[]			| **optional** <p>Order of returned items.</p>							|
+| fields			| String[]			| **optional** <p>Fields to be returned.</p>							|
+
+## Update pregunta
+
+
+
+	PUT /preguntas/:id
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| pregunta			| 			|  <p>Pregunta's pregunta.</p>							|
+| respuestas			| 			|  <p>Pregunta's respuestas.</p>							|
 
 # Proyecto
 

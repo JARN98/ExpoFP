@@ -8,6 +8,8 @@ import {
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { ROUTES } from './menu-items';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material';
+import { ChangePasswordComponent } from '../../dialogs/change-password/change-password.component';
 declare var $: any;
 @Component({
   selector: 'app-navigation',
@@ -22,7 +24,7 @@ export class NavigationComponent implements AfterViewInit {
   nombre: string;
 
   public config: PerfectScrollbarConfigInterface = {};
-  constructor(private modalService: NgbModal, private router: Router) {}
+  constructor(private modalService: NgbModal, private router: Router, private dialog: MatDialog) {}
 
   public showSearch = false;
 
@@ -105,6 +107,15 @@ export class NavigationComponent implements AfterViewInit {
   logout(){
     localStorage.clear();
     this.router.navigate(['/session/login']);
+  }
+  openDialogChangePass() {
+    const dialogoChangePass = this.dialog.open(ChangePasswordComponent, {
+    });
+
+    dialogoChangePass.afterClosed().subscribe(result => {
+      
+    });
+
   }
 
   ngAfterViewInit() {}
