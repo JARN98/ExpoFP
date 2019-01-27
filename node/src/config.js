@@ -39,7 +39,8 @@ const config = {
     test: {},
     development: {
         mongo: {
-            uri: 'mongodb://localhost:27017/expo-fp-dev?useNewUrlParser=true',
+            // uri: 'mongodb://localhost:27017/expo-fp-dev?useNewUrlParser=true',
+            uri: 'mongodb://localhost:27017/expo-fp-dev',
             options: {
                 debug: true
             }

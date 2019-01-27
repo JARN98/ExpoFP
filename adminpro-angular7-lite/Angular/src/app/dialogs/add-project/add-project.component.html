@@ -54,15 +54,21 @@
 
         <div class="form-group">
             <!-- <input type="file" class="form-control-file" id="exampleFormControlFile1" [formControl]="form.controls['img']"> -->
-            <input type="file" (change)="foto64()" id="fotoInput" [formControl]="form.controls['img']"/>
+            <input type="file" (change)="foto64()" id="fotoInput" [formControl]="form.controls['img']" />
         </div>
         <div class="form-group">
             <!-- <input type="file" class="form-control-file" id="exampleFormControlFile1" [formControl]="form.controls['img']"> -->
-            <input type="file" (change)="fotos64()" id="fotosInput"  [formControl]="form.controls['imagenes']" multiple/>
+            <input type="file" (change)="fotos64()" id="fotosInput" [formControl]="form.controls['imagenes']" multiple />
         </div>
 
         <div fxLayoutAlign="end end">
             <button type="button" class="btn btn-rounded btn-primary" fxFlex="20%" [disabled]="!form.valid" (click)="addProject()">Añadir</button>
         </div>
     </form>
+</div>
+
+<div *ngIf="loading">
+    <div class="loader">
+
+    </div>
 </div>

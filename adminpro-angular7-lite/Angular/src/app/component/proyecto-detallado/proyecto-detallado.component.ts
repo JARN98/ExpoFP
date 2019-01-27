@@ -57,6 +57,8 @@ export class ProyectoDetalladoComponent implements OnInit {
   contenido: string;
   valoracion: number;
   valido: boolean;
+  listaImagenes: String[];
+  ultimosComentarios: any;
 
   toggle() {
     if (this.ctrl.disabled) {
@@ -68,7 +70,7 @@ export class ProyectoDetalladoComponent implements OnInit {
 
   constructor(config: NgbCarouselConfig,
     private oneProjectService: OneProjectService,
-    private addComentarioService: AddComentarioService,) { 
+    private addComentarioService: AddComentarioService, ) {
 
     config.interval = 10000;
     config.wrap = false;
@@ -87,6 +89,8 @@ export class ProyectoDetalladoComponent implements OnInit {
     this.oneProjectService.getOneProject().subscribe(proyecto => {
       console.log(proyecto);
       this.proyect = proyecto;
+      this.listaImagenes = proyecto.imagenesDetalladas;
+      this.ultimosComentarios = proyecto.ultimosComentarios;
     }, err => {
       console.log(err);
     });

@@ -38,9 +38,11 @@
                                         </mat-form-field>
                                     </td>
                                     <td>
-                                        <mat-form-field class="signup">
-                                            <input matInput name="picture" placeholder="Foto" [(ngModel)]="picture">
-                                        </mat-form-field>
+                                        <div class="form-group">
+                                            <label>Imagen de Perfil</label>
+                                            <!-- <input type="file" class="form-control-file" id="exampleFormControlFile1" [formControl]="form.controls['img']"> -->
+                                            <input type="file" (change)="foto64()" id="fotoInput" />
+                                        </div>
                                     </td>
                                 </tr>
                                 <tr>

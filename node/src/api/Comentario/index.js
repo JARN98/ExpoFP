@@ -48,7 +48,7 @@ router.get('/',
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 404 Comentario not found.
  */
-router.get('/:id',
+router.get('/:idProyecto',
   token({ required: true }),
   show)
 

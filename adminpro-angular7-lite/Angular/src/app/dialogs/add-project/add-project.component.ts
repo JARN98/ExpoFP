@@ -30,6 +30,7 @@ export class AddProjectComponent implements OnInit {
   ];
   urlImagen: any;
   dtoImagenUpload: UploadImageDto;
+  loading: Boolean;
 
   visible = true;
   selectable = true;
@@ -44,6 +45,7 @@ export class AddProjectComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.loading = false;
     this.form = this.fb.group({
       title: [null, Validators.compose([Validators.required])],
       autores: [null],
@@ -89,7 +91,7 @@ export class AddProjectComponent implements OnInit {
 
 
     this.uploadImageImgurService.UploadImage(this.uploadImageDto).subscribe(imagen => {
-
+      this.loading = true;
 
       this.urlImagen = imagen.data.link;
       if (this.uploadImageDetailsDto.image != null) {
@@ -136,7 +138,7 @@ export class AddProjectComponent implements OnInit {
 
       console.log(err);
     });
-
+    this.loading = false;
   }
 
   add(event: MatChipInputEvent): void {

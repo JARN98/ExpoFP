@@ -42,6 +42,9 @@ const proyectoSchema = new Schema({
         valoracion: {
             type: Number
         },
+        nombreAutor: {
+            type: String
+        },
         valido: {
             type: Boolean
         }

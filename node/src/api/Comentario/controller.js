@@ -1,16 +1,22 @@
 import { success, notFound } from '../../services/response/'
 import { Comentario } from '.'
 import { Proyecto } from '../Proyecto'
+import { User } from '../user'
 
 const store = require('store')
 
 export const create = async ({ bodymen: { body } }, res, next) => {
   await Comentario.create(body)
     .then((comentario) => {
-      store.set('idProyectoComentario', comentario.view(true).proyecto)
-      store.set('comentario', comentario)
-      store.set('valoracion', comentario.view(true).valoracion)
-      comentario.save();
+      User.findById(comentario.view(true).autor)
+        .then(user => {
+          comentario.nombreAutor = user.email;
+          store.set('idProyectoComentario', comentario.view(true).proyecto)
+          store.set('comentario', comentario)
+          store.set('valoracion', comentario.view(true).valoracion)
+          comentario.save();
+        })
+
       return comentario.view(true)
 
     })
@@ -57,7 +63,7 @@ export const create = async ({ bodymen: { body } }, res, next) => {
             proyecto.save();
           })
           .catch(next);
-          
+
       }
     })
     .then(success(res))
@@ -76,9 +82,11 @@ export const index = ({ querymen: { query, select, cursor } }, res, next) =>
     .catch(next)
 
 export const show = ({ params }, res, next) =>
-  Comentario.findById(params.id)
+  Comentario.find({ "proyecto": params.idProyecto })
     .then(notFound(res))
-    .then((comentario) => comentario ? comentario.view() : null)
+    .then((comentario) => {
+      return comentario
+    })
     .then(success(res))
     .catch(next)
 

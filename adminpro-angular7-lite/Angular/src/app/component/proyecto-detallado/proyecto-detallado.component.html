@@ -48,7 +48,7 @@
 <div *ngFor="let comentario of ultimosComentarios" class="col-md-11">
     <div class="card">
         <div class="card-body">
-            <h3 class="card-title">{{comentario.autor}}</h3>
+            <h3 class="card-title">{{comentario.nombreAutor}}</h3>
             <h6 class="card-subtitle">{{comentario.contenido}}</h6>
             <ngb-rating [(rate)]="comentario.valoracion">
                 <ng-template let-fill="fill">

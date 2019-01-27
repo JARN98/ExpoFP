@@ -5,6 +5,9 @@ const comentarioSchema = new Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
   },
+  nombreAutor: {
+    type: String
+  },
   contenido: {
     type: String,
     required: true
@@ -39,6 +42,7 @@ comentarioSchema.methods = {
       valoracion: this.valoracion,
       valido: this.valido,
       proyecto: this.proyecto,
+      nombreAutor: this.nombreAutor,
       createdAt: this.createdAt,
       updatedAt: this.updatedAt
     }

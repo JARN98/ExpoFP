@@ -16,5 +16,6 @@ export interface UltimosComentarios {
     autor: LoginResponse;
     contenido: String;
     valoracion: Number;
+    nombreAutor: String;
     valido: Boolean;
 }
