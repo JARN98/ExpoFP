@@ -3,4 +3,7 @@ export interface Pregunta {
     respuestaA: String;
     respuestaB: String;
     respuestaC: String;
+    nA: Number;
+    nB: Number;
+    nC: Number;
 }

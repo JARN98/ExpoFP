@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { AddPreguntaComponent } from '../../dialogs/add-pregunta/add-pregunta.component';
 import { MatDialog } from '@angular/material';
 import { AuthService } from '../../services/auth.service';
+import { PreguntaRespondida } from '../../interfaces/preguntaRespondida.interface';
 
 @Component({
   selector: 'app-encuesta',
@@ -16,6 +17,8 @@ export class EncuestaComponent implements OnInit {
 
   listaApi: ListApiResponse;
   preguntas: Pregunta[];
+  respuestaMarcada: String[];
+  respuestas: PreguntaRespondida[];
 
   /*DATOS GRÁFICO*/
   public pieChartLabels: string[] = ["A", "B", "C"];
@@ -86,6 +89,10 @@ export class EncuestaComponent implements OnInit {
 
   isAdmin(){
     return this.authService.isAdmin();
+  }
+
+  enviarEncuesta(){
+    console.log('All right!')
   }
 
 }
