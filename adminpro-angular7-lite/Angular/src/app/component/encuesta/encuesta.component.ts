@@ -19,6 +19,7 @@ export class EncuestaComponent implements OnInit {
   preguntas: Pregunta[];
   respuestaMarcada: String[];
   respuestas: PreguntaRespondida[];
+  respuestasa: String;
 
   /*DATOS GRÁFICO*/
   public pieChartLabels: string[] = ["A", "B", "C"];
@@ -93,6 +94,15 @@ export class EncuestaComponent implements OnInit {
 
   enviarEncuesta(){
     console.log('All right!')
+    console.log(this.respuestaMarcada);
+  }
+
+  rellenarArrayRespuesta(respuestaMarcada: String){
+    if(this.respuestaMarcada == undefined){
+      this.respuestaMarcada = [respuestaMarcada];
+    } else {
+      this.respuestaMarcada.push(respuestaMarcada);
+    }
   }
 
 }
