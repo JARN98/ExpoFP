@@ -17,13 +17,10 @@
                     previousLabel="Anterior" nextLabel="Siguiente">
                 </pagination-controls>
             </div>
-            <div style="margin-bottom: 4%;" class="boton mat-light-blue-A700">
-                <mat-icon class="medio">add</mat-icon>
-            </div>
         </div>
     </div>
 </div>
-<div class="row">
+<div class="row" *ngIf="admin">
     <div class="col-11"></div>
     <button (click)="openDialogAddProject()" type="button" class="btn btn-success btn-circle btn-lg mat-fab-bottom-right" style="z-index: 9;"><i class="fa fa-link"></i> </button>
 </div>

@@ -10,6 +10,8 @@ import { UploadImageDto } from '../../dto/uploadimage.dto';
 import { UploadImageImgurService } from '../../services/upload-image-imgur.service';
 import { NgxImageCompressService } from 'ngx-image-compress';
 import { UploadImageDetailsDto } from '../../dto/uploadimagesdetails.dto';
+import { AuthService } from '../../services/auth.service';
+import {jwtDecode} from 'jwt-decode';
 
 // const j = require('jquery');
 let ImagenB64: File = null;
@@ -31,6 +33,7 @@ export class AddProjectComponent implements OnInit {
   urlImagen: any;
   dtoImagenUpload: UploadImageDto;
   loading: Boolean;
+  admin: boolean;
 
   visible = true;
   selectable = true;
@@ -41,7 +44,8 @@ export class AddProjectComponent implements OnInit {
   constructor(private fb: FormBuilder,
     private addProjectService: AddProjectService,
     private uploadImageImgurService: UploadImageImgurService,
-    public dialogRef: MatDialogRef<AddProjectComponent>) {
+    public dialogRef: MatDialogRef<AddProjectComponent>,
+    private loginService: AuthService) {
   }
 
   ngOnInit() {
@@ -54,6 +58,9 @@ export class AddProjectComponent implements OnInit {
       imagenes: [null],
       descripcion: [null, Validators.compose([Validators.required])]
     });
+    this.admin = this.loginService.isAdmin();
+    console.log(this.admin);
+    
   }
 
   foto64() {
@@ -67,6 +74,10 @@ export class AddProjectComponent implements OnInit {
       visor.readAsDataURL(Image.files[0]);
       this.uploadImageDto = new UploadImageDto(Image.files[0]);
     }
+    var decoded = jwtDecode(localStorage.getItem('token'));
+    console.log(decoded);
+    
+
   }
 
   fotos64() {
