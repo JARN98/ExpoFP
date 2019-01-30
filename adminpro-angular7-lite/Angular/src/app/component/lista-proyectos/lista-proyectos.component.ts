@@ -5,6 +5,7 @@ import { ListApiResponse } from '../../interfaces/list-api.interface';
 import { MatDialog } from '@angular/material';
 import { AddProjectComponent } from '../../dialogs/add-project/add-project.component';
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-lista-proyectos',
@@ -15,13 +16,17 @@ export class ListaProyectosComponent implements OnInit {
   listaApi: ListApiResponse;
   listaProyectosRes: ListProjectsResponse[];
   proyectoFilter: any = { nombre: '' };
+  admin:boolean;
 
   constructor(private projectService: ListProjectsResService,
     public dialog: MatDialog,
-    private router: Router) { }
+    private router: Router,
+    private loginService: AuthService) { }
 
   ngOnInit() {
     this.getAllProyectos();
+    this.admin = this.loginService.isAdmin();
+    console.log(this.admin);
   }
   getAllProyectos() {
     this.projectService.listProjectsRes().subscribe(lista => {

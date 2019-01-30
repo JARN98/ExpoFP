@@ -61,7 +61,7 @@
             <input type="file" (change)="fotos64()" id="fotosInput" [formControl]="form.controls['imagenes']" multiple />
         </div>
 
-        <div fxLayoutAlign="end end">
+        <div fxLayoutAlign="end end" *ngIf="admin">
             <button type="button" class="btn btn-rounded btn-primary" fxFlex="20%" [disabled]="!form.valid" (click)="addProject()">Añadir</button>
         </div>
     </form>

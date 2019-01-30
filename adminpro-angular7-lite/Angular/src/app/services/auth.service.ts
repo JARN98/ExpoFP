@@ -4,8 +4,8 @@ import { LoginDto } from '../dto/login.dto';
 import { Observable } from 'rxjs';
 import { LoginResponse } from '../interfaces/login-response.interface';
 import { environment } from '../..//environments/environment';
-import { UsuarioCreateDto } from '../dto/usuario.dto';
 import { UserDto } from '../dto/adduser.dto';
+import {jwtDecode} from 'jwt-decode';
 
 const authUrl = '';
 
@@ -62,11 +62,21 @@ export class AuthService {
 
   }
 
-  getToken(): string {
+
+
+  getToken() {  
     return localStorage.getItem('token');
   }
 
-  isAdmin() {
-    return localStorage.getItem('role') == 'admin';
+  getTokenDecode() {
+    return jwtDecode(this.getToken());
+  }
+
+  isAdmin() {  
+    if (this.getTokenDecode().role == 'admin'){
+      return true
+    }else{
+      return false
+    }
   }
 }
