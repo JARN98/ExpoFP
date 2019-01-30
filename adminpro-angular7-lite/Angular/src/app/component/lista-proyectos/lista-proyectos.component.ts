@@ -16,7 +16,7 @@ export class ListaProyectosComponent implements OnInit {
   listaApi: ListApiResponse;
   listaProyectosRes: ListProjectsResponse[];
   proyectoFilter: any = { nombre: '' };
-  admin:boolean;
+  admin;
 
   constructor(private projectService: ListProjectsResService,
     public dialog: MatDialog,

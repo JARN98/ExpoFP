@@ -11,7 +11,7 @@ import { UploadImageImgurService } from '../../services/upload-image-imgur.servi
 import { NgxImageCompressService } from 'ngx-image-compress';
 import { UploadImageDetailsDto } from '../../dto/uploadimagesdetails.dto';
 import { AuthService } from '../../services/auth.service';
-import {jwtDecode} from 'jwt-decode';
+const jwtDecode = require('jwt-decode');
 
 // const j = require('jquery');
 let ImagenB64: File = null;
@@ -60,7 +60,6 @@ export class AddProjectComponent implements OnInit {
     });
     this.admin = this.loginService.isAdmin();
     console.log(this.admin);
-    
   }
 
   foto64() {
@@ -74,9 +73,9 @@ export class AddProjectComponent implements OnInit {
       visor.readAsDataURL(Image.files[0]);
       this.uploadImageDto = new UploadImageDto(Image.files[0]);
     }
-    var decoded = jwtDecode(localStorage.getItem('token'));
+    const decoded = jwtDecode(localStorage.getItem('token'));
     console.log(decoded);
-    
+
 
   }
 

@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { LoginResponse } from '../interfaces/login-response.interface';
 import { environment } from '../..//environments/environment';
 import { UserDto } from '../dto/adduser.dto';
-import {jwtDecode} from 'jwt-decode';
+const jwtDecode = require('jwt-decode');
 
 const authUrl = '';
 
@@ -20,6 +20,7 @@ const authUrl = '';
   providedIn: 'root'
 })
 export class AuthService {
+  private rol;
 
   constructor(private http: HttpClient) { }
 
@@ -52,7 +53,7 @@ export class AuthService {
   }
 
   setLoginData(loginResponse: LoginResponse) {
-    
+
     localStorage.setItem('token', loginResponse.token);
     localStorage.setItem('id', loginResponse.user.id);
     localStorage.setItem('name', loginResponse.user.name);
@@ -64,7 +65,7 @@ export class AuthService {
 
 
 
-  getToken() {  
+  getToken() {
     return localStorage.getItem('token');
   }
 
@@ -72,11 +73,11 @@ export class AuthService {
     return jwtDecode(this.getToken());
   }
 
-  isAdmin() {  
-    if (this.getTokenDecode().role == 'admin'){
-      return true
-    }else{
-      return false
+  isAdmin() {
+    if (this.getTokenDecode().role === 'admin') {
+      return true;
+    } else {
+      return false;
     }
   }
 }

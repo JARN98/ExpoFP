@@ -9,6 +9,7 @@ import { OneProjectService } from '../../services/one-project.service';
 import { from } from 'rxjs';
 import { AddComentarioService } from '../../services/add-comentario.service';
 import { ComentarioDto } from '../../dto/addcometario.dto';
+import { VerComentsService } from '../../services/ver-coments.service';
 
 @Component({
   selector: 'app-proyecto-detallado',
@@ -59,6 +60,7 @@ export class ProyectoDetalladoComponent implements OnInit {
   valido: boolean;
   listaImagenes: String[];
   ultimosComentarios: any;
+  masComentarios: boolean;
 
   toggle() {
     if (this.ctrl.disabled) {
@@ -70,7 +72,8 @@ export class ProyectoDetalladoComponent implements OnInit {
 
   constructor(config: NgbCarouselConfig,
     private oneProjectService: OneProjectService,
-    private addComentarioService: AddComentarioService, ) {
+    private addComentarioService: AddComentarioService,
+    private verComentsService: VerComentsService) {
 
     config.interval = 10000;
     config.wrap = false;
@@ -83,6 +86,7 @@ export class ProyectoDetalladoComponent implements OnInit {
 
   ngOnInit() {
     this.getOneProject();
+    this.masComentarios = true;
   }
 
   getOneProject() {
@@ -102,5 +106,15 @@ export class ProyectoDetalladoComponent implements OnInit {
       comentario => {
         console.log(comentario);
       });
+  }
+
+  verTodosComentarios() {
+    this.masComentarios = false;
+    this.verComentsService.verComents(localStorage.getItem('idDeProyecto')).subscribe(comentarios => {
+      this.ultimosComentarios = comentarios;
+    }, err => {
+      console.log(err);
+
+    });
   }
 }
