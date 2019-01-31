@@ -38,17 +38,17 @@
 
             <mat-radio-group class="example-radio-group">
                 <h4 mat-line>
-                    <mat-radio-button [value]="pregunta.respuestaA" (click)="rellenarArrayRespuesta(pregunta.respuestaA)" class="md-warn" color="primary">
+                    <mat-radio-button [value]="pregunta.respuestaA" (click)="rellenarArrayRespuesta(pregunta.pregunta, pregunta.respuestaA)" class="md-warn" color="primary">
                         A - {{pregunta.respuestaA}}
                     </mat-radio-button>
                 </h4>
                 <h4 mat-line>
-                    <mat-radio-button [value]="pregunta.respuestaB" (click)="rellenarArrayRespuesta(pregunta.respuestaB)" class="example-radio-button" color="primary">
+                    <mat-radio-button [value]="pregunta.respuestaB" (click)="rellenarArrayRespuesta(pregunta.pregunta, pregunta.respuestaB)" class="example-radio-button" color="primary">
                         B - {{pregunta.respuestaB}}
                     </mat-radio-button>
                 </h4>
                 <h4 mat-line>
-                    <mat-radio-button *ngIf="pregunta.respuestaC!=null" (click)="rellenarArrayRespuesta(pregunta.respuestaC)" [value]="pregunta.respuestaC" class="example-radio-button" color="primary">
+                    <mat-radio-button *ngIf="pregunta.respuestaC!=null" (click)="rellenarArrayRespuesta(pregunta.pregunta, pregunta.respuestaC)" [value]="pregunta.respuestaC" class="example-radio-button" color="primary">
                         C - {{pregunta.respuestaC}}
                     </mat-radio-button>
                 </h4>

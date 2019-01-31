@@ -7,6 +7,7 @@ import { AddPreguntaComponent } from '../../dialogs/add-pregunta/add-pregunta.co
 import { MatDialog } from '@angular/material';
 import { AuthService } from '../../services/auth.service';
 import { PreguntaRespondida } from '../../interfaces/preguntaRespondida.interface';
+import { PreguntaRespondidaDto } from '../../dto/preguntaRespondida.dto';
 
 @Component({
   selector: 'app-encuesta',
@@ -18,7 +19,8 @@ export class EncuestaComponent implements OnInit {
   listaApi: ListApiResponse;
   preguntas: Pregunta[];
   respuestaMarcada: String[];
-  respuestas: PreguntaRespondida[];
+  respuestas: PreguntaRespondidaDto[];
+  // respuestas: Array<PreguntaRespondidaDto>;
   respuestasa: String;
 
   /*DATOS GRÁFICO*/
@@ -94,15 +96,40 @@ export class EncuestaComponent implements OnInit {
 
   enviarEncuesta(){
     console.log('All right!')
-    console.log(this.respuestaMarcada);
+    console.log(this.respuestas);
+    for(let respuesta of this.respuestas){
+
+    }
   }
 
-  rellenarArrayRespuesta(respuestaMarcada: String){
-    if(this.respuestaMarcada == undefined){
-      this.respuestaMarcada = [respuestaMarcada];
+  rellenarArrayRespuesta(pregunta: String, respuestaMarcada: String){
+    //comprobar si no se ha marcado anteriormente, y en su defecto la modifica
+
+    let encontrada = false;
+    let i=0;
+
+    if(this.respuestas == undefined){
+
+      this.respuestas = [new PreguntaRespondidaDto(pregunta, respuestaMarcada)];
+      
     } else {
-      this.respuestaMarcada.push(respuestaMarcada);
+
+      for(let respuestaSelec of this.respuestas){
+        i++;
+        
+        if(respuestaSelec.pregunta == pregunta){
+          this.respuestas.splice(i, 1);
+          encontrada=true;
+        }
+      }
+
+      this.respuestas.push(new PreguntaRespondidaDto(pregunta, respuestaMarcada));
+
     }
+
+    
+
+    console.log(this.respuestas==undefined)
   }
 
 }
