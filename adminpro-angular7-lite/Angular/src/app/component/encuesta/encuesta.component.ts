@@ -105,31 +105,31 @@ export class EncuestaComponent implements OnInit {
   rellenarArrayRespuesta(pregunta: String, respuestaMarcada: String){
     //comprobar si no se ha marcado anteriormente, y en su defecto la modifica
 
-    let encontrada = false;
-    let i=0;
+  //   let encontrada = false;
+  //   let i=0;
 
-    if(this.respuestas == undefined){
+  //   if(this.respuestas == undefined){
 
-      this.respuestas = [new PreguntaRespondidaDto(pregunta, respuestaMarcada)];
+  //     this.respuestas = [new PreguntaRespondidaDto(pregunta, respuestaMarcada)];
       
-    } else {
+  //   } else {
 
-      for(let respuestaSelec of this.respuestas){
-        i++;
+  //     for(let respuestaSelec of this.respuestas){
+  //       i++;
         
-        if(respuestaSelec.pregunta == pregunta){
-          this.respuestas.splice(i, 1);
-          encontrada=true;
-        }
-      }
+  //       if(respuestaSelec.pregunta == pregunta){
+  //         this.respuestas.splice(i, 1);
+  //         encontrada=true;
+  //       }
+  //     }
 
-      this.respuestas.push(new PreguntaRespondidaDto(pregunta, respuestaMarcada));
+  //     this.respuestas.push(new PreguntaRespondidaDto(pregunta, respuestaMarcada));
 
-    }
+  //   }
 
     
 
-    console.log(this.respuestas==undefined)
-  }
+  //   console.log(this.respuestas==undefined)
+   }
 
 }
