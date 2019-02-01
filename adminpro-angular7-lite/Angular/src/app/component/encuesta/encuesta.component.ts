@@ -137,7 +137,7 @@ export class EncuestaComponent implements OnInit {
 
     
 
-    console.log(this.respuestas==undefined)
+  //   console.log(this.respuestas==undefined)
   }
 
 }
