@@ -20,7 +20,6 @@ export class EncuestaComponent implements OnInit {
   preguntas: Pregunta[];
   respuestaMarcada: String[];
   respuestas: PreguntaRespondidaDto[];
-  // respuestas: Array<PreguntaRespondidaDto>;
   respuestasa: String;
 
   /*DATOS GRÁFICO*/
@@ -107,6 +106,7 @@ export class EncuestaComponent implements OnInit {
 
     let encontrada = false;
     let i=0;
+    let indice=0;
 
     if(this.respuestas == undefined){
 
@@ -115,15 +115,23 @@ export class EncuestaComponent implements OnInit {
     } else {
 
       for(let respuestaSelec of this.respuestas){
-        i++;
         
         if(respuestaSelec.pregunta == pregunta){
-          this.respuestas.splice(i, 1);
+          console.log('KAJSAHDKJ')
           encontrada=true;
+          indice = i;
         }
+        i++;
       }
 
-      this.respuestas.push(new PreguntaRespondidaDto(pregunta, respuestaMarcada));
+      if(encontrada){
+        this.respuestas.splice(indice, 1);
+        this.respuestas.push(new PreguntaRespondidaDto(pregunta, respuestaMarcada));
+      } else {
+        this.respuestas.push(new PreguntaRespondidaDto(pregunta, respuestaMarcada));
+      }
+
+      
 
     }
 
