@@ -8,6 +8,7 @@ import { MatDialog } from '@angular/material';
 import { AuthService } from '../../services/auth.service';
 import { PreguntaRespondida } from '../../interfaces/preguntaRespondida.interface';
 import { PreguntaRespondidaDto } from '../../dto/preguntaRespondida.dto';
+import { UpdatePreguntaDto } from '../../dto/updatePregunta.dto';
 
 @Component({
   selector: 'app-encuesta',
@@ -96,6 +97,26 @@ export class EncuestaComponent implements OnInit {
   enviarEncuesta(){
     console.log('All right!')
     console.log(this.respuestas);
+
+    for(let respuesta of this.respuestas){
+      for(let pregunta of this.preguntas){
+        if(respuesta.pregunta==pregunta.pregunta){
+          if(respuesta.respuestaMarcada==pregunta.respuestaA){
+            pregunta.nA=+1;
+          } else if(respuesta.respuestaMarcada==pregunta.respuestaB){
+            pregunta.nB=+1;
+          } else if(respuesta.respuestaMarcada==pregunta.respuestaC){
+            pregunta.nC=+1;
+          }
+
+          this.encuestaService.updatePregunta(new UpdatePreguntaDto(pregunta.id,
+            pregunta.pregunta, pregunta.respuestaA, pregunta.respuestaB,
+            pregunta.respuestaC, pregunta.nA, pregunta.nB, pregunta.nC)).subscribe(result => result);
+        }
+      }
+    }
+
+    console.log(this.preguntas);
   }
 
   rellenarArrayRespuesta(pregunta: String, respuestaMarcada: String){
@@ -127,8 +148,6 @@ export class EncuestaComponent implements OnInit {
       } else {
         this.respuestas.push(new PreguntaRespondidaDto(pregunta, respuestaMarcada));
       }
-
-      
 
     }
 

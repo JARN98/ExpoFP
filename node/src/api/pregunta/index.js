@@ -4,10 +4,11 @@ import { middleware as body } from 'bodymen'
 import { token } from '../../services/passport'
 import { create, index, show, update, destroy } from './controller'
 import { schema } from './model'
-export Pregunta, { schema } from './model'
+export Pregunta, { schema }
+from './model'
 
 const router = new Router()
-const { pregunta, respuestaA, respuestaB, respuestaC } = schema.tree
+const { pregunta, respuestaA, respuestaB, respuestaC, nA, nB, nC } = schema.tree
 
 /**
  * @api {post} /preguntas Create pregunta
@@ -23,9 +24,9 @@ const { pregunta, respuestaA, respuestaB, respuestaC } = schema.tree
  * @apiError 401 admin access only.
  */
 router.post('/',
-  token({ required: true, roles: ['admin'] }),
-  body({ pregunta, respuestaA, respuestaB, respuestaC }),
-  create)
+    token({ required: true, roles: ['admin'] }),
+    body({ pregunta, respuestaA, respuestaB, respuestaC }),
+    create)
 
 /**
  * @api {get} /preguntas Retrieve preguntas
@@ -37,8 +38,8 @@ router.post('/',
  * @apiError {Object} 400 Some parameters may contain invalid values.
  */
 router.get('/',
-  query(),
-  index)
+    query(),
+    index)
 
 /**
  * @api {get} /preguntas/:id Retrieve pregunta
@@ -49,7 +50,7 @@ router.get('/',
  * @apiError 404 Pregunta not found.
  */
 router.get('/:id',
-  show)
+    show)
 
 /**
  * @api {put} /preguntas/:id Update pregunta
@@ -62,8 +63,8 @@ router.get('/:id',
  * @apiError 404 Pregunta not found.
  */
 router.put('/:id',
-  body({ pregunta, respuestaA, respuestaB, respuestaC }),
-  update)
+    body({ nA, nB, nC }),
+    update)
 
 /**
  * @api {delete} /preguntas/:id Delete pregunta
@@ -76,7 +77,7 @@ router.put('/:id',
  * @apiError 401 admin access only.
  */
 router.delete('/:id',
-  token({ required: true, roles: ['admin'] }),
-  destroy)
+    token({ required: true, roles: ['admin'] }),
+    destroy)
 
 export default router

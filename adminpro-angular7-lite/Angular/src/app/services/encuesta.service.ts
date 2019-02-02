@@ -5,6 +5,8 @@ import { ListApiResponse } from '../interfaces/list-api.interface';
 import { environment } from '../../environments/environment';
 import { PreguntaDto } from '../dto/addPregunta.dto';
 import { CreatePreguntaResponse } from '../interfaces/add-pregunta.interface';
+import { Pregunta } from '../models/pregunta';
+import { UpdatePreguntaDto } from '../dto/updatePregunta.dto';
 
 @Injectable({
   providedIn: 'root'
@@ -47,5 +49,17 @@ export class EncuestaService {
       })
     };
     return this.http.delete(`${environment.ApiUrl}/preguntas/${id}`, requestOptions)
+  }
+
+  /*Actualiza la pregunta*/
+  updatePregunta(pregunta: UpdatePreguntaDto){
+    const requestOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+        'Access-Control-Allow-Origin': '*'
+      })
+    };
+    return this.http.put(`${environment.ApiUrl}/preguntas/${pregunta.id}`, requestOptions)
   }
 }
