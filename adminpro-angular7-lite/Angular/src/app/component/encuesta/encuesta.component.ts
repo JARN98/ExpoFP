@@ -96,9 +96,6 @@ export class EncuestaComponent implements OnInit {
   enviarEncuesta(){
     console.log('All right!')
     console.log(this.respuestas);
-    for(let respuesta of this.respuestas){
-
-    }
   }
 
   rellenarArrayRespuesta(pregunta: String, respuestaMarcada: String){
@@ -135,9 +132,6 @@ export class EncuestaComponent implements OnInit {
 
     }
 
-    
-
-  //   console.log(this.respuestas==undefined)
   }
 
 }
