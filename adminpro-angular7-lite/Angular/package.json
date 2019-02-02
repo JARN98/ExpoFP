@@ -27,6 +27,7 @@
     "@ng-bootstrap/ng-bootstrap": "^4.0.1",
     "@swimlane/ngx-charts": "^10.0.0",
     "@swimlane/ngx-datatable": "^14.0.0",
+    "@types/node": "^10.12.21",
     "angular-calendar": "^0.26.4",
     "bootstrap": "^4.1.1",
     "chart.js": "^2.7.1",
@@ -48,11 +49,13 @@
     "ngx-pagination": "^3.2.1",
     "ngx-perfect-scrollbar": "^7.2.0",
     "ngx-pipes": "^2.3.6",
+    "node-sass": "^4.11.0",
     "popper.js": "^1.12.5",
     "react-file-reader": "^1.1.4",
     "rxjs": "^6.3.3",
     "rxjs-compat": "^6.0.0-rc.0",
     "sass-loader": "^7.1.0",
+    "typescript": "^3.1.6",
     "zone.js": "^0.8.4"
   },
   "devDependencies": {
