@@ -42,6 +42,20 @@ export class ListaProyectosComponent implements OnInit {
   openDialogAddProject() {
     const dialogoAddRec = this.dialog.open(AddProjectComponent, {
       width: '40%',
+      data: { proyecto: undefined }
+    });
+
+    dialogoAddRec.afterClosed().subscribe(result => {
+      this.getAllProyectos();
+    });
+
+  }
+
+  openDialogEditProject(proyecto) {
+    localStorage.setItem('idDeProyecto', proyecto);
+    const dialogoAddRec = this.dialog.open(AddProjectComponent, {
+      width: '40%',
+      data: { proyecto: proyecto }
     });
 
     dialogoAddRec.afterClosed().subscribe(result => {

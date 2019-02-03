@@ -11,22 +11,22 @@ import { NewPassDto } from '../../dto/newpass.dto';
 })
 export class ChangePasswordComponent implements OnInit {
   form: FormGroup;
-  newPasswordDto : NewPassDto;
+  newPasswordDto: NewPassDto;
   id: string;
   email: string;
 
   constructor(public dialogRef: MatDialogRef<ChangePasswordComponent>,
-              private fb: FormBuilder,
-              private userService: ListUsuarioService
-              ) { }
+    private fb: FormBuilder,
+    private userService: ListUsuarioService
+  ) { }
 
   ngOnInit() {
-      this.form = this.fb.group ( {
-      password:  ['', ( [ Validators.required ] )],
-      newpassword: ['' , Validators.compose ( [ Validators.required ] )]  
-    } );
+    this.form = this.fb.group({
+      password: ['', ([Validators.required])],
+      newpassword: ['', Validators.compose([Validators.required])]
+    });
   }
-  closeDialog(){
+  closeDialog() {
     this.dialogRef.close();
   }
 
@@ -35,10 +35,10 @@ export class ChangePasswordComponent implements OnInit {
     console.log(this.id);
     this.email = localStorage.getItem('email');
     console.log(this.email);
-    this.newPasswordDto = new NewPassDto(this.form.controls['newpassword'].value);                                     
-    this.userService.updatePass(this.id, this.email,this.form.controls['password'].value, this.newPasswordDto).subscribe(updatePassRes => {
+    this.newPasswordDto = new NewPassDto(this.form.controls['newpassword'].value);
+    this.userService.updatePass(this.id, this.email, this.form.controls['password'].value, this.newPasswordDto).subscribe(updatePassRes => {
       this.dialogRef.close();
-    })
+    });
   }
 
 }

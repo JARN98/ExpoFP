@@ -1,8 +1,8 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, Inject } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AddProjectService } from '../../services/add-project.service';
 import { ProjectDto } from '../../dto/addpro.dto';
-import { MatDialogRef } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { Autor } from '../../interfaces/autor.interface';
 import { MatChipInputEvent } from '@angular/material/chips';
@@ -11,6 +11,9 @@ import { UploadImageImgurService } from '../../services/upload-image-imgur.servi
 import { NgxImageCompressService } from 'ngx-image-compress';
 import { UploadImageDetailsDto } from '../../dto/uploadimagesdetails.dto';
 import { AuthService } from '../../services/auth.service';
+import { OneProjectService } from '../../services/one-project.service';
+import { EditProjectService } from '../../services/edit-project.service';
+import { EditProjectDto } from '../../dto/editpro.dto';
 const jwtDecode = require('jwt-decode');
 
 // const j = require('jquery');
@@ -27,14 +30,16 @@ export class AddProjectComponent implements OnInit {
   addProjectDto: ProjectDto;
   uploadImageDto: UploadImageDto;
   uploadImageDetailsDto: UploadImageDetailsDto;
+
   urlImagenes: any;
   autores: Autor[] = [
   ];
   urlImagen: any;
   dtoImagenUpload: UploadImageDto;
+  editProjectDto: EditProjectDto;
   loading: Boolean;
   admin: boolean;
-
+  edit: boolean;
   visible = true;
   selectable = true;
   removable = true;
@@ -45,21 +50,49 @@ export class AddProjectComponent implements OnInit {
     private addProjectService: AddProjectService,
     private uploadImageImgurService: UploadImageImgurService,
     public dialogRef: MatDialogRef<AddProjectComponent>,
-    private loginService: AuthService) {
+    private loginService: AuthService,
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private oneProjectService: OneProjectService,
+    private editProjectService: EditProjectService) {
   }
 
   ngOnInit() {
     this.loading = false;
-    this.form = this.fb.group({
-      title: [null, Validators.compose([Validators.required])],
-      autores: [null],
-      curso: [null, Validators.compose([Validators.required])],
-      img: [null],
-      imagenes: [null],
-      descripcion: [null, Validators.compose([Validators.required])]
-    });
+    console.log(this.data.proyecto);
+
+    if (this.data.proyecto === undefined) {
+      this.form = this.fb.group({
+        title: [null, Validators.compose([Validators.required])],
+        autores: [null],
+        curso: [null, Validators.compose([Validators.required])],
+        img: [null],
+        imagenes: [null],
+        descripcion: [null, Validators.compose([Validators.required])]
+      });
+      this.edit = false;
+    } else {
+      this.getOneProject(this.data.proyecto);
+      this.edit = true;
+    }
     this.admin = this.loginService.isAdmin();
-    console.log(this.admin);
+  }
+
+  getOneProject(id) {
+    this.oneProjectService.getOneProjectBH(id).subscribe(proyecto => {
+      this.data.proyecto = proyecto;
+      this.form = this.fb.group({
+        title: [this.data.proyecto.nombre, Validators.compose([Validators.required])],
+        autores: [null],
+        curso: [this.data.proyecto.curso, Validators.compose([Validators.required])],
+        img: [null],
+        imagenes: [null],
+        descripcion: [this.data.proyecto.descripcion, Validators.compose([Validators.required])]
+      });
+      this.autores = this.data.proyecto.autores;
+      console.log(this.data.proyecto.autores);
+    }, err => {
+      console.log(err);
+    });
   }
 
   foto64() {
@@ -98,10 +131,10 @@ export class AddProjectComponent implements OnInit {
   }
 
   addProject() {
-
+    this.loading = true;
 
     this.uploadImageImgurService.UploadImage(this.uploadImageDto).subscribe(imagen => {
-      this.loading = true;
+
 
       this.urlImagen = imagen.data.link;
       if (this.uploadImageDetailsDto.image != null) {
@@ -164,6 +197,16 @@ export class AddProjectComponent implements OnInit {
     if (input) {
       input.value = '';
     }
+  }
+
+  editProject(id) {
+    // tslint:disable-next-line:max-line-length
+    this.editProjectDto = new EditProjectDto(this.form.controls['title'].value, this.autores, this.form.controls['curso'].value, this.form.controls['descripcion'].value);
+    this.editProjectService.editPro(this.editProjectDto, localStorage.getItem('idDeProyecto')).subscribe(proyecto => {
+      this.dialogRef.close();
+    }, err => {
+      console.log(err);
+    });
   }
 
   remove(autor: Autor): void {

@@ -1,4 +1,5 @@
-<h1>Añadir un proyecto</h1>
+<h1 *ngIf="edit === false">Añadir un proyecto</h1>
+<h1 *ngIf="edit">Editar un proyecto</h1>
 <div fxFlexFill fxLayoutAlign="center center" fxLayout="row">
     <form fxLayout="column" fxFlexFill [formGroup]="form">
         <mat-form-field class="example-full-width">
@@ -20,8 +21,9 @@
                     {{autor.nombre}}
                     <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
                 </mat-chip>
-                <input placeholder="Autores..." [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                    [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event)">
+                <input placeholder="Autores..." [matChipInputFor]="chipList" [formControl]="form.controls['autores']"
+                    [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+                    (matChipInputTokenEnd)="add($event)">
             </mat-chip-list>
         </mat-form-field>
         <div *ngIf="form.controls['autores'].invalid && (form.controls['autores'].dirty || form.controls['autores'].touched)"
@@ -52,17 +54,21 @@
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group" *ngIf="edit === false">
             <!-- <input type="file" class="form-control-file" id="exampleFormControlFile1" [formControl]="form.controls['img']"> -->
             <input type="file" (change)="foto64()" id="fotoInput" [formControl]="form.controls['img']" />
         </div>
-        <div class="form-group">
+        <div class="form-group" *ngIf="edit === false">
             <!-- <input type="file" class="form-control-file" id="exampleFormControlFile1" [formControl]="form.controls['img']"> -->
             <input type="file" (change)="fotos64()" id="fotosInput" [formControl]="form.controls['imagenes']" multiple />
         </div>
 
-        <div fxLayoutAlign="end end" *ngIf="admin">
-            <button type="button" class="btn btn-rounded btn-primary" fxFlex="20%" [disabled]="!form.valid" (click)="addProject()">Añadir</button>
+        <div fxLayoutAlign="end end"  *ngIf="edit === false">
+            <button *ngIf="admin" type="button" class="btn btn-rounded btn-primary" fxFlex="20%" [disabled]="!form.valid" (click)="addProject()">Añadir</button>
+        </div>
+
+        <div fxLayoutAlign="end end"  *ngIf="edit">
+            <button *ngIf="admin" type="button" class="btn btn-rounded btn-primary" fxFlex="20%" [disabled]="!form.valid" (click)="editProject()">Editar</button>
         </div>
     </form>
 </div>

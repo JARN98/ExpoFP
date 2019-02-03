@@ -1,4 +1,4 @@
-import { Autor } from "../interfaces/autor.interface";
+import { Autor } from '../interfaces/autor.interface';
 
 export class ProjectDto {
     nombre: String;

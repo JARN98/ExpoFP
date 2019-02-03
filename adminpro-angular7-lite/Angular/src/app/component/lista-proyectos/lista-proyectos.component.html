@@ -9,6 +9,7 @@
                     <div class="card-body">
                         <h4 class="card-title">{{proyecto.nombre}} - {{proyecto.curso}}</h4>
                         <button (click)="VerProyecto(proyecto.proyecto)" class="btn btn-primary" style="width:40%;">Ver</button>
+                        <button (click)="openDialogEditProject(proyecto.proyecto)" *ngIf="admin" class="btn btn-primary" style="width:40%;">Editar</button>
                     </div>
                 </div>
             </div>
