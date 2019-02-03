@@ -6,6 +6,7 @@ import { MatDialog } from '@angular/material';
 import { AddProjectComponent } from '../../dialogs/add-project/add-project.component';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import { DeleteProjectComponent } from '../../dialogs/delete-project/delete-project.component';
 
 @Component({
   selector: 'app-lista-proyectos',
@@ -62,6 +63,17 @@ export class ListaProyectosComponent implements OnInit {
       this.getAllProyectos();
     });
 
+  }
+
+  openDialogDeleteProject(proyecto) {
+    const dialogoDeleteProject = this.dialog.open(DeleteProjectComponent, {
+      data: { id: proyecto.id,
+              nombre: proyecto.nombre
+            }
+    });
+    dialogoDeleteProject.afterClosed().subscribe(result => {
+      this.getAllProyectos();
+    });
   }
 
   VerProyecto(proyecto) {

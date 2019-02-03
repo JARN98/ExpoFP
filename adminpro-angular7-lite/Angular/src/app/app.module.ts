@@ -42,6 +42,7 @@ import { AddPreguntaComponent } from './dialogs/add-pregunta/add-pregunta.compon
 // import {MatRadioModule} from '@angular/material/radio';
 import {MatButtonModule} from '@angular/material/button';
 import { ChangePasswordComponent } from './dialogs/change-password/change-password.component';
+import { DeleteProjectComponent } from './dialogs/delete-project/delete-project.component';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -60,6 +61,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     AddProjectComponent,
     AddPreguntaComponent,
     ChangePasswordComponent,
+    DeleteProjectComponent,
   ],
   imports: [
     CommonModule,
@@ -99,7 +101,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   entryComponents: [
     AddProjectComponent,
     AddPreguntaComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    DeleteProjectComponent
   ],
   bootstrap: [AppComponent]
 })

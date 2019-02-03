@@ -1,0 +1,10 @@
+<div class="text-xs-center pb-1" fxLayoutGap="225px">
+  <h3>¿Está seguro que desea borrar el proyecto {{data.nombre}}?</h3>
+</div>
+<div fxLayout="column" fxLayoutAlign="space-around">
+
+  <div fxLayout="row" fxLayoutAlign="space-around">
+    <button mat-raised-button color="primary" (click)="closeDialog()">Cancelar</button>
+    <button mat-raised-button color="primary" (click)="deleteProyecto()">Eliminar</button>
+  </div>
+</div>

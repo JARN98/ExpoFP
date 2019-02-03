@@ -18,6 +18,12 @@
     filter: alpha (opacity=50);
 }
 
+.botones {
+    display: flex;
+    justify-content: space-between;
+
+}
+
 .boton a {
     color: #fff;
     text-decoration: none;

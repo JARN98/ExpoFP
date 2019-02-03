@@ -24,4 +24,15 @@ export class ListProjectsResService {
     };
     return this.http.get<ListApiResponse>(`${environment.ApiUrl}/ProyectoRes`, requestOptions);
   }
+
+  deleteProject(id : string): Observable<any> {
+    const requestOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+        'Access-Control-Allow-Origin': '*'
+      })
+    };
+    return this.http.delete<any>(`${environment.ApiUrl}/ProyectoRes/${id}`, requestOptions);
+  }
 }

@@ -8,8 +8,11 @@
                     <img class="card-img-top img-responsive" style="object-fit:scale-down; height:150px" src={{proyecto.imagen}} alt="Card image cap">
                     <div class="card-body">
                         <h4 class="card-title">{{proyecto.nombre}} - {{proyecto.curso}}</h4>
-                        <button (click)="VerProyecto(proyecto.proyecto)" class="btn btn-primary" style="width:40%;">Ver</button>
-                        <button (click)="openDialogEditProject(proyecto.proyecto)" *ngIf="admin" class="btn btn-primary" style="width:40%;">Editar</button>
+                    <div class="container botones">
+                        <button (click)="VerProyecto(proyecto.proyecto)" class="btn btn-primary" style="width:30%;">Ver</button>
+                        <button (click)="openDialogEditProject(proyecto.proyecto)" *ngIf="admin" class="btn btn-warning" style="width:30%;">Editar</button>
+                        <button (click)="openDialogDeleteProject(proyecto)" *ngIf="admin" class="btn btn-danger" style="width:30%;">Eliminar</button>
+                        </div>
                     </div>
                 </div>
             </div>
