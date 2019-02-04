@@ -25,7 +25,7 @@ export class AddComentarioService {
       })
     };
 
-    return this.http.post<ComentarioCreateResponse>(`${comentarioUrl}/Comentarios/`, comentarioDto, requestOptions);
+    return this.http.post<ComentarioCreateResponse>(`${comentarioUrl}/Comentarios`, comentarioDto, requestOptions);
   }
 
 }

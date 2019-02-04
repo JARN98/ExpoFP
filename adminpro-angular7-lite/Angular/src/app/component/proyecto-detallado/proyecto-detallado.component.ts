@@ -101,7 +101,9 @@ export class ProyectoDetalladoComponent implements OnInit {
   }
 
   addComentario() {
-    const comentarioDto = new ComentarioDto(this.proyect, this.autor, this.valoracion, this.valido);
+    console.log(this.contenido);
+
+    const comentarioDto = new ComentarioDto(this.proyect, this.autor, this.contenido, this.valoracion);
     this.addComentarioService.createComentario(comentarioDto).subscribe(
       comentario => {
         console.log(comentario);
