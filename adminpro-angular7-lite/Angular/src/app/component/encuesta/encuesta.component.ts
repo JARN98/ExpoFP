@@ -100,9 +100,9 @@ export class EncuestaComponent implements OnInit {
 
     for(let respuesta of this.respuestas){
       for(let pregunta of this.preguntas){
-        if(respuesta.pregunta==pregunta.pregunta){
+        if(respuesta.pregunta == pregunta.pregunta){
           if(respuesta.respuestaMarcada==pregunta.respuestaA){
-            pregunta.nA=1;
+            pregunta.nA=pregunta.nA+1;
             pregunta.nB=0;
             pregunta.nC=0;
           } else if(respuesta.respuestaMarcada==pregunta.respuestaB){

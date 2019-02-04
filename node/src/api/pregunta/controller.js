@@ -29,14 +29,15 @@ export const update = ({ bodymen: { body }, params }, res, next) =>
   Pregunta.findById(params.id)
     .then(notFound(res))
     .then((pregunta) => {
-      var nap = 0;
-      if (pregunta.nA = 1) {
+      var nap = 1;
+      console.log(pregunta)
+      if (body.nA = 1) {
         Pregunta.update({ "_id": params.id }, {
           $set: {
-            nA: params.nA+1
+            nA: params.nA
+            // nA: nA+1
           }
-
-        }, (res, next) => {
+        }, (res, next) => { 
           if (next) {
             return next
           }
@@ -44,6 +45,7 @@ export const update = ({ bodymen: { body }, params }, res, next) =>
           res.send(res);
         });
       }
+      /*REPETIR IF CON nB Y CON nC*/
     })
     .then((pregunta) => pregunta ? pregunta.view(true) : null)
     .then(success(res))
