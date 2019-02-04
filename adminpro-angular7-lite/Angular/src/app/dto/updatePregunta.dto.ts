@@ -1,9 +1,9 @@
 export class UpdatePreguntaDto{
-    nA: Number;
-    nB: Number;
-    nC: Number;
+    nA: number;
+    nB: number;
+    nC: number;
 
-    constructor(na: Number, nb: Number, nc: Number){
+    constructor(na: number, nb: number, nc: number){
         this.nA = na;
         this.nB = nb;
         this.nC = nc;
