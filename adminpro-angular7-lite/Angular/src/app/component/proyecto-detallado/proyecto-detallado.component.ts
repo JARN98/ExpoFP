@@ -10,6 +10,7 @@ import { from } from 'rxjs';
 import { AddComentarioService } from '../../services/add-comentario.service';
 import { ComentarioDto } from '../../dto/addcometario.dto';
 import { VerComentsService } from '../../services/ver-coments.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-proyecto-detallado',
@@ -73,7 +74,8 @@ export class ProyectoDetalladoComponent implements OnInit {
   constructor(config: NgbCarouselConfig,
     private oneProjectService: OneProjectService,
     private addComentarioService: AddComentarioService,
-    private verComentsService: VerComentsService) {
+    private verComentsService: VerComentsService,
+    private authService: AuthService) {
 
     config.interval = 10000;
     config.wrap = false;
@@ -102,12 +104,16 @@ export class ProyectoDetalladoComponent implements OnInit {
 
   addComentario() {
     console.log(this.contenido);
+    const conteni = document.getElementById('exampleInputPassword1').value;
+    const comentarioDto = new ComentarioDto(this.proyect.id, this.authService.getTokenDecode().id, conteni , this.valoracion);
+    console.log(comentarioDto);
 
-    const comentarioDto = new ComentarioDto(this.proyect, this.autor, this.contenido, this.valoracion);
     this.addComentarioService.createComentario(comentarioDto).subscribe(
       comentario => {
         console.log(comentario);
+        this.getOneProject();
       });
+
   }
 
   verTodosComentarios() {

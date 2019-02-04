@@ -47,10 +47,10 @@
             <h4 class="m-b-0 text-white">Añade un comentario</h4>
         </div>
         <div class="card-body">
-            <input _ngcontent-c2="" class="form-control" id="exampleInputPassword1" [(ngModel)]="contenido" placeholder="comentario" type="comentario">
+            <input _ngcontent-c2="" class="form-control" id="exampleInputPassword1" [(value)]="contenido" placeholder="comentario" type="comentario">
             <br>
             <br>
-            <ngb-rating [(ngModel)]="valoracion">
+            <ngb-rating [(ngModel)]="valoracion" [(rate)]="valoracion" id="valoracion">
                 <ng-template let-fill="fill">
                     <span class="star" [class.filled]="fill === 100">&#9733;</span>
                 </ng-template>
