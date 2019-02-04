@@ -15,6 +15,15 @@
                 </ngb-carousel>
                 <br>
             </div>
+            <ngb-rating [readonly]="true" [(rate)]="proyect.valoracionMedia">
+                <ng-template let-fill="fill">
+                    <span class="star" [class.filled]="fill === 100">&#9733;</span>
+                </ng-template>
+            </ngb-rating>
+
+            <div class="m-t-10">Valoración Media:
+                <b>{{proyect.valoracionMedia}}</b>
+            </div>
         </div>
     </div>
     <div class="col-md-6">
@@ -38,10 +47,17 @@
             <h4 class="m-b-0 text-white">Añade un comentario</h4>
         </div>
         <div class="card-body">
-            <input _ngcontent-c2="" class="form-control" id="exampleInputPassword1" placeholder="comentario" type="comentario">
+            <input _ngcontent-c2="" class="form-control" id="exampleInputPassword1" [(ngModel)]="contenido" placeholder="comentario" type="comentario">
             <br>
             <br>
-            <a href="#" class="btn btn-inverse" (click)="addComentario()">Comentar</a>
+            <ngb-rating [(ngModel)]="valoracion">
+                <ng-template let-fill="fill">
+                    <span class="star" [class.filled]="fill === 100">&#9733;</span>
+                </ng-template>
+            </ngb-rating>
+            <br>
+            <br>
+            <button class="btn btn-inverse" (click)="addComentario()">Comentar</button>
         </div>
     </div>
 </div>
@@ -50,7 +66,7 @@
         <div class="card-body">
             <h3 class="card-title">{{comentario.nombreAutor}}</h3>
             <h6 class="card-subtitle">{{comentario.contenido}}</h6>
-            <ngb-rating [(rate)]="comentario.valoracion">
+            <ngb-rating [readonly]="true" [(rate)]="comentario.valoracion">
                 <ng-template let-fill="fill">
                     <span class="star" [class.filled]="fill === 100">&#9733;</span>
                 </ng-template>
