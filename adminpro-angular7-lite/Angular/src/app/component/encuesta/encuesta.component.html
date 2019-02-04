@@ -10,7 +10,7 @@
 
                 <div class="container" id="grafico">
                     <div class="col-sm-4 text-center">
-                        <canvas baseChart [legend]=false [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType" [options]="pieChartOptions" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+                        <canvas baseChart [legend]=false [data]="valoresgraficos(pregunta)" [labels]="pieChartLabels" [chartType]="pieChartType" [options]="pieChartOptions" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
                     </div>
                 </div>
                 <i class="mdi mdi-chart-pie" (click)="randomizeType()"></i>
