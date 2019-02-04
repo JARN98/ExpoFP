@@ -9,6 +9,7 @@ import { AuthService } from '../../services/auth.service';
 import { PreguntaRespondida } from '../../interfaces/preguntaRespondida.interface';
 import { PreguntaRespondidaDto } from '../../dto/preguntaRespondida.dto';
 import { UpdatePreguntaDto } from '../../dto/updatePregunta.dto';
+import { UpdatePreguntasDto } from '../../dto/updatePreguntas.dto';
 
 @Component({
   selector: 'app-encuesta',
@@ -22,6 +23,7 @@ export class EncuestaComponent implements OnInit {
   respuestaMarcada: String[];
   respuestas: PreguntaRespondidaDto[];
   respuestasa: String;
+  preguntasRespondidas: UpdatePreguntasDto[];
 
   /*DATOS GRÁFICO*/
   public pieChartLabels: string[] = ["A", "B", "C"];
@@ -122,6 +124,41 @@ export class EncuestaComponent implements OnInit {
         }
       }
     }
+
+    console.log(this.preguntas);
+  }
+
+  /*ENVIA UN ARRAY DE PREGUNTAS RESPONDIDAS*/
+  enviarPreguntas(){
+    console.log('All right!')
+    console.log(this.respuestas);
+
+    for(let respuesta of this.respuestas){
+      for(let pregunta of this.preguntas){
+        if(respuesta.pregunta == pregunta.pregunta){
+          if(respuesta.respuestaMarcada==pregunta.respuestaA){
+            pregunta.nA=pregunta.nA+1;
+          } else if(respuesta.respuestaMarcada==pregunta.respuestaB){
+            pregunta.nB=pregunta.nB+1;
+          } else if(respuesta.respuestaMarcada==pregunta.respuestaC){
+            pregunta.nC=pregunta.nC+1;
+          }
+
+          if(this.preguntasRespondidas == undefined){
+            this.preguntasRespondidas = [new UpdatePreguntasDto(pregunta.id,
+                pregunta.nA, pregunta.nB, pregunta.nC)];
+          } else {
+            this.preguntasRespondidas.push(new UpdatePreguntasDto(pregunta.id, pregunta.nA, pregunta.nB, pregunta.nC));
+          }
+
+        }
+      }
+    }
+
+    this.encuestaService.updatePreguntas(this.preguntasRespondidas)
+            .subscribe(result => {
+              this.getAllPreguntas();
+            });
 
     console.log(this.preguntas);
   }

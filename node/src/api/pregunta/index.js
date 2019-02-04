@@ -2,9 +2,10 @@ import { Router } from 'express'
 import { middleware as query } from 'querymen'
 import { middleware as body } from 'bodymen'
 import { token } from '../../services/passport'
-import { create, index, show, update, destroy } from './controller'
+import { create, index, show, update, destroy, updateMany } from './controller'
 import { schema } from './model'
-export Pregunta, { schema } from './model'
+export Pregunta, { schema }
+from './model'
 
 const router = new Router()
 const { pregunta, respuestaA, respuestaB, respuestaC, nA, nB, nC } = schema.tree
@@ -64,6 +65,20 @@ router.get('/:id',
 router.put('/:id',
     body({ nA, nB, nC }),
     update)
+
+/**
+ * @api {put} /preguntas Update pregunta
+ * @apiName UpdatePreguntas
+ * @apiGroup Pregunta
+ * @apiParam pregunta Pregunta's pregunta.
+ * @apiParam respuestas Pregunta's respuestas.
+ * @apiSuccess {Object} pregunta Pregunta's data.
+ * @apiError {Object} 400 Some parameters may contain invalid values.
+ * @apiError 404 Pregunta not found.
+ */
+router.put('/',
+    body([{ nA, nB, nC }]),
+    updateMany)
 
 /**
  * @api {delete} /preguntas/:id Delete pregunta

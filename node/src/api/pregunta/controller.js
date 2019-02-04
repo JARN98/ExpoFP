@@ -25,6 +25,31 @@ export const show = ({ params }, res, next) =>
     .then(success(res))
     .catch(next)
 
+export const updateMany = ({ bodymen: { body }, params }, res, next) =>
+    Pregunta.findById(params.id)
+    .then(notFound(res))
+    .then((pregunta) => {
+        var nap = 1;
+        console.log(pregunta)
+        Pregunta.update({ "_id": params.id }, {
+            $set: {
+                nA: body.nA,
+                // nA: nA+1
+                nB: body.nB,
+                nC: body.nC
+            }
+        }, (res, next) => {
+            if (next) {
+                return next
+            }
+
+            res.send(res);
+        });
+    })
+    .then((pregunta) => pregunta ? pregunta.view(true) : null)
+    .then(success(res))
+    .catch(next)
+
 export const update = ({ bodymen: { body }, params }, res, next) =>
     Pregunta.findById(params.id)
     .then(notFound(res))

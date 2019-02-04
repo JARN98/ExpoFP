@@ -7,6 +7,7 @@ import { PreguntaDto } from '../dto/addPregunta.dto';
 import { CreatePreguntaResponse } from '../interfaces/add-pregunta.interface';
 import { Pregunta } from '../models/pregunta';
 import { UpdatePreguntaDto } from '../dto/updatePregunta.dto';
+import { UpdatePreguntasDto } from '../dto/updatePreguntas.dto';
 
 @Injectable({
   providedIn: 'root'
@@ -61,5 +62,19 @@ export class EncuestaService {
       })
     };
     return this.http.put(`${environment.ApiUrl}/preguntas/${id}`, pregunta, requestOptions)
+  }
+
+  /*
+  *Actualiza los datos de la encuesta recogiendo un array de respuestas
+  */
+  updatePreguntas(preguntas: UpdatePreguntasDto[]){
+    const requestOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+        'Access-Control-Allow-Origin': '*'
+      })
+    };
+    return this.http.put(`${environment.ApiUrl}/preguntas`, preguntas, requestOptions)
   }
 }
