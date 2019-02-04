@@ -1,7 +1,7 @@
 import { Router } from 'express'
 import { middleware as query } from 'querymen'
 import { middleware as body } from 'bodymen'
-import { create, index, show, update, destroy } from './controller'
+import { create, index, show, update, destroy, destroyUser } from './controller'
 import { master, token } from '../../services/passport'
 import { schema } from './model'
 export Comentario, { schema } from './model'
@@ -63,8 +63,12 @@ router.delete('/:id',
   token({ required: true, roles: ['admin'] }),
   destroy)
 
+router.delete('/:autor/:id',
+  token({ required: true}),
+  destroyUser)
 
 
-  
+
+
 
 export default router

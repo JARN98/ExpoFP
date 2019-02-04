@@ -3,8 +3,10 @@ import { Comentario } from '.'
 import { Proyecto } from '../Proyecto'
 import { User } from '../user'
 import { ProyectoRes } from '../ProyectoRes'
+import { token } from '../../services/passport';
 
 const store = require('store')
+const jwtDecode = require('jwt-decode');
 
 export const create = async ({ bodymen: { body } }, res, next) => {
   await Comentario.create(body)
@@ -28,10 +30,10 @@ export const create = async ({ bodymen: { body } }, res, next) => {
     .then(notFound(res))
     .then((proyecto) => {
       console.log('Estoy Tal');
-      
+
       if (proyecto) {
         console.log('Estoy entradndo');
-        
+
         if (proyecto.ultimosComentarios.length >= 5) {
           delete proyecto.ultimosComentarios.shift()
         }
@@ -46,7 +48,7 @@ export const create = async ({ bodymen: { body } }, res, next) => {
       }
 
       var result = 0;
-      
+
       if (proyecto.view(true).valoracionMedia == 0) {
         proyecto.valoracionMedia = store.get('valoracion');
         proyecto.save();
@@ -62,14 +64,14 @@ export const create = async ({ bodymen: { body } }, res, next) => {
             result = result / comentariote.length;
 
             proyecto.valoracionMedia = result;
-            
+
             ProyectoRes.find({ "proyecto": store.get('idProyectoComentario') })
               .then(proyectoRes => {
                 console.log(proyectoRes);
-                
+
                 proyectoRes.valoracionMedia = proyecto.valoracionMedia
                 // proyectoRes.save();
-                
+
               })
               .then(success(res))
               .catch(next)
@@ -116,5 +118,19 @@ export const destroy = ({ params }, res, next) =>
   Comentario.findById(params.id)
     .then(notFound(res))
     .then((comentario) => comentario ? comentario.remove() : null)
+    .then(success(res, 204))
+    .catch(next)
+
+export const destroyUser = ({ params }, res, next) =>
+  Comentario.findById(params.id)
+    .then(notFound(res))
+    .then((comentario) => {
+      
+      if (comentario.autor === params.autor){
+        comentario.remove();
+      } else {
+        return 'peinate pal lao';
+      }
+    })
     .then(success(res, 204))
     .catch(next)
