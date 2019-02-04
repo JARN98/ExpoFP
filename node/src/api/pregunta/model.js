@@ -14,13 +14,16 @@ const preguntaSchema = new Schema({
         type: String
     },
     nA: {
-        type: Number
+        type: Number,
+        default: 0
     },
     nB: {
-        type: Number
+        type: Number,
+        default: 0
     },
     nC: {
-        type: Number
+        type: Number,
+        default: 0
     }
 }, {
     timestamps: true,

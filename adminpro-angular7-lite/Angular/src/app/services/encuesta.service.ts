@@ -52,7 +52,7 @@ export class EncuestaService {
   }
 
   /*Actualiza la pregunta*/
-  updatePregunta(pregunta: UpdatePreguntaDto){
+  updatePregunta(id: String, pregunta: UpdatePreguntaDto){
     const requestOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -60,6 +60,6 @@ export class EncuestaService {
         'Access-Control-Allow-Origin': '*'
       })
     };
-    return this.http.put(`${environment.ApiUrl}/preguntas/${pregunta.id}`, requestOptions)
+    return this.http.put(`${environment.ApiUrl}/preguntas/${id}`, pregunta, requestOptions)
   }
 }

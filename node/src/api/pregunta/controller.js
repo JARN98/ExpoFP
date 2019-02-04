@@ -28,7 +28,23 @@ export const show = ({ params }, res, next) =>
 export const update = ({ bodymen: { body }, params }, res, next) =>
   Pregunta.findById(params.id)
     .then(notFound(res))
-    .then((pregunta) => pregunta ? Object.assign(pregunta, body).save() : null)
+    .then((pregunta) => {
+      var nap = 0;
+      if (pregunta.nA = 1) {
+        Pregunta.update({ "_id": params.id }, {
+          $set: {
+            nA: params.nA+1
+          }
+
+        }, (res, next) => {
+          if (next) {
+            return next
+          }
+
+          res.send(res);
+        });
+      }
+    })
     .then((pregunta) => pregunta ? pregunta.view(true) : null)
     .then(success(res))
     .catch(next)
