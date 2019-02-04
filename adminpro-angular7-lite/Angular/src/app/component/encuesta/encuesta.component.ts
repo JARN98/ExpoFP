@@ -102,16 +102,23 @@ export class EncuestaComponent implements OnInit {
       for(let pregunta of this.preguntas){
         if(respuesta.pregunta==pregunta.pregunta){
           if(respuesta.respuestaMarcada==pregunta.respuestaA){
-            pregunta.nA=+1;
+            pregunta.nA=1;
+            pregunta.nB=0;
+            pregunta.nC=0;
           } else if(respuesta.respuestaMarcada==pregunta.respuestaB){
-            pregunta.nB=+1;
+            pregunta.nB=1;
+            pregunta.nA=0;
+            pregunta.nC=0;
           } else if(respuesta.respuestaMarcada==pregunta.respuestaC){
-            pregunta.nC=+1;
+            pregunta.nC=1;
+            pregunta.nA=0;
+            pregunta.nB=0;
           }
 
-          this.encuestaService.updatePregunta(new UpdatePreguntaDto(pregunta.id,
-            pregunta.pregunta, pregunta.respuestaA, pregunta.respuestaB,
-            pregunta.respuestaC, pregunta.nA, pregunta.nB, pregunta.nC)).subscribe(result => result);
+          this.encuestaService.updatePregunta(pregunta.id, new UpdatePreguntaDto(pregunta.nA, pregunta.nB, pregunta.nC))
+            .subscribe(result => {
+              this.getAllPreguntas();
+            });
         }
       }
     }
