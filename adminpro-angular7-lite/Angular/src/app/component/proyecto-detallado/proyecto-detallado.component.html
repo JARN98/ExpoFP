@@ -15,6 +15,15 @@
                 </ngb-carousel>
                 <br>
             </div>
+            <ngb-rating [readonly]="true" [(rate)]="proyect.valoracionMedia">
+                <ng-template let-fill="fill">
+                    <span class="star" [class.filled]="fill === 100">&#9733;</span>
+                </ng-template>
+            </ngb-rating>
+
+            <div class="m-t-10">Valoración Media:
+                <b>{{proyect.valoracionMedia}}</b>
+            </div>
         </div>
     </div>
     <div class="col-md-6">

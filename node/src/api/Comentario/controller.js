@@ -2,6 +2,7 @@ import { success, notFound } from '../../services/response/'
 import { Comentario } from '.'
 import { Proyecto } from '../Proyecto'
 import { User } from '../user'
+import { ProyectoRes } from '../ProyectoRes'
 
 const store = require('store')
 
@@ -26,8 +27,11 @@ export const create = async ({ bodymen: { body } }, res, next) => {
   await Proyecto.findById(store.get('idProyectoComentario'))
     .then(notFound(res))
     .then((proyecto) => {
+      console.log('Estoy Tal');
+      
       if (proyecto) {
-
+        console.log('Estoy entradndo');
+        
         if (proyecto.ultimosComentarios.length >= 5) {
           delete proyecto.ultimosComentarios.shift()
         }
@@ -42,9 +46,7 @@ export const create = async ({ bodymen: { body } }, res, next) => {
       }
 
       var result = 0;
-
-
-
+      
       if (proyecto.view(true).valoracionMedia == 0) {
         proyecto.valoracionMedia = store.get('valoracion');
         proyecto.save();
@@ -60,6 +62,17 @@ export const create = async ({ bodymen: { body } }, res, next) => {
             result = result / comentariote.length;
 
             proyecto.valoracionMedia = result;
+            
+            ProyectoRes.find({ "proyecto": store.get('idProyectoComentario') })
+              .then(proyectoRes => {
+                console.log(proyectoRes);
+                
+                proyectoRes.valoracionMedia = proyecto.valoracionMedia
+                // proyectoRes.save();
+                
+              })
+              .then(success(res))
+              .catch(next)
             proyecto.save();
           })
           .catch(next);
@@ -68,6 +81,7 @@ export const create = async ({ bodymen: { body } }, res, next) => {
     })
     .then(success(res))
     .catch(next)
+
 }
 
 export const index = ({ querymen: { query, select, cursor } }, res, next) =>

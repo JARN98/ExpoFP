@@ -8,6 +8,10 @@ const proyectoResSchema = new Schema({
   imagen: {
     type: String
   },
+  valoracionMedia: {
+    type: Number,
+    default: 0
+  },
   curso: {
     type: String,
     required: true
@@ -34,6 +38,7 @@ proyectoResSchema.methods = {
       imagen: this.imagen,
       curso: this.curso,
       proyecto: this.proyecto,
+      valoracionMedia: this.valoracionMedia,
       createdAt: this.createdAt,
       updatedAt: this.updatedAt
     }

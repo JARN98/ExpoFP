@@ -7,17 +7,62 @@ import { AddProjectComponent } from '../../dialogs/add-project/add-project.compo
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { DeleteProjectComponent } from '../../dialogs/delete-project/delete-project.component';
+import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-lista-proyectos',
   templateUrl: './lista-proyectos.component.html',
-  styleUrls: ['./lista-proyectos.component.css']
+  styleUrls: ['./lista-proyectos.component.css'],
+  styles: [
+    `
+      .star {
+        font-size: 1.5rem;
+        color: #b0c4de;
+      }
+      .filled {
+        color: #1e90ff;
+      }
+      .heart {
+        position: relative;
+        display: inline-block;
+        font-size: 3rem;
+        color: #d3d3d3;
+      }
+      .full {
+        color: red;
+      }
+      .half {
+        position: absolute;
+        display: inline-block;
+        overflow: hidden;
+        color: red;
+      }
+    `
+  ]
+  
 })
 export class ListaProyectosComponent implements OnInit {
   listaApi: ListApiResponse;
   listaProyectosRes: ListProjectsResponse[];
   proyectoFilter: any = { nombre: '' };
   admin;
+  proyect: any;
+  valoracionMedia: number;
+  currentRate = 8;
+  currentRate2 = 2;
+  selected = 0;
+  hovered = 0;
+  readonly = false;
+  // for form integration
+  ctrl = new FormControl(null, Validators.required);
+
+  toggle() {
+    if (this.ctrl.disabled) {
+      this.ctrl.enable();
+    } else {
+      this.ctrl.disable();
+    }
+  }
 
   constructor(private projectService: ListProjectsResService,
     public dialog: MatDialog,

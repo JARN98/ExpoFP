@@ -8,6 +8,17 @@
                     <img class="card-img-top img-responsive" style="object-fit:scale-down; height:150px" src={{proyecto.imagen}} alt="Card image cap">
                     <div class="card-body">
                         <h4 class="card-title">{{proyecto.nombre}} - {{proyecto.curso}}</h4>
+                        <!--
+                        <ngb-rating [readonly]="true" [(rate)]="proyect.valoracionMedia">
+                            <ng-template let-fill="fill">
+                                <span class="star" [class.filled]="fill === 100">&#9733;</span>
+                            </ng-template>
+                        </ngb-rating>
+            
+                        <div class="m-t-10">Valoración Media:
+                            <b>{{proyect.valoracioMedia}}</b>
+                        </div>
+                    -->
                     <div class="container botones">
                         <button (click)="VerProyecto(proyecto.proyecto)" class="btn btn-primary" style="width:30%;">Ver</button>
                         <button (click)="openDialogEditProject(proyecto.proyecto)" *ngIf="admin" class="btn btn-warning" style="width:30%;">Editar</button>

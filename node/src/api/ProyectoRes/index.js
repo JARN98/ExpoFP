@@ -7,7 +7,7 @@ import { schema } from './model'
 export ProyectoRes, { schema } from './model'
 
 const router = new Router()
-const { nombre, imagen, curso, proyecto } = schema.tree
+const { nombre, imagen, curso, proyecto, valoracionMedia } = schema.tree
 
 /**
  * @api {post} /ProyectoRes Create proyecto res
@@ -23,7 +23,7 @@ const { nombre, imagen, curso, proyecto } = schema.tree
  */
 router.post('/',
   token({ required: true, roles: ['admin'] }),
-  body({ nombre, imagen, curso, proyecto }),
+  body({ nombre, imagen, curso, proyecto, valoracionMedia }),
   create)
 
 /**
