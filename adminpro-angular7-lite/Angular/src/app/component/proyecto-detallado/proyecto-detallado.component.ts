@@ -11,6 +11,7 @@ import { AddComentarioService } from '../../services/add-comentario.service';
 import { ComentarioDto } from '../../dto/addcometario.dto';
 import { VerComentsService } from '../../services/ver-coments.service';
 import { AuthService } from '../../services/auth.service';
+import { DeleteComentarioService } from '../../services/delete-comentario.service';
 
 @Component({
   selector: 'app-proyecto-detallado',
@@ -75,6 +76,7 @@ export class ProyectoDetalladoComponent implements OnInit {
     private oneProjectService: OneProjectService,
     private addComentarioService: AddComentarioService,
     private verComentsService: VerComentsService,
+    private deleteComentarioService: DeleteComentarioService,
     private authService: AuthService) {
 
     config.interval = 10000;
@@ -112,6 +114,8 @@ export class ProyectoDetalladoComponent implements OnInit {
       comentario => {
         console.log(comentario);
         this.getOneProject();
+        this.contenido='';
+        this.valoracion=0;
       });
 
   }
@@ -124,5 +128,13 @@ export class ProyectoDetalladoComponent implements OnInit {
       console.log(err);
 
     });
+  }
+
+  deleteComentario(id: number) {
+    this.deleteComentarioService.deleteComentario(id).subscribe(result => {
+      this.verTodosComentarios();
+    }), error => {
+      console.error(error);
+    }
   }
 }
