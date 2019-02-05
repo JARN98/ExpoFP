@@ -131,10 +131,10 @@ export class AddProjectComponent implements OnInit {
   }
 
   addProject() {
-    this.loading = true;
+
 
     this.uploadImageImgurService.UploadImage(this.uploadImageDto).subscribe(imagen => {
-
+      this.loading = true;
 
       this.urlImagen = imagen.data.link;
       if (this.uploadImageDetailsDto.image != null) {

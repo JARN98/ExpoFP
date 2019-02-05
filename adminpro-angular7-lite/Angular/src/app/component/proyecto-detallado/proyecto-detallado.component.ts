@@ -12,6 +12,8 @@ import { ComentarioDto } from '../../dto/addcometario.dto';
 import { VerComentsService } from '../../services/ver-coments.service';
 import { AuthService } from '../../services/auth.service';
 import { DeleteComentarioService } from '../../services/delete-comentario.service';
+import { MatDialog } from '@angular/material';
+import { EditPhotosComponent } from '../../dialogs/edit-photos/edit-photos.component';
 
 @Component({
   selector: 'app-proyecto-detallado',
@@ -78,7 +80,8 @@ export class ProyectoDetalladoComponent implements OnInit {
     private addComentarioService: AddComentarioService,
     private verComentsService: VerComentsService,
     private deleteComentarioService: DeleteComentarioService,
-    private authService: AuthService) {
+    private authService: AuthService,
+    public dialog: MatDialog) {
 
     config.interval = 10000;
     config.wrap = false;
@@ -95,7 +98,7 @@ export class ProyectoDetalladoComponent implements OnInit {
   }
 
   esMioElComentario(autor) {
-    
+
     if (this.authService.getTokenDecode().id === autor && this.authService.getTokenDecode().role != 'admin') {
       return true;
     } else {
@@ -112,6 +115,18 @@ export class ProyectoDetalladoComponent implements OnInit {
     }, err => {
       console.log(err);
     });
+  }
+
+  openDialogEditPhoto() {
+    const dialogoAddRec = this.dialog.open(EditPhotosComponent, {
+      width: '80%',
+      data: { proyecto: this.proyect }
+    });
+
+    dialogoAddRec.afterClosed().subscribe(result => {
+      this.getOneProject();
+    });
+
   }
 
   addComentario() {
@@ -148,8 +163,8 @@ export class ProyectoDetalladoComponent implements OnInit {
     }
   }
 
-  deleteComentarioUser( autor: string) {
-    
+  deleteComentarioUser(autor: string) {
+
     this.deleteComentarioService.deleteComentarioUser(autor, this.authService.getTokenDecode().id).subscribe(result => {
       this.verTodosComentarios();
     }), error => {

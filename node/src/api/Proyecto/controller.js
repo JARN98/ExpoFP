@@ -132,6 +132,24 @@ export const update = async ({ bodymen: { body }, params }, res, next) => {
 }
 
 
+export const updatePhoto = async ({params }, res, next) => {
+  await Proyecto.findById(params.id)
+    .then(notFound(res))
+    .then((proyecto) => {
+      proyecto.updateOne({ "id": params.id }, {
+        $set: {
+          imagenesDetalladas: proyecto.imagenesDetalladas
+        }
+      }, (res, next) => {
+        next ? next : null;
+        res.send(res);
+      })
+    })
+    .then(success(res))
+    .catch(next)
+}
+
+
 export const destroy = ({ params }, res, next) =>
   Proyecto.findById(params.id)
     .then(notFound(res))

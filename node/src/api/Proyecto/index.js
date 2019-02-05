@@ -71,10 +71,16 @@ router.get('/:id',
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 404 Proyecto not found.
  */
-  router.put('/:id',
-    token({ required: true, roles: ['admin'] }),
-    body({ nombre, descripcion, curso, autores  }),
-    update)
+router.put('/:id',
+  token({ required: true, roles: ['admin'] }),
+  body({ nombre, descripcion, curso, autores }),
+  update)
+
+
+router.put('/imagenes/:id',
+  token({ required: true, roles: ['admin'] }),
+  body({ imagenesDetalladas }),
+  update)
 
 /**
  * @api {delete} /Proyectos/:id Delete proyecto
@@ -91,81 +97,65 @@ router.delete('/:id',
 
 /* Subida de imagen*/
 
-router.use(fileUpload());
+// router.use(fileUpload());
 
-router.put('/upload/:id',
-  token({ required: true, roles: ['admin'] }),
-  (req, res, next) => {
+// router.put('/upload/:id',
+//   token({ required: true, roles: ['admin'] }),
+//   (req, res, next) => {
 
-    // var tipo = req.params.tipo;
-    var id = req.params.id;
-
-    // // tipos de colección
-    // var tiposValidos = ['hospitales', 'medicos', 'usuarios'];
-    // if (tiposValidos.indexOf(tipo) < 0) {
-    //     return res.status(400).json({
-    //         ok: false,
-    //         mensaje: 'Tipo de colección no es válida',
-    //         errors: { message: 'Tipo de colección no es válida' }
-    //     });
-    // }
-
-
-    if (!req.files) {
-      return res.status(400).json({
-        ok: false,
-        mensaje: 'No selecciono nada',
-        errors: { message: 'Debe de seleccionar una imagen' }
-      });
-    }
-
-    // Obtener nombre del archivo
-    var archivo = req.files.imagen;
-    var nombreCortado = archivo.name.split('.');
-    var extensionArchivo = nombreCortado[nombreCortado.length - 1];
-
-    // Sólo estas extensiones aceptamos
-    var extensionesValidas = ['png', 'jpg', 'gif', 'jpeg'];
-
-    if (extensionesValidas.indexOf(extensionArchivo) < 0) {
-      return res.status(400).json({
-        ok: false,
-        mensaje: 'Extension no válida',
-        errors: { message: 'Las extensiones válidas son ' + extensionesValidas.join(', ') }
-      });
-    }
-
-    // Nombre de archivo personalizado
-    // 12312312312-123.png
-    var nombreArchivo = `${id}-${new Date().getMilliseconds()}.${extensionArchivo}`;
-
-
-    // Mover el archivo del temporal a un path
-    var path = `../../uploads/PrincipalProyecto/${nombreArchivo}`;
-
-    archivo.mv(path, err => {
-
-      if (err) {
-        return res.status(500).json({
-          ok: false,
-          mensaje: 'Error al mover archivo',
-          errors: err
-        });
-      }
-
-
-      sampleFile.mv(path, function(err) {
-        if (err)
-          return res.status(500).send(err);
-    
-        res.send('File uploaded!');
-      });
-
-
-    })
+//     var id = req.params.id;
 
 
 
-  });
+//     if (!req.files) {
+//       return res.status(400).json({
+//         ok: false,
+//         mensaje: 'No selecciono nada',
+//         errors: { message: 'Debe de seleccionar una imagen' }
+//       });
+//     }
+//     var archivo = req.files.imagen;
+//     var nombreCortado = archivo.name.split('.');
+//     var extensionArchivo = nombreCortado[nombreCortado.length - 1];
+
+//     var extensionesValidas = ['png', 'jpg', 'gif', 'jpeg'];
+
+//     if (extensionesValidas.indexOf(extensionArchivo) < 0) {
+//       return res.status(400).json({
+//         ok: false,
+//         mensaje: 'Extension no válida',
+//         errors: { message: 'Las extensiones válidas son ' + extensionesValidas.join(', ') }
+//       });
+//     }
+
+//     var nombreArchivo = `${id}-${new Date().getMilliseconds()}.${extensionArchivo}`;
+
+
+//     var path = `../../uploads/PrincipalProyecto/${nombreArchivo}`;
+
+//     archivo.mv(path, err => {
+
+//       if (err) {
+//         return res.status(500).json({
+//           ok: false,
+//           mensaje: 'Error al mover archivo',
+//           errors: err
+//         });
+//       }
+
+
+//       sampleFile.mv(path, function (err) {
+//         if (err)
+//           return res.status(500).send(err);
+
+//         res.send('File uploaded!');
+//       });
+
+
+//     })
+
+
+
+//   });
 
 export default router
