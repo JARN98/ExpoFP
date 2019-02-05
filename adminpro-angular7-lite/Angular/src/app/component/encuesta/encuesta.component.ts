@@ -24,12 +24,13 @@ export class EncuestaComponent implements OnInit {
   respuestas: PreguntaRespondidaDto[];
   respuestasa: String;
   preguntasRespondidas: UpdatePreguntasDto[];
+  datosGrafico: any[];
 
   /*DATOS GRÁFICO*/
   public pieChartLabels: string[] = ["A", "B", "C"];
   // public pieChartData: number[] = [21, 39, 10];
   public pieChartData: number[];
-  public pieChartType: string = 'pie';
+  public pieChartType: string = 'doughnut';
   public pieChartOptions: any = {
     'backgroundColor': [
       "#FF6384",
@@ -47,11 +48,25 @@ export class EncuestaComponent implements OnInit {
 
   ngOnInit() {
     this.getAllPreguntas();
+    // this.datos(this.preguntas);
   }
 
   valoresgraficos(pregunta: Pregunta){
     this.pieChartData = [ pregunta.nA, pregunta.nB, pregunta.nC ];
     return this.pieChartData;
+  }
+
+  datos(preguntas: Pregunta[]){
+    for(let pregunta of preguntas) {
+      this.pieChartData = [pregunta.nA, pregunta.nB, pregunta.nC]
+      if(this.datosGrafico == undefined){
+        this.datosGrafico = [this.pieChartData];
+      } else {
+        this.datosGrafico.push(this.pieChartData);
+      }
+    }
+
+    return this.datosGrafico;
   }
 
   getAllPreguntas() {
