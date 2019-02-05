@@ -47,7 +47,7 @@
             <h4 class="m-b-0 text-white">Añade un comentario</h4>
         </div>
         <div class="card-body">
-            <input _ngcontent-c2="" class="form-control" id="exampleInputPassword1" [(value)]="contenido" placeholder="comentario" type="comentario">
+            <input class="form-control" id="exampleInputPassword1" [(ngModel)]="contenido" placeholder="comentario" type="text">
             <br>
             <br>
             <ngb-rating [(ngModel)]="valoracion" [(rate)]="valoracion" id="valoracion">

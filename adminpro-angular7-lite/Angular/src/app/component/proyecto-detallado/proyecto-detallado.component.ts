@@ -56,7 +56,7 @@ export class ProyectoDetalladoComponent implements OnInit {
   ctrl = new FormControl(null, Validators.required);
   proyect: any;
   autor: string;
-  contenido: string;
+  contenido = '';
   valoracion: number;
   valido: boolean;
   listaImagenes: String[];
@@ -104,8 +104,8 @@ export class ProyectoDetalladoComponent implements OnInit {
 
   addComentario() {
     console.log(this.contenido);
-    const conteni = document.getElementById('exampleInputPassword1').value;
-    const comentarioDto = new ComentarioDto(this.proyect.id, this.authService.getTokenDecode().id, conteni , this.valoracion);
+    // const conteni = document.getElementById('exampleInputPassword1').value;
+    const comentarioDto = new ComentarioDto(this.proyect.id, this.authService.getTokenDecode().id, this.contenido , this.valoracion);
     console.log(comentarioDto);
 
     this.addComentarioService.createComentario(comentarioDto).subscribe(
