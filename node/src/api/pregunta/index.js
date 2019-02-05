@@ -11,6 +11,25 @@ const router = new Router()
 const { pregunta, respuestaA, respuestaB, respuestaC, nA, nB, nC } = schema.tree
 
 /**
+ * Intento de Interfaz
+ */
+// const Interface = require('es6-interface');
+// const testInterface1 = new Set(['requiered(id, nA, nB, nC)']);
+
+// class testClass extends Interface(testInterface1) {
+//     constructor() {
+//         super()
+//     }
+
+//     requiered(id, nA, nB, nC){
+
+//     }
+
+// }
+
+// new testClass()
+
+/**
  * @api {post} /preguntas Create pregunta
  * @apiName CreatePregunta
  * @apiGroup Pregunta
