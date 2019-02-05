@@ -63,6 +63,7 @@ export class ProyectoDetalladoComponent implements OnInit {
   listaImagenes: String[];
   ultimosComentarios: any;
   masComentarios: boolean;
+  esMio: String;
 
   toggle() {
     if (this.ctrl.disabled) {
@@ -93,6 +94,15 @@ export class ProyectoDetalladoComponent implements OnInit {
     this.masComentarios = true;
   }
 
+  esMioElComentario(autor) {
+    
+    if (this.authService.getTokenDecode().id === autor && this.authService.getTokenDecode().role != 'admin') {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   getOneProject() {
     this.oneProjectService.getOneProject().subscribe(proyecto => {
       console.log(proyecto);
@@ -107,15 +117,15 @@ export class ProyectoDetalladoComponent implements OnInit {
   addComentario() {
     console.log(this.contenido);
     // const conteni = document.getElementById('exampleInputPassword1').value;
-    const comentarioDto = new ComentarioDto(this.proyect.id, this.authService.getTokenDecode().id, this.contenido , this.valoracion);
+    const comentarioDto = new ComentarioDto(this.proyect.id, this.authService.getTokenDecode().id, this.contenido, this.valoracion);
     console.log(comentarioDto);
 
     this.addComentarioService.createComentario(comentarioDto).subscribe(
       comentario => {
         console.log(comentario);
         this.getOneProject();
-        this.contenido='';
-        this.valoracion=0;
+        this.contenido = '';
+        this.valoracion = 0;
       });
 
   }
@@ -130,11 +140,24 @@ export class ProyectoDetalladoComponent implements OnInit {
     });
   }
 
-  deleteComentario(id: number) {
-    this.deleteComentarioService.deleteComentario(id).subscribe(result => {
+  deleteComentario(id: string) {
+    this.deleteComentarioService.deleteComentario(this.authService.getTokenDecode().id).subscribe(result => {
       this.verTodosComentarios();
     }), error => {
       console.error(error);
     }
+  }
+
+  deleteComentarioUser( autor: string) {
+    
+    this.deleteComentarioService.deleteComentarioUser(autor, this.authService.getTokenDecode().id).subscribe(result => {
+      this.verTodosComentarios();
+    }), error => {
+      console.error(error);
+    }
+  }
+
+  isAdmin() {
+    return this.authService.isAdmin();
   }
 }

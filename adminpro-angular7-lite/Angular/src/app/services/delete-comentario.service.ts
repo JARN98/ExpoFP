@@ -9,7 +9,7 @@ export class DeleteComentarioService {
 
   constructor(private http: HttpClient) { }
 
-  deleteComentario(id: number) {
+  deleteComentario(id: String) {
     const requestOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -18,5 +18,16 @@ export class DeleteComentarioService {
       })
     };
     return this.http.delete(`${environment.ApiUrl}/Comentarios/${id}`, requestOptions)
+  }
+
+  deleteComentarioUser(id: String, autor: String) {
+    const requestOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+        'Access-Control-Allow-Origin': '*'
+      })
+    };
+    return this.http.delete(`${environment.ApiUrl}/Comentarios/${autor}/${id}`, requestOptions)
   }
 }

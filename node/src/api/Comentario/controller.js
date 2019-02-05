@@ -125,12 +125,10 @@ export const destroyUser = ({ params }, res, next) =>
   Comentario.findById(params.id)
     .then(notFound(res))
     .then((comentario) => {
-      
-      if (comentario.autor === params.autor){
+
+        
         comentario.remove();
-      } else {
-        return 'peinate pal lao';
-      }
+
     })
     .then(success(res, 204))
     .catch(next)
