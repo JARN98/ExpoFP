@@ -80,4 +80,11 @@ export class AuthService {
       return false;
     }
   }
+  isUser() {
+    if (this.getTokenDecode().role === 'user') {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }

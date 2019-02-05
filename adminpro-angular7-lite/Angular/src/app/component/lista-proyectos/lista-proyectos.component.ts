@@ -45,7 +45,8 @@ export class ListaProyectosComponent implements OnInit {
   listaApi: ListApiResponse;
   listaProyectosRes: ListProjectsResponse[];
   proyectoFilter: any = { nombre: '' };
-  admin;
+  admin: boolean;
+  user:boolean;
   proyect: any;
   valoracionMedia: number;
   currentRate = 8;
@@ -72,6 +73,7 @@ export class ListaProyectosComponent implements OnInit {
   ngOnInit() {
     this.getAllProyectos();
     this.admin = this.loginService.isAdmin();
+    this.user = this.loginService.isUser();
     console.log(this.admin);
   }
   getAllProyectos() {

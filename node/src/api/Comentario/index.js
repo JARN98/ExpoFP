@@ -4,10 +4,12 @@ import { middleware as body } from 'bodymen'
 import { create, index, show, update, destroy, destroyUser } from './controller'
 import { master, token } from '../../services/passport'
 import { schema } from './model'
-export Comentario, { schema } from './model'
+export Comentario, { schema }
+from './model'
 
 const router = new Router()
 const { autor, contenido, valoracion, valido, proyecto } = schema.tree
+
 
 /**
  * @api {post} /Comentarios Create comentario
@@ -22,9 +24,9 @@ const { autor, contenido, valoracion, valido, proyecto } = schema.tree
  * @apiError 404 Comentario not found.
  */
 router.post('/',
-  token({ required: true }),
-  body({ autor, contenido, valoracion, valido, proyecto }),
-  create)
+    token({ required: true }),
+    body({ autor, contenido, valoracion, valido, proyecto }),
+    create)
 
 /**
  * @api {get} /Comentarios Retrieve comentarios
@@ -36,9 +38,9 @@ router.post('/',
  * @apiError {Object} 400 Some parameters may contain invalid values.
  */
 router.get('/',
-  token({ required: true }),
-  query(),
-  index)
+    token({ required: true }),
+    query(),
+    index)
 
 /**
  * @api {get} /Comentarios/:id Retrieve comentario
@@ -49,8 +51,8 @@ router.get('/',
  * @apiError 404 Comentario not found.
  */
 router.get('/:idProyecto',
-  token({ required: true }),
-  show)
+    token({ required: true }),
+    show)
 
 /**
  * @api {delete} /Comentarios/:id Delete comentario
@@ -60,12 +62,12 @@ router.get('/:idProyecto',
  * @apiError 404 Comentario not found.
  */
 router.delete('/:id',
-  token({ required: true, roles: ['admin'] }),
-  destroy)
+    token({ required: true, roles: ['admin'] }),
+    destroy)
 
 router.delete('/:autor/:id',
-  token({ required: true}),
-  destroyUser)
+    token({ required: true }),
+    destroyUser)
 
 
 

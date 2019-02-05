@@ -13,14 +13,18 @@ export class FullComponent implements OnInit {
   showSettings = false;
   showMinisidebar = false;
   showDarktheme = false;
+  admin;
+  user;
 
   public innerWidth: any;
 
   public config: PerfectScrollbarConfigInterface = {};
 
-  constructor(public router: Router) {}
+  constructor(public router: Router,
+   ) {}
 
   ngOnInit() {
+   
     
 
     if (this.router.url === '/') {
