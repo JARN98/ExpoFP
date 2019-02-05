@@ -16,7 +16,7 @@ export class OneProjectService {
     const requestOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+      //  'Authorization': `Bearer ${localStorage.getItem('token')}`,
         'Access-Control-Allow-Origin': '*'
       })
     };
@@ -27,7 +27,7 @@ export class OneProjectService {
     const requestOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+       // 'Authorization': `Bearer ${localStorage.getItem('token')}`,
         'Access-Control-Allow-Origin': '*'
       })
     };

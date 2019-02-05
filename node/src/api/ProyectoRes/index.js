@@ -36,7 +36,6 @@ router.post('/',
  * @apiError {Object} 400 Some parameters may contain invalid values.
  */
 router.get('/',
-  token({ required: true }),
   query(),
   index)
 
@@ -49,7 +48,7 @@ router.get('/',
  * @apiError 404 Proyecto res not found.
  */
 router.get('/:id',
-  token({ required: true }),
+  
   show)
 
 /**

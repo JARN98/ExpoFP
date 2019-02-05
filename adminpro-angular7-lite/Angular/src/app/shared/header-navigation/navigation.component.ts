@@ -10,6 +10,7 @@ import { ROUTES } from './menu-items';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material';
 import { ChangePasswordComponent } from '../../dialogs/change-password/change-password.component';
+import { AuthService } from '../../services/auth.service';
 declare var $: any;
 @Component({
   selector: 'app-navigation',
@@ -22,9 +23,11 @@ export class NavigationComponent implements AfterViewInit {
   img: string;
   email: string;
   nombre: string;
+  user: boolean;
+  admin: boolean;
 
   public config: PerfectScrollbarConfigInterface = {};
-  constructor(private modalService: NgbModal, private router: Router, private dialog: MatDialog) {}
+  constructor(private modalService: NgbModal, private router: Router, private dialog: MatDialog, private loginService: AuthService) {}
 
   public showSearch = false;
 
@@ -92,9 +95,14 @@ export class NavigationComponent implements AfterViewInit {
     }
   ];
   ngOnInit(): void {
+    this.admin = this.loginService.isAdmin();
+    this.user = this.loginService.isUser();
     this.topNavItems = ROUTES.filter(topNavItem => topNavItem);
     this.setUserInfo();
     
+  }
+  iniciarSesion(){
+    this.router.navigate(['session/login'])
   }
   setUserInfo(){
     this.img = localStorage.getItem('img');
