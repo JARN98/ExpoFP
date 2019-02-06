@@ -200,13 +200,20 @@ export class AddProjectComponent implements OnInit {
   }
 
   editProject(id) {
-    // tslint:disable-next-line:max-line-length
-    this.editProjectDto = new EditProjectDto(this.form.controls['title'].value, this.autores, this.form.controls['curso'].value, this.form.controls['descripcion'].value);
-    this.editProjectService.editPro(this.editProjectDto, localStorage.getItem('idDeProyecto')).subscribe(proyecto => {
-      this.dialogRef.close();
+    this.uploadImageImgurService.UploadImage(this.uploadImageDto).subscribe(imagen => {
+      this.urlImagen = imagen.data.link;
+      // tslint:disable-next-line:max-line-length
+      this.editProjectDto = new EditProjectDto(this.form.controls['title'].value, this.autores, this.form.controls['curso'].value, this.form.controls['descripcion'].value, this.urlImagen);
+      this.editProjectService.editPro(this.editProjectDto, localStorage.getItem('idDeProyecto')).subscribe(proyecto => {
+        this.dialogRef.close();
+      }, err => {
+        console.log(err);
+      });
+
     }, err => {
       console.log(err);
     });
+
   }
 
   remove(autor: Autor): void {
