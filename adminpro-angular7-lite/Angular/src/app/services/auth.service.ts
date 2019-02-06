@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { LoginResponse } from '../interfaces/login-response.interface';
 import { environment } from '../..//environments/environment';
 import { UserDto } from '../dto/adduser.dto';
+import { stringify } from '@angular/compiler/src/util';
 const jwtDecode = require('jwt-decode');
 
 const authUrl = '';
@@ -21,6 +22,7 @@ const authUrl = '';
 })
 export class AuthService {
   private rol;
+  private token;
 
   constructor(private http: HttpClient) { }
 
@@ -66,25 +68,35 @@ export class AuthService {
 
 
   getToken() {
+    
     return localStorage.getItem('token');
   }
 
   getTokenDecode() {
+    if (!(this.getToken() == null))
     return jwtDecode(this.getToken());
+    else
+    return null
   }
 
   isAdmin() {
+    if(!(this.getTokenDecode() == null)){
     if (this.getTokenDecode().role === 'admin') {
       return true;
     } else {
       return false;
     }
+  }else
+  return false;
   }
   isUser() {
-    if (this.getTokenDecode().role === 'user') {
-      return true;
-    } else {
-      return false;
-    }
-  }
+    if(!(this.getTokenDecode() == null)){
+      if (this.getTokenDecode().role === 'user') {
+        return true;
+      } else {
+        return false;
+      }
+    }else
+    return false;
+}
 }

@@ -7,6 +7,7 @@ import {
 } from '@ng-bootstrap/ng-bootstrap';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { ROUTES } from './menu-items';
+import { ROUTESNOLOG } from './menu-items-nolog';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material';
 import { ChangePasswordComponent } from '../../dialogs/change-password/change-password.component';
@@ -27,7 +28,10 @@ export class NavigationComponent implements AfterViewInit {
   admin: boolean;
 
   public config: PerfectScrollbarConfigInterface = {};
-  constructor(private modalService: NgbModal, private router: Router, private dialog: MatDialog, private loginService: AuthService) {}
+  constructor(private modalService: NgbModal,
+     private router: Router,
+      private dialog: MatDialog,
+       private loginService: AuthService) {}
 
   public showSearch = false;
 
@@ -97,9 +101,15 @@ export class NavigationComponent implements AfterViewInit {
   ngOnInit(): void {
     this.admin = this.loginService.isAdmin();
     this.user = this.loginService.isUser();
-    this.topNavItems = ROUTES.filter(topNavItem => topNavItem);
+    this.cargarMenu();
     this.setUserInfo();
     
+  }
+  cargarMenu(){
+    if(localStorage.getItem('token') == null)
+    this.topNavItems = ROUTESNOLOG.filter(topNavItem => topNavItem);
+    else
+    this.topNavItems = ROUTES.filter(topNavItem => topNavItem);
   }
   iniciarSesion(){
     this.router.navigate(['session/login'])
