@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { LoginResponse } from '../interfaces/login-response.interface';
 import { environment } from '../..//environments/environment';
 import { UserDto } from '../dto/adduser.dto';
+import { stringify } from '@angular/compiler/src/util';
 const jwtDecode = require('jwt-decode');
 
 const authUrl = '';
@@ -21,6 +22,7 @@ const authUrl = '';
 })
 export class AuthService {
   private rol;
+  private token;
 
   constructor(private http: HttpClient) { }
 
@@ -41,6 +43,25 @@ export class AuthService {
     }
     const metaKey = new Metakey('oDUV7u5ZzJIc81W7SR1eqFXD0qNCbPWp');
     return this.http.post<LoginResponse>(`${environment.ApiUrl}/auth`, metaKey, requestOptions);
+  }
+
+  loginGoogle(loginDto: LoginDto): Observable<LoginResponse> {
+    const requestOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Inherit auth from parent',
+        'Access-Control-Allow-Origin': '*'
+      })
+    };
+    class Metakey {
+      access_token: String;
+
+      constructor(access_token: String) {
+        this.access_token = access_token;
+      }
+    }
+    const metaKey = new Metakey('oDUV7u5ZzJIc81W7SR1eqFXD0qNCbPWp');
+    return this.http.post<LoginResponse>(`${authUrl}/google`, loginDto, requestOptions);
   }
 
   registro(userDto: UserDto): Observable<LoginResponse> {
@@ -66,25 +87,35 @@ export class AuthService {
 
 
   getToken() {
+    
     return localStorage.getItem('token');
   }
 
   getTokenDecode() {
+    if (!(this.getToken() == null))
     return jwtDecode(this.getToken());
+    else
+    return null
   }
 
   isAdmin() {
+    if(!(this.getTokenDecode() == null)){
     if (this.getTokenDecode().role === 'admin') {
       return true;
     } else {
       return false;
     }
+  }else
+  return false;
   }
   isUser() {
-    if (this.getTokenDecode().role === 'user') {
-      return true;
-    } else {
-      return false;
-    }
-  }
+    if(!(this.getTokenDecode() == null)){
+      if (this.getTokenDecode().role === 'user') {
+        return true;
+      } else {
+        return false;
+      }
+    }else
+    return false;
+}
 }
