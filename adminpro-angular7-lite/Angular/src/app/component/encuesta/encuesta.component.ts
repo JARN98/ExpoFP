@@ -10,6 +10,7 @@ import { PreguntaRespondida } from '../../interfaces/preguntaRespondida.interfac
 import { PreguntaRespondidaDto } from '../../dto/preguntaRespondida.dto';
 import { UpdatePreguntaDto } from '../../dto/updatePregunta.dto';
 import { UpdatePreguntasDto } from '../../dto/updatePreguntas.dto';
+import { FinEncuestaComponent } from '../../dialogs/fin-encuesta/fin-encuesta.component';
 
 @Component({
   selector: 'app-encuesta',
@@ -99,6 +100,16 @@ export class EncuestaComponent implements OnInit {
 
   }
 
+  openDialogFinEncuesta(){
+    const dialogFinEncuesta = this.dialog.open(FinEncuestaComponent, {
+      width: '40%'
+    });
+
+    dialogFinEncuesta.afterClosed().subscribe(result => {
+      this.router.navigate(['/component/proyectos']);
+    })
+  }
+
   public randomizeType():void {
     this.pieChartType = this.pieChartType === 'doughnut' ? 'pie' : 'doughnut';
   }
@@ -140,7 +151,7 @@ export class EncuestaComponent implements OnInit {
       }
     }
 
-    console.log(this.preguntas);
+    this.openDialogFinEncuesta();
   }
 
   /*ENVIA UN ARRAY DE PREGUNTAS RESPONDIDAS*/

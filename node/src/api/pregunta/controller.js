@@ -39,10 +39,9 @@ export const updateMany = ({ bodymen: { body }, params }, res, next) =>
                 nB: body.nB,
                 nC: body.nC
             }
-            
-        },
-        {
-            multi:true
+
+        }, {
+            multi: true
         }, (res, next) => {
             if (next) {
                 return next
@@ -75,20 +74,6 @@ export const update = ({ bodymen: { body }, params }, res, next) =>
 
             res.send(res);
         });
-        // if (body.nA = 1) {
-        //     Pregunta.update({ "_id": params.id }, {
-        //         $set: {
-        //             nA: pregunta.nA
-        //                 // nA: nA+1
-        //         }
-        //     }, (res, next) => {
-        //         if (next) {
-        //             return next
-        //         }
-
-        //         res.send(res);
-        //     });
-        // }
     })
     .then((pregunta) => pregunta ? pregunta.view(true) : null)
     .then(success(res))
