@@ -29,15 +29,20 @@ export const updateMany = ({ bodymen: { body }, params }, res, next) =>
     Pregunta.findById(params.id)
     .then(notFound(res))
     .then((pregunta) => {
+        console.log("estamos")
         var nap = 1;
         console.log(pregunta)
-        Pregunta.update({ "_id": params.id }, {
+        Pregunta.update({ "pregunta": pregunta }, {
             $set: {
                 nA: body.nA,
                 // nA: nA+1
                 nB: body.nB,
                 nC: body.nC
             }
+            
+        },
+        {
+            multi:true
         }, (res, next) => {
             if (next) {
                 return next
