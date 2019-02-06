@@ -137,9 +137,9 @@ export class AddProjectComponent implements OnInit {
     this.uploadImageImgurService.UploadImage(this.uploadImageDto).subscribe(imagen => {
       this.loading = true;
 
-      for(let a of this.autores){
-        if(this.owners==undefined){
-          this.owners=[a.nombre]
+      for (let a of this.autores) {
+        if (this.owners === undefined) {
+          this.owners = [a.nombre];
         } else {
           this.owners.push(a.nombre);
         }
@@ -209,18 +209,6 @@ export class AddProjectComponent implements OnInit {
   }
 
   editProject(id) {
-<<<<<<< HEAD
-    this.uploadImageImgurService.UploadImage(this.uploadImageDto).subscribe(imagen => {
-      this.urlImagen = imagen.data.link;
-      // tslint:disable-next-line:max-line-length
-      this.editProjectDto = new EditProjectDto(this.form.controls['title'].value, this.autores, this.form.controls['curso'].value, this.form.controls['descripcion'].value, this.urlImagen);
-      this.editProjectService.editPro(this.editProjectDto, localStorage.getItem('idDeProyecto')).subscribe(proyecto => {
-        this.dialogRef.close();
-      }, err => {
-        console.log(err);
-      });
-
-=======
     // for(let a of this.autores){
     //   if(this.owners==undefined){
     //     this.owners=[a.nombre]
@@ -229,10 +217,9 @@ export class AddProjectComponent implements OnInit {
     //   }
     // }
     // tslint:disable-next-line:max-line-length
-    this.editProjectDto = new EditProjectDto(this.form.controls['title'].value, this.owners, this.form.controls['curso'].value, this.form.controls['descripcion'].value);
+    this.editProjectDto = new EditProjectDto(this.form.controls['title'].value, this.owners, this.form.controls['curso'].value, this.form.controls['descripcion'].value, this.urlImagen);
     this.editProjectService.editPro(this.editProjectDto, localStorage.getItem('idDeProyecto')).subscribe(proyecto => {
       this.dialogRef.close();
->>>>>>> b422886e9653b56e46e4fc4ee1b356ce3e976877
     }, err => {
       console.log(err);
     });
