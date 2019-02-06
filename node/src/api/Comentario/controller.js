@@ -11,7 +11,7 @@ const jwtDecode = require('jwt-decode');
 /**
  * FILTRO DE COMENTARIOS
  */
-const filtro = ["barbaridad", "messi5delmundo"]
+const filtro = ["tus muertos", "follar", "inútil", "marihuana", "weed", "tablaDeCiclistas"]
 
 export const create = async({ bodymen: { body } }, res, next) => {
     await Comentario.create(body)
@@ -22,14 +22,13 @@ export const create = async({ bodymen: { body } }, res, next) => {
                     store.set('idProyectoComentario', comentario.view(true).proyecto)
                     store.set('comentario', comentario)
                     store.set('valoracion', comentario.view(true).valoracion)
-                        // for (let f of filtro) {
-                        //     if (comentario.view(true).contenido.indexOf(f) >= 0) {
-                        //         body.contenido = "El comentario ha sido ocultado por contener palabras obsenas";
-                        //         $set: {
-                        //           conte
-                        //         }
-                        //     }
-                        // }
+                        for (let f of filtro) {
+                            if (comentario.view(true).contenido.indexOf(f) >= 0) {
+                                console.log("Que chaval mas mal hablado, tusmuertosto")
+                                comentario.contenido = "El comentario ha sido ocultado por contener palabras obsenas";
+                                
+                            }
+                        }
 
                     comentario.save();
 
