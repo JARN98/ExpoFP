@@ -5,6 +5,7 @@ import { LoginDto } from '../../dto/login.dto';
 import { UserDto } from '../../dto/adduser.dto';
 import { UploadImageDto } from '../../dto/uploadimage.dto';
 import { UploadImageImgurService } from '../../services/upload-image-imgur.service';
+import { FormGroup } from '@angular/forms';
 let ImagenB64: File = null;
 
 
@@ -21,6 +22,7 @@ export class LoginComponent implements OnInit {
   picture: string;
   uploadImageDto: UploadImageDto;
   urlImagen: any;
+  public form: FormGroup;
 
   constructor(private loginService: AuthService,
     private router: Router,
