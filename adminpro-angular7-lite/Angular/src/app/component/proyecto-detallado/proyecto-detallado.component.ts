@@ -44,6 +44,16 @@ import { EditPhotosComponent } from '../../dialogs/edit-photos/edit-photos.compo
         overflow: hidden;
         color: red;
       }
+      /deep/ .carousel-control-prev {
+        background-color: black;
+      }
+      /deep/ .carousel-control-next {
+        background-color: black;
+      }
+
+      .card-body{
+        height: 100%;
+      }
     `
   ]
 })
