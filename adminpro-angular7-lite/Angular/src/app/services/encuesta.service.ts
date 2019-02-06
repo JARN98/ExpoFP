@@ -75,6 +75,6 @@ export class EncuestaService {
         'Access-Control-Allow-Origin': '*'
       })
     };
-    return this.http.put(`${environment.ApiUrl}/preguntas`, preguntas, requestOptions)
+    return this.http.put(`${environment.ApiUrl}/illo`, preguntas, requestOptions)
   }
 }
