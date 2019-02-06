@@ -18,6 +18,7 @@
 	- [Retrieve pregunta](#retrieve-pregunta)
 	- [Retrieve preguntas](#retrieve-preguntas)
 	- [Update pregunta](#update-pregunta)
+	- [Update preguntas](#update-preguntas)
 	
 - [Proyecto](#proyecto)
 	- [Create proyecto](#create-proyecto)
@@ -184,6 +185,20 @@
 
 
 	PUT /preguntas/:id
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| pregunta			| 			|  <p>Pregunta's pregunta.</p>							|
+| respuestas			| 			|  <p>Pregunta's respuestas.</p>							|
+
+## Update preguntas
+
+
+
+	PUT /preguntas
 
 
 ### Parameters

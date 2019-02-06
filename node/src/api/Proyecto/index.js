@@ -72,7 +72,7 @@ router.get('/:id',
  */
 router.put('/:id',
   token({ required: true, roles: ['admin'] }),
-  body({ nombre, descripcion, curso, autores }),
+  body({ nombre, descripcion, curso, autores, imagenes }),
   update)
 
 

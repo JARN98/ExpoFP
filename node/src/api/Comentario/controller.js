@@ -19,6 +19,7 @@ export const create = async({ bodymen: { body } }, res, next) => {
             User.findById(comentario.view(true).autor)
                 .then(user => {
                     comentario.nombreAutor = user.email;
+                    comentario.imagenAutor = user.picture;
                     store.set('idProyectoComentario', comentario.view(true).proyecto)
                     store.set('comentario', comentario)
                     store.set('valoracion', comentario.view(true).valoracion)

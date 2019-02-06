@@ -19,6 +19,9 @@ const comentarioSchema = new Schema({
     type: Boolean,
     default: true
   },
+  imagenAutor: {
+    type: String
+  },
   proyecto: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Proyecto',
@@ -43,6 +46,7 @@ comentarioSchema.methods = {
       valido: this.valido,
       proyecto: this.proyecto,
       nombreAutor: this.nombreAutor,
+      imagenAutor: this.imagenAutor,
       createdAt: this.createdAt,
       updatedAt: this.updatedAt
     }

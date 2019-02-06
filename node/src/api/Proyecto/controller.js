@@ -113,14 +113,19 @@ export const update = async ({ bodymen: { body }, params }, res, next) => {
   await Proyecto.findById(params.id)
     .then(notFound(res))
     .then((proyecto) => proyecto ? Object.assign(proyecto, body).save() : null)
-    .then((proyecto) => proyectoG = proyecto)
+    .then((proyecto) => {
+      console.log(proyecto);
+      
+      return proyectoG = proyecto;
+    })
     .then(success(res))
     .catch(next)
 
   await ProyectoRes.update({ "proyecto": proyectoG.id }, {
     $set: {
       nombre: proyectoG.nombre,
-      curso: proyectoG.curso
+      curso: proyectoG.curso,
+      imagen: proyectoG.imagenes
     }
   }, (res, next) => {
     if (next) {
