@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
     );
   }
 
-  doLoginGoogle(){
+  doLoginGoogle() {
     const loginDto = new LoginDto(this.email, this.password);
     this.loginService.loginGoogle(loginDto).subscribe(loginResp => {
       this.loginService.setLoginData(loginResp);

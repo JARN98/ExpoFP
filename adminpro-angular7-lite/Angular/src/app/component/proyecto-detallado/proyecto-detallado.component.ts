@@ -77,6 +77,9 @@ export class ProyectoDetalladoComponent implements OnInit {
   ultimosComentarios: any;
   masComentarios: boolean;
   esMio: String;
+  admin: boolean;
+  user: boolean;
+
 
   toggle() {
     if (this.ctrl.disabled) {
@@ -102,11 +105,13 @@ export class ProyectoDetalladoComponent implements OnInit {
 
     // console.log(this._route.snapshot.paramMap.get('id'));
   }
-  
+
 
   ngOnInit() {
     this.getOneProject();
     this.masComentarios = true;
+    this.admin = this.authService.isAdmin();
+    this.user = this.authService.isUser();
   }
 
   esMioElComentario(autor) {
