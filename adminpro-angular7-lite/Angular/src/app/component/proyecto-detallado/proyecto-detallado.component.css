@@ -7,8 +7,13 @@
     height: 40px;
 }
 
-.c-img{
-    width: 400px; 
+.carousel {
+    width: 600px;
     height: 400px;
-    margin-left: 16%;
 }
+
+.c-img {
+    max-width: 600px;
+    max-height: 400px;
+}
+

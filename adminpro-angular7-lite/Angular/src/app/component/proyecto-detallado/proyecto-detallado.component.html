@@ -5,7 +5,7 @@
                 <h3 class="card-title">{{proyect.nombre}}</h3>
                 <button (click)="openDialogEditPhoto()">Editar Fotos</button>
                 <h6 class="card-subtitle">Imagenes</h6>
-                <ngb-carousel>
+                <ngb-carousel class="carousel">
                     <ng-template ngbSlide *ngFor="let imagen of listaImagenes">
                         <img class="c-img" src="{{imagen}}" alt="Random first slide">
                         <div class="carousel-caption">
