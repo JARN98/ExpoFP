@@ -160,10 +160,9 @@ export class EncuestaComponent implements OnInit {
           }
 
           if(this.preguntasRespondidas == undefined){
-            this.preguntasRespondidas = [new UpdatePreguntasDto(pregunta.id,
-                pregunta.nA, pregunta.nB, pregunta.nC)];
+            this.preguntasRespondidas = [new UpdatePreguntasDto(pregunta.nA, pregunta.nB, pregunta.nC)];
           } else {
-            this.preguntasRespondidas.push(new UpdatePreguntasDto(pregunta.id, pregunta.nA, pregunta.nB, pregunta.nC));
+            this.preguntasRespondidas.push(new UpdatePreguntasDto(pregunta.nA, pregunta.nB, pregunta.nC));
           }
 
         }

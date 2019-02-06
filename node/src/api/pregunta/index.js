@@ -86,7 +86,7 @@ router.put('/:id',
     update)
 
 /**
- * @api {put} /preguntas Update pregunta
+ * @api {put} /illo Update preguntas
  * @apiName UpdatePreguntas
  * @apiGroup Pregunta
  * @apiParam pregunta Pregunta's pregunta.
@@ -96,7 +96,7 @@ router.put('/:id',
  * @apiError 404 Pregunta not found.
  */
 router.put('/',
-    body([{ nA, nB, nC }]),
+    body({ nA, nB, nC }),
     updateMany)
 
 /**

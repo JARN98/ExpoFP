@@ -7,7 +7,11 @@
 // const firebase = require('firebase');
 export const environment = {
   production: false,
+<<<<<<< HEAD
   //ApiUrl: 'http://localhost:8080',
+=======
+  // ApiUrl: 'http://localhost:8080',
+>>>>>>> 2c220cda4f3dd39f2bd16f08c080c70a1ee27a2e
   ApiUrl: 'http://localhost:9000',
   imgUr: 'https://api.imgur.com/3'
 };
