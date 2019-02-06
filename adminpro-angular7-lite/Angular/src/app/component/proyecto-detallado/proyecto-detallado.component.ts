@@ -72,6 +72,7 @@ export class ProyectoDetalladoComponent implements OnInit {
   contenido = '';
   valoracion: number;
   valido: boolean;
+  imagenAutor: string;
   listaImagenes: String[];
   ultimosComentarios: any;
   masComentarios: boolean;
@@ -101,6 +102,7 @@ export class ProyectoDetalladoComponent implements OnInit {
 
     // console.log(this._route.snapshot.paramMap.get('id'));
   }
+  
 
   ngOnInit() {
     this.getOneProject();
