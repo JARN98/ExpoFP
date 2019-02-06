@@ -24,7 +24,7 @@ export const create = async({ bodymen: { body } }, res, next) => {
                     store.set('valoracion', comentario.view(true).valoracion)
                         for (let f of filtro) {
                             if (comentario.view(true).contenido.indexOf(f) >= 0) {
-                                console.log("Que chaval mas mal hablado, tusmuertosto")
+                                console.log("Que chaval mas mal hablado")
                                 comentario.contenido = "El comentario ha sido ocultado por contener palabras obsenas";
                                 
                             }
