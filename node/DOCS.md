@@ -198,7 +198,7 @@
 
 
 
-	PUT /preguntas
+	PUT /illo
 
 
 ### Parameters

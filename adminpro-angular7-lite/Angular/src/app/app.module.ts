@@ -44,6 +44,7 @@ import {MatButtonModule} from '@angular/material/button';
 import { ChangePasswordComponent } from './dialogs/change-password/change-password.component';
 import { DeleteProjectComponent } from './dialogs/delete-project/delete-project.component';
 import { EditPhotosComponent } from './dialogs/edit-photos/edit-photos.component';
+import { FinEncuestaComponent } from './dialogs/fin-encuesta/fin-encuesta.component';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -64,6 +65,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     ChangePasswordComponent,
     DeleteProjectComponent,
     EditPhotosComponent,
+    FinEncuestaComponent,
   ],
   imports: [
     CommonModule,
@@ -105,7 +107,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     AddPreguntaComponent,
     ChangePasswordComponent,
     DeleteProjectComponent,
-    EditPhotosComponent
+    EditPhotosComponent,
+    FinEncuestaComponent
   ],
   bootstrap: [AppComponent]
 })

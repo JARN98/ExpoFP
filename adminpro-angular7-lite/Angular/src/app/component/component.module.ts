@@ -20,6 +20,7 @@ import { EncuestaComponent } from './encuesta/encuesta.component';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { MatListModule } from '@angular/material/list';
 import { MatRadioModule, MatButtonModule } from '@angular/material';
+import { InicioComponent } from './inicio/inicio.component';
 
 @NgModule({
   imports: [
@@ -47,6 +48,7 @@ import { MatRadioModule, MatButtonModule } from '@angular/material';
     ListaProyectosComponent,
     ProyectoDetalladoComponent,
     EncuestaComponent,
+    InicioComponent,
 
 
   ]

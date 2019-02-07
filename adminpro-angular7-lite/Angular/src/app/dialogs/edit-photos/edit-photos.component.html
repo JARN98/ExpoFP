@@ -1,3 +1,5 @@
+
+<!--
 <div class="row">
   <div class="col-12">
     <div class="row">
@@ -5,7 +7,7 @@
         <div class="card text-center">
           <img class="card-img-top img-responsive" style="object-fit:scale-down; height:200px" src={{imagen}} alt="Card image cap">
         </div>
-        <button (click)="eliminarFoto(imagen)">Eliminar</button>
+        <button class="btn btn-danger" (click)="eliminarFoto(imagen)">Eliminar</button>
       </div>
       <div class="form-group">
         <input type="file" id="fotosInput" (change)="fotos64()" multiple />
@@ -16,11 +18,35 @@
   </div>
 </div>
 <div fxLayoutAlign="end end">
-  <button type="button" class="btn btn-rounded btn-primary" fxFlex="20%" (click)="editar()">Editar</button>
+  <button type="button" class="btn btn-primary" fxFlex="20%" (click)="editar()">Editar</button>
 </div>
 
 <div *ngIf="loading">
-  <div class="loader">
-
+  <div class="loader"></div>
+</div>
+-->
+<div class="card card-outline-info">
+  <div class="card-header">
+    <h4 class="m-b-0 text-white">Gestiona tus imagenes de proyecto</h4>
   </div>
+  <br>
+  <div class="row">
+    <div class="col-lg-4 col-md-4" style="height:300px" *ngFor="let imagen of imagenesProyecto">
+      <div class="card text-center">
+        <img class="card-img-top img-responsive" style="object-fit:scale-down; height:200px" src={{imagen}} alt="Card image cap">
+      </div>
+      <button class="btn btn-danger" (click)="eliminarFoto(imagen)">Eliminar</button>
+    </div>
+    <div class="form-group">
+      <input type="file" id="fotosInput" (change)="fotos64()" multiple />
+    </div>
+  <div>
+</div>
+</div>
+<div fxLayoutAlign="end end">
+  <button type="button" class="btn btn-primary" fxFlex="20%" (click)="editar()">Editar</button>
+</div>
+  
+<div *ngIf="loading">
+  <div class="loader"></div>
 </div>
