@@ -165,7 +165,7 @@ export class ProyectoDetalladoComponent implements OnInit {
   verTodosComentarios() {
     this.masComentarios = false;
     this.verComentsService.verComents(localStorage.getItem('idDeProyecto')).subscribe(comentarios => {
-      this.ultimosComentarios = comentarios;
+      this.ultimosComentarios = comentarios.reverse();
     }, err => {
       console.log(err);
 

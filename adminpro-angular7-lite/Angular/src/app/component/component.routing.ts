@@ -6,6 +6,7 @@ import { UsuarioListComponent } from './usuario-list/usuario-list.component';
 import { ListaProyectosComponent } from './lista-proyectos/lista-proyectos.component';
 import { ProyectoDetalladoComponent } from './proyecto-detallado/proyecto-detallado.component';
 import { EncuestaComponent } from './encuesta/encuesta.component';
+import { InicioComponent } from './inicio/inicio.component';
 
 
 export const ComponentsRoutes: Routes = [
@@ -15,6 +16,10 @@ export const ComponentsRoutes: Routes = [
       {
         path: 'listaUsuarios',
         component: UsuarioListComponent
+      },
+      {
+        path: 'inicio',
+        component: InicioComponent
       },
       {
         path: 'proyectoDetallado',
