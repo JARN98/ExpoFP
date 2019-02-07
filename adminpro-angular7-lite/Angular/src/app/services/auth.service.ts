@@ -45,11 +45,10 @@ export class AuthService {
     return this.http.post<LoginResponse>(`${environment.ApiUrl}/auth`, metaKey, requestOptions);
   }
 
-  loginGoogle(loginDto: LoginDto): Observable<LoginResponse> {
+  loginGoogle(): Observable<LoginResponse> {
     const requestOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'Authorization': 'Inherit auth from parent',
         'Access-Control-Allow-Origin': '*'
       })
     };
@@ -60,8 +59,9 @@ export class AuthService {
         this.access_token = access_token;
       }
     }
-    const metaKey = new Metakey('oDUV7u5ZzJIc81W7SR1eqFXD0qNCbPWp');
-    return this.http.post<LoginResponse>(`${authUrl}/google`, loginDto, requestOptions);
+    // const metaKey = new Metakey('oDUV7u5ZzJIc81W7SR1eqFXD0qNCbPWp');
+    const key = new Metakey('583831561457-6g360hllfbr7ijkjihmhkrk1b0dq7lh3.apps.googleusercontent.com');
+    return this.http.post<LoginResponse>(`${environment.ApiUrl}/auth/google`, key, requestOptions);
   }
 
   registro(userDto: UserDto): Observable<LoginResponse> {
