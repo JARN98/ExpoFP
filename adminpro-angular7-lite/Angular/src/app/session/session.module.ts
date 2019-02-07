@@ -12,6 +12,12 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 //import { SessionService } from '../services/session.service';
 import { MatTabsModule } from '@angular/material/tabs';
 import { FormsModule } from '@angular/forms';
+import { environment } from '../../environments/environment';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AuthService } from '../services/auth.service';
 
 @NgModule({
   declarations: [LoginComponent],
@@ -24,10 +30,14 @@ import { FormsModule } from '@angular/forms';
     MatCardModule,
     FlexLayoutModule,
     MatTabsModule,
-    FormsModule
+    FormsModule,
+    AngularFireModule.initializeApp(environment.firebase, 'ExpoFP'), 
+    AngularFirestoreModule,
+    AngularFireAuthModule,
+    AngularFireStorageModule
   ],
   providers: [
-    //SessionService
+    AuthService
   ]
 })
 export class SessionModule { }

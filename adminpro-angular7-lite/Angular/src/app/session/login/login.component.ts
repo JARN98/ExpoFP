@@ -6,6 +6,7 @@ import { UserDto } from '../../dto/adduser.dto';
 import { UploadImageDto } from '../../dto/uploadimage.dto';
 import { UploadImageImgurService } from '../../services/upload-image-imgur.service';
 import { FormGroup } from '@angular/forms';
+
 let ImagenB64: File = null;
 
 
@@ -43,13 +44,10 @@ export class LoginComponent implements OnInit {
   }
 
   doLoginGoogle() {
-    this.loginService.loginGoogle().subscribe(loginResp => {
-      this.loginService.setLoginData(loginResp);
-      this.router.navigate(['/component/proyectos']);
-    }, error => {
-      console.log('Error en petición de login');
-    }
-    );
+    this.loginService.googleLogin().then(r => r.subscribe(res => {
+      this.loginService.setLoginData(res);
+      this.router.navigate(['/component/proyectos']).then();
+    }));
   }
 
   doSignup() {

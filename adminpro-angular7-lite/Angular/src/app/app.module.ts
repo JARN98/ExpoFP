@@ -45,6 +45,11 @@ import { ChangePasswordComponent } from './dialogs/change-password/change-passwo
 import { DeleteProjectComponent } from './dialogs/delete-project/delete-project.component';
 import { EditPhotosComponent } from './dialogs/edit-photos/edit-photos.component';
 import { FinEncuestaComponent } from './dialogs/fin-encuesta/fin-encuesta.component';
+import { environment } from '../environments/environment';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -92,8 +97,11 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     ChartsModule,
     MatListModule,
     MatRadioModule,
-    MatButtonModule
-
+    MatButtonModule,
+    AngularFireModule.initializeApp(environment.firebase, 'ExpoFP'), 
+    AngularFirestoreModule,
+    AngularFireAuthModule,
+    AngularFireStorageModule
   ],
   providers: [
     {
