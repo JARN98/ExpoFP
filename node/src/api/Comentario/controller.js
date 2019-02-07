@@ -160,6 +160,7 @@ export const destroy = async ({ params }, res, next) => {
 
     await Proyecto.findOne({ "ultimosComentarios.contenido": comentarioG.contenido })
         .then(proyecto => {
+
             for (let index = 0; index < proyecto.ultimosComentarios.length; index++) {
                 const element = proyecto.ultimosComentarios[index];
 
@@ -173,8 +174,9 @@ export const destroy = async ({ params }, res, next) => {
 
             for (let index = 0; index < proyecto.comentarios.length; index++) {
                 const element = proyecto.comentarios[index];
+                console.log(comentarioG.id + '&&&' + element);
 
-                if (element.contenido === comentarioG.contenido) {
+                if (element.equals(comentarioG.id)) {
 
                     console.log('Entro:D');
 
@@ -217,14 +219,70 @@ export const destroy = async ({ params }, res, next) => {
 }
 
 export const destroyUser = async ({ params }, res, next) => {
+    var comentarioG;
     await Comentario.findById(params.id)
         .then(notFound(res))
         .then((comentario) => {
-
-
-            comentario.remove();
-
+            comentarioG = comentario;
+            return comentario ? comentario.remove() : null
         })
         .then(success(res, 204))
         .catch(next)
-}
+
+
+    await Proyecto.findOne({ "ultimosComentarios.contenido": comentarioG.contenido })
+        .then(proyecto => {
+
+            for (let index = 0; index < proyecto.ultimosComentarios.length; index++) {
+                const element = proyecto.ultimosComentarios[index];
+
+                if (element.contenido === comentarioG.contenido) {
+
+                    proyecto.ultimosComentarios.splice(index, 1);
+                }
+
+            }
+
+
+            for (let index = 0; index < proyecto.comentarios.length; index++) {
+                const element = proyecto.comentarios[index];
+                console.log(comentarioG.id + '&&&' + element);
+
+                if (element.equals(comentarioG.id)) {
+
+                    console.log('Entro:D');
+
+                    proyecto.comentarios.splice(index, 1);
+                }
+
+            }
+            Proyecto.updateOne({ "ultimosComentarios.contenido": comentarioG.contenido }, {
+                $set: {
+                    comentarios: proyecto.comentarios,
+                    ultimosComentarios: proyecto.ultimosComentarios
+                }
+            }, (res, next) => {
+                if (next) {
+                    return next
+                }
+
+                res.send(res);
+            });
+
+            if (proyecto.comentarios.length === 1) {
+                Proyecto.updateOne({ "ultimosComentarios.contenido": comentarioG.contenido }, {
+                    $set: {
+                        valoracionMedia: undefined
+                    }
+                }, (res, next) => {
+                    if (next) {
+                        return next
+                    }
+
+                    res.send(res);
+                });
+            }
+        })
+        .catch(next)
+};
+

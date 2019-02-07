@@ -109,7 +109,6 @@ export class ProyectoDetalladoComponent implements OnInit {
 
   ngOnInit() {
     this.getOneProject();
-    this.masComentarios = true;
     this.admin = this.authService.isAdmin();
     this.user = this.authService.isUser();
   }
@@ -124,10 +123,11 @@ export class ProyectoDetalladoComponent implements OnInit {
   }
 
   getOneProject() {
+    this.masComentarios = true;
     this.oneProjectService.getOneProject().subscribe(proyecto => {
       this.proyect = proyecto;
       this.listaImagenes = proyecto.imagenesDetalladas;
-      this.ultimosComentarios = proyecto.ultimosComentarios;
+      this.ultimosComentarios = proyecto.ultimosComentarios.reverse();
     }, err => {
       console.log(err);
     });
@@ -173,7 +173,7 @@ export class ProyectoDetalladoComponent implements OnInit {
 
   deleteComentario(id: string) {
     this.deleteComentarioService.deleteComentario(id).subscribe(result => {
-      this.verTodosComentarios();
+      this.getOneProject();
     }, error => {
       console.error(error);
     });
@@ -181,9 +181,12 @@ export class ProyectoDetalladoComponent implements OnInit {
 
   deleteComentarioUser(autor: string) {
     this.deleteComentarioService.deleteComentarioUser(autor, this.authService.getTokenDecode().id).subscribe(result => {
-      this.verTodosComentarios();
+      console.log('hola');
+
+      this.getOneProject();
     }, error => {
       console.error(error);
+      this.getOneProject();
     });
   }
 
