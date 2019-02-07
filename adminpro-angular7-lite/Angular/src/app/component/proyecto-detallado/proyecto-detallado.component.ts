@@ -180,8 +180,6 @@ export class ProyectoDetalladoComponent implements OnInit {
   }
 
   deleteComentarioUser(autor: string) {
-    console.log(autor);
-
     this.deleteComentarioService.deleteComentarioUser(autor, this.authService.getTokenDecode().id).subscribe(result => {
       this.verTodosComentarios();
     }, error => {

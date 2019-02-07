@@ -21,8 +21,6 @@ export class DeleteComentarioService {
   }
 
   deleteComentarioUser(id: String, autor: String) {
-    console.log(id);
-    
     const requestOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
