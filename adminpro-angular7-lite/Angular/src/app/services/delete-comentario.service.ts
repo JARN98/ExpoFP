@@ -17,10 +17,12 @@ export class DeleteComentarioService {
         'Access-Control-Allow-Origin': '*'
       })
     };
-    return this.http.delete(`${environment.ApiUrl}/Comentarios/${id}`, requestOptions)
+    return this.http.delete(`${environment.ApiUrl}/Comentarios/${id}`, requestOptions);
   }
 
   deleteComentarioUser(id: String, autor: String) {
+    console.log(id);
+    
     const requestOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -28,6 +30,6 @@ export class DeleteComentarioService {
         'Access-Control-Allow-Origin': '*'
       })
     };
-    return this.http.delete(`${environment.ApiUrl}/Comentarios/${autor}/${id}`, requestOptions)
+    return this.http.delete(`${environment.ApiUrl}/Comentarios/${autor}/${id}`, requestOptions);
   }
 }

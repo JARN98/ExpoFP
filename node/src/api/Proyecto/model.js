@@ -39,6 +39,9 @@ const proyectoSchema = new Schema({
             type: String,
             required: true
         },
+        imagenAutor: {
+            type: String
+        },
         valoracion: {
             type: Number
         },
@@ -50,12 +53,12 @@ const proyectoSchema = new Schema({
         }
     }]
 }, {
-    timestamps: true,
-    toJSON: {
-        virtuals: true,
-        transform: (obj, ret) => { delete ret._id }
-    }
-})
+        timestamps: true,
+        toJSON: {
+            virtuals: true,
+            transform: (obj, ret) => { delete ret._id }
+        }
+    })
 
 proyectoSchema.methods = {
     view(full) {
@@ -71,6 +74,7 @@ proyectoSchema.methods = {
             valoracionMedia: this.valoracionMedia,
             comentarios: this.comentarios,
             ultimosComentarios: this.ultimosComentarios,
+            contenidoUltimosComentarios: this.ultimosComentarios.contenido,
             createdAt: this.createdAt,
             updatedAt: this.updatedAt
         }

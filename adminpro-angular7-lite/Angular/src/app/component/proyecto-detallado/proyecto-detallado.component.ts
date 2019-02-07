@@ -116,7 +116,7 @@ export class ProyectoDetalladoComponent implements OnInit {
 
   esMioElComentario(autor) {
 
-    if (this.authService.getTokenDecode().id === autor && this.authService.getTokenDecode().role != 'admin') {
+    if (this.authService.getTokenDecode().id === autor && this.authService.getTokenDecode().role !== 'admin') {
       return true;
     } else {
       return false;
@@ -125,7 +125,6 @@ export class ProyectoDetalladoComponent implements OnInit {
 
   getOneProject() {
     this.oneProjectService.getOneProject().subscribe(proyecto => {
-      console.log(proyecto);
       this.proyect = proyecto;
       this.listaImagenes = proyecto.imagenesDetalladas;
       this.ultimosComentarios = proyecto.ultimosComentarios;
@@ -154,7 +153,7 @@ export class ProyectoDetalladoComponent implements OnInit {
 
     this.addComentarioService.createComentario(comentarioDto).subscribe(
       comentario => {
-        console.log(comentario);
+        console.log('hola');
         this.getOneProject();
         this.contenido = '';
         this.valoracion = 0;
@@ -173,20 +172,21 @@ export class ProyectoDetalladoComponent implements OnInit {
   }
 
   deleteComentario(id: string) {
-    this.deleteComentarioService.deleteComentario(this.authService.getTokenDecode().id).subscribe(result => {
+    this.deleteComentarioService.deleteComentario(id).subscribe(result => {
       this.verTodosComentarios();
-    }), error => {
+    }, error => {
       console.error(error);
-    }
+    });
   }
 
   deleteComentarioUser(autor: string) {
+    console.log(autor);
 
     this.deleteComentarioService.deleteComentarioUser(autor, this.authService.getTokenDecode().id).subscribe(result => {
       this.verTodosComentarios();
-    }), error => {
+    }, error => {
       console.error(error);
-    }
+    });
   }
 
   isAdmin() {
