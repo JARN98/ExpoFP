@@ -42,3 +42,18 @@
     /* margin-bottom: 30%; */
     margin-top: 14%;
 }
+
+.btn-primary {
+    width: 32%;
+    float: left;
+}
+
+.btn-warning {
+    width: 32%;
+    float: left;
+}
+
+.btn-danger {
+    width: 32%;
+    float: left;
+}

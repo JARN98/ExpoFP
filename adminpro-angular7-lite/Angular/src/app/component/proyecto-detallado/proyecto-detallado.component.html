@@ -3,7 +3,7 @@
         <div class="card">
             <div class="card-body">
                 <h3 class="card-title">{{proyect.nombre}}</h3>
-                <button class="btn btn-warning" (click)="openDialogEditPhoto()">Editar Fotos</button>
+                <button class="btn btn-warning" *ngIf="isAdmin()" (click)="openDialogEditPhoto()">Editar Fotos</button>
                 <br>
                 <br>
                 <ngb-carousel class="carousel">
