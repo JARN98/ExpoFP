@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">ExpoFpApp</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="Email">Email</string>
+    <string name="Password">Contraseña</string>
+    <string name="Login">Login</string>
+    <string name="Registro">Registro</string>
+    <string name="sharedpreferences_filename">login</string>
+    <string name="jwt_key">JWT_KEY</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="SubirImagen">Subir Imagen</string>
+    <string name="Nombre">Nombre</string>
+    <string name="RepetirPass">Repita su contraseña</string>
+</resources>
