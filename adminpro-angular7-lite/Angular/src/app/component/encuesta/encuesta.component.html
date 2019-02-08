@@ -1,5 +1,6 @@
 <!--**ENCUESTA (ADMIN)-->
 <div fxFlex="100%" fxFlexFill *ngIf="isAdmin()">
+    <button mat-fab (click)="downloadPDF()"><i class="fas fa-arrow-down fa-2x"></i></button>
     <mat-list fxFlexFill *ngFor="let pregunta of preguntas">
         <h1 mat-subheader *ngIf="isAdmin()">{{pregunta.pregunta}}<i class="mdi mdi-delete" (click)="deletePregunta(pregunta.id)"></i></h1>
         <mat-card>
