@@ -29,8 +29,8 @@ export class EncuestaComponent implements OnInit {
 
   /*DATOS GRÁFICO*/
   public pieChartLabels: string[] = ["A", "B", "C"];
-  // public pieChartData: number[] = [21, 39, 10];
-  public pieChartData: number[];
+  public pieChartData: number[] = [21, 39, 10];
+  // public pieChartData: number[];
   public pieChartType: string = 'doughnut';
   public pieChartOptions: any = {
     'backgroundColor': [
@@ -66,6 +66,7 @@ export class EncuestaComponent implements OnInit {
         this.datosGrafico.push(this.pieChartData);
       }
     }
+
 
     return this.datosGrafico;
   }
