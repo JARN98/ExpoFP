@@ -244,15 +244,43 @@ export class EncuestaComponent implements OnInit {
      * Creamos el documento PDF
      */
     var doc = new jsPDF();
+    let i=10;
+
+    doc.setFontSize(18);
+    doc.setFontType('bold');
+    doc.text('RESULTADOS ENCUESTA EXPO FP 2019 - SALESIANOS TRIANA', 5, i);
+    i=i+20;
+
+    doc.setFontSize(14)
+    for(let p of this.preguntas){
+      doc.setFontType('bold');
+      doc.text(p.pregunta, 10, i);
+      i=i+10;
+
+
+      doc.setFontType('normal');
+      doc.text('A - '+p.respuestaA+' '+ p.nA, 15, i);
+      i=i+10;
+
+      doc.text('B - '+p.respuestaB+' '+ p.nB, 15, i);
+      i=i+10;
+
+      if(p.respuestaC != null){
+        doc.text('C - '+p.respuestaC+' '+ p.nC, 15, i);
+        i=i+10;
+      }
+
+      i=i+20;
+    }
 
     /**
      * Rellenar documento PDF, cada llamada a text(texto: String, margenIzq: number, margenTop: number)
      * anade el texto deseado en la posicion Izq y Top deseada
      */
-    doc.text(this.preguntas[1].pregunta, 10, 10);
-    doc.text(this.preguntas[1].respuestaA, 10, 20);
-    doc.text(this.preguntas[1].respuestaB, 10, 30);
-    doc.text(this.preguntas[1].respuestaC, 10, 40);
+    // doc.text(this.preguntas[1].pregunta, 10, 10);
+    // doc.text(this.preguntas[1].respuestaA, 10, 20);
+    // doc.text(this.preguntas[1].respuestaB, 10, 30);
+    // doc.text(this.preguntas[1].respuestaC, 10, 40);
     /**
      * Se inicia la descarga del documento PDF llamando a save(nombreDocumento: String)
      */
