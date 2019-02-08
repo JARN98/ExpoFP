@@ -37,8 +37,9 @@
                 <!-- <h3 class="card-title">Special title treatment</h3> -->
                 <p class="card-text">{{proyect.descripcion}}
                 </p>
-
-                <h6 class="card-subtitle">{{proyect.autores}}</h6>
+                <mat-chip-list *ngFor="let p of proyect.autores">
+                    <mat-chip color="primary" selected>{{p}}</mat-chip>
+                </mat-chip-list>
             </div>
         </div>
     </div>
@@ -46,32 +47,32 @@
 <div class="col-md-11" *ngIf="admin || user">
     <div class="card card-outline-info">
         <form [formGroup]="comentarioForm">
-        <div class="card-header">
-            <h4 class="m-b-0 text-white">Añade un comentario y tu valoración</h4>
-        </div>
-        <div class="card-body">
-            <input formControlName="contenido" class="form-control" id="contenido" [(ngModel)]="contenido" placeholder="comentario" type="text">
-            <div *ngIf="comentarioForm.controls['contenido'].invalid && (comentarioForm.controls['contenido'].dirty || comentarioForm.controls['contenido'].touched)" class="alert alert-danger">
-                <div *ngIf="comentarioForm.controls['contenido'].errors.required">
-                    ¡No olvides escribir tu comentario!
-                </div>
+            <div class="card-header">
+                <h4 class="m-b-0 text-white">Añade un comentario y tu valoración</h4>
             </div>
-            <br>
-            <br>
-            <ngb-rating [(ngModel)]="valoracion" [(rate)]="valoracion" id="valoracion">
-                <ng-template let-fill="fill">
-                    <span class="star" [class.filled]="fill === 100">&#9733;</span>
-                </ng-template>
-            </ngb-rating>
-            <br>
-            <br>
-            <button class="btn btn-inverse" (click)="addComentario()" [disabled]="!comentarioForm.valid">Comentar</button>
-        </div>
+            <div class="card-body">
+                <input formControlName="contenido" class="form-control" id="contenido" [(ngModel)]="contenido" placeholder="comentario" type="text">
+                <div *ngIf="comentarioForm.controls['contenido'].invalid && (comentarioForm.controls['contenido'].dirty || comentarioForm.controls['contenido'].touched)" class="alert alert-danger">
+                    <div *ngIf="comentarioForm.controls['contenido'].errors.required">
+                        ¡No olvides escribir tu comentario!
+                    </div>
+                </div>
+                <br>
+                <br>
+                <ngb-rating [(ngModel)]="valoracion" [(rate)]="valoracion" id="valoracion">
+                    <ng-template let-fill="fill">
+                        <span class="star" [class.filled]="fill === 100">&#9733;</span>
+                    </ng-template>
+                </ngb-rating>
+                <br>
+                <br>
+                <button class="btn btn-inverse" (click)="addComentario()" [disabled]="!comentarioForm.valid">Comentar</button>
+            </div>
         </form>
     </div>
 </div>
 <div *ngFor="let comentario of ultimosComentarios" class="col-md-11">
-    <div class="card" >
+    <div class="card">
         <div class="card-body">
             <div class="u-img"><img class="u-img" src={{comentario.imagenAutor}} alt="user"></div>
             <h3 class="card-title">{{comentario.nombreAutor}}</h3>
