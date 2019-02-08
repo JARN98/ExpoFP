@@ -5,7 +5,7 @@ import { LoginDto } from '../../dto/login.dto';
 import { UserDto } from '../../dto/adduser.dto';
 import { UploadImageDto } from '../../dto/uploadimage.dto';
 import { UploadImageImgurService } from '../../services/upload-image-imgur.service';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 let ImagenB64: File = null;
 
@@ -27,9 +27,13 @@ export class LoginComponent implements OnInit {
 
   constructor(private loginService: AuthService,
     private router: Router,
-    private uploadImageImgurService: UploadImageImgurService) { }
+    private uploadImageImgurService: UploadImageImgurService, private fb: FormBuilder) { }
 
   ngOnInit() {
+    this.form = this.fb.group({
+      email: [null, Validators.compose([Validators.required])],
+      password: [null, Validators.compose([Validators.required])]
+    })
   }
 
   doLogin() {

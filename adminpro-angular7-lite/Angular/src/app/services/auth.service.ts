@@ -142,7 +142,6 @@ export class AuthService {
   }
 
   isAdmin() {
-    console.log("ROL EN EL TOKEN: " + this.getTokenDecode().role)
     if(!(this.getTokenDecode() == null)){
     if (this.getTokenDecode().role === 'admin') {
       return true;

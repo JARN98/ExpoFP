@@ -6,12 +6,13 @@ import {
   NgbCarouselConfig
 } from '@ng-bootstrap/ng-bootstrap';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
-import { ROUTES } from './menu-items';
+import { ROUTESUSER } from './menu-items-user';
 import { ROUTESNOLOG } from './menu-items-nolog';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material';
 import { ChangePasswordComponent } from '../../dialogs/change-password/change-password.component';
 import { AuthService } from '../../services/auth.service';
+import { ROUTESADMIN } from './menu-items-admin';
 declare var $: any;
 @Component({
   selector: 'app-navigation',
@@ -108,10 +109,12 @@ export class NavigationComponent implements AfterViewInit {
     
   }
   cargarMenu(){
-    if(localStorage.getItem('token') == null)
-    this.topNavItems = ROUTESNOLOG.filter(topNavItem => topNavItem);
+    if(this.loginService.isAdmin())
+    this.topNavItems = ROUTESADMIN.filter(topNavItem => topNavItem);
+    else if(this.loginService.isUser())
+    this.topNavItems = ROUTESUSER.filter(topNavItem => topNavItem);
     else
-    this.topNavItems = ROUTES.filter(topNavItem => topNavItem);
+    this.topNavItems = ROUTESNOLOG.filter(topNavItem => topNavItem);
   }
   iniciarSesion(){
     this.router.navigate(['session/login'])
