@@ -1,8 +1,8 @@
 <div id="login" class="container" fxFlexFill fxLayoutAlign="center center">
     <div fxFlexFill fxLayoutAlign="center center">
-        <div fxLayout="row" fxFlex=40% fxLayoutAlign="center center">
+        <div fxLayout="row" fxFlex=50% fxLayoutAlign="center center">
             <div id="logo" fxFlexFill fxLayoutAlign="center center">
-                <img src="../../../assets/images/gallery/chair4.png" srcset="">
+                <img fxFlex="70%" src="../../../assets/images/icono.png" srcset="">
             </div>
 
             <div id="form" fxFlexFill>
@@ -10,45 +10,53 @@
                     <mat-tab label="Login">
                         <form class="example-form">
                             <table class="login" cellspacing="0">
-                                <tr>
+                                <tr fxFlexFill>
                                     <td>
                                         <mat-form-field class="login">
-                                            <input matInput name="email" type="text" placeholder="email" [(ngModel)]="email" />
+                                            <input matInput name="email" type="text" placeholder="Email" [(ngModel)]="email" />
+                                        </mat-form-field>
+
+                                        <div *ngIf="form.controls['email'].invalid && (form.controls['email'].dirty || form.controls['email'].touched)" class="alert alert-danger">
+                                            <div *ngIf="form.controls['email'].errors.required">
+                                                Pregunta necesaria
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr fxFlexFill>
+                                    <td>
+                                        <mat-form-field class="login">
+                                            <input matInput name="password" type="password" placeholder="Password" [(ngModel)]="password" />
                                         </mat-form-field>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td>
-                                        <mat-form-field class="login">
-                                            <input matInput name="password" type="password" placeholder="password" [(ngModel)]="password" />
-                                        </mat-form-field>
-                                    </td>
-                                </tr>
-                                <button mat-raised-button color="primary" id="login_boton" (click)="doLogin()">Login</button>
-                                <button mat-button color="primary" id="loginGogle_boton" (click)="doLoginGoogle()"><i class="fa fa-google"></i> &nbsp;&nbsp; Login Google</button>
+                                <div fxLayout="column" fxLayoutGap="2%">
+                                    <button mat-raised-button color="primary" id="login_boton" (click)="doLogin()">Login</button>
+                                    <button mat-stroked-button color="primary" id="loginGogle_boton" (click)="doLoginGoogle()"><i class="fa fa-google"></i> &nbsp;&nbsp; Login Google</button>
+                                </div>
+                                
                             </table>
                         </form>
                     </mat-tab>
-                    <mat-tab label="Signup">
-                        <form class="example-form">
+                    <mat-tab label="Signup" fxFlexFill fxLayoutAlign="center center" class="signup">
+                        <form class="example-form" fxLayoutAlign="center center">
                             <table class="signup" cellspacing="0">
                                 <tr>
                                     <td>
-                                        <mat-form-field class="signup">
+                                        <mat-form-field>
                                             <input matInput name="nombre" placeholder="Nombre" [(ngModel)]="name">
                                         </mat-form-field>
                                     </td>
                                     <td>
-                                        <div class="form-group">
+                                        <div>
                                             <label>Imagen de Perfil</label>
-                                            <!-- <input type="file" class="form-control-file" id="exampleFormControlFile1" [formControl]="form.controls['img']"> -->
                                             <input type="file" (change)="foto64()" id="fotoInput" />
                                         </div>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <mat-form-field class="signup">
+                                        <mat-form-field>
                                             <input matInput name="email" type="email" placeholder="Email" [(ngModel)]="email">
                                         </mat-form-field>
                                     </td>
@@ -56,12 +64,12 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <mat-form-field class="signup">
+                                        <mat-form-field>
                                             <input matInput name="password" type="password" placeholder="Contraseña" [(ngModel)]="password">
                                         </mat-form-field>
                                     </td>
                                     <td>
-                                        <mat-form-field class="signup">
+                                        <mat-form-field>
                                             <input matInput name="repetir_password" type="password" placeholder="Repetir contraseña">
                                         </mat-form-field>
                                     </td>
