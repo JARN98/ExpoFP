@@ -37,13 +37,9 @@
       </div>
       <button class="btn btn-danger" (click)="eliminarFoto(imagen)">Eliminar</button>
     </div>
-    <div class="form-group">
-      <input type="file" id="fotosInput" (change)="fotos64()" multiple />
-    </div>
-  <div>
-</div>
 </div>
 <div fxLayoutAlign="end end">
+  <input class="añadirImagen" type="file" id="fotosInput" (change)="fotos64()" multiple />
   <button type="button" class="btn btn-primary" fxFlex="20%" (click)="editar()">Editar</button>
 </div>
   

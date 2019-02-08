@@ -109,7 +109,8 @@ export class AuthService {
   registro(userDto: UserDto): Observable<LoginResponse> {
     const requestOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
       })
     };
     return this.http.post<LoginResponse>(`${environment.ApiUrl}/users`, userDto, requestOptions);

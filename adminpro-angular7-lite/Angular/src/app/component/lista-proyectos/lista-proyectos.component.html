@@ -4,10 +4,13 @@
         <div class="row">
             <div class="col-lg-3 col-md-6" style="height:300px"*ngFor="let proyecto of listaProyectosRes | filterBy: proyectoFilter | paginate: { itemsPerPage: 14,
                         currentPage: p}">
-                <div class="card text-center">
-                    <img class="card-img-top img-responsive" style="object-fit:scale-down; height:150px" src={{proyecto.imagen}} alt="Card image cap">
+                <div class="card card-outline-inverse" (click)="VerProyecto(proyecto.proyecto)">
+                    <div class="card-header">
+                        <h4 class="m-b-0 text-white">{{proyecto.nombre}} - {{proyecto.curso}}</h4>
+                    </div>
+                    
+                    <img class="card-img-top img-responsive"  src={{proyecto.imagen}} alt="Card image cap">
                     <div class="card-body">
-                        <h4 class="card-title">{{proyecto.nombre}} - {{proyecto.curso}}</h4>
                         <!--
                         <ngb-rating [readonly]="true" [(rate)]="proyect.valoracionMedia">
                             <ng-template let-fill="fill">
@@ -20,7 +23,6 @@
                         </div>
                     -->
                     <div class="container botones">
-                        <button (click)="VerProyecto(proyecto.proyecto)" class="btn btn-primary">Ver</button>
                         <button (click)="openDialogEditProject(proyecto.proyecto)" *ngIf="admin" class="btn btn-warning">Editar</button>
                         <button (click)="openDialogDeleteProject(proyecto)" *ngIf="admin" class="btn btn-danger">Eliminar</button>
                         </div>
