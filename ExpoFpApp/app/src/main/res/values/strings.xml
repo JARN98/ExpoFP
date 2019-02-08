@@ -16,4 +16,5 @@
     <string name="SubirImagen">Subir Imagen</string>
     <string name="Nombre">Nombre</string>
     <string name="RepetirPass">Repita su contraseña</string>
+    <string name="deRegistroaLogin">LOGIN</string>
 </resources>

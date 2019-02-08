@@ -5,7 +5,8 @@ import { LoginDto } from '../../dto/login.dto';
 import { UserDto } from '../../dto/adduser.dto';
 import { UploadImageDto } from '../../dto/uploadimage.dto';
 import { UploadImageImgurService } from '../../services/upload-image-imgur.service';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material';
 
 let ImagenB64: File = null;
 
@@ -27,9 +28,14 @@ export class LoginComponent implements OnInit {
 
   constructor(private loginService: AuthService,
     private router: Router,
-    private uploadImageImgurService: UploadImageImgurService) { }
+    private uploadImageImgurService: UploadImageImgurService,
+    private fb: FormBuilder, private snackBar: MatSnackBar) { }
 
   ngOnInit() {
+    this.form = this.fb.group({
+      email: [null, Validators.compose([Validators.required])],
+      password: [null, Validators.compose([Validators.required])]
+    })
   }
 
   doLogin() {
@@ -38,6 +44,7 @@ export class LoginComponent implements OnInit {
       this.loginService.setLoginData(loginResp);
       this.router.navigate(['/component/proyectos']);
     }, error => {
+      this.snackBar.open("Error en peticion de login", "x", {duration: 1000, panelClass: ['style-success']});
       console.log('Error en petición de login');
     }
     );
