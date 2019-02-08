@@ -29,6 +29,7 @@ export class EncuestaComponent implements OnInit {
 
   /*DATOS GRÁFICO*/
   public pieChartLabels: string[] = ["A", "B", "C"];
+  // public pieChartLabels: string[];
   public pieChartData: number[] = [21, 39, 10];
   // public pieChartData: number[];
   public pieChartType: string = 'doughnut';
@@ -55,6 +56,14 @@ export class EncuestaComponent implements OnInit {
   valoresgraficos(pregunta: Pregunta){
     this.pieChartData = [ pregunta.nA, pregunta.nB, pregunta.nC ];
     return this.pieChartData;
+  }
+
+  labelsGrafico(pregunta: Pregunta){
+    if(pregunta.respuestaC==null){
+      this.pieChartLabels = [ "A", "B"];
+    } else {
+      this.pieChartLabels = [ "A", "B", "C"];
+    }
   }
 
   datos(preguntas: Pregunta[]){
@@ -124,6 +133,7 @@ export class EncuestaComponent implements OnInit {
   // event on pie chart slice hover
   public chartHovered(e: any): void {
     console.log(e);
+    
   }
 
   isAdmin(){

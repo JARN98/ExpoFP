@@ -8,7 +8,7 @@
                 <div class="container" id="grafico">
                     <div class="col-sm-4 text-center">
                             <!-- (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)" valoresgraficos(pregunta)-->
-                        <canvas baseChart [legend]=false [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType" [options]="pieChartOptions" (chartHover)="chartHovered(event)" (chartClick)="chartClicked(event)"></canvas>
+                        <canvas baseChart [legend]=false [data]="valoresgraficos(pregunta)" [labels]="labelsGrafico(pregunta)" [chartType]="pieChartType" [options]="pieChartOptions" (chartHover)="chartHovered(event)" (chartClick)="chartClicked(event)"></canvas>
                     </div>
                 </div>
                 <button mat-mini-fab color="primary" (click)="randomizeType()"><i class="fa fa-chart-pie"></i></button>
