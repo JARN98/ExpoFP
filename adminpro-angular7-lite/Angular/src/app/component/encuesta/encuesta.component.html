@@ -12,7 +12,7 @@
                         <canvas baseChart [legend]=false [data]="valoresgraficos(pregunta)" [labels]="labelsGrafico(pregunta)" [chartType]="pieChartType" (chartHover)="chartHovered($event)"></canvas>
                     </div>
                 </div>
-                <button mat-mini-fab color="primary" (click)="randomizeType()"><i class="fa fa-chart-pie"></i></button>
+                <button mat-mini-fab color="primary" (click)="randomizeType()"><i class="fa fa-chart-pie fa-x"></i></button>
 
                 <h4 mat-line>
                     <button mat-mini-fab id="A">A</button> {{pregunta.respuestaA}}</h4>
@@ -22,7 +22,7 @@
         </mat-card>
 
     </mat-list>
-    <button *ngIf="isAdmin()" color="primary" (click)="openDialogAddPregunta()" type="button" class="btn btn-success btn-circle btn-lg mat-fab-bottom-right" style="z-index: 9;"><i class="fa fa-plus"></i></button>
+    <button *ngIf="isAdmin()" color="primary" (click)="openDialogAddPregunta()" type="button" class="btn btn-success btn-circle btn-lg mat-fab-bottom-right" style="z-index: 9;"><i class="fa fa-plus fa-x"></i></button>
 </div>
 <!--**FORMULARIO ENCUESTA (USER)-->
 <div id="form" fxFlexFill *ngIf="!isAdmin()">
