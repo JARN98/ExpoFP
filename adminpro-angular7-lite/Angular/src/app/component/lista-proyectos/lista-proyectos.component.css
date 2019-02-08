@@ -61,4 +61,5 @@
 .card-outline-inverse {
     border: grey 0.5px solid;
     cursor: pointer;
+    margin-bottom: 5%;
 }
