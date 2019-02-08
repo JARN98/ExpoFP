@@ -110,8 +110,9 @@ export class EncuestaComponent implements OnInit {
     })
   }
 
-  public randomizeType():void {
+  public randomizeType() {
     this.pieChartType = this.pieChartType === 'doughnut' ? 'pie' : 'doughnut';
+    this.getAllPreguntas();
   }
 
   // events on slice click

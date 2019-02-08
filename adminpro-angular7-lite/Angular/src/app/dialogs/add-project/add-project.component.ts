@@ -76,6 +76,10 @@ export class AddProjectComponent implements OnInit {
       this.edit = true;
     }
     this.admin = this.loginService.isAdmin();
+
+    for(let a of this.autores){
+
+    }
   }
 
   getOneProject(id) {
@@ -132,6 +136,8 @@ export class AddProjectComponent implements OnInit {
   }
 
   addProject() {
+
+    this.owners = [];
 
 
     this.uploadImageImgurService.UploadImage(this.uploadImageDto).subscribe(imagen => {
