@@ -11,6 +11,7 @@ import { PreguntaRespondidaDto } from '../../dto/preguntaRespondida.dto';
 import { UpdatePreguntaDto } from '../../dto/updatePregunta.dto';
 import { UpdatePreguntasDto } from '../../dto/updatePreguntas.dto';
 import { FinEncuestaComponent } from '../../dialogs/fin-encuesta/fin-encuesta.component';
+import jsPDF from 'jspdf'
 
 @Component({
   selector: 'app-encuesta',
@@ -238,6 +239,30 @@ export class EncuestaComponent implements OnInit {
 
   }
 
+<<<<<<< HEAD
 
+=======
+  downloadPDF() {
+    /**
+     * Creamos el documento PDF
+     */
+    var doc = new jsPDF();
+
+    /**
+     * Rellenar documento PDF, cada llamada a text(texto: String, margenIzq: number, margenTop: number)
+     * anade el texto deseado en la posicion Izq y Top deseada
+     */
+    doc.text(this.preguntas[1].pregunta, 10, 10);
+    doc.text(this.preguntas[1].respuestaA, 10, 20);
+    doc.text(this.preguntas[1].respuestaB, 10, 30);
+    doc.text(this.preguntas[1].respuestaC, 10, 40);
+    /**
+     * Se inicia la descarga del documento PDF llamando a save(nombreDocumento: String)
+     */
+    doc.save('ExpoFP19.pdf');
+  }
+
+  
+>>>>>>> 91bc506691e2c13cb3d331c02cb23996d5a164d6
 
 }
