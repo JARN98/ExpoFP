@@ -4,25 +4,24 @@
         <h1 mat-subheader *ngIf="isAdmin()">{{pregunta.pregunta}}<i class="mdi mdi-delete" (click)="deletePregunta(pregunta.id)"></i></h1>
         <mat-card>
             <mat-list-item *ngIf="isAdmin()">
-                <mat-icon mat-list-icon>
-                    <i class="mdi mdi-hand-pointing-right"></i>
-                </mat-icon>
 
                 <div class="container" id="grafico">
                     <div class="col-sm-4 text-center">
-                        <canvas baseChart [legend]=false [data]="valoresgraficos(pregunta)" [labels]="pieChartLabels" [chartType]="pieChartType" [options]="pieChartOptions" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+                            <!-- (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)" -->
+                        <canvas baseChart [legend]=false [data]="valoresgraficos(pregunta)" [labels]="pieChartLabels" [chartType]="pieChartType" [options]="pieChartOptions"></canvas>
                     </div>
                 </div>
-                <i class="mdi mdi-chart-pie" (click)="randomizeType()"></i>
-                <h4 mat-line>A - {{pregunta.respuestaA}}</h4>
-                <h4 mat-line>B - {{pregunta.respuestaB}}</h4>
-                <h4 mat-line *ngIf="pregunta.respuestaC!=null">C - {{pregunta.respuestaC}}</h4>
+                <button mat-mini-fab color="primary" (click)="randomizeType()"><i class="fa fa-chart-pie"></i></button>
+                
+                <h4 mat-line>
+                    <button mat-mini-fab id="A">A</button> {{pregunta.respuestaA}}</h4>
+                <h4 mat-line><button mat-mini-fab id="B">B</button> {{pregunta.respuestaB}}</h4>
+                <h4 mat-line *ngIf="pregunta.respuestaC!=null"><button mat-mini-fab id="C">C</button> {{pregunta.respuestaC}}</h4>
             </mat-list-item>
         </mat-card>
 
-        <mat-divider></mat-divider>
     </mat-list>
-    <button *ngIf="isAdmin()" (click)="openDialogAddPregunta()" type="button" class="btn btn-success btn-circle btn-lg mat-fab-bottom-right" style="z-index: 9;"><i class="fa fa-link"></i> </button>
+    <button *ngIf="isAdmin()" color="primary" (click)="openDialogAddPregunta()" type="button" class="btn btn-success btn-circle btn-lg mat-fab-bottom-right" style="z-index: 9;"><i class="fa fa-plus"></i></button>
 </div>
 <!--**FORMULARIO ENCUESTA (USER)-->
 <div id="form" fxFlexFill *ngIf="!isAdmin()">
