@@ -45,11 +45,17 @@
 </div>
 <div class="col-md-11" *ngIf="admin || user">
     <div class="card card-outline-info">
+        <form [formGroup]="comentarioForm">
         <div class="card-header">
-            <h4 class="m-b-0 text-white">Añade un comentario</h4>
+            <h4 class="m-b-0 text-white">Añade un comentario y tu valoración</h4>
         </div>
         <div class="card-body">
-            <input class="form-control" id="exampleInputPassword1" [(ngModel)]="contenido" placeholder="comentario" type="text">
+            <input formControlName="contenido" class="form-control" id="contenido" [(ngModel)]="contenido" placeholder="comentario" type="text">
+            <div *ngIf="comentarioForm.controls['contenido'].invalid && (comentarioForm.controls['contenido'].dirty || comentarioForm.controls['contenido'].touched)" class="alert alert-danger">
+                <div *ngIf="comentarioForm.controls['contenido'].errors.required">
+                    ¡No olvides escribir tu comentario!
+                </div>
+            </div>
             <br>
             <br>
             <ngb-rating [(ngModel)]="valoracion" [(rate)]="valoracion" id="valoracion">
@@ -59,8 +65,9 @@
             </ngb-rating>
             <br>
             <br>
-            <button class="btn btn-inverse" (click)="addComentario()">Comentar</button>
+            <button class="btn btn-inverse" (click)="addComentario()" [disabled]="!comentarioForm.valid">Comentar</button>
         </div>
+        </form>
     </div>
 </div>
 <div *ngFor="let comentario of ultimosComentarios" class="col-md-11">
@@ -89,7 +96,7 @@
 
     </div>
     <div class="col-md-2" *ngIf="masComentarios">
-        <button (click)="verTodosComentarios()">
+        <button class="btn btn-primary" (click)="verTodosComentarios()">
             Ver más comentarios
         </button>
     </div>
