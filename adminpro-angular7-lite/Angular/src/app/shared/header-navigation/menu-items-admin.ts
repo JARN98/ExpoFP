@@ -1,6 +1,6 @@
 import { RouteInfo } from './topnav.metadata';
 
-export const ROUTES: RouteInfo[] = [
+export const ROUTESADMIN: RouteInfo[] = [
  
   {
     path: '/component/proyectos',
@@ -24,5 +24,16 @@ export const ROUTES: RouteInfo[] = [
     submenu: [],
     admin: false
   },
+  {
+  path: '/component/listaUsuarios',
+  title: 'Usuarios',
+  icon: 'mdi mdi-account',
+  class: '',
+  label: '',
+  labelClass: '',
+  extralink: false,
+  submenu: [],
+  admin: false
+}
  
 ];

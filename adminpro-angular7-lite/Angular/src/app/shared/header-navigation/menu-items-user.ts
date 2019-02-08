@@ -1,6 +1,6 @@
 import { RouteInfo } from './topnav.metadata';
 
-export const ROUTESNOLOG: RouteInfo[] = [
+export const ROUTESUSER: RouteInfo[] = [
  
   {
     path: '/component/proyectos',
@@ -14,9 +14,9 @@ export const ROUTESNOLOG: RouteInfo[] = [
     admin: true
   },
   {
-    path: '/session/login',
-    title: 'Iniciar sesión',
-    icon: '',
+    path: '/component/encuesta',
+    title: 'Encuesta',
+    icon: 'mdi mdi-clipboard-outline',
     class: '',
     label: '',
     labelClass: '',

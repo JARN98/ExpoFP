@@ -41,7 +41,9 @@ export class LoginComponent implements OnInit {
   doLogin() {
     const loginDto = new LoginDto(this.email, this.password);
     this.loginService.login(loginDto).subscribe(loginResp => {
+      console.log(loginResp);
       this.loginService.setLoginData(loginResp);
+      console.log("ROL: " + localStorage.getItem("role"));
       this.router.navigate(['/component/proyectos']);
     }, error => {
       this.snackBar.open("Error en peticion de login", "x", {duration: 1000, panelClass: ['style-success']});
@@ -58,15 +60,15 @@ export class LoginComponent implements OnInit {
   }
 
   doSignup() {
-    console.log(this.email);
 
-    console.log(this.usuario);
 
     this.uploadImageImgurService.UploadImage(this.uploadImageDto).subscribe(imagen => {
       this.urlImagen = imagen.data.link;
       this.usuario = new UserDto(this.email, this.password, this.name, this.urlImagen, 'user');
       this.loginService.registro(this.usuario).subscribe(signupResp => {
+        
         this.loginService.setLoginData(signupResp);
+      
         this.router.navigate(['/component/proyectos']);
       }, error => {
         console.log('Error en el registro');
