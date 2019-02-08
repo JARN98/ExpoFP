@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
-import { FormControl, Validators } from '@angular/forms';
+import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Identifiers } from '@angular/compiler';
 import { Proyect } from '../../models/proyect';
@@ -57,7 +57,7 @@ import { EditPhotosComponent } from '../../dialogs/edit-photos/edit-photos.compo
     `
   ]
 })
-export class ProyectoDetalladoComponent implements OnInit {
+export class ProyectoDetalladoComponent implements OnInit{
 
   showNavigationArrows = false;
   showNavigationIndicators = false;
@@ -80,6 +80,8 @@ export class ProyectoDetalladoComponent implements OnInit {
   admin: boolean;
   user: boolean;
 
+  comentarioForm: FormGroup;
+
 
   toggle() {
     if (this.ctrl.disabled) {
@@ -95,7 +97,7 @@ export class ProyectoDetalladoComponent implements OnInit {
     private verComentsService: VerComentsService,
     private deleteComentarioService: DeleteComentarioService,
     private authService: AuthService,
-    public dialog: MatDialog) {
+    public dialog: MatDialog, private fb: FormBuilder) {
 
     config.interval = 10000;
     config.wrap = false;
@@ -103,6 +105,9 @@ export class ProyectoDetalladoComponent implements OnInit {
     config.showNavigationArrows = true;
     config.showNavigationIndicators = true;
 
+    this.comentarioForm = this.fb.group({
+      contenido: ['', Validators.required]
+    })
     // console.log(this._route.snapshot.paramMap.get('id'));
   }
 
@@ -193,4 +198,5 @@ export class ProyectoDetalladoComponent implements OnInit {
   isAdmin() {
     return this.authService.isAdmin();
   }
+
 }

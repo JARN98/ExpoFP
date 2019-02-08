@@ -3,6 +3,7 @@
 @import '~perfect-scrollbar/css/perfect-scrollbar.css';
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 @import 'https://fonts.googleapis.com/icon?family=Material+Icons';
+@import 'https://use.fontawesome.com/releases/v5.7.1/css/all.css';
 .ps .ps__scrollbar-y-rail {
     left: 3px;
     right: auto;

@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
     this.form = this.fb.group({
       email: [null, Validators.compose([Validators.required])],
       password: [null, Validators.compose([Validators.required])]
-    })
+    });
   }
 
   doLogin() {
@@ -43,10 +43,10 @@ export class LoginComponent implements OnInit {
     this.loginService.login(loginDto).subscribe(loginResp => {
       console.log(loginResp);
       this.loginService.setLoginData(loginResp);
-      console.log("ROL: " + localStorage.getItem("role"));
+      console.log('ROL: ' + localStorage.getItem('role'));
       this.router.navigate(['/component/proyectos']);
     }, error => {
-      this.snackBar.open("Error en peticion de login", "x", {duration: 1000, panelClass: ['style-success']});
+      this.snackBar.open('Error en peticion de login', 'x', { duration: 1000, panelClass: ['style-success'] });
       console.log('Error en petición de login');
     }
     );
@@ -56,6 +56,7 @@ export class LoginComponent implements OnInit {
     this.loginService.googleLogin().then(r => r.subscribe(res => {
       this.loginService.setLoginData(res);
       this.router.navigate(['/component/proyectos']).then();
+      window.location.reload();
     }));
   }
 
@@ -66,9 +67,9 @@ export class LoginComponent implements OnInit {
       this.urlImagen = imagen.data.link;
       this.usuario = new UserDto(this.email, this.password, this.name, this.urlImagen, 'user');
       this.loginService.registro(this.usuario).subscribe(signupResp => {
-        
+
         this.loginService.setLoginData(signupResp);
-      
+
         this.router.navigate(['/component/proyectos']);
       }, error => {
         console.log('Error en el registro');

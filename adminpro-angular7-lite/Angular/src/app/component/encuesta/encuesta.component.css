@@ -1,0 +1,27 @@
+button[mat-mini-fab]{
+    color: white;
+}
+button[mat-mini-fab] i{
+    width: 100%;
+}
+button[mat-mini-fab]#A {
+
+    background-color: #FF6384;
+    margin-bottom: 2%;
+    cursor: default;
+}
+button[mat-mini-fab]#B {
+
+    background-color: #4BC0C0;
+    margin-bottom: 2%;
+    cursor: default;
+}
+button[mat-mini-fab]#C {
+
+    background-color: #FFCE56;
+    margin-bottom: 2%;
+    cursor: default;
+}
+mat-card{
+    height: 20%;
+}
