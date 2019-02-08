@@ -1,4 +1,4 @@
-import { RouteInfo } from './topnav.metadata';
+import { RouteInfo } from './metadata';
 
 export const ROUTESNOLOG: RouteInfo[] = [
  
@@ -11,7 +11,7 @@ export const ROUTESNOLOG: RouteInfo[] = [
     labelClass: '',
     extralink: false,
     submenu: [],
-    admin: true
+   
   },
   {
     path: '/session/login',
@@ -22,7 +22,7 @@ export const ROUTESNOLOG: RouteInfo[] = [
     labelClass: '',
     extralink: false,
     submenu: [],
-    admin: false
+  
   },
  
 ];

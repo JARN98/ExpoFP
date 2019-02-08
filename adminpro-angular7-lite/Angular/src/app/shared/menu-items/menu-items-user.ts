@@ -1,4 +1,4 @@
-import { RouteInfo } from './topnav.metadata';
+import { RouteInfo } from './metadata';
 
 export const ROUTESUSER: RouteInfo[] = [
  
@@ -11,7 +11,7 @@ export const ROUTESUSER: RouteInfo[] = [
     labelClass: '',
     extralink: false,
     submenu: [],
-    admin: true
+    
   },
   {
     path: '/component/encuesta',
@@ -22,7 +22,7 @@ export const ROUTESUSER: RouteInfo[] = [
     labelClass: '',
     extralink: false,
     submenu: [],
-    admin: false
+   
   },
  
 ];

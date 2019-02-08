@@ -6,17 +6,19 @@ import {
   NgbCarouselConfig
 } from '@ng-bootstrap/ng-bootstrap';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
-import { ROUTESUSER } from './menu-items-user';
-import { ROUTESNOLOG } from './menu-items-nolog';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material';
 import { ChangePasswordComponent } from '../../dialogs/change-password/change-password.component';
 import { AuthService } from '../../services/auth.service';
-import { ROUTESADMIN } from './menu-items-admin';
+import { ROUTESADMIN } from '../menu-items/menu-items-admin';
+import { ROUTESUSER } from '../menu-items/menu-items-user';
+import { ROUTESNOLOG } from '../menu-items/menu-items-nolog';
 declare var $: any;
 @Component({
   selector: 'app-navigation',
-  templateUrl: './navigation.component.html'
+  templateUrl: './navigation.component.html',
+  styleUrls: ['./header.css']
+  
 })
 export class NavigationComponent implements AfterViewInit {
   public topNavItems: any[];

@@ -1,17 +1,17 @@
 <!-- ============================================================== -->
 <!-- toggle and nav items -->
 <!-- ============================================================== -->
-<!--
-<ul class="navbar-nav mr-auto float-left">                
+
+<ul class="navbar-nav mr-auto float-right">                
     <li (click)="toggleSidebar.emit()" class="nav-item m-l-10 d-block d-lg-none"> <a class="nav-link sidebartoggler text-muted waves-effect waves-dark" href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
 </ul>
--->
+
 <!-- ============================================================== -->
 <!-- User profile and search -->
 <!-- ============================================================== -->
-<ul class="navbar-nav my-lg-0 float-right">
+<ul class="navbar-nav my-lg-0 float-right" id="sidebarnav">
         
-    <li [class.active]="showMenu === topNavItem.title" *ngFor="let topNavItem of topNavItems" [routerLinkActive]="topNavItem.submenu.length != 0 ? '' : 'active'" style="margin:15px;">
+    <li class="OcultarMovil" [class.active]="showMenu === topNavItem.title" *ngFor="let topNavItem of topNavItems" [routerLinkActive]="topNavItem.submenu.length != 0 ? '' : 'active'" style="margin:15px;">
 
         <a [routerLink]="topNavItem.class === '' ? [topNavItem.path] : null" [ngClass]="[topNavItem.class]">
                 <i [ngClass]="[topNavItem.icon]"></i>
