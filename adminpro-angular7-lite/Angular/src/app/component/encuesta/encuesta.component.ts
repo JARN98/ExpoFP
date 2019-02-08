@@ -28,20 +28,20 @@ export class EncuestaComponent implements OnInit {
   datosGrafico: any[];
 
   /*DATOS GRÁFICO*/
-  public pieChartLabels: string[] = ["A", "B", "C"];
-  // public pieChartLabels: string[];
-  public pieChartData: number[] = [21, 39, 10];
-  // public pieChartData: number[];
+  // public pieChartLabels: string[] = ["A", "B", "C"];
+  public pieChartLabels: string[];
+  // public pieChartData: number[] = [21, 39, 10];
+  public pieChartData: number[];
   public pieChartType: string = 'doughnut';
-  public pieChartOptions: any = {
-    'backgroundColor': [
-      "#FF6384",
-      "#4BC0C0",
-      "#FFCE56",
-      "#E7E9ED",
-      "#36A2EB"
-    ]
-  }
+  // public pieChartOptions: any = {
+  //   'backgroundColor': [
+  //     "#FF6384",
+  //     "#4BC0C0",
+  //     "#FFCE56",
+  //     "#E7E9ED",
+  //     "#36A2EB"
+  //   ]
+  // }
   /*FIN DATOS GRÁFICO*/
 
   constructor(private encuestaService: EncuestaService,
@@ -54,7 +54,11 @@ export class EncuestaComponent implements OnInit {
   }
 
   valoresgraficos(pregunta: Pregunta){
-    this.pieChartData = [ pregunta.nA, pregunta.nB, pregunta.nC ];
+    if(pregunta.respuestaC==null){
+      this.pieChartData = [ pregunta.nA, pregunta.nB ];
+    } else {
+      this.pieChartData = [ pregunta.nA, pregunta.nB, pregunta.nC ];
+    }
     return this.pieChartData;
   }
 
@@ -64,6 +68,7 @@ export class EncuestaComponent implements OnInit {
     } else {
       this.pieChartLabels = [ "A", "B", "C"];
     }
+    return this.pieChartLabels;
   }
 
   datos(preguntas: Pregunta[]){
@@ -125,15 +130,14 @@ export class EncuestaComponent implements OnInit {
     this.getAllPreguntas();
   }
 
-  // events on slice click
-  public chartClicked(e: any): void {
-    console.log(e);
-  }
+  // // events on slice click
+  // public chartClicked(e: any): void {
+  //   console.log(e);
+  // }
 
   // event on pie chart slice hover
   public chartHovered(e: any): void {
     console.log(e);
-    
   }
 
   isAdmin(){
@@ -233,5 +237,7 @@ export class EncuestaComponent implements OnInit {
     }
 
   }
+
+  
 
 }

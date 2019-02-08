@@ -7,12 +7,12 @@
 
                 <div class="container" id="grafico">
                     <div class="col-sm-4 text-center">
-                            <!-- (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)" valoresgraficos(pregunta)-->
-                        <canvas baseChart [legend]=false [data]="valoresgraficos(pregunta)" [labels]="labelsGrafico(pregunta)" [chartType]="pieChartType" [options]="pieChartOptions" (chartHover)="chartHovered(event)" (chartClick)="chartClicked(event)"></canvas>
+                        <!-- (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)" valoresgraficos(pregunta)  (chartClick)="chartClicked($event)"-->
+                        <canvas baseChart [legend]=false [data]="valoresgraficos(pregunta)" [labels]="labelsGrafico(pregunta)" [chartType]="pieChartType" (chartHover)="chartHovered($event)"></canvas>
                     </div>
                 </div>
                 <button mat-mini-fab color="primary" (click)="randomizeType()"><i class="fa fa-chart-pie"></i></button>
-                
+
                 <h4 mat-line>
                     <button mat-mini-fab id="A">A</button> {{pregunta.respuestaA}}</h4>
                 <h4 mat-line><button mat-mini-fab id="B">B</button> {{pregunta.respuestaB}}</h4>
