@@ -239,9 +239,6 @@ export class EncuestaComponent implements OnInit {
 
   }
 
-<<<<<<< HEAD
-
-=======
   downloadPDF() {
     /**
      * Creamos el documento PDF
@@ -263,6 +260,5 @@ export class EncuestaComponent implements OnInit {
   }
 
   
->>>>>>> 91bc506691e2c13cb3d331c02cb23996d5a164d6
 
 }
