@@ -1,4 +1,4 @@
-package Generate.Generator;
+package com.example.expofpapp.Generator;
 
 import android.content.Context;
 import android.content.SharedPreferences;

@@ -1,7 +1,8 @@
-package Services;
+package com.example.expofpapp.Services;
 
-import Model.LoginResponse;
-import Model.User;
+import com.example.expofpapp.Model.LoginResponse;
+import com.example.expofpapp.Model.User;
+
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Header;

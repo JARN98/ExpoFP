@@ -1,4 +1,4 @@
-package Model;
+package com.example.expofpapp.Model;
 
 public class LoginResponse {
 

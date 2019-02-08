@@ -1,4 +1,4 @@
-package Model;
+package com.example.expofpapp.Model;
 
 import android.os.Build;
 import android.support.annotation.RequiresApi;

@@ -3,8 +3,8 @@ package com.example.expofpapp;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import Fragments.LoginFragment;
-import Fragments.SignUpFragment;
+import com.example.expofpapp.Fragments.LoginFragment;
+import com.example.expofpapp.Fragments.SignUpFragment;
 
 public class SessionActivity extends AppCompatActivity implements LoginFragment.OnFragmentInteractionListener, SignUpFragment.OnFragmentInteractionListener {
 

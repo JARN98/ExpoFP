@@ -1,8 +1,7 @@
-package Fragments;
+package com.example.expofpapp.Fragments;
 
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -16,10 +15,10 @@ import android.widget.Toast;
 import com.example.expofpapp.MainActivity;
 import com.example.expofpapp.R;
 
-import Generate.Generator.ServiceGenerator;
-import Generate.Generator.UtilToken;
-import Model.LoginResponse;
-import Services.AuthService;
+import com.example.expofpapp.Generator.ServiceGenerator;
+import com.example.expofpapp.Generator.UtilToken;
+import com.example.expofpapp.Model.LoginResponse;
+import com.example.expofpapp.Services.AuthService;
 import okhttp3.Credentials;
 import retrofit2.Call;
 import retrofit2.Callback;
