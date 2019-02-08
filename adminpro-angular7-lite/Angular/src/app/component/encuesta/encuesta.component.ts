@@ -28,8 +28,8 @@ export class EncuestaComponent implements OnInit {
   datosGrafico: any[];
 
   /*DATOS GRÁFICO*/
-  // public pieChartLabels: string[] = ["A", "B", "C"];
-  public pieChartLabels: string[];
+  public pieChartLabels: string[] = ["A", "B", "C"];
+  // public pieChartLabels: string[];
   // public pieChartData: number[] = [21, 39, 10];
   public pieChartData: number[];
   public pieChartType: string = 'doughnut';
@@ -53,28 +53,28 @@ export class EncuestaComponent implements OnInit {
     // this.datos(this.preguntas);
   }
 
-  valoresgraficos(pregunta: Pregunta){
-    if(pregunta.respuestaC==null){
-      this.pieChartData = [ pregunta.nA, pregunta.nB ];
+  valoresgraficos(pregunta: Pregunta) {
+    if (pregunta.respuestaC == null) {
+      this.pieChartData = [pregunta.nA, pregunta.nB];
     } else {
-      this.pieChartData = [ pregunta.nA, pregunta.nB, pregunta.nC ];
+      this.pieChartData = [pregunta.nA, pregunta.nB, pregunta.nC];
     }
     return this.pieChartData;
   }
 
-  labelsGrafico(pregunta: Pregunta){
-    if(pregunta.respuestaC==null){
-      this.pieChartLabels = [ "A", "B"];
+  labelsGrafico(pregunta: Pregunta) {
+    if (pregunta.respuestaC == null) {
+      this.pieChartLabels = ["A", "B"];
     } else {
-      this.pieChartLabels = [ "A", "B", "C"];
+      this.pieChartLabels = ["A", "B", "C"];
     }
     return this.pieChartLabels;
   }
 
-  datos(preguntas: Pregunta[]){
-    for(let pregunta of preguntas) {
+  datos(preguntas: Pregunta[]) {
+    for (let pregunta of preguntas) {
       this.pieChartData = [pregunta.nA, pregunta.nB, pregunta.nC]
-      if(this.datosGrafico == undefined){
+      if (this.datosGrafico == undefined) {
         this.datosGrafico = [this.pieChartData];
       } else {
         this.datosGrafico.push(this.pieChartData);
@@ -115,7 +115,7 @@ export class EncuestaComponent implements OnInit {
 
   }
 
-  openDialogFinEncuesta(){
+  openDialogFinEncuesta() {
     const dialogFinEncuesta = this.dialog.open(FinEncuestaComponent, {
       width: '40%'
     });
@@ -140,23 +140,23 @@ export class EncuestaComponent implements OnInit {
     console.log(e);
   }
 
-  isAdmin(){
+  isAdmin() {
     return this.authService.isAdmin();
   }
 
-  enviarEncuesta(){
+  enviarEncuesta() {
     console.log('All right!')
     console.log(this.respuestas);
 
-    for(let respuesta of this.respuestas){
-      for(let pregunta of this.preguntas){
-        if(respuesta.pregunta == pregunta.pregunta){
-          if(respuesta.respuestaMarcada==pregunta.respuestaA){
-            pregunta.nA=pregunta.nA+1;
-          } else if(respuesta.respuestaMarcada==pregunta.respuestaB){
-            pregunta.nB=pregunta.nB+1;
-          } else if(respuesta.respuestaMarcada==pregunta.respuestaC){
-            pregunta.nC=pregunta.nC+1;
+    for (let respuesta of this.respuestas) {
+      for (let pregunta of this.preguntas) {
+        if (respuesta.pregunta == pregunta.pregunta) {
+          if (respuesta.respuestaMarcada == pregunta.respuestaA) {
+            pregunta.nA = pregunta.nA + 1;
+          } else if (respuesta.respuestaMarcada == pregunta.respuestaB) {
+            pregunta.nB = pregunta.nB + 1;
+          } else if (respuesta.respuestaMarcada == pregunta.respuestaC) {
+            pregunta.nC = pregunta.nC + 1;
           }
 
           this.encuestaService.updatePregunta(pregunta.id, new UpdatePreguntaDto(pregunta.nA, pregunta.nB, pregunta.nC))
@@ -171,22 +171,22 @@ export class EncuestaComponent implements OnInit {
   }
 
   /*ENVIA UN ARRAY DE PREGUNTAS RESPONDIDAS*/
-  enviarPreguntas(){
+  enviarPreguntas() {
     console.log('All right!')
     console.log(this.respuestas);
 
-    for(let respuesta of this.respuestas){
-      for(let pregunta of this.preguntas){
-        if(respuesta.pregunta == pregunta.pregunta){
-          if(respuesta.respuestaMarcada==pregunta.respuestaA){
-            pregunta.nA=pregunta.nA+1;
-          } else if(respuesta.respuestaMarcada==pregunta.respuestaB){
-            pregunta.nB=pregunta.nB+1;
-          } else if(respuesta.respuestaMarcada==pregunta.respuestaC){
-            pregunta.nC=pregunta.nC+1;
+    for (let respuesta of this.respuestas) {
+      for (let pregunta of this.preguntas) {
+        if (respuesta.pregunta == pregunta.pregunta) {
+          if (respuesta.respuestaMarcada == pregunta.respuestaA) {
+            pregunta.nA = pregunta.nA + 1;
+          } else if (respuesta.respuestaMarcada == pregunta.respuestaB) {
+            pregunta.nB = pregunta.nB + 1;
+          } else if (respuesta.respuestaMarcada == pregunta.respuestaC) {
+            pregunta.nC = pregunta.nC + 1;
           }
 
-          if(this.preguntasRespondidas == undefined){
+          if (this.preguntasRespondidas == undefined) {
             this.preguntasRespondidas = [new UpdatePreguntasDto(pregunta.nA, pregunta.nB, pregunta.nC)];
           } else {
             this.preguntasRespondidas.push(new UpdatePreguntasDto(pregunta.nA, pregunta.nB, pregunta.nC));
@@ -197,37 +197,37 @@ export class EncuestaComponent implements OnInit {
     }
 
     this.encuestaService.updatePreguntas(this.preguntasRespondidas)
-            .subscribe(result => {
-              this.getAllPreguntas();
-            });
+      .subscribe(result => {
+        this.getAllPreguntas();
+      });
 
     console.log(this.preguntas);
   }
 
-  rellenarArrayRespuesta(pregunta: String, respuestaMarcada: String){
+  rellenarArrayRespuesta(pregunta: String, respuestaMarcada: String) {
     //comprobar si no se ha marcado anteriormente, y en su defecto la modifica
 
     let encontrada = false;
-    let i=0;
-    let indice=0;
+    let i = 0;
+    let indice = 0;
 
-    if(this.respuestas == undefined){
+    if (this.respuestas == undefined) {
 
       this.respuestas = [new PreguntaRespondidaDto(pregunta, respuestaMarcada)];
-      
+
     } else {
 
-      for(let respuestaSelec of this.respuestas){
-        
-        if(respuestaSelec.pregunta == pregunta){
+      for (let respuestaSelec of this.respuestas) {
+
+        if (respuestaSelec.pregunta == pregunta) {
           console.log('KAJSAHDKJ')
-          encontrada=true;
+          encontrada = true;
           indice = i;
         }
         i++;
       }
 
-      if(encontrada){
+      if (encontrada) {
         this.respuestas.splice(indice, 1);
         this.respuestas.push(new PreguntaRespondidaDto(pregunta, respuestaMarcada));
       } else {
@@ -238,6 +238,6 @@ export class EncuestaComponent implements OnInit {
 
   }
 
-  
+
 
 }
