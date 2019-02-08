@@ -18,7 +18,7 @@
             <!-- <input matInput placeholder="Autores..." [formControl]="form.controls['autores']"> -->
             <mat-chip-list #chipList>
                 <mat-chip *ngFor="let autor of autores" [selectable]="selectable" [removable]="removable" (removed)="remove(autor)">
-                    {{autor}}
+                    {{autor.nombre}}
                     <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
                 </mat-chip>
                 <input placeholder="Autores..." [matChipInputFor]="chipList" [formControl]="form.controls['autores']"
