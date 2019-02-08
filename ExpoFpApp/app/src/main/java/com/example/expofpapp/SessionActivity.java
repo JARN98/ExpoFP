@@ -30,5 +30,11 @@ public class SessionActivity extends AppCompatActivity implements LoginFragment.
     }
 
 
-
+    @Override
+    public void navegarLogin() {
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.contenedor, new LoginFragment())
+                .commit();
+    }
 }
