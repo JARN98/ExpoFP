@@ -12,3 +12,8 @@
 .btn-danger {
     margin-left: 37%;
 }
+
+input {
+    float: left;
+    margin-right: 45%;
+}
