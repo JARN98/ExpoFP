@@ -44,7 +44,7 @@ export class UsuarioListComponent implements OnInit {
     this.listUsuarioService.deleteUsuario(element).subscribe(resp => {
     
       console.log(resp);
-      this.listUsuarioService.refresh();
+      this.listUser();
     }, error => console.error(error)
     );
   }
