@@ -18,6 +18,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AuthService } from '../services/auth.service';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [LoginComponent],
@@ -34,7 +35,8 @@ import { AuthService } from '../services/auth.service';
     AngularFireModule.initializeApp(environment.firebase, 'ExpoFP'), 
     AngularFirestoreModule,
     AngularFireAuthModule,
-    AngularFireStorageModule
+    AngularFireStorageModule,
+    MatSnackBarModule
   ],
   providers: [
     AuthService
