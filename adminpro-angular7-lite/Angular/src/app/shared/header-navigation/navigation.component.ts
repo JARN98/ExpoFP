@@ -99,10 +99,12 @@ export class NavigationComponent implements AfterViewInit {
     }
   ];
   ngOnInit(): void {
+    console.log("Es admin? " + this.loginService.isAdmin());
     this.admin = this.loginService.isAdmin();
+    console.log("Es usuario? " + this.loginService.isUser());
     this.user = this.loginService.isUser();
-    this.cargarMenu();
     this.setUserInfo();
+    this.cargarMenu();
     
   }
   cargarMenu(){
