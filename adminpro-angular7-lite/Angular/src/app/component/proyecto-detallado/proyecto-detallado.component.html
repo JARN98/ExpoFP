@@ -35,10 +35,9 @@
             </div>
             <div class="card-body">
                 <!-- <h3 class="card-title">Special title treatment</h3> -->
-                <p class="card-text">{{proyect.descripcion}}
-                </p>
-                <mat-chip-list *ngFor="let p of proyect.autores">
-                    <mat-chip color="primary" selected>{{p}}</mat-chip>
+                <p class="card-text">{{proyect.descripcion}}</p>
+                <mat-chip-list *ngFor="let p of proyect.autores" id="autores">
+                    <mat-chip color="primary" selected id="autor">{{p}}</mat-chip>
                 </mat-chip-list>
             </div>
         </div>
