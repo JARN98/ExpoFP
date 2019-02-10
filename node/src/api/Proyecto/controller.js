@@ -1,6 +1,7 @@
 import { success, notFound } from '../../services/response/'
 import { Proyecto } from '.'
 import { ProyectoRes } from '../ProyectoRes'
+import { Comentario } from '../Comentario'
 
 const store = require('store')
 
@@ -115,7 +116,7 @@ export const update = async ({ bodymen: { body }, params }, res, next) => {
     .then((proyecto) => proyecto ? Object.assign(proyecto, body).save() : null)
     .then((proyecto) => {
       console.log(proyecto);
-      
+
       return proyectoG = proyecto;
     })
     .then(success(res))
@@ -137,7 +138,7 @@ export const update = async ({ bodymen: { body }, params }, res, next) => {
 }
 
 
-export const updatePhoto = async ({params }, res, next) => {
+export const updatePhoto = async ({ params }, res, next) => {
   await Proyecto.findById(params.id)
     .then(notFound(res))
     .then((proyecto) => {
@@ -161,3 +162,78 @@ export const destroy = ({ params }, res, next) =>
     .then((proyecto) => proyecto ? proyecto.remove() : null)
     .then(success(res, 204))
     .catch(next)
+
+
+export const destroyUltimoComentarioAdmin = async ({ params }, res, next) => {
+  var comentarioG;
+  await Comentario.findOne({ "autor": params.autor, "contenido": params.contenido })
+    .then(comentario => {
+      comentarioG = comentario;
+      comentario.remove();
+
+      return console.log(comentarioG);
+
+    })
+    .then(success(res, 204))
+    .catch(next)
+
+
+  await Proyecto.findOne({ "ultimosComentarios.contenido": comentarioG.contenido })
+    .then(proyecto => {
+
+      for (let index = 0; index < proyecto.ultimosComentarios.length; index++) {
+        const element = proyecto.ultimosComentarios[index];
+
+        if (element.contenido === comentarioG.contenido) {
+
+          proyecto.ultimosComentarios.splice(index, 1);
+        }
+
+      }
+
+
+      for (let index = 0; index < proyecto.comentarios.length; index++) {
+        const element = proyecto.comentarios[index];
+        console.log(comentarioG.id + '&&&' + element);
+
+        if (element.equals(comentarioG.id)) {
+
+          console.log('Entro:D');
+
+          proyecto.comentarios.splice(index, 1);
+
+          console.log(proyecto.comentarios);
+          
+        }
+
+      }
+      Proyecto.updateOne({ "ultimosComentarios.contenido": comentarioG.contenido }, {
+        $set: {
+          comentarios: proyecto.comentarios,
+          ultimosComentarios: proyecto.ultimosComentarios
+        }
+      }, (res, next) => {
+        if (next) {
+          return next
+        }
+
+        res.send(res);
+      });
+
+      if (proyecto.comentarios.length === 1) {
+        Proyecto.updateOne({ "ultimosComentarios.contenido": comentarioG.contenido }, {
+          $set: {
+            valoracionMedia: undefined
+          }
+        }, (res, next) => {
+          if (next) {
+            return next
+          }
+
+          res.send(res);
+        });
+      }
+    })
+    .catch(next)
+
+}

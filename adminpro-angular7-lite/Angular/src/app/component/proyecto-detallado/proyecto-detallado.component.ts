@@ -57,7 +57,7 @@ import { EditPhotosComponent } from '../../dialogs/edit-photos/edit-photos.compo
     `
   ]
 })
-export class ProyectoDetalladoComponent implements OnInit{
+export class ProyectoDetalladoComponent implements OnInit {
 
   showNavigationArrows = false;
   showNavigationIndicators = false;
@@ -107,7 +107,7 @@ export class ProyectoDetalladoComponent implements OnInit{
 
     this.comentarioForm = this.fb.group({
       contenido: ['', Validators.required]
-    })
+    });
     // console.log(this._route.snapshot.paramMap.get('id'));
   }
 
@@ -195,8 +195,32 @@ export class ProyectoDetalladoComponent implements OnInit{
     });
   }
 
+  async deleteUltimoComentario(autor: String, contenido: String) {
+    await this.deleteComentarioService.deleteUltimoComentario(autor, contenido).subscribe(result => {
+      console.log('EYYY');
+      this.getOneProject();
+    }, error => {
+      console.error(error);
+    });
+
+    await this.getOneProject();
+  }
+
+
+  async deleteUltimoComentarioUser(autor: String, contenido: String) {
+    await this.deleteComentarioService.deleteUltimoComentarioUser(autor, contenido).subscribe(result => {
+      console.log('EYYY');
+      this.getOneProject();
+    }, error => {
+      console.error(error);
+    });
+    await this.getOneProject();
+  }
+
   isAdmin() {
     return this.authService.isAdmin();
   }
-
 }
+
+
+

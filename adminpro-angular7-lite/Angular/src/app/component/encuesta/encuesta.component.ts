@@ -11,7 +11,7 @@ import { PreguntaRespondidaDto } from '../../dto/preguntaRespondida.dto';
 import { UpdatePreguntaDto } from '../../dto/updatePregunta.dto';
 import { UpdatePreguntasDto } from '../../dto/updatePreguntas.dto';
 import { FinEncuestaComponent } from '../../dialogs/fin-encuesta/fin-encuesta.component';
-import jsPDF from 'jspdf'
+import jsPDF from 'jspdf';
 
 @Component({
   selector: 'app-encuesta',
@@ -29,11 +29,11 @@ export class EncuestaComponent implements OnInit {
   datosGrafico: any[];
 
   /*DATOS GRÁFICO*/
-  public pieChartLabels: string[] = ["A", "B", "C"];
+  public pieChartLabels: string[] = ['A', 'B', 'C'];
   // public pieChartLabels: string[];
   // public pieChartData: number[] = [21, 39, 10];
   public pieChartData: number[];
-  public pieChartType: string = 'doughnut';
+  public pieChartType = 'doughnut';
   // public pieChartOptions: any = {
   //   'backgroundColor': [
   //     "#FF6384",
@@ -65,17 +65,17 @@ export class EncuestaComponent implements OnInit {
 
   labelsGrafico(pregunta: Pregunta) {
     if (pregunta.respuestaC == null) {
-      this.pieChartLabels = ["A", "B"];
+      this.pieChartLabels = ['A', 'B'];
     } else {
-      this.pieChartLabels = ["A", "B", "C"];
+      this.pieChartLabels = ['A', 'B', 'C'];
     }
     return this.pieChartLabels;
   }
 
   datos(preguntas: Pregunta[]) {
-    for (let pregunta of preguntas) {
-      this.pieChartData = [pregunta.nA, pregunta.nB, pregunta.nC]
-      if (this.datosGrafico == undefined) {
+    for (const pregunta of preguntas) {
+      this.pieChartData = [pregunta.nA, pregunta.nB, pregunta.nC];
+      if (this.datosGrafico === undefined) {
         this.datosGrafico = [this.pieChartData];
       } else {
         this.datosGrafico.push(this.pieChartData);
@@ -99,9 +99,9 @@ export class EncuestaComponent implements OnInit {
   deletePregunta(id: number) {
     this.encuestaService.deletePregunta(id).subscribe(result => {
       this.getAllPreguntas();
-    }), error => {
+    }, error => {
       console.error(error);
-    }
+    });
   }
 
   openDialogAddPregunta() {
@@ -123,7 +123,7 @@ export class EncuestaComponent implements OnInit {
 
     dialogFinEncuesta.afterClosed().subscribe(result => {
       this.router.navigate(['/component/proyectos']);
-    })
+    });
   }
 
   public randomizeType() {
@@ -146,17 +146,17 @@ export class EncuestaComponent implements OnInit {
   }
 
   enviarEncuesta() {
-    console.log('All right!')
+    console.log('All right!');
     console.log(this.respuestas);
 
-    for (let respuesta of this.respuestas) {
-      for (let pregunta of this.preguntas) {
-        if (respuesta.pregunta == pregunta.pregunta) {
-          if (respuesta.respuestaMarcada == pregunta.respuestaA) {
+    for (const respuesta of this.respuestas) {
+      for (const pregunta of this.preguntas) {
+        if (respuesta.pregunta === pregunta.pregunta) {
+          if (respuesta.respuestaMarcada === pregunta.respuestaA) {
             pregunta.nA = pregunta.nA + 1;
-          } else if (respuesta.respuestaMarcada == pregunta.respuestaB) {
+          } else if (respuesta.respuestaMarcada === pregunta.respuestaB) {
             pregunta.nB = pregunta.nB + 1;
-          } else if (respuesta.respuestaMarcada == pregunta.respuestaC) {
+          } else if (respuesta.respuestaMarcada === pregunta.respuestaC) {
             pregunta.nC = pregunta.nC + 1;
           }
 
@@ -173,21 +173,21 @@ export class EncuestaComponent implements OnInit {
 
   /*ENVIA UN ARRAY DE PREGUNTAS RESPONDIDAS*/
   enviarPreguntas() {
-    console.log('All right!')
+    console.log('All right!');
     console.log(this.respuestas);
 
-    for (let respuesta of this.respuestas) {
-      for (let pregunta of this.preguntas) {
-        if (respuesta.pregunta == pregunta.pregunta) {
-          if (respuesta.respuestaMarcada == pregunta.respuestaA) {
+    for (const respuesta of this.respuestas) {
+      for (const pregunta of this.preguntas) {
+        if (respuesta.pregunta === pregunta.pregunta) {
+          if (respuesta.respuestaMarcada === pregunta.respuestaA) {
             pregunta.nA = pregunta.nA + 1;
-          } else if (respuesta.respuestaMarcada == pregunta.respuestaB) {
+          } else if (respuesta.respuestaMarcada === pregunta.respuestaB) {
             pregunta.nB = pregunta.nB + 1;
-          } else if (respuesta.respuestaMarcada == pregunta.respuestaC) {
+          } else if (respuesta.respuestaMarcada === pregunta.respuestaC) {
             pregunta.nC = pregunta.nC + 1;
           }
 
-          if (this.preguntasRespondidas == undefined) {
+          if (this.preguntasRespondidas === undefined) {
             this.preguntasRespondidas = [new UpdatePreguntasDto(pregunta.nA, pregunta.nB, pregunta.nC)];
           } else {
             this.preguntasRespondidas.push(new UpdatePreguntasDto(pregunta.nA, pregunta.nB, pregunta.nC));
@@ -206,22 +206,22 @@ export class EncuestaComponent implements OnInit {
   }
 
   rellenarArrayRespuesta(pregunta: String, respuestaMarcada: String) {
-    //comprobar si no se ha marcado anteriormente, y en su defecto la modifica
+    // comprobar si no se ha marcado anteriormente, y en su defecto la modifica
 
     let encontrada = false;
     let i = 0;
     let indice = 0;
 
-    if (this.respuestas == undefined) {
+    if (this.respuestas === undefined) {
 
       this.respuestas = [new PreguntaRespondidaDto(pregunta, respuestaMarcada)];
 
     } else {
 
-      for (let respuestaSelec of this.respuestas) {
+      for (const respuestaSelec of this.respuestas) {
 
-        if (respuestaSelec.pregunta == pregunta) {
-          console.log('KAJSAHDKJ')
+        if (respuestaSelec.pregunta === pregunta) {
+          console.log('KAJSAHDKJ');
           encontrada = true;
           indice = i;
         }
@@ -243,34 +243,34 @@ export class EncuestaComponent implements OnInit {
     /**
      * Creamos el documento PDF
      */
-    var doc = new jsPDF();
-    let i=10;
+    const doc = new jsPDF();
+    let i = 10;
 
     doc.setFontSize(18);
     doc.setFontType('bold');
     doc.text('RESULTADOS ENCUESTA EXPO FP 2019 - SALESIANOS TRIANA', 5, i);
-    i=i+20;
+    i = i + 20;
 
-    doc.setFontSize(14)
-    for(let p of this.preguntas){
+    doc.setFontSize(14);
+    for (const p of this.preguntas) {
       doc.setFontType('bold');
       doc.text(p.pregunta, 10, i);
-      i=i+10;
+      i = i + 10;
 
 
       doc.setFontType('normal');
-      doc.text('A - '+p.respuestaA+' '+ p.nA, 15, i);
-      i=i+10;
+      doc.text('A - ' + p.respuestaA + ' ' + p.nA, 15, i);
+      i = i + 10;
 
-      doc.text('B - '+p.respuestaB+' '+ p.nB, 15, i);
-      i=i+10;
+      doc.text('B - ' + p.respuestaB + ' ' + p.nB, 15, i);
+      i = i + 10;
 
-      if(p.respuestaC != null){
-        doc.text('C - '+p.respuestaC+' '+ p.nC, 15, i);
-        i=i+10;
+      if (p.respuestaC != null) {
+        doc.text('C - ' + p.respuestaC + ' ' + p.nC, 15, i);
+        i = i + 10;
       }
 
-      i=i+20;
+      i = i + 20;
     }
 
     /**

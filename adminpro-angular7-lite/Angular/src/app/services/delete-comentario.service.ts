@@ -30,4 +30,27 @@ export class DeleteComentarioService {
     };
     return this.http.delete(`${environment.ApiUrl}/Comentarios/${autor}/${id}`, requestOptions);
   }
+
+  deleteUltimoComentario(autor: String, contenido: String) {
+    const requestOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+        'Access-Control-Allow-Origin': '*'
+      })
+    };
+    return this.http.delete(`${environment.ApiUrl}/Proyectos/${autor}/${contenido}`, requestOptions);
+  }
+
+
+  deleteUltimoComentarioUser(autor: String, contenido: String) {
+    const requestOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+        'Access-Control-Allow-Origin': '*'
+      })
+    };
+    return this.http.delete(`${environment.ApiUrl}/Proyectos/${autor}/${contenido}`, requestOptions);
+  }
 }

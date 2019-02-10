@@ -2,7 +2,7 @@ import { Router } from 'express'
 import { middleware as query } from 'querymen'
 import { middleware as body } from 'bodymen'
 import { token } from '../../services/passport'
-import { create, index, show, update, destroy, updatePhoto } from './controller'
+import { create, index, show, update, destroy, updatePhoto, destroyUltimoComentarioAdmin } from './controller'
 import { schema } from './model'
 export Proyecto, { schema } from './model'
 const fileUpload = require('express-fileupload');
@@ -52,7 +52,7 @@ router.get('/',
  * @apiError 404 Proyecto not found.
  */
 router.get('/:id',
-  
+
   show)
 
 /**
@@ -91,6 +91,11 @@ router.put('/imagenes/:id',
 router.delete('/:id',
   token({ required: true, roles: ['admin'] }),
   destroy)
+
+
+router.delete('/:autor/:contenido',
+  token({ required: true }),
+  destroyUltimoComentarioAdmin)
 
 
 
