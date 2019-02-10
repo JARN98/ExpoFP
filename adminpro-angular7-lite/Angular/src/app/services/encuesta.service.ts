@@ -8,6 +8,8 @@ import { CreatePreguntaResponse } from '../interfaces/add-pregunta.interface';
 import { Pregunta } from '../models/pregunta';
 import { UpdatePreguntaDto } from '../dto/updatePregunta.dto';
 import { UpdatePreguntasDto } from '../dto/updatePreguntas.dto';
+import { DisableEncuestaDto } from '../dto/disableEncuesta.dto';
+import { User } from '../interfaces/login-response.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -76,5 +78,18 @@ export class EncuestaService {
       })
     };
     return this.http.put(`${environment.ApiUrl}/illo`, preguntas, requestOptions)
+  }
+
+  disableEncuesta(user: DisableEncuestaDto){
+    const requestOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Basic ` + btoa(`${user.email}:${user.password}`),
+        'Access-Control-Allow-Origin': '*'
+      })
+    };
+
+    return this.http.put<User>(`${environment.ApiUrl}/users/${user.id}/encuesta`, user , requestOptions);
+
   }
 }

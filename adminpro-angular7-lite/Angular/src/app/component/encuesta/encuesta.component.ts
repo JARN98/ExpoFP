@@ -12,6 +12,7 @@ import { UpdatePreguntaDto } from '../../dto/updatePregunta.dto';
 import { UpdatePreguntasDto } from '../../dto/updatePreguntas.dto';
 import { FinEncuestaComponent } from '../../dialogs/fin-encuesta/fin-encuesta.component';
 import jsPDF from 'jspdf';
+import { DisableEncuestaDto } from '../../dto/disableEncuesta.dto';
 
 @Component({
   selector: 'app-encuesta',
@@ -27,6 +28,8 @@ export class EncuestaComponent implements OnInit {
   respuestasa: String;
   preguntasRespondidas: UpdatePreguntasDto[];
   datosGrafico: any[];
+  disableEncuesa: DisableEncuestaDto;
+  encuesta = localStorage.getItem('encuesta');
 
   /*DATOS GRÁFICO*/
   public pieChartLabels: string[] = ['A', 'B', 'C'];
@@ -169,6 +172,8 @@ export class EncuestaComponent implements OnInit {
     }
 
     this.openDialogFinEncuesta();
+    this.encuestaService.disableEncuesta(new DisableEncuestaDto(true, localStorage.getItem('id'),
+        localStorage.getItem('email'), localStorage.getItem('password')));
   }
 
   /*ENVIA UN ARRAY DE PREGUNTAS RESPONDIDAS*/
