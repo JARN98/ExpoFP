@@ -239,9 +239,6 @@ export class EncuestaComponent implements OnInit {
 
   }
 
-<<<<<<< HEAD
-
-=======
   downloadPDF() {
     /**
      * Creamos el documento PDF
@@ -262,7 +259,6 @@ export class EncuestaComponent implements OnInit {
     doc.save('ExpoFP19.pdf');
   }
 
-  
->>>>>>> 91bc506691e2c13cb3d331c02cb23996d5a164d6
+
 
 }
