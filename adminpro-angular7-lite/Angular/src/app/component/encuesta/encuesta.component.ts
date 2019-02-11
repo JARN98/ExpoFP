@@ -173,16 +173,10 @@ export class EncuestaComponent implements OnInit {
     }
 
     this.openDialogFinEncuesta();
-<<<<<<< HEAD
     this.encuestaService.disableEncuesta(localStorage.getItem('id'),
       localStorage.getItem('email'),
       localStorage.getItem('password'),
       new DisableEncuestaDto(true));
-=======
-    this.encuestaService.disableEncuesta(localStorage.getItem('id'), localStorage.getItem('email'), localStorage.getItem('password'), new DisableEncuestaDto(true)).subscribe(res => {
-      console.log('ya no mas!')
-    });
->>>>>>> 4f4914d905054df90216794924a63073419fc7bd
   }
 
   /*ENVIA UN ARRAY DE PREGUNTAS RESPONDIDAS*/
