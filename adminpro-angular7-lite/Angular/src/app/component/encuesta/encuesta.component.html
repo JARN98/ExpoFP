@@ -8,7 +8,7 @@
             <mat-list-item *ngIf="isAdmin()">
 
                 <div class="container" id="grafico">
-                    <div class="col-sm-4 text-center" >
+                    <div class="col-sm-5 text-right" >
                         <!-- (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)" valoresgraficos(pregunta)  (chartClick)="chartClicked($event)"-->
                         <canvas baseChart [legend]=false [data]="[pregunta.nA, pregunta.nB, pregunta.nC]" [labels]="pieChartLabels" [chartType]="pieChartType" (chartHover)="chartHovered($event)"></canvas>
                     </div>
@@ -23,7 +23,7 @@
         </mat-card>
 
     </mat-list>
-    <button *ngIf="isAdmin()" color="primary" (click)="openDialogAddPregunta()" type="button" class="btn btn-success btn-circle btn-lg mat-fab-bottom-right" style="z-index: 9;"><i class="fa fa-plus fa-x"></i></button>
+    <button *ngIf="isAdmin()" id="addReq" color="primary" (click)="openDialogAddPregunta()" type="button" class="btn btn-success btn-circle btn-lg mat-fab-bottom-right" style="z-index: 9;"><i class="fa fa-plus fa-x"></i></button>
 </div>
 <!--**FORMULARIO ENCUESTA (USER)-->
 <div id="form" fxFlexFill *ngIf="!isAdmin()">

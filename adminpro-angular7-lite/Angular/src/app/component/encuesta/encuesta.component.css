@@ -34,3 +34,13 @@ button[mat-fab]#descargaCSV{
     margin-left: 2%;
     background-color: #007233;;
 }
+
+.col-sm-5{
+    float: right;
+    margin-right: 20%;
+    margin-bottom: 5%;
+}
+
+#addReq{
+    float: right;
+}

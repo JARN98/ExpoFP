@@ -290,17 +290,6 @@ export class EncuestaComponent implements OnInit {
       i = i + 20;
     }
 
-    /**
-     * Rellenar documento PDF, cada llamada a text(texto: String, margenIzq: number, margenTop: number)
-     * anade el texto deseado en la posicion Izq y Top deseada
-     */
-    // doc.text(this.preguntas[1].pregunta, 10, 10);
-    // doc.text(this.preguntas[1].respuestaA, 10, 20);
-    // doc.text(this.preguntas[1].respuestaB, 10, 30);
-    // doc.text(this.preguntas[1].respuestaC, 10, 40);
-    /**
-     * Se inicia la descarga del documento PDF llamando a save(nombreDocumento: String)
-     */
     doc.save('ExpoFP19.pdf');
   }
 
