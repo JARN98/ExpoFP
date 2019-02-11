@@ -7,16 +7,16 @@
 // const firebase = require('firebase');
 export const environment = {
   production: false,
-  //ApiUrl: 'http://localhost:8080',
-  ApiUrl: 'http://localhost:9000',
+  ApiUrl: 'https://nodeexpo.herokuapp.com',
+  // ApiUrl: 'http://localhost:9000',
   imgUr: 'https://api.imgur.com/3',
   firebase: {
-    apiKey: "AIzaSyANHwzXni4jFSHUT6cI11nMUI5s05lKa3w",
-    authDomain: "expofp-salesianos.firebaseapp.com",
-    databaseURL: "https://expofp-salesianos.firebaseio.com",
-    projectId: "expofp-salesianos",
-    storageBucket: "expofp-salesianos.appspot.com",
-    messagingSenderId: "473316374076"
+    apiKey: 'AIzaSyANHwzXni4jFSHUT6cI11nMUI5s05lKa3w',
+    authDomain: 'expofp-salesianos.firebaseapp.com',
+    databaseURL: 'https://expofp-salesianos.firebaseio.com',
+    projectId: 'expofp-salesianos',
+    storageBucket: 'expofp-salesianos.appspot.com',
+    messagingSenderId: '473316374076'
   }
 };
 

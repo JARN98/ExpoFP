@@ -19,4 +19,9 @@
     <string name="deRegistroaLogin">LOGIN</string>
     <string name="Logout">Cerrar sesión</string>
     <string name="CambiarPass">Cambiar contraseña</string>
+    <string name="ok">Salir</string>
+    <string name="cancel">Cancelar</string>
+    <string name="dialog_message">¿Estás seguro?</string>
+    <string name="dialog_title">¿Quieres cerrar sesión?</string>
+    <string name="boton_enviarencuesta">Enviar Encuesta</string>
 </resources>

@@ -172,7 +172,10 @@ export class EncuestaComponent implements OnInit {
     }
 
     this.openDialogFinEncuesta();
-    this.encuestaService.disableEncuesta(localStorage.getItem('id'), localStorage.getItem('email'), localStorage.getItem('password'), new DisableEncuestaDto(true));
+    this.encuestaService.disableEncuesta(localStorage.getItem('id'),
+      localStorage.getItem('email'),
+      localStorage.getItem('password'),
+      new DisableEncuestaDto(true));
   }
 
   /*ENVIA UN ARRAY DE PREGUNTAS RESPONDIDAS*/
@@ -243,10 +246,10 @@ export class EncuestaComponent implements OnInit {
 
   }
 
-  comprobarEncuesta(){
-    if(this.respuestas==undefined){
+  comprobarEncuesta() {
+    if (this.respuestas === undefined) {
       return false;
-    } else if (this.respuestas.length != this.preguntas.length){
+    } else if (this.respuestas.length !== this.preguntas.length) {
       return false;
     } else {
       return true;
