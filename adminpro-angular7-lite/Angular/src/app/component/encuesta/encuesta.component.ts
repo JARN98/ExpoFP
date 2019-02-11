@@ -173,16 +173,10 @@ export class EncuestaComponent implements OnInit {
     }
 
     this.openDialogFinEncuesta();
-<<<<<<< HEAD
     this.encuestaService.disableEncuesta(localStorage.getItem('id'),
       localStorage.getItem('email'),
       localStorage.getItem('password'),
       new DisableEncuestaDto(true));
-=======
-    this.encuestaService.disableEncuesta(localStorage.getItem('id'), localStorage.getItem('email'), localStorage.getItem('password'), new DisableEncuestaDto(true)).subscribe(res => {
-      console.log('ya no mas!')
-    });
->>>>>>> 4f4914d905054df90216794924a63073419fc7bd
   }
 
   /*ENVIA UN ARRAY DE PREGUNTAS RESPONDIDAS*/
@@ -300,52 +294,52 @@ export class EncuestaComponent implements OnInit {
     doc.save('ExpoFP19.pdf');
   }
 
-  downloadCSV(){
-      const options = { 
-        fieldSeparator: ',',
-        filename: 'ExpoFP19',
-        quoteStrings: '"',
-        decimalSeparator: '.',
-        showLabels: true, 
-        showTitle: true,
-        title: 'Encuesta satisfacción ExpoFP 2019 Salesianos Triana',
-        useTextFile: false,
-        useBom: true,
-        useKeysAsHeaders: true,
-        // headers: ['Column 1', 'Column 2', etc...] <-- Won't work with useKeysAsHeaders present!
-      };
+  downloadCSV() {
+    const options = {
+      fieldSeparator: ',',
+      filename: 'ExpoFP19',
+      quoteStrings: '"',
+      decimalSeparator: '.',
+      showLabels: true,
+      showTitle: true,
+      title: 'Encuesta satisfacción ExpoFP 2019 Salesianos Triana',
+      useTextFile: false,
+      useBom: true,
+      useKeysAsHeaders: true,
+      // headers: ['Column 1', 'Column 2', etc...] <-- Won't work with useKeysAsHeaders present!
+    };
 
-      var datos = [];
+    var datos = [];
 
-      for(let p of this.preguntas){
-        if(datos==undefined){
-          datos = [{
-            pregunta: p.pregunta,
-            respuestaA: p.respuestaA,
-            nA: p.nA,
-            respuestaB: p.respuestaB,
-            nB: p.nB,
-            respuestaC: p.respuestaC,
-            nC: p.nC
-          }]
-        } else {
-          datos.push({
-            pregunta: p.pregunta,
-            respuestaA: p.respuestaA,
-            nA: p.nA,
-            respuestaB: p.respuestaB,
-            nB: p.nB,
-            respuestaC: p.respuestaC,
-            nC: p.nC
-          })
-        }
+    for (let p of this.preguntas) {
+      if (datos == undefined) {
+        datos = [{
+          pregunta: p.pregunta,
+          respuestaA: p.respuestaA,
+          nA: p.nA,
+          respuestaB: p.respuestaB,
+          nB: p.nB,
+          respuestaC: p.respuestaC,
+          nC: p.nC
+        }]
+      } else {
+        datos.push({
+          pregunta: p.pregunta,
+          respuestaA: p.respuestaA,
+          nA: p.nA,
+          respuestaB: p.respuestaB,
+          nB: p.nB,
+          respuestaC: p.respuestaC,
+          nC: p.nC
+        })
       }
+    }
 
-      
 
-      const csvExporter = new ExportToCsv(options);
 
-      csvExporter.generateCsv(datos);
+    const csvExporter = new ExportToCsv(options);
+
+    csvExporter.generateCsv(datos);
   }
 
 

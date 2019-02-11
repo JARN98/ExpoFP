@@ -16,7 +16,7 @@ import { User } from '../interfaces/login-response.interface';
 })
 
 export class EncuestaService {
-  
+
   constructor(private http: HttpClient) { }
 
   listPreguntas(): Observable<ListApiResponse> {
@@ -32,7 +32,7 @@ export class EncuestaService {
 
   addPregunta(preguntaDto: PreguntaDto): Observable<CreatePreguntaResponse> {
     console.log(preguntaDto);
-    
+
     const requestOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -55,7 +55,7 @@ export class EncuestaService {
   }
 
   /*Actualiza la pregunta*/
-  updatePregunta(id: String, pregunta: UpdatePreguntaDto){
+  updatePregunta(id: String, pregunta: UpdatePreguntaDto) {
     const requestOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -69,7 +69,7 @@ export class EncuestaService {
   /*
   *Actualiza los datos de la encuesta recogiendo un array de respuestas
   */
-  updatePreguntas(preguntas: UpdatePreguntasDto[]){
+  updatePreguntas(preguntas: UpdatePreguntasDto[]) {
     const requestOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -80,7 +80,7 @@ export class EncuestaService {
     return this.http.put(`${environment.ApiUrl}/illo`, preguntas, requestOptions)
   }
 
-  disableEncuesta(id, email, password, user: DisableEncuestaDto){
+  disableEncuesta(id, email, password, user: DisableEncuestaDto) {
     const requestOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -89,7 +89,7 @@ export class EncuestaService {
       })
     };
 
-    return this.http.put<User>(`${environment.ApiUrl}/users/${id}/encuesta`, user , requestOptions);
+    return this.http.put<User>(`${environment.ApiUrl}/users/${id}/encuesta`, user, requestOptions);
 
   }
 }

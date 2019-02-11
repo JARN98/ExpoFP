@@ -16,9 +16,10 @@ import com.example.expofpapp.Fragments.LoginFragment;
 import com.example.expofpapp.Fragments.PerfilFragment;
 import com.example.expofpapp.Fragments.ProyectoResFragment;
 import com.example.expofpapp.Generator.UtilToken;
+import com.example.expofpapp.Listener.EncuestaListener;
 import com.example.expofpapp.Listener.ProyectoResListener;
 
-public class MainActivity extends AppCompatActivity implements ProyectoResListener {
+public class MainActivity extends AppCompatActivity implements ProyectoResListener, EncuestaListener {
 
     private TextView mTextMessage;
     private Fragment f;
