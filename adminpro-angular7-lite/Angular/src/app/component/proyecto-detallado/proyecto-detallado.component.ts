@@ -195,26 +195,23 @@ export class ProyectoDetalladoComponent implements OnInit {
     });
   }
 
-  async deleteUltimoComentario(autor: String, contenido: String) {
-    await this.deleteComentarioService.deleteUltimoComentario(autor, contenido).subscribe(result => {
+  deleteUltimoComentario(autor: String, contenido: String) {
+    this.deleteComentarioService.deleteUltimoComentario(autor, contenido).subscribe(result => {
       console.log('EYYY');
       this.getOneProject();
     }, error => {
       console.error(error);
     });
-
-    await this.getOneProject();
   }
 
 
-  async deleteUltimoComentarioUser(autor: String, contenido: String) {
-    await this.deleteComentarioService.deleteUltimoComentarioUser(autor, contenido).subscribe(result => {
+  deleteUltimoComentarioUser(autor: String, contenido: String) {
+    this.deleteComentarioService.deleteUltimoComentarioUser(autor, contenido).subscribe(result => {
       console.log('EYYY');
       this.getOneProject();
     }, error => {
       console.error(error);
     });
-    await this.getOneProject();
   }
 
   isAdmin() {

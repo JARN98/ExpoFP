@@ -1,13 +1,15 @@
 package com.example.expofpapp.Model;
 
 public class ProyectoRes {
+    private String id;
     private String nombre;
     private String imagen;
     private double valoracionMedia;
     private String proyecto;
     private String curso;
 
-    public ProyectoRes(String nombre, String imagen, double valoracionMedia, String proyecto, String curso) {
+    public ProyectoRes(String id, String nombre, String imagen, double valoracionMedia, String proyecto, String curso) {
+        this.id = id;
         this.nombre = nombre;
         this.imagen = imagen;
         this.valoracionMedia = valoracionMedia;
@@ -15,7 +17,12 @@ public class ProyectoRes {
         this.curso = curso;
     }
 
-    public ProyectoRes() {
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getNombre() {
@@ -66,6 +73,7 @@ public class ProyectoRes {
         ProyectoRes that = (ProyectoRes) o;
 
         if (Double.compare(that.valoracionMedia, valoracionMedia) != 0) return false;
+        if (id != null ? !id.equals(that.id) : that.id != null) return false;
         if (nombre != null ? !nombre.equals(that.nombre) : that.nombre != null) return false;
         if (imagen != null ? !imagen.equals(that.imagen) : that.imagen != null) return false;
         if (proyecto != null ? !proyecto.equals(that.proyecto) : that.proyecto != null)
@@ -77,7 +85,8 @@ public class ProyectoRes {
     public int hashCode() {
         int result;
         long temp;
-        result = nombre != null ? nombre.hashCode() : 0;
+        result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (nombre != null ? nombre.hashCode() : 0);
         result = 31 * result + (imagen != null ? imagen.hashCode() : 0);
         temp = Double.doubleToLongBits(valoracionMedia);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
@@ -85,4 +94,6 @@ public class ProyectoRes {
         result = 31 * result + (curso != null ? curso.hashCode() : 0);
         return result;
     }
+
+    
 }

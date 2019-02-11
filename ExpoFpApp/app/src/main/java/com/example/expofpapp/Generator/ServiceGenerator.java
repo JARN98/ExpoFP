@@ -36,28 +36,12 @@ public class ServiceGenerator {
     private static OkHttpClient.Builder httpClientBuilder =
             new OkHttpClient.Builder();
 
-    /**
-     * Crea un servicio sin autenticación básica o JWT
-     * Tan solo agrega la MASTER_KEY como un parámetro con nombre access_token
-     *
-     * @param serviceClass Tipo de servicio a crear
-     * @return El servicio ya creado
-     */
+
     public static <S> S createService(Class<S> serviceClass) {
         return createService(serviceClass, null, TipoAutenticacion.SIN_AUTENTICACION);
     }
 
-    /**
-     * Crea un servicio con autenticación básica.
-     * - Agrega la MASTER_KEY como un parámetro en la query con nombre access_token
-     * - Añade el encabezado Authorizacion Basic asdñljkadsfñlkjfadsñklsa
-     *
-     *
-     * @param serviceClass
-     * @param username
-     * @param password
-     * @return
-     */
+
     public static <S> S createService(Class<S> serviceClass, String username, String password) {
         if (!(username.isEmpty() || password.isEmpty())) {
             String credentials = Credentials.basic(username, password);
@@ -68,13 +52,6 @@ public class ServiceGenerator {
 
     public static <S> S createService(Class<S> serviceClass, final String authtoken, final TipoAutenticacion tipo) {
 
-        /*
-            Si la instancia de retrofit es nula, quiere decir que es la primera vez que vamos a generar el objeto,
-            con lo cual, tenemos que realizar la generación del mismo.
-            Si la instancia de retrofit no es nula, pero el tipoActual del servicio generado no es el mismo que el
-            solicitado, necesitamos generarlo de nuevo (por ejemplo, si actualmente tenemos autenticación básica,
-            y se requiere la autenticación por JWT).
-         */
 
 
 
@@ -101,7 +78,6 @@ public class ServiceGenerator {
             });
 
             if (tipo == TipoAutenticacion.SIN_AUTENTICACION || tipo == TipoAutenticacion.BASIC ) {
-                // Añadimos el interceptor de la master key
                 httpClientBuilder.addInterceptor(new Interceptor() {
                     @Override
                     public Response intercept(Chain chain) throws IOException {

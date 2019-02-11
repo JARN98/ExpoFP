@@ -6,18 +6,29 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.expofpapp.Adapters.MyProyectoResRecyclerViewAdapter;
+import com.example.expofpapp.Generator.ServiceGenerator;
 import com.example.expofpapp.Listener.ProyectoResListener;
 import com.example.expofpapp.Model.ProyectoRes;
+import com.example.expofpapp.Model.ProyectoResResponse;
+import com.example.expofpapp.Model.ResponseContainer;
 import com.example.expofpapp.R;
+import com.example.expofpapp.Services.ProyectoService;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class ProyectoResFragment extends Fragment {
@@ -68,29 +79,46 @@ public class ProyectoResFragment extends Fragment {
         // Set the adapter
         if (view instanceof RecyclerView) {
             ctx = view.getContext();
-            RecyclerView recyclerView = (RecyclerView) view;
+            final RecyclerView recyclerView = (RecyclerView) view;
             if (mColumnCount <= 1) {
                 recyclerView.setLayoutManager(new LinearLayoutManager(ctx));
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(ctx, mColumnCount));
             }
-            //recyclerView.setAdapter(new MyProyectoResRecyclerViewAdapter(DummyContent.ITEMS, mListener));
 
             //Aquí añado las cosas de retrofit para setear el adapter con los datos de la api
             proyectoResList = new ArrayList<>();
 
-            proyectoResList.add(new ProyectoRes("Nuevo Proyecto","https://imgur.com/QVHKrue",7.3,"kasdññsaldñads", "2DAM"));
-            proyectoResList.add(new ProyectoRes("Nuevo Proyecto","https://imgur.com/QVHKrue",7.3,"kasdññsaldñads", "2DAM"));
-            proyectoResList.add(new ProyectoRes("Nuevo Proyecto","https://imgur.com/QVHKrue",7.3,"kasdññsaldñads", "2DAM"));
-            proyectoResList.add(new ProyectoRes("Nuevo Proyecto","https://imgur.com/QVHKrue",7.3,"kasdññsaldñads", "2DAM"));
+
+            ProyectoService service = ServiceGenerator.createService(ProyectoService.class);
+            Call<ResponseContainer<ProyectoRes>> call = service.getListProyectos();
+
+            call.enqueue(new Callback<ResponseContainer<ProyectoRes>>() {
+
+                @Override
+                public void onResponse(Call<ResponseContainer<ProyectoRes>> call, Response<ResponseContainer<ProyectoRes>> response) {
+                    if (response.code() != 200) {
+                        Toast.makeText(getActivity(), "Error en petición", Toast.LENGTH_SHORT).show();
+                    } else {
+                        proyectoResList = response.body().getRows();
+
+                        adapter = new MyProyectoResRecyclerViewAdapter(
+                                ctx,
+                                proyectoResList,
+                                mListener
+                        );
+                        recyclerView.setAdapter(adapter);
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<ResponseContainer<ProyectoRes>> call, Throwable t) {
+                    Log.e("NetworkFailure", t.getMessage());
+                    Toast.makeText(getActivity(), "Error de conexión", Toast.LENGTH_SHORT).show();
+                }
 
 
-            adapter = new MyProyectoResRecyclerViewAdapter(
-                    ctx,
-                    proyectoResList,
-                    mListener
-            );
-            recyclerView.setAdapter(adapter);
+            });
         }
         return view;
     }
