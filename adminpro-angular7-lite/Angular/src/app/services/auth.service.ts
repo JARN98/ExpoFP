@@ -28,6 +28,7 @@ interface User {
   photoURL?: string;
   displayName?: string;
   favoriteColor?: string;
+  encuesta: boolean;
 }
 
 
