@@ -25,3 +25,12 @@ button[mat-mini-fab]#C {
 mat-card{
     height: 20%;
 }
+
+button[mat-fab]#descargaPDF{
+    background-color: #a61d21;
+}
+
+button[mat-fab]#descargaCSV{
+    margin-left: 2%;
+    background-color: #007233;;
+}

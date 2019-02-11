@@ -1,13 +1,14 @@
 <!--**ENCUESTA (ADMIN)-->
 <div fxFlex="100%" fxFlexFill *ngIf="isAdmin()">
-    <button mat-fab (click)="downloadPDF()"><i class="fas fa-arrow-down fa-2x"></i></button>
+    <button mat-fab (click)="downloadPDF()" id="descargaPDF"><i class="fas fa-file-pdf fa-2x"></i></button>
+    <button mat-fab (click)="downloadCSV()" id="descargaCSV"><i class="fas fa-file-csv fa-2x"></i></button>
     <mat-list fxFlexFill *ngFor="let pregunta of preguntas">
         <h1 mat-subheader *ngIf="isAdmin()">{{pregunta.pregunta}}<i class="mdi mdi-delete" (click)="deletePregunta(pregunta.id)"></i></h1>
         <mat-card>
             <mat-list-item *ngIf="isAdmin()">
 
                 <div class="container" id="grafico">
-                    <div class="col-sm-4 text-center">
+                    <div class="col-sm-4 text-center" >
                         <!-- (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)" valoresgraficos(pregunta)  (chartClick)="chartClicked($event)"-->
                         <canvas baseChart [legend]=false [data]="[pregunta.nA, pregunta.nB, pregunta.nC]" [labels]="pieChartLabels" [chartType]="pieChartType" (chartHover)="chartHovered($event)"></canvas>
                     </div>
@@ -25,7 +26,7 @@
     <button *ngIf="isAdmin()" color="primary" (click)="openDialogAddPregunta()" type="button" class="btn btn-success btn-circle btn-lg mat-fab-bottom-right" style="z-index: 9;"><i class="fa fa-plus fa-x"></i></button>
 </div>
 <!--**FORMULARIO ENCUESTA (USER)-->
-<div id="form" fxFlexFill *ngIf="!isAdmin() || encuesta">
+<div id="form" fxFlexFill *ngIf="!isAdmin()">
     <div fxFlexFill *ngFor="let pregunta of preguntas">
 
         <h2 mat-subheader>{{pregunta.pregunta}}</h2>
@@ -66,4 +67,8 @@
     </div>
 
 
+</div>
+
+<div fxFlexFill *ngIf="encuesta">
+    <p>Su encuesta ha sido recogida, muchas gracias por haber participado</p>
 </div>
