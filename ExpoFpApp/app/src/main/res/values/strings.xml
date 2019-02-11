@@ -1,7 +1,5 @@
 <resources>
     <string name="app_name">ExpoFpApp</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="Email">Email</string>
     <string name="Password">Contraseña</string>
@@ -19,6 +17,8 @@
     <string name="deRegistroaLogin">LOGIN</string>
     <string name="Logout">Cerrar sesión</string>
     <string name="CambiarPass">Cambiar contraseña</string>
+    <string name="NuevaPass">Nueva contraseña</string>
+    <string name="Cambiar">Cambiar</string>
     <string name="ok">Salir</string>
     <string name="cancel">Cancelar</string>
     <string name="dialog_message">¿Estás seguro?</string>
