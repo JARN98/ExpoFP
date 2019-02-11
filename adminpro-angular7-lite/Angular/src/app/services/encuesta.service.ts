@@ -80,11 +80,11 @@ export class EncuestaService {
     return this.http.put(`${environment.ApiUrl}/illo`, preguntas, requestOptions)
   }
 
-  disableEncuesta(id, email, password, user: DisableEncuestaDto) {
+  disableEncuesta(id: String, user: DisableEncuestaDto): Observable<User> {
     const requestOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'Authorization': `Basic ` + btoa(`${email}:${password}`),
+        'Authorization': `Bearer ${localStorage.getItem('token')}`,
         'Access-Control-Allow-Origin': '*'
       })
     };
