@@ -58,8 +58,11 @@
 
     </div>
     <br>
-    <div fxFlexFill>
+    <div fxFlexFill *ngIf="comprobarEncuesta()">
         <button mat-raised-button color="primary" fxFlex="100%" (click)="enviarEncuesta()">¡ENVIAR ENCUESTA!</button>
+    </div>
+    <div fxFlexFill *ngIf="!comprobarEncuesta()">
+        <button mat-raised-button color="primary" fxFlex="100%" disabled (click)="enviarEncuesta()">¡ENVIAR ENCUESTA!</button>
     </div>
 
 

@@ -172,8 +172,7 @@ export class EncuestaComponent implements OnInit {
     }
 
     this.openDialogFinEncuesta();
-    this.encuestaService.disableEncuesta(new DisableEncuestaDto(true, localStorage.getItem('id'),
-        localStorage.getItem('email'), localStorage.getItem('password')));
+    this.encuestaService.disableEncuesta(localStorage.getItem('id'), localStorage.getItem('email'), localStorage.getItem('password'), new DisableEncuestaDto(true));
   }
 
   /*ENVIA UN ARRAY DE PREGUNTAS RESPONDIDAS*/
@@ -244,6 +243,16 @@ export class EncuestaComponent implements OnInit {
 
   }
 
+  comprobarEncuesta(){
+    if(this.respuestas==undefined){
+      return false;
+    } else if (this.respuestas.length != this.preguntas.length){
+      return false;
+    } else {
+      return true;
+    }
+  }
+
   downloadPDF() {
     /**
      * Creamos el documento PDF
@@ -264,14 +273,14 @@ export class EncuestaComponent implements OnInit {
 
 
       doc.setFontType('normal');
-      doc.text('A - ' + p.respuestaA + ' ' + p.nA, 15, i);
+      doc.text('A - ' + p.respuestaA + ' - ' + p.nA, 15, i);
       i = i + 10;
 
-      doc.text('B - ' + p.respuestaB + ' ' + p.nB, 15, i);
+      doc.text('B - ' + p.respuestaB + ' - ' + p.nB, 15, i);
       i = i + 10;
 
       if (p.respuestaC != null) {
-        doc.text('C - ' + p.respuestaC + ' ' + p.nC, 15, i);
+        doc.text('C - ' + p.respuestaC + ' - ' + p.nC, 15, i);
         i = i + 10;
       }
 

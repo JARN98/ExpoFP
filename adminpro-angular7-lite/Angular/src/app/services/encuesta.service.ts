@@ -80,16 +80,16 @@ export class EncuestaService {
     return this.http.put(`${environment.ApiUrl}/illo`, preguntas, requestOptions)
   }
 
-  disableEncuesta(user: DisableEncuestaDto){
+  disableEncuesta(id, email, password, user: DisableEncuestaDto){
     const requestOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'Authorization': `Basic ` + btoa(`${user.email}:${user.password}`),
+        'Authorization': `Basic ` + btoa(`${email}:${password}`),
         'Access-Control-Allow-Origin': '*'
       })
     };
 
-    return this.http.put<User>(`${environment.ApiUrl}/users/${user.id}/encuesta`, user , requestOptions);
+    return this.http.put<User>(`${environment.ApiUrl}/users/${id}/encuesta`, user , requestOptions);
 
   }
 }

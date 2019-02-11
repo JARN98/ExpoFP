@@ -10,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.expofpapp.Fragments.LoginFragment;
+import com.example.expofpapp.Fragments.PerfilFragment;
 import com.example.expofpapp.Fragments.ProyectoResFragment;
 import com.example.expofpapp.Generator.UtilToken;
 import com.example.expofpapp.Listener.ProyectoResListener;
@@ -22,25 +23,26 @@ public class MainActivity extends AppCompatActivity implements ProyectoResListen
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
         Fragment f = null;
+
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
-                case R.id.navigation_home:
+                case R.id.navigation_proyectores:
                     f = new ProyectoResFragment();
-                    return true;
-                case R.id.navigation_dashboard:
-                    mTextMessage.setText(R.string.title_dashboard);
-                    return true;
-                case R.id.navigation_notifications:
+                    break;
+                case R.id.navigation_perfil:
+                    f = new PerfilFragment();
+                    break;
+                case R.id.navigation_encuesta:
                     mTextMessage.setText(R.string.title_notifications);
-                    return true;
+                    break;
             }
 
             getSupportFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.contenedor, new LoginFragment())
+                    .replace(R.id.contenedor_main,f)
                     .commit();
-            return false;
+            return true;
         }
     };
 
