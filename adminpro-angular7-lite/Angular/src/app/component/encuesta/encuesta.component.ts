@@ -264,14 +264,14 @@ export class EncuestaComponent implements OnInit {
 
 
       doc.setFontType('normal');
-      doc.text('A - ' + p.respuestaA + ' ' + p.nA, 15, i);
+      doc.text('A - ' + p.respuestaA + ' - ' + p.nA, 15, i);
       i = i + 10;
 
-      doc.text('B - ' + p.respuestaB + ' ' + p.nB, 15, i);
+      doc.text('B - ' + p.respuestaB + ' - ' + p.nB, 15, i);
       i = i + 10;
 
       if (p.respuestaC != null) {
-        doc.text('C - ' + p.respuestaC + ' ' + p.nC, 15, i);
+        doc.text('C - ' + p.respuestaC + ' - ' + p.nC, 15, i);
         i = i + 10;
       }
 
