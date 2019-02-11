@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.expofpapp.Generator.UtilUser;
 import com.example.expofpapp.MainActivity;
 import com.example.expofpapp.R;
 
@@ -145,6 +146,7 @@ public class LoginFragment extends Fragment {
                 } else {
 
                     UtilToken.setToken(getActivity(), response.body().getToken());
+                    UtilUser.setUserInfo(getActivity(), response.body().getUser());
 
                     startActivity(new Intent(getActivity(), MainActivity.class));
                 }

@@ -17,4 +17,6 @@
     <string name="Nombre">Nombre</string>
     <string name="RepetirPass">Repita su contraseña</string>
     <string name="deRegistroaLogin">LOGIN</string>
+    <string name="Logout">Cerrar sesión</string>
+    <string name="CambiarPass">Cambiar contraseña</string>
 </resources>
