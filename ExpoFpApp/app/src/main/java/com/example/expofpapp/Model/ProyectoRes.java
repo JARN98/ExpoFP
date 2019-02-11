@@ -95,5 +95,5 @@ public class ProyectoRes {
         return result;
     }
 
-    
+
 }

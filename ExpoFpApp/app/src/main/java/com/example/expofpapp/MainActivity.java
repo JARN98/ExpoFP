@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity implements ProyectoResListen
 
             getSupportFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.contenedor_main,f)
+                    .replace(R.id.contenedor_main, f)
                     .commit();
             return true;
         }
@@ -56,7 +56,10 @@ public class MainActivity extends AppCompatActivity implements ProyectoResListen
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         String token = UtilToken.getToken(this);
 
-        Toast.makeText(this, token, Toast.LENGTH_SHORT).show();
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.contenedor_main, new ProyectoResFragment())
+                .commit();
     }
 
     @Override
