@@ -1,8 +1,10 @@
 package com.example.expofpapp.Fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -16,9 +18,11 @@ import com.bumptech.glide.Glide;
 import com.example.expofpapp.Adapters.MyProyectoResRecyclerViewAdapter;
 import com.example.expofpapp.Generator.ServiceGenerator;
 import com.example.expofpapp.Listener.ProyectoResListener;
+import com.example.expofpapp.MainActivity;
 import com.example.expofpapp.Model.ProyectoRes;
 import com.example.expofpapp.Model.ProyectoResResponse;
 import com.example.expofpapp.Model.ResponseContainer;
+import com.example.expofpapp.ProyectoDetalladoActivity;
 import com.example.expofpapp.R;
 import com.example.expofpapp.Services.ProyectoService;
 
@@ -41,6 +45,7 @@ public class ProyectoResFragment extends Fragment {
     private ProyectoResListener mListener;
     List<ProyectoRes> proyectoResList;
     MyProyectoResRecyclerViewAdapter adapter;
+    CardView cardView_proyectoRes;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -88,7 +93,6 @@ public class ProyectoResFragment extends Fragment {
 
             //Aquí añado las cosas de retrofit para setear el adapter con los datos de la api
             proyectoResList = new ArrayList<>();
-
 
             ProyectoService service = ServiceGenerator.createService(ProyectoService.class);
             Call<ResponseContainer<ProyectoRes>> call = service.getListProyectos();
