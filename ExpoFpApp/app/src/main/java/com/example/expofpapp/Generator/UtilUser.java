@@ -98,6 +98,21 @@ public class UtilUser {
         editor.commit();
     }
 
+    public static boolean getEncuesta(Context mContext) {
+        setSharedPreferences(mContext);
+        Boolean encuesta = sharedPreferences
+                .getBoolean("Encuesta", false);
+
+        return encuesta;
+    }
+
+    public static void setEncuesta(Context mContext, Boolean encuesta) {
+        setSharedPreferences(mContext);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean("Encuesta", encuesta);
+        editor.commit();
+    }
+
     public static void clearSharedPreferences(Context mContext){
         setSharedPreferences(mContext);
         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -111,6 +126,7 @@ public class UtilUser {
         setImagen(mContext, user.getPicture());
         setRol(mContext, user.getRole());
         setId(mContext, user.getId());
+        setEncuesta(mContext, user.isEncuesta());
     }
 
 

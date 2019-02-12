@@ -7,6 +7,15 @@ public class User {
     private String picture;
     private String email;
     private String role;
+    private boolean encuesta;
+
+    public boolean isEncuesta() {
+        return encuesta;
+    }
+
+    public void setEncuesta(boolean encuesta) {
+        this.encuesta = encuesta;
+    }
 
     public void setId(String id) {
         this.id = id;

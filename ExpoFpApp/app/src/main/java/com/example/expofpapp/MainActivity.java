@@ -7,6 +7,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,20 +17,26 @@ import com.example.expofpapp.Fragments.LoginFragment;
 import com.example.expofpapp.Fragments.PerfilFragment;
 import com.example.expofpapp.Fragments.ProyectoResFragment;
 import com.example.expofpapp.Generator.UtilToken;
+import com.example.expofpapp.Generator.UtilUser;
 import com.example.expofpapp.Listener.EncuestaListener;
 import com.example.expofpapp.Listener.ProyectoResListener;
+
+import okhttp3.internal.Util;
 
 public class MainActivity extends AppCompatActivity implements ProyectoResListener, EncuestaListener {
 
     private TextView mTextMessage;
     private Fragment f;
-
+    private MenuItem encuesta;
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
         Fragment f = null;
 
+
+
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
             switch (item.getItemId()) {
                 case R.id.navigation_proyectores:
                     f = new ProyectoResFragment();
@@ -55,15 +62,23 @@ public class MainActivity extends AppCompatActivity implements ProyectoResListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mTextMessage = (TextView) findViewById(R.id.message);
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+
+        mTextMessage =  findViewById(R.id.message);
+        BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
+        if(UtilUser.getEncuesta(this)){
+            Menu menu = navigation.getMenu();
+        MenuItem item = menu.findItem(R.id.navigation_encuesta);
+        item.setVisible(false);
+        }
         String token = UtilToken.getToken(this);
 
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.contenedor_main, new ProyectoResFragment())
                 .commit();
+
     }
 
     @Override
