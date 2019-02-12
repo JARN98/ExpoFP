@@ -1,14 +1,17 @@
 package com.example.expofpapp;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,13 +24,13 @@ import com.example.expofpapp.Generator.UtilUser;
 import com.example.expofpapp.Listener.EncuestaListener;
 import com.example.expofpapp.Listener.ProyectoResListener;
 
-import okhttp3.internal.Util;
 
 public class MainActivity extends AppCompatActivity implements ProyectoResListener, EncuestaListener {
 
     private TextView mTextMessage;
     private Fragment f;
     private MenuItem encuesta;
+    private FloatingActionButton fab;
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
         Fragment f = null;
@@ -39,12 +42,15 @@ public class MainActivity extends AppCompatActivity implements ProyectoResListen
 
             switch (item.getItemId()) {
                 case R.id.navigation_proyectores:
+                    fab.hide();
                     f = new ProyectoResFragment();
                     break;
                 case R.id.navigation_perfil:
+                    fab.hide();
                     f = new PerfilFragment();
                     break;
                 case R.id.navigation_encuesta:
+                    fab.show();
                     f = new EncuestaFragment();
                     break;
             }
@@ -72,7 +78,10 @@ public class MainActivity extends AppCompatActivity implements ProyectoResListen
         MenuItem item = menu.findItem(R.id.navigation_encuesta);
         item.setVisible(false);
         }
-        String token = UtilToken.getToken(this);
+
+
+        fab = findViewById(R.id.fab);
+        fab.hide();
 
         getSupportFragmentManager()
                 .beginTransaction()
