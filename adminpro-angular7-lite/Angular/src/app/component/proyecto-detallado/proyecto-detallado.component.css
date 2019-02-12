@@ -13,7 +13,18 @@
     text-align: center;
 }
 
+#titulo{
+    width: 100%;
+}
+#titulo h3{
+    float: left;
+}
 mat-chip-list {
     float: left;
     margin-left: 1%;
+}
+
+button[mat-icon-button]{
+    color: #00bbf2;
+    float: right;
 }
