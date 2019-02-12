@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -23,6 +24,7 @@ public class MainActivity extends AppCompatActivity implements ProyectoResListen
 
     private TextView mTextMessage;
     private Fragment f;
+    private FloatingActionButton fab;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -32,12 +34,15 @@ public class MainActivity extends AppCompatActivity implements ProyectoResListen
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_proyectores:
+                    fab.hide();
                     f = new ProyectoResFragment();
                     break;
                 case R.id.navigation_perfil:
+                    fab.hide();
                     f = new PerfilFragment();
                     break;
                 case R.id.navigation_encuesta:
+                    fab.show();
                     f = new EncuestaFragment();
                     break;
             }
@@ -59,6 +64,9 @@ public class MainActivity extends AppCompatActivity implements ProyectoResListen
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         String token = UtilToken.getToken(this);
+
+        fab = findViewById(R.id.fab);
+        fab.hide();
 
         getSupportFragmentManager()
                 .beginTransaction()
