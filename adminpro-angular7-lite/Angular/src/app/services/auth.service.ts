@@ -28,6 +28,7 @@ interface User {
   photoURL?: string;
   displayName?: string;
   favoriteColor?: string;
+  encuesta: boolean;
 }
 
 
@@ -124,6 +125,7 @@ export class AuthService {
     localStorage.setItem('email', loginResponse.user.email);
     localStorage.setItem('role', loginResponse.user.role);
     localStorage.setItem('img', loginResponse.user.picture);
+    localStorage.setItem('encuesta', loginResponse.user.encuesta.toString());
 
   }
 

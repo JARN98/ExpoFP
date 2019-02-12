@@ -116,7 +116,7 @@ router.put('/:id/password',
  * @apiError 404 User not found.
  */
 router.put('/:id/encuesta',
-    passwordAuth(),
+    token({ required: true }),
     body({ encuesta }),
     updateEncuesta)
 

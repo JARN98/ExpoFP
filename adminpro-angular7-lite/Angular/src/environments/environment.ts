@@ -7,8 +7,8 @@
 // const firebase = require('firebase');
 export const environment = {
   production: false,
-  ApiUrl: 'https://nodeexpo.herokuapp.com',
-  // ApiUrl: 'http://localhost:9000',
+  // ApiUrl: 'https://nodeexpo.herokuapp.com',
+  ApiUrl: 'http://localhost:9000',
   imgUr: 'https://api.imgur.com/3',
   firebase: {
     apiKey: 'AIzaSyANHwzXni4jFSHUT6cI11nMUI5s05lKa3w',

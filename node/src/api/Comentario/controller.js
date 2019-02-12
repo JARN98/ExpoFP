@@ -12,9 +12,11 @@ var coment;
 /**
  * FILTRO DE COMENTARIOS
  */
-const filtro = ["tus muertos", "follar", "inútil", "marihuana", "weed", "tablaDeCiclistas"]
+const filtro = ["tus muertos", "follar", "inútil", "marihuana", "weed",
+    "tablaDeCiclistas", "mahou caliente", "gilipollas"
+]
 
-export const create = async ({ bodymen: { body } }, res, next) => {
+export const create = async({ bodymen: { body } }, res, next) => {
     await Comentario.create(body)
         .then((comentario) => {
             coment = comentario;
@@ -27,8 +29,7 @@ export const create = async ({ bodymen: { body } }, res, next) => {
                     store.set('valoracion', comentario.view(true).valoracion)
                     for (let f of filtro) {
                         if (comentario.view(true).contenido.indexOf(f) >= 0) {
-                            console.log("Que chaval mas mal hablado")
-                            comentario.contenido = "El comentario ha sido ocultado por contener palabras obsenas";
+                            comentario.contenido = "El comentario ha sido ocultado por contenido inadecuado";
 
                         }
                     }
@@ -102,7 +103,7 @@ export const create = async ({ bodymen: { body } }, res, next) => {
                                 console.log(proyectoRes);
 
                                 proyectoRes.valoracionMedia = proyecto.valoracionMedia
-                                // proyectoRes.save();
+                                    // proyectoRes.save();
 
                             })
                             .then(success(res))
@@ -120,33 +121,33 @@ export const create = async ({ bodymen: { body } }, res, next) => {
 
 export const index = ({ querymen: { query, select, cursor } }, res, next) =>
     Comentario.count(query)
-        .then(count => Comentario.find(query, select, cursor)
-            .then((comentarios) => ({
-                count,
-                rows: comentarios.map((comentario) => comentario.view())
-            }))
-        )
-        .then(success(res))
-        .catch(next)
+    .then(count => Comentario.find(query, select, cursor)
+        .then((comentarios) => ({
+            count,
+            rows: comentarios.map((comentario) => comentario.view())
+        }))
+    )
+    .then(success(res))
+    .catch(next)
 
 export const show = ({ params }, res, next) =>
     Comentario.find({ "proyecto": params.idProyecto })
-        .then(notFound(res))
-        .then((comentario) => {
-            return comentario
-        })
-        .then(success(res))
-        .catch(next)
+    .then(notFound(res))
+    .then((comentario) => {
+        return comentario
+    })
+    .then(success(res))
+    .catch(next)
 
 export const update = ({ bodymen: { body }, params }, res, next) =>
     Comentario.findById(params.id)
-        .then(notFound(res))
-        .then((comentario) => comentario ? Object.assign(comentario, body).save() : null)
-        .then((comentario) => comentario ? comentario.view(true) : null)
-        .then(success(res))
-        .catch(next)
+    .then(notFound(res))
+    .then((comentario) => comentario ? Object.assign(comentario, body).save() : null)
+    .then((comentario) => comentario ? comentario.view(true) : null)
+    .then(success(res))
+    .catch(next)
 
-export const destroy = async ({ params }, res, next) => {
+export const destroy = async({ params }, res, next) => {
     var comentarioG;
     await Comentario.findById(params.id)
         .then(notFound(res))
@@ -218,7 +219,7 @@ export const destroy = async ({ params }, res, next) => {
 
 }
 
-export const destroyUser = async ({ params }, res, next) => {
+export const destroyUser = async({ params }, res, next) => {
     var comentarioG;
     await Comentario.findById(params.id)
         .then(notFound(res))
@@ -285,4 +286,3 @@ export const destroyUser = async ({ params }, res, next) => {
         })
         .catch(next)
 };
-

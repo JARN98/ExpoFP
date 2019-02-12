@@ -4,5 +4,6 @@ export interface LoginResponse {
     email: string;
     picture: string;
     role: string;
+    encuesta: boolean;
     
 }

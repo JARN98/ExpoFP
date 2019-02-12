@@ -30,7 +30,7 @@ export class EncuestaComponent implements OnInit {
   preguntasRespondidas: UpdatePreguntasDto[];
   datosGrafico: any[];
   disableEncuesa: DisableEncuestaDto;
-  encuesta = localStorage.getItem('encuesta');
+  encuesta: boolean;
 
   /*DATOS GRÁFICO*/
   public pieChartLabels: string[] = ['A', 'B', 'C'];
@@ -56,6 +56,15 @@ export class EncuestaComponent implements OnInit {
   ngOnInit() {
     this.getAllPreguntas();
     // this.datos(this.preguntas);
+    console.log(localStorage.getItem('encuesta'))
+    console.log(this.isEncuesta())
+  }
+
+  isEncuesta(){
+    if(localStorage.getItem('encuesta')=="true")
+      return true;
+    else 
+      return false;
   }
 
   valoresgraficos(pregunta: Pregunta) {
@@ -172,11 +181,10 @@ export class EncuestaComponent implements OnInit {
       }
     }
 
-    this.openDialogFinEncuesta();
     this.encuestaService.disableEncuesta(localStorage.getItem('id'),
-      localStorage.getItem('email'),
-      localStorage.getItem('password'),
-      new DisableEncuestaDto(true));
+      new DisableEncuestaDto(true)).subscribe();
+
+    this.openDialogFinEncuesta();
   }
 
   /*ENVIA UN ARRAY DE PREGUNTAS RESPONDIDAS*/
@@ -335,11 +343,18 @@ export class EncuestaComponent implements OnInit {
       }
     }
 
+    // var familia = [{
+    //     madre: 'Loreto Martínez',
+    //     padre: 'Luis Enrique, tu padre es Amunike',
+    //     hijo: 'John Cena'
+    // }];
+
 
 
     const csvExporter = new ExportToCsv(options);
 
     csvExporter.generateCsv(datos);
+    // csvExporter.generateCsv(familia);
   }
 
 
