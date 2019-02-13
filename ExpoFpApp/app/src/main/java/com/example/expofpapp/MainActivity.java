@@ -11,14 +11,11 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AlertDialog;
-<<<<<<< HEAD
 import android.util.Log;
-=======
 
 import android.util.Log;
 
 import android.support.v7.app.AppCompatActivity;
->>>>>>> 5410f81c04d80720071acb106ae2517485c06397
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -49,16 +46,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-<<<<<<< HEAD
-public class MainActivity extends FragmentActivity implements ProyectoResListener, EncuestaListener {
-
-    private TextView mTextMessage;
-    private Fragment f;
-    public static FloatingActionButton fab;
-    EncuestaViewModel encuestaViewModel;
-
-
-=======
 
 public class MainActivity extends AppCompatActivity implements ProyectoResListener, EncuestaListener {
 
@@ -67,7 +54,6 @@ public class MainActivity extends AppCompatActivity implements ProyectoResListen
     private MenuItem encuesta;
     private FloatingActionButton fab;
     EncuestaViewModel encuestaViewModel;
->>>>>>> 5410f81c04d80720071acb106ae2517485c06397
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
         Fragment f = null;
