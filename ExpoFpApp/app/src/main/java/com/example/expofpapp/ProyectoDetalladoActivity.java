@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.example.expofpapp.Adapters.MyProyectoResRecyclerViewAdapter;
 import com.example.expofpapp.Adapters.ViewPagerAdapter;
 import com.example.expofpapp.Generator.ServiceGenerator;
+import com.example.expofpapp.Generator.TipoAutenticacion;
 import com.example.expofpapp.Model.Proyecto;
 import com.example.expofpapp.Model.ProyectoRes;
 import com.example.expofpapp.Model.ResponseContainer;
@@ -29,6 +30,8 @@ public class ProyectoDetalladoActivity extends AppCompatActivity {
     RatingBar rbValoracionMedia;
     String idProyec;
     Proyecto proyec;
+    String autores;
+    Float valoracionMedia;
 
 
     @Override
@@ -36,11 +39,11 @@ public class ProyectoDetalladoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_proyecto_detallado);
 
-        viewPager = (ViewPager) findViewById(R.id.viewPager);
-        tvDescripcion = (TextView) findViewById(R.id.tvDescripcion);
-        tvCurso = (TextView) findViewById(R.id.tvCurso);
-        tvAutores = (TextView) findViewById(R.id.tvAutores);
-        rbValoracionMedia = (RatingBar) findViewById(R.id.rbValoracionMedia);
+        viewPager = findViewById(R.id.viewPager);
+        tvDescripcion = findViewById(R.id.tvDescripcion);
+        tvCurso = findViewById(R.id.tvCurso);
+        tvAutores = findViewById(R.id.tvAutores);
+        rbValoracionMedia =  findViewById(R.id.rbValoracionMedia);
 
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(this);
         viewPager.setAdapter(viewPagerAdapter);
@@ -52,6 +55,7 @@ public class ProyectoDetalladoActivity extends AppCompatActivity {
         ProyectoService service = ServiceGenerator.createService(ProyectoService.class);
         Call<Proyecto> call = service.getProyecto(idProyec);
 
+
         call.enqueue(new Callback<Proyecto>() {
 
             @Override
@@ -61,10 +65,13 @@ public class ProyectoDetalladoActivity extends AppCompatActivity {
                 } else {
                    proyec = response.body();
 
+                   for(String autor : proyec.getAutores()) {
+                       autores = autores + " " + autor;
+                   }
                    tvCurso.setText(proyec.getCurso());
-                   tvAutores.setText(proyec.getAutores());
+                   tvAutores.setText(autores);
                    tvDescripcion.setText(proyec.getDescripcion());
-                   rbValoracionMedia.setOnRatingBarChangeListener(proyec.getValoracioMedia());
+                   rbValoracionMedia.setRating((float)proyec.getValoracioMedia());
                 }
             }
 

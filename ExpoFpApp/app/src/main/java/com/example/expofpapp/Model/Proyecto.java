@@ -6,18 +6,26 @@ import java.util.Arrays;
 
 public class Proyecto {
 
-    private int id;
+    private String id;
     private String nombre;
     private String descripcion;
     private String curso;
     private String imagenesDetalladas [];
-    private String autores;
+    private String autores[];
     private double valoracioMedia;
 
     public Proyecto() {
     }
 
-    public Proyecto(int id, String nombre, String descripcion, String curso, String[] imagenesDetalladas, String autores, double valoracioMedia) {
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public Proyecto(String id, String nombre, String descripcion, String curso, String[] imagenesDetalladas, String[] autores, double valoracioMedia) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -27,56 +35,48 @@ public class Proyecto {
         this.valoracioMedia = valoracioMedia;
     }
 
-    public int getId() {
-        return id;
-    }
-
     public String getNombre() {
         return nombre;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public String getCurso() {
-        return curso;
-    }
-
-    public String[] getImagenesDetalladas() {
-        return imagenesDetalladas;
-    }
-
-    public String getAutores() {
-        return autores;
-    }
-
-    public RatingBar.OnRatingBarChangeListener getValoracioMedia() {
-        return valoracioMedia;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
+    public String getDescripcion() {
+        return descripcion;
+    }
+
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public String getCurso() {
+        return curso;
     }
 
     public void setCurso(String curso) {
         this.curso = curso;
     }
 
+    public String[] getImagenesDetalladas() {
+        return imagenesDetalladas;
+    }
+
     public void setImagenesDetalladas(String[] imagenesDetalladas) {
         this.imagenesDetalladas = imagenesDetalladas;
     }
 
-    public void setAutores(String autores) {
+    public String[] getAutores() {
+        return autores;
+    }
+
+    public void setAutores(String[] autores) {
         this.autores = autores;
+    }
+
+    public double getValoracioMedia() {
+        return valoracioMedia;
     }
 
     public void setValoracioMedia(double valoracioMedia) {
@@ -86,12 +86,12 @@ public class Proyecto {
     @Override
     public String toString() {
         return "Proyecto{" +
-                "id=" + id +
+                "id='" + id + '\'' +
                 ", nombre='" + nombre + '\'' +
                 ", descripcion='" + descripcion + '\'' +
                 ", curso='" + curso + '\'' +
                 ", imagenesDetalladas=" + Arrays.toString(imagenesDetalladas) +
-                ", autores='" + autores + '\'' +
+                ", autores=" + Arrays.toString(autores) +
                 ", valoracioMedia=" + valoracioMedia +
                 '}';
     }

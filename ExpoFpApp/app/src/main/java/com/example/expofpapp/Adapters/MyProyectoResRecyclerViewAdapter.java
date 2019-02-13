@@ -56,6 +56,7 @@ public class MyProyectoResRecyclerViewAdapter extends RecyclerView.Adapter<MyPro
                 Intent i = new Intent(contexto, ProyectoDetalladoActivity.class);
                 i.putExtra("id", holder.mItem.getProyecto() );
 
+
                 contexto.startActivity(i);
 
             }
