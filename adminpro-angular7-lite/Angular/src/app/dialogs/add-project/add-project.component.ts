@@ -34,7 +34,7 @@ export class AddProjectComponent implements OnInit {
   urlImagenes: any;
   autores: Autor[] = [
   ];
-  owners: String[]
+  owners: String[];
   urlImagen: any;
   dtoImagenUpload: UploadImageDto;
   editProjectDto: EditProjectDto;
@@ -76,10 +76,6 @@ export class AddProjectComponent implements OnInit {
       this.edit = true;
     }
     this.admin = this.loginService.isAdmin();
-
-    for(let a of this.autores){
-
-    }
   }
 
   getOneProject(id) {
@@ -215,20 +211,41 @@ export class AddProjectComponent implements OnInit {
   }
 
   editProject(id) {
-    // for(let a of this.autores){
-    //   if(this.owners==undefined){
-    //     this.owners=[a.nombre]
-    //   } else {
-    //     this.owners.push(a.nombre);
-    //   }
-    // }
-    // tslint:disable-next-line:max-line-length
-    this.editProjectDto = new EditProjectDto(this.form.controls['title'].value, this.owners, this.form.controls['curso'].value, this.form.controls['descripcion'].value, this.urlImagen);
-    this.editProjectService.editPro(this.editProjectDto, localStorage.getItem('idDeProyecto')).subscribe(proyecto => {
-      this.dialogRef.close();
-    }, err => {
-      console.log(err);
-    });
+
+    if (this.uploadImageDto === undefined) {
+
+      this.editProjectDto = new EditProjectDto(this.form.controls['title'].value,
+        this.owners,
+        this.form.controls['curso'].value,
+        this.form.controls['descripcion'].value,
+        this.urlImagen);
+
+
+      this.editProjectService.editPro(this.editProjectDto, localStorage.getItem('idDeProyecto')).subscribe(proyecto => {
+        this.dialogRef.close();
+      }, err => {
+        console.log(err);
+      });
+    } else {
+      this.uploadImageImgurService.UploadImage(this.uploadImageDto).subscribe(imagen => {
+
+
+        this.urlImagen = imagen.data.link;
+
+        this.editProjectDto = new EditProjectDto(this.form.controls['title'].value,
+          this.owners,
+          this.form.controls['curso'].value,
+          this.form.controls['descripcion'].value,
+          this.urlImagen);
+
+
+        this.editProjectService.editPro(this.editProjectDto, localStorage.getItem('idDeProyecto')).subscribe(proyecto => {
+          this.dialogRef.close();
+        }, err => {
+          console.log(err);
+        });
+      }, err => console.log(err));
+    }
 
   }
 
