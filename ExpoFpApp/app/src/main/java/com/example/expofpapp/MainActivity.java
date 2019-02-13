@@ -11,12 +11,11 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AlertDialog;
-<<<<<<< HEAD
+
 import android.util.Log;
-=======
+
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
->>>>>>> c801a7d7d39088ba398663a97d4922a266eaf702
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -36,22 +35,12 @@ import com.example.expofpapp.Services.EncuestaService;
 import com.example.expofpapp.Services.ProyectoService;
 import com.example.expofpapp.ViewModels.EncuestaViewModel;
 
-<<<<<<< HEAD
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivity extends FragmentActivity implements ProyectoResListener, EncuestaListener {
-
-    private TextView mTextMessage;
-    private Fragment f;
-    public static FloatingActionButton fab;
-    EncuestaViewModel encuestaViewModel;
-
-
-=======
 
 public class MainActivity extends AppCompatActivity implements ProyectoResListener, EncuestaListener {
 
@@ -59,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements ProyectoResListen
     private Fragment f;
     private MenuItem encuesta;
     private FloatingActionButton fab;
->>>>>>> c801a7d7d39088ba398663a97d4922a266eaf702
+    EncuestaViewModel encuestaViewModel;
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
         Fragment f = null;
