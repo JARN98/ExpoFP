@@ -110,68 +110,9 @@ public class SignUpFragment extends Fragment {
         btnRegistro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (uriSelected != null) {
-
-                    AuthService service = ServiceGenerator.createService(AuthService.class);
-                    ctx=getView().getContext();
-
-                    try {
-                        InputStream inputStream = ctx.getContentResolver().openInputStream(uriSelected);
-                        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                        BufferedInputStream bufferedInputStream = new BufferedInputStream(inputStream);
-                        int cantBytes;
-                        byte[] buffer = new byte[1024*4];
-
-                        while ((cantBytes = bufferedInputStream.read(buffer,0,1024*4)) != -1) {
-                            baos.write(buffer,0,cantBytes);
-                        }
-
-
-                        RequestBody requestFile =
-                                RequestBody.create(
-                                        MediaType.parse(ctx.getContentResolver().getType(uriSelected)), baos.toByteArray());
-
-
-                        MultipartBody.Part body =
-                                MultipartBody.Part.createFormData("picture", "picture", requestFile);
-
-
-                        RequestBody email = RequestBody.create(MultipartBody.FORM, etEmail.getText().toString());
-                        RequestBody password = RequestBody.create(MultipartBody.FORM, etPassword.getText().toString());
-                        RequestBody nombre = RequestBody.create(MultipartBody.FORM, etNombre.getText().toString());
-
-                        Call<LoginResponse> callRegister = service.doRegister(body, email, password, nombre);
-
-                        callRegister.enqueue(new Callback<LoginResponse>() {
-                            @Override
-                            public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
-                                if (response.isSuccessful()) {
-                                    Log.d("Uploaded", "Éxito");
-                                    Log.d("Uploaded", response.body().toString());
-                                } else {
-                                    Log.e("Upload error", response.errorBody().toString());
-                                }
-                            }
-
-                            @Override
-                            public void onFailure(Call<LoginResponse> call, Throwable t) {
-                                Log.e("Upload error", t.getMessage());
-                            }
-                        });
-
-
-                    } catch (FileNotFoundException e) {
-                        e.printStackTrace();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-
-
-                }
+                doRegister();
             }
         });
-
-
 
         btnRegistroaLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -184,6 +125,67 @@ public class SignUpFragment extends Fragment {
 
 
         return view;
+    }
+
+    public void doRegister(){
+        if (uriSelected != null) {
+
+            AuthService service = ServiceGenerator.createService(AuthService.class);
+            ctx=getView().getContext();
+
+            try {
+                InputStream inputStream = ctx.getContentResolver().openInputStream(uriSelected);
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                BufferedInputStream bufferedInputStream = new BufferedInputStream(inputStream);
+                int cantBytes;
+                byte[] buffer = new byte[1024*4];
+
+                while ((cantBytes = bufferedInputStream.read(buffer,0,1024*4)) != -1) {
+                    baos.write(buffer,0,cantBytes);
+                }
+
+
+                RequestBody requestFile =
+                        RequestBody.create(
+                                MediaType.parse(ctx.getContentResolver().getType(uriSelected)), baos.toByteArray());
+
+
+                MultipartBody.Part body =
+                        MultipartBody.Part.createFormData("picture", "picture", requestFile);
+
+
+                RequestBody email = RequestBody.create(MultipartBody.FORM, etEmail.getText().toString().trim());
+                RequestBody password = RequestBody.create(MultipartBody.FORM, etPassword.getText().toString().trim());
+                RequestBody nombre = RequestBody.create(MultipartBody.FORM, etNombre.getText().toString().trim());
+
+                Call<LoginResponse> callRegister = service.doRegister(body, email, password, nombre);
+
+                callRegister.enqueue(new Callback<LoginResponse>() {
+                    @Override
+                    public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+                        if (response.isSuccessful()) {
+                            Log.d("Uploaded", "Éxito");
+                            Log.d("Uploaded", response.body().toString());
+                        } else {
+                            Log.e("Upload error", response.errorBody().toString());
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<LoginResponse> call, Throwable t) {
+                        Log.e("Upload error", t.getMessage());
+                    }
+                });
+
+
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+
+        }
     }
 
 

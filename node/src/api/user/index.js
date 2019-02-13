@@ -2,13 +2,16 @@ import { Router } from 'express'
 import { middleware as query } from 'querymen'
 import { middleware as body } from 'bodymen'
 import { password as passwordAuth, master, token } from '../../services/passport'
-import { index, showMe, show, create, update, updatePassword, destroy, updateEncuesta } from './controller'
+import { index, showMe, show, create, update, updatePassword, destroy, updateEncuesta, createAndroid } from './controller'
 import { schema } from './model'
 export User, { schema }
 from './model'
 
 const router = new Router()
 const { email, password, name, picture, role, encuesta } = schema.tree
+const multer = require('multer')
+const storage = multer.memoryStorage()
+const upload = multer({storage: storage})
 
 /**
  * @api {get} /users Retrieve users
@@ -69,6 +72,28 @@ router.post('/',
     master(),
     body({ email, password, name, picture, role }),
     create)
+
+/**
+ * @api {post} /users Create user Android
+ * @apiName Create Users Android
+ * @apiGroup User
+ * @apiPermission master
+ * @apiParam {String} access_token Master access_token.
+ * @apiParam {String} email User's email.
+ * @apiParam {String{6..}} password User's password.
+ * @apiParam {String} [name] User's name.
+ * @apiParam {String} [picture] User's picture.
+ * @apiParam {String=user,admin} [role=user] User's role.
+ * @apiSuccess (Sucess 201) {Object} user User's data.
+ * @apiError {Object} 400 Some parameters may contain invalid values.
+ * @apiError 401 Master access only.
+ * @apiError 409 Email already registered.
+ */
+router.post('/android',
+    master(),
+    upload.single('picture'),
+    createAndroid
+)
 
 /**
  * @api {put} /users/:id Update user
