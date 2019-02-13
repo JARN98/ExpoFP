@@ -1,8 +1,12 @@
 package com.example.expofpapp.Fragments;
 
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -19,10 +23,12 @@ import com.example.expofpapp.Generator.ServiceGenerator;
 import com.example.expofpapp.Generator.TipoAutenticacion;
 import com.example.expofpapp.Generator.UtilToken;
 import com.example.expofpapp.Listener.EncuestaListener;
+import com.example.expofpapp.MainActivity;
 import com.example.expofpapp.Model.Pregunta;
 import com.example.expofpapp.Model.ResponseContainer;
 import com.example.expofpapp.R;
 import com.example.expofpapp.Services.EncuestaService;
+import com.example.expofpapp.ViewModels.EncuestaViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,7 +46,7 @@ public class EncuestaFragment extends Fragment {
     List<Pregunta> preguntas;
     MyEncuestaRecyclerViewAdapter adapter;
 
-    public EncuestaFragment(){
+    public EncuestaFragment() {
     }
 
     // TODO: Rename and change types and number of parameters
@@ -58,6 +64,8 @@ public class EncuestaFragment extends Fragment {
         if (getArguments() != null) {
             mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
         }
+
+
     }
 
     @Override
@@ -109,6 +117,7 @@ public class EncuestaFragment extends Fragment {
         }
 
         //settear adapter con la lista de preguntas sacada de retrofit
+
 
 
         return view;

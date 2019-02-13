@@ -1,13 +1,19 @@
 package com.example.expofpapp;
 
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AlertDialog;
+
+import android.util.Log;
+
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,13 +22,24 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.expofpapp.Fragments.EncuestaFragment;
-import com.example.expofpapp.Fragments.LoginFragment;
 import com.example.expofpapp.Fragments.PerfilFragment;
 import com.example.expofpapp.Fragments.ProyectoResFragment;
+import com.example.expofpapp.Generator.ServiceGenerator;
+import com.example.expofpapp.Generator.TipoAutenticacion;
 import com.example.expofpapp.Generator.UtilToken;
 import com.example.expofpapp.Generator.UtilUser;
 import com.example.expofpapp.Listener.EncuestaListener;
 import com.example.expofpapp.Listener.ProyectoResListener;
+import com.example.expofpapp.Model.Pregunta;
+import com.example.expofpapp.Services.EncuestaService;
+import com.example.expofpapp.Services.ProyectoService;
+import com.example.expofpapp.ViewModels.EncuestaViewModel;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class MainActivity extends AppCompatActivity implements ProyectoResListener, EncuestaListener {
@@ -31,6 +48,7 @@ public class MainActivity extends AppCompatActivity implements ProyectoResListen
     private Fragment f;
     private MenuItem encuesta;
     private FloatingActionButton fab;
+    EncuestaViewModel encuestaViewModel;
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
         Fragment f = null;
@@ -79,9 +97,47 @@ public class MainActivity extends AppCompatActivity implements ProyectoResListen
         item.setVisible(false);
         }
 
-
         fab = findViewById(R.id.fab);
         fab.hide();
+
+        encuestaViewModel = ViewModelProviders.of((FragmentActivity) this).get(EncuestaViewModel.class);
+
+        encuestaViewModel.selected().observe(this, new Observer<List<Pregunta>>() {
+            @Override
+            public void onChanged(@Nullable List<Pregunta> preguntas) {
+                Toast.makeText(MainActivity.this, "" + encuestaViewModel.listaPreguntas.getValue().get(0), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                EncuestaService service = ServiceGenerator.createService(EncuestaService.class, UtilToken.getToken(MainActivity.this), TipoAutenticacion.JWT);
+
+                for (int i = 0; i < encuestaViewModel.listaPreguntas.getValue().size(); i++) {
+                    Call<Pregunta> call = service.enviarEncuesta(encuestaViewModel.listaPreguntas.getValue().get(i), encuestaViewModel.listaPreguntas.getValue().get(i).getId());
+
+
+                    call.enqueue(new Callback<Pregunta>() {
+                        @Override
+                        public void onResponse(Call<Pregunta> call, Response<Pregunta> response) {
+                            Toast.makeText(MainActivity.this, ""+response.code(), Toast.LENGTH_SHORT).show();
+                        }
+
+                        @Override
+                        public void onFailure(Call<Pregunta> call, Throwable t) {
+                            Log.e("NetworkFailure", t.getMessage());
+                            Toast.makeText(MainActivity.this, "Error de conexión", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+
+
+            }
+        });
+
 
         getSupportFragmentManager()
                 .beginTransaction()
