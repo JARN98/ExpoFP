@@ -16,7 +16,11 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.example.expofpapp.Generator.ServiceGenerator;
+
 import com.example.expofpapp.Generator.UtilUser;
+
+import com.example.expofpapp.MainActivity;
+
 import com.example.expofpapp.Model.LoginResponse;
 import com.example.expofpapp.R;
 import com.example.expofpapp.Services.AuthService;
@@ -34,14 +38,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link SignUpFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link SignUpFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class SignUpFragment extends Fragment {
     private static final int READ_REQUEST_CODE = 42;
     private EditText etEmail;
@@ -111,69 +107,9 @@ public class SignUpFragment extends Fragment {
         btnRegistro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (uriSelected != null) {
-
-                    AuthService service = ServiceGenerator.createService(AuthService.class);
-                    ctx=getView().getContext();
-
-                    try {
-                        InputStream inputStream = ctx.getContentResolver().openInputStream(uriSelected);
-                        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                        BufferedInputStream bufferedInputStream = new BufferedInputStream(inputStream);
-                        int cantBytes;
-                        byte[] buffer = new byte[1024*4];
-
-                        while ((cantBytes = bufferedInputStream.read(buffer,0,1024*4)) != -1) {
-                            baos.write(buffer,0,cantBytes);
-                        }
-
-
-                        RequestBody requestFile =
-                                RequestBody.create(
-                                        MediaType.parse(ctx.getContentResolver().getType(uriSelected)), baos.toByteArray());
-
-
-                        MultipartBody.Part body =
-                                MultipartBody.Part.createFormData("picture", "picture", requestFile);
-
-
-                        RequestBody email = RequestBody.create(MultipartBody.FORM, etEmail.getText().toString());
-                        RequestBody password = RequestBody.create(MultipartBody.FORM, etPassword.getText().toString());
-                        RequestBody nombre = RequestBody.create(MultipartBody.FORM, etNombre.getText().toString());
-
-                        Call<LoginResponse> callRegister = service.doRegister(body, email, password, nombre);
-
-                        callRegister.enqueue(new Callback<LoginResponse>() {
-                            @Override
-                            public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
-                                if (response.isSuccessful()) {
-                                    Log.d("Uploaded", "Éxito");
-                                    Log.d("Uploaded", response.body().toString());
-                                    UtilUser.setUserInfo(getActivity(), response.body().getUser());
-                                } else {
-                                    Log.e("Upload error", response.errorBody().toString());
-                                }
-                            }
-
-                            @Override
-                            public void onFailure(Call<LoginResponse> call, Throwable t) {
-                                Log.e("Upload error", t.getMessage());
-                            }
-                        });
-
-
-                    } catch (FileNotFoundException e) {
-                        e.printStackTrace();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-
-
-                }
+                doRegister();
             }
         });
-
-
 
         btnRegistroaLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -186,6 +122,69 @@ public class SignUpFragment extends Fragment {
 
 
         return view;
+    }
+
+    public void doRegister(){
+        if (uriSelected != null) {
+
+            AuthService service = ServiceGenerator.createService(AuthService.class);
+            ctx=getView().getContext();
+
+            try {
+                InputStream inputStream = ctx.getContentResolver().openInputStream(uriSelected);
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                BufferedInputStream bufferedInputStream = new BufferedInputStream(inputStream);
+                int cantBytes;
+                byte[] buffer = new byte[1024*4];
+
+                while ((cantBytes = bufferedInputStream.read(buffer,0,1024*4)) != -1) {
+                    baos.write(buffer,0,cantBytes);
+                }
+
+
+                RequestBody requestFile =
+                        RequestBody.create(
+                                MediaType.parse(ctx.getContentResolver().getType(uriSelected)), baos.toByteArray());
+
+
+                MultipartBody.Part body =
+                        MultipartBody.Part.createFormData("picture", "picture", requestFile);
+
+
+                RequestBody email = RequestBody.create(MultipartBody.FORM, etEmail.getText().toString().trim());
+                RequestBody password = RequestBody.create(MultipartBody.FORM, etPassword.getText().toString().trim());
+                RequestBody nombre = RequestBody.create(MultipartBody.FORM, etNombre.getText().toString().trim());
+
+                Call<LoginResponse> callRegister = service.doRegister(body, email, password, nombre);
+
+                callRegister.enqueue(new Callback<LoginResponse>() {
+                    @Override
+                    public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+                        if (response.isSuccessful()) {
+                            Log.d("Uploaded", "Éxito");
+                            Log.d("Uploaded", response.body().toString());
+                            UtilUser.setUserInfo(getActivity(), response.body().getUser());
+                            startActivity(new Intent(getActivity(), MainActivity.class));
+                        } else {
+                            Log.e("Upload error", response.errorBody().toString());
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<LoginResponse> call, Throwable t) {
+                        Log.e("Upload error", t.getMessage());
+                    }
+                });
+
+
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+
+        }
     }
 
 
