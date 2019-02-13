@@ -1,5 +1,7 @@
 package com.example.expofpapp.Model;
 
+import android.widget.RatingBar;
+
 import java.util.Arrays;
 
 public class Proyecto {
@@ -49,7 +51,7 @@ public class Proyecto {
         return autores;
     }
 
-    public double getValoracioMedia() {
+    public RatingBar.OnRatingBarChangeListener getValoracioMedia() {
         return valoracioMedia;
     }
 
