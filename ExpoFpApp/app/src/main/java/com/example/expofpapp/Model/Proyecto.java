@@ -1,78 +1,82 @@
 package com.example.expofpapp.Model;
 
+import android.widget.RatingBar;
+
+import java.util.Arrays;
+
 public class Proyecto {
 
-    private int id;
+    private String id;
     private String nombre;
     private String descripcion;
     private String curso;
-    private  String img;
-    private  String autores;
+    private String imagenesDetalladas [];
+    private String autores[];
     private double valoracioMedia;
 
     public Proyecto() {
     }
 
-    public Proyecto(int id, String nombre, String descripcion, String curso, String img, String autores, double valoracioMedia) {
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public Proyecto(String id, String nombre, String descripcion, String curso, String[] imagenesDetalladas, String[] autores, double valoracioMedia) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.curso = curso;
-        this.img = img;
+        this.imagenesDetalladas = imagenesDetalladas;
         this.autores = autores;
         this.valoracioMedia = valoracioMedia;
-    }
-
-    public int getId() {
-        return id;
     }
 
     public String getNombre() {
         return nombre;
     }
 
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public String getCurso() {
-        return curso;
-    }
-
-    public String getImg() {
-        return img;
-    }
-
-    public String getAutores() {
-        return autores;
-    }
-
-    public double getValoracioMedia() {
-        return valoracioMedia;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
     }
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
 
+    public String getCurso() {
+        return curso;
+    }
+
     public void setCurso(String curso) {
         this.curso = curso;
     }
 
-    public void setImg(String img) {
-        this.img = img;
+    public String[] getImagenesDetalladas() {
+        return imagenesDetalladas;
     }
 
-    public void setAutores(String autores) {
+    public void setImagenesDetalladas(String[] imagenesDetalladas) {
+        this.imagenesDetalladas = imagenesDetalladas;
+    }
+
+    public String[] getAutores() {
+        return autores;
+    }
+
+    public void setAutores(String[] autores) {
         this.autores = autores;
+    }
+
+    public double getValoracioMedia() {
+        return valoracioMedia;
     }
 
     public void setValoracioMedia(double valoracioMedia) {
@@ -82,12 +86,12 @@ public class Proyecto {
     @Override
     public String toString() {
         return "Proyecto{" +
-                "id=" + id +
+                "id='" + id + '\'' +
                 ", nombre='" + nombre + '\'' +
                 ", descripcion='" + descripcion + '\'' +
                 ", curso='" + curso + '\'' +
-                ", img='" + img + '\'' +
-                ", autores='" + autores + '\'' +
+                ", imagenesDetalladas=" + Arrays.toString(imagenesDetalladas) +
+                ", autores=" + Arrays.toString(autores) +
                 ", valoracioMedia=" + valoracioMedia +
                 '}';
     }
