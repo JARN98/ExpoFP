@@ -35,10 +35,12 @@
 	
 - [User](#user)
 	- [Create user](#create-user)
+	- [Create user Android](#create-user-android)
 	- [Delete user](#delete-user)
 	- [Retrieve current user](#retrieve-current-user)
 	- [Retrieve user](#retrieve-user)
 	- [Retrieve users](#retrieve-users)
+	- [Update encuesta](#update-encuesta)
 	- [Update password](#update-password)
 	- [Update user](#update-user)
 	
@@ -308,18 +310,8 @@
 
 
 
-	GET /ProyectoRes
+	GET /ProyectoRes/:id
 
-
-### Parameters
-
-| Name    | Type      | Description                          |
-|---------|-----------|--------------------------------------|
-| q			| String			| **optional** <p>Query to search.</p>							|
-| page			| Number			| **optional** <p>Page number.</p>							|
-| limit			| Number			| **optional** <p>Amount of returned items.</p>							|
-| sort			| String[]			| **optional** <p>Order of returned items.</p>							|
-| fields			| String[]			| **optional** <p>Fields to be returned.</p>							|
 
 ## Update proyecto res
 
@@ -340,6 +332,24 @@
 # User
 
 ## Create user
+
+
+
+	POST /users
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>Master access_token.</p>							|
+| email			| String			|  <p>User's email.</p>							|
+| password			| String			|  <p>User's password.</p>							|
+| name			| String			| **optional** <p>User's name.</p>							|
+| picture			| String			| **optional** <p>User's picture.</p>							|
+| role			| String			| **optional** <p>User's role.</p>							|
+
+## Create user Android
 
 
 
@@ -407,6 +417,24 @@
 | limit			| Number			| **optional** <p>Amount of returned items.</p>							|
 | sort			| String[]			| **optional** <p>Order of returned items.</p>							|
 | fields			| String[]			| **optional** <p>Fields to be returned.</p>							|
+
+## Update encuesta
+
+
+
+	PUT /users/:id/encuesta
+
+### Headers
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| Authorization			| String			|  <p>Basic authorization with email and password.</p>							|
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| encuesta			| String			|  <p>User's new encuesta.</p>							|
 
 ## Update password
 

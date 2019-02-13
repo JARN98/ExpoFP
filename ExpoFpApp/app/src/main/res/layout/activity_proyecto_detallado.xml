@@ -9,9 +9,9 @@
     <RelativeLayout
         android:id="@+id/relative"
         android:layout_width="match_parent"
-        android:layout_height="278dp"
+        android:layout_height="222dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="50dp"
         android:layout_marginEnd="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,10 +25,10 @@
 
     <ScrollView
         android:id="@+id/scrollView3"
-        android:layout_width="395dp"
+        android:layout_width="368dp"
         android:layout_height="252dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="60dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="41dp"
         app:layout_constraintBottom_toTopOf="@+id/button"
@@ -37,7 +37,7 @@
         app:layout_constraintTop_toBottomOf="@+id/relative">
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/tvDescripcion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.         Donec non purus ex. Mauris ultricies eget ante vel pharetra. Quisque         vestibulum nisi sit amet cursus venenatis. Suspendisse vel faucibus elit.         Phasellus luctus congue diam, vel commodo sem iaculis ac. Praesent iaculis         libero nec pretium semper. Nulla tortor nulla, elementum non vulputate ac, consectetur sit amet eros. In consequat odio nisl, sit amet malesuada dolor tempor sit amet. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nunc magna nunc, lacinia eget massa ut, ultrices imperdiet orci. Suspendisse sed dolor sed sapien sagittis efficitur. Nullam convallis urna placerat felis consectetur cursus. Morbi ac enim ac quam fringilla varius. Cras venenatis bibendum sapien.
@@ -70,6 +70,46 @@
         app:layout_constraintBottom_toBottomOf="@+id/button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/button" />
+
+    <TextView
+        android:id="@+id/tvAutores"
+        android:layout_width="203dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/relative"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvCurso"
+        android:layout_width="79dp"
+        android:layout_height="31dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/relative"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tvAutores"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <RatingBar
+        android:id="@+id/rbValoracionMedia"
+        style="@style/Widget.AppCompat.RatingBar.Small"
+        android:layout_width="161dp"
+        android:layout_height="22dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="230dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/scrollView3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relative" />
 
 
 </android.support.constraint.ConstraintLayout>

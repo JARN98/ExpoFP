@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ProyectoDetalladoActivity"></activity>
+        <activity android:name=".VerComentariosActivity"></activity>
+        <activity android:name=".ProyectoDetalladoActivity" />
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main" />
