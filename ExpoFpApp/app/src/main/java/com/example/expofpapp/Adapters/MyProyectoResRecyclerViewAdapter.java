@@ -26,6 +26,7 @@ public class MyProyectoResRecyclerViewAdapter extends RecyclerView.Adapter<MyPro
     private final ProyectoResListener mListener;
     private Context contexto;
 
+
     public MyProyectoResRecyclerViewAdapter(Context cxt, List<ProyectoRes> items, ProyectoResListener listener) {
         contexto = cxt;
         mValues = items;
@@ -47,10 +48,16 @@ public class MyProyectoResRecyclerViewAdapter extends RecyclerView.Adapter<MyPro
         holder.textView_titulo.setText(mValues.get(position).getNombre());
         holder.textView_curso.setText(mValues.get(position).getCurso());
 
+
+        //pasar id de poryec
         holder.imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                contexto.startActivity(new Intent(contexto, ProyectoDetalladoActivity.class));
+                Intent i = new Intent(contexto, ProyectoDetalladoActivity.class);
+                i.putExtra("id", holder.mItem.getProyecto() );
+
+                contexto.startActivity(i);
+
             }
         });
 
@@ -63,8 +70,7 @@ public class MyProyectoResRecyclerViewAdapter extends RecyclerView.Adapter<MyPro
             @Override
             public void onClick(View v) {
                 if (null != mListener) {
-                    // Notify the active callbacks interface (the activity, if the
-                    // fragment is attached to one) that an item has been selected.
+
                     mListener.verProyecto(holder.mItem.getProyecto());
                 }
             }

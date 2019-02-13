@@ -1,24 +1,26 @@
 package com.example.expofpapp.Model;
 
+import java.util.Arrays;
+
 public class Proyecto {
 
     private int id;
     private String nombre;
     private String descripcion;
     private String curso;
-    private  String img;
-    private  String autores;
+    private String imagenesDetalladas [];
+    private String autores;
     private double valoracioMedia;
 
     public Proyecto() {
     }
 
-    public Proyecto(int id, String nombre, String descripcion, String curso, String img, String autores, double valoracioMedia) {
+    public Proyecto(int id, String nombre, String descripcion, String curso, String[] imagenesDetalladas, String autores, double valoracioMedia) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.curso = curso;
-        this.img = img;
+        this.imagenesDetalladas = imagenesDetalladas;
         this.autores = autores;
         this.valoracioMedia = valoracioMedia;
     }
@@ -39,8 +41,8 @@ public class Proyecto {
         return curso;
     }
 
-    public String getImg() {
-        return img;
+    public String[] getImagenesDetalladas() {
+        return imagenesDetalladas;
     }
 
     public String getAutores() {
@@ -67,8 +69,8 @@ public class Proyecto {
         this.curso = curso;
     }
 
-    public void setImg(String img) {
-        this.img = img;
+    public void setImagenesDetalladas(String[] imagenesDetalladas) {
+        this.imagenesDetalladas = imagenesDetalladas;
     }
 
     public void setAutores(String autores) {
@@ -86,7 +88,7 @@ public class Proyecto {
                 ", nombre='" + nombre + '\'' +
                 ", descripcion='" + descripcion + '\'' +
                 ", curso='" + curso + '\'' +
-                ", img='" + img + '\'' +
+                ", imagenesDetalladas=" + Arrays.toString(imagenesDetalladas) +
                 ", autores='" + autores + '\'' +
                 ", valoracioMedia=" + valoracioMedia +
                 '}';
