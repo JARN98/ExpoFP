@@ -16,18 +16,15 @@ import com.example.expofpapp.Fragments.VerComentariosFragment.OnListFragmentInte
 import com.example.expofpapp.Model.Comentario;
 import com.example.expofpapp.R;
 
+
 import java.util.List;
 
-/**
- * {@link RecyclerView.Adapter} that can display a {@link DummyItem} and makes a call to the
- * specified {@link OnListFragmentInteractionListener}.
- * TODO: Replace the implementation with code for your data type.
- */
 public class MyComentariosRecyclerViewAdapter extends RecyclerView.Adapter<MyComentariosRecyclerViewAdapter.ViewHolder> {
 
     private final List<Comentario> mValues;
     private final OnListFragmentInteractionListener mListener;
     private final Context ctx;
+
 
     public MyComentariosRecyclerViewAdapter(Context cxt, List<Comentario> items, OnListFragmentInteractionListener listener) {
         ctx = cxt;
@@ -51,8 +48,7 @@ public class MyComentariosRecyclerViewAdapter extends RecyclerView.Adapter<MyCom
                 .with(this.ctx)
                 .load(holder.mItem.getImagenAutor())
                 .into(holder.imagen);
-        holder.valoracion.setRating(holder.mItem.getValoracion());
-
+        holder.valoracion.setRating((float)holder.mItem.getValoracion());
 
     }
 

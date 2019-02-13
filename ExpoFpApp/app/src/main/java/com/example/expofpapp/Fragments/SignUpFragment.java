@@ -16,6 +16,7 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.example.expofpapp.Generator.ServiceGenerator;
+import com.example.expofpapp.Generator.UtilUser;
 import com.example.expofpapp.Model.LoginResponse;
 import com.example.expofpapp.R;
 import com.example.expofpapp.Services.AuthService;
@@ -148,6 +149,7 @@ public class SignUpFragment extends Fragment {
                                 if (response.isSuccessful()) {
                                     Log.d("Uploaded", "Éxito");
                                     Log.d("Uploaded", response.body().toString());
+                                    UtilUser.setUserInfo(getActivity(), response.body().getUser());
                                 } else {
                                     Log.e("Upload error", response.errorBody().toString());
                                 }

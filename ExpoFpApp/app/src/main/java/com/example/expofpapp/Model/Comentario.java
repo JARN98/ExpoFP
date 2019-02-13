@@ -4,7 +4,7 @@ public class Comentario {
 
     private String nombreAutor;
     private String contenido;
-    private int valoracion;
+    private double valoracion;
     private boolean valido;
     private String imagenAutor;
     private String proyecto;
@@ -29,7 +29,7 @@ public class Comentario {
         return contenido;
     }
 
-    public int getValoracion() {
+    public double getValoracion() {
         return valoracion;
     }
 
@@ -53,7 +53,7 @@ public class Comentario {
         this.contenido = contenido;
     }
 
-    public void setValoracion(int valoracion) {
+    public void setValoracion(double valoracion) {
         this.valoracion = valoracion;
     }
 

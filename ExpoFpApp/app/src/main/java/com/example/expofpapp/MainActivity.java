@@ -35,8 +35,6 @@ public class MainActivity extends AppCompatActivity implements ProyectoResListen
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
         Fragment f = null;
 
-
-
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 

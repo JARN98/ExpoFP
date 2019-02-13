@@ -31,7 +31,7 @@
         android:layout_marginTop="60dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="41dp"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintBottom_toTopOf="@+id/buttonVerComentarios"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/relative">
@@ -50,7 +50,7 @@
     </ScrollView>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/buttonVerComentarios"
         android:layout_width="158dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
@@ -67,9 +67,9 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="30dp"
         android:text="Comentar"
-        app:layout_constraintBottom_toBottomOf="@+id/button"
+        app:layout_constraintBottom_toBottomOf="@+id/buttonVerComentarios"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/button" />
+        app:layout_constraintStart_toEndOf="@+id/buttonVerComentarios" />
 
     <TextView
         android:id="@+id/tvAutores"

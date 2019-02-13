@@ -1,5 +1,6 @@
 package com.example.expofpapp.Fragments;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -15,13 +16,18 @@ import android.widget.Toast;
 import com.example.expofpapp.Adapters.MyComentariosRecyclerViewAdapter;
 
 import com.example.expofpapp.Generator.ServiceGenerator;
+import com.example.expofpapp.Generator.TipoAutenticacion;
+import com.example.expofpapp.Generator.UtilToken;
 import com.example.expofpapp.Model.Comentario;
 import com.example.expofpapp.Model.ProyectoRes;
 import com.example.expofpapp.Model.ResponseContainer;
 import com.example.expofpapp.R;
 import com.example.expofpapp.Services.ComentarioService;
 import com.example.expofpapp.Services.ProyectoService;
+import com.example.expofpapp.VerComentariosActivity;
+import com.example.expofpapp.ViewModels.ComentarioViewModel;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -44,6 +50,8 @@ public class VerComentariosFragment extends Fragment {
     List<Comentario> cometariosList;
     MyComentariosRecyclerViewAdapter adapter;
     private Context ctx;
+    private ComentarioViewModel mViewModel;
+
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -85,10 +93,11 @@ public class VerComentariosFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(ctx, mColumnCount));
             }
+            mViewModel = ViewModelProviders.of(getActivity()).get(ComentarioViewModel.class);
+            cometariosList = new ArrayList<>();
 
-
-            ComentarioService service = ServiceGenerator.createService(ComentarioService.class);
-            Call<ResponseContainer<Comentario>> call = service.getComentariosProyecto("651");
+            ComentarioService service = ServiceGenerator.createService(ComentarioService.class, UtilToken.getToken(ctx), TipoAutenticacion.JWT );
+            Call<ResponseContainer<Comentario>> call = service.getComentariosProyecto(mViewModel.getSelectedId().getValue());
 
             call.enqueue(new Callback<ResponseContainer<Comentario>>() {
 

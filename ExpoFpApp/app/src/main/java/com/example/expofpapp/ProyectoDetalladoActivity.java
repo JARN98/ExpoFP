@@ -1,9 +1,12 @@
 package com.example.expofpapp;
 
+import android.content.Intent;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,6 +34,7 @@ public class ProyectoDetalladoActivity extends AppCompatActivity {
     String idProyec;
     Proyecto proyec;
     String autores;
+    Button btnVerComentarios;
     Float valoracionMedia;
 
 
@@ -44,6 +48,7 @@ public class ProyectoDetalladoActivity extends AppCompatActivity {
         tvCurso = findViewById(R.id.tvCurso);
         tvAutores = findViewById(R.id.tvAutores);
         rbValoracionMedia =  findViewById(R.id.rbValoracionMedia);
+        btnVerComentarios = findViewById(R.id.buttonVerComentarios);
 
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(this);
         viewPager.setAdapter(viewPagerAdapter);
@@ -83,6 +88,18 @@ public class ProyectoDetalladoActivity extends AppCompatActivity {
 
 
         });
+
+        btnVerComentarios.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(ProyectoDetalladoActivity.this, VerComentariosActivity.class);
+                i.putExtra("id", idProyec );
+
+                ProyectoDetalladoActivity.this.startActivity(i);
+
+            }
+        });
+
 
     }
 }
