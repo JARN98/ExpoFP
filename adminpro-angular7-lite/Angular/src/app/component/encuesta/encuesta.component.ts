@@ -181,7 +181,7 @@ export class EncuestaComponent implements OnInit {
       }
     }
 
-    this.encuestaService.disableEncuesta(localStorage.getItem('id'),
+    this.encuestaService.disableEncuesta(this.authService.getTokenDecode().id,
       new DisableEncuestaDto(true)).subscribe();
 
     this.openDialogFinEncuesta();

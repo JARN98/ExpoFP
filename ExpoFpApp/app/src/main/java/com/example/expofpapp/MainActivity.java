@@ -11,12 +11,8 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AlertDialog;
-<<<<<<< HEAD
 import android.util.Log;
-=======
-import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
->>>>>>> c801a7d7d39088ba398663a97d4922a266eaf702
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -31,12 +27,15 @@ import com.example.expofpapp.Generator.UtilToken;
 import com.example.expofpapp.Generator.UtilUser;
 import com.example.expofpapp.Listener.EncuestaListener;
 import com.example.expofpapp.Listener.ProyectoResListener;
+import com.example.expofpapp.Model.DisableEncuestaDto;
 import com.example.expofpapp.Model.Pregunta;
+import com.example.expofpapp.Model.UpdatePreguntaDto;
+import com.example.expofpapp.Model.User;
+import com.example.expofpapp.Services.AuthService;
 import com.example.expofpapp.Services.EncuestaService;
 import com.example.expofpapp.Services.ProyectoService;
 import com.example.expofpapp.ViewModels.EncuestaViewModel;
 
-<<<<<<< HEAD
 import java.util.List;
 
 import retrofit2.Call;
@@ -51,15 +50,6 @@ public class MainActivity extends FragmentActivity implements ProyectoResListene
     EncuestaViewModel encuestaViewModel;
 
 
-=======
-
-public class MainActivity extends AppCompatActivity implements ProyectoResListener, EncuestaListener {
-
-    private TextView mTextMessage;
-    private Fragment f;
-    private MenuItem encuesta;
-    private FloatingActionButton fab;
->>>>>>> c801a7d7d39088ba398663a97d4922a266eaf702
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
         Fragment f = null;
@@ -101,12 +91,9 @@ public class MainActivity extends AppCompatActivity implements ProyectoResListen
         mTextMessage =  findViewById(R.id.message);
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        final Menu menu = navigation.getMenu();
+        ocultarEncuesta(menu);
 
-        if(UtilUser.getEncuesta(this)){
-            Menu menu = navigation.getMenu();
-        MenuItem item = menu.findItem(R.id.navigation_encuesta);
-        item.setVisible(false);
-        }
 
         fab = findViewById(R.id.fab);
         fab.hide();
@@ -125,10 +112,13 @@ public class MainActivity extends AppCompatActivity implements ProyectoResListen
             @Override
             public void onClick(View v) {
 
+
+
                 EncuestaService service = ServiceGenerator.createService(EncuestaService.class, UtilToken.getToken(MainActivity.this), TipoAutenticacion.JWT);
 
                 for (int i = 0; i < encuestaViewModel.listaPreguntas.getValue().size(); i++) {
-                    Call<Pregunta> call = service.enviarEncuesta(encuestaViewModel.listaPreguntas.getValue().get(i), encuestaViewModel.listaPreguntas.getValue().get(i).getId());
+                    UpdatePreguntaDto update = new UpdatePreguntaDto(encuestaViewModel.listaPreguntas.getValue().get(i).getnA(), encuestaViewModel.listaPreguntas.getValue().get(i).getnB(), encuestaViewModel.listaPreguntas.getValue().get(i).getnC());
+                    Call<Pregunta> call = service.enviarEncuesta(update, encuestaViewModel.listaPreguntas.getValue().get(i).getId());
 
 
                     call.enqueue(new Callback<Pregunta>() {
@@ -140,10 +130,40 @@ public class MainActivity extends AppCompatActivity implements ProyectoResListen
                         @Override
                         public void onFailure(Call<Pregunta> call, Throwable t) {
                             Log.e("NetworkFailure", t.getMessage());
-                            Toast.makeText(MainActivity.this, "Error de conexión", Toast.LENGTH_SHORT).show();
+                            /*Toast.makeText(MainActivity.this, "Error de conexión", Toast.LENGTH_SHORT).show();*/
                         }
                     });
                 }
+
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.contenedor_main, new ProyectoResFragment())
+                        .commit();
+
+                AuthService authService = ServiceGenerator.createService(AuthService.class, UtilToken.getToken(MainActivity.this), TipoAutenticacion.JWT);
+
+                Call<User> call = authService.disableEncuesta(UtilUser.getId(MainActivity.this), new DisableEncuestaDto(true));
+
+                call.enqueue(new Callback<User>() {
+                    @Override
+                    public void onResponse(Call<User> call, Response<User> response) {
+                        if(response.code() != 200 || response.code() != 204) {
+                            fab.hide();
+
+                            UtilUser.setEncuesta(MainActivity.this, true);
+
+                            ocultarEncuesta(menu);
+                        } else {
+                            Toast.makeText(MainActivity.this, ""+response.code(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<User> call, Throwable t) {
+                        Log.e("NetworkFailure", t.getMessage());
+                        Toast.makeText(MainActivity.this, "Error de conexión", Toast.LENGTH_SHORT).show();
+                    }
+                });
 
 
             }
@@ -193,5 +213,11 @@ public class MainActivity extends AppCompatActivity implements ProyectoResListen
         AlertDialog dialog = builder.create();
 
         dialog.show();
+    }
+    public void ocultarEncuesta(Menu menu){
+        if(UtilUser.getEncuesta(this)){
+            MenuItem item = menu.findItem(R.id.navigation_encuesta);
+            item.setVisible(false);
+        }
     }
 }
