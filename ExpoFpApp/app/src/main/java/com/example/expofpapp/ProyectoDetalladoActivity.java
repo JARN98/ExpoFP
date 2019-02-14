@@ -11,13 +11,9 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.expofpapp.Adapters.MyProyectoResRecyclerViewAdapter;
 import com.example.expofpapp.Adapters.ViewPagerAdapter;
 import com.example.expofpapp.Generator.ServiceGenerator;
-import com.example.expofpapp.Generator.TipoAutenticacion;
 import com.example.expofpapp.Model.Proyecto;
-import com.example.expofpapp.Model.ProyectoRes;
-import com.example.expofpapp.Model.ResponseContainer;
 import com.example.expofpapp.Services.ProyectoService;
 
 import retrofit2.Call;
@@ -27,6 +23,7 @@ import retrofit2.Response;
 public class ProyectoDetalladoActivity extends AppCompatActivity {
 
     ViewPager viewPager;
+    TextView tvNombre;
     TextView tvCurso;
     TextView tvAutores;
     TextView tvDescripcion;
@@ -48,7 +45,11 @@ public class ProyectoDetalladoActivity extends AppCompatActivity {
         tvCurso = findViewById(R.id.tvCurso);
         tvAutores = findViewById(R.id.tvAutores);
         rbValoracionMedia =  findViewById(R.id.rbValoracionMedia);
+<<<<<<< HEAD
         btnVerComentarios = findViewById(R.id.buttonVerComentarios);
+=======
+        tvNombre = findViewById(R.id.tvNombre);
+>>>>>>> 5410f81c04d80720071acb106ae2517485c06397
 
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(this);
         viewPager.setAdapter(viewPagerAdapter);
@@ -74,9 +75,10 @@ public class ProyectoDetalladoActivity extends AppCompatActivity {
                        autores = autores + " " + autor;
                    }
                    tvCurso.setText(proyec.getCurso());
+                   tvNombre.setText(proyec.getNombre());
                    tvAutores.setText(autores);
                    tvDescripcion.setText(proyec.getDescripcion());
-                   rbValoracionMedia.setRating((float)proyec.getValoracioMedia());
+                   rbValoracionMedia.setRating((float) proyec.getValoracioMedia());
                 }
             }
 
