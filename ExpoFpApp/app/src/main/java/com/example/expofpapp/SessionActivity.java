@@ -3,6 +3,7 @@ package com.example.expofpapp;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -24,47 +25,29 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.FirebaseOptions;
 
 import java.util.concurrent.Executor;
 
 import static android.support.constraint.Constraints.TAG;
 
-public class SessionActivity extends AppCompatActivity implements LoginFragment.OnFragmentInteractionListener, SignUpFragment.OnFragmentInteractionListener, GoogleApiClient.OnConnectionFailedListener {
+public class SessionActivity extends AppCompatActivity implements LoginFragment.OnFragmentInteractionListener, SignUpFragment.OnFragmentInteractionListener{
 
     private FirebaseAuth mAuth;
-    private SignInButton buttonLoginGoogle;
-    public static final int SIGN_IN_CODE = 777;
-    private GoogleApiClient googleApiClient;
-    GoogleApiClient mGoogleApiClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_session);
 
-
-        buttonLoginGoogle = findViewById(R.id.buttonLoginGoogle);
-
-        mAuth = FirebaseAuth.getInstance();
-
-
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken("75cdd6b393c9eac9233c4d1c7a2b64cae244e769")
-                .requestEmail()
-                .build();
-
-        googleApiClient = new GoogleApiClient.Builder(this)
-                .enableAutoManage(this, this)
-                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
-                .build();
-
-/*        buttonLoginGoogle.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(SessionActivity.this, "HOLA", Toast.LENGTH_SHORT).show();
-                signIn();
-            }
-        });*/
+        FirebaseOptions.Builder builder = new FirebaseOptions.Builder()
+                .setApplicationId("1:473316374076:android:756c63e232baed63")
+                .setApiKey("AAAAbjPatjw:APA91bHRvQcuvAOXoRlBJ3xhymCbE46B5nfVucZZChblmvKx2Zc0NM5sdc_UkFVmJUIFO0ElCJ6ZA8b__uM2f5C1qAhpLdEvSp6dkEmlV3GpNpaxTatn8WEwPCG-t3uz05DqG2lfRLZB")
+                .setDatabaseUrl("https://expofp-salesianos.firebaseio.com");
+        FirebaseApp.initializeApp(this, builder.build());
 
         getSupportFragmentManager()
                 .beginTransaction()
@@ -91,53 +74,4 @@ public class SessionActivity extends AppCompatActivity implements LoginFragment.
                 .commit();
     }
 
-    private void signIn() {
-        Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
-        startActivityForResult(signInIntent, SIGN_IN_CODE);
-    }
-
-    private void updateUI(FirebaseUser user) {
-        Toast.makeText(this, user.getDisplayName(), Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        /*updateUI(currentUser);*/
-        if (currentUser != null) {
-            updateUI(currentUser);
-        }
-    }
-
-    private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
-        Log.d(TAG, "firebaseAuthWithGoogle:" + acct.getId());
-
-        AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
-        mAuth.signInWithCredential(credential)
-                .addOnCompleteListener((Executor) this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d(TAG, "signInWithCredential:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            updateUI(user);
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w(TAG, "signInWithCredential:failure", task.getException());
-                            Snackbar.make(findViewById(R.id.contenedor_main), "Authentication Failed.", Snackbar.LENGTH_SHORT).show();
-                            updateUI(null);
-                        }
-
-                        // ...
-                    }
-                });
-    }
-
-    @Override
-    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-
-    }
 }

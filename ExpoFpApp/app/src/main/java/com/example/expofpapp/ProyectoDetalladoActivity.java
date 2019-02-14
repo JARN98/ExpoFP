@@ -1,9 +1,12 @@
 package com.example.expofpapp;
 
+import android.content.Intent;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,14 +23,11 @@ import retrofit2.Response;
 public class ProyectoDetalladoActivity extends AppCompatActivity {
 
     ViewPager viewPager;
-    TextView tvNombre;
-    TextView tvCurso;
-    TextView tvAutores;
-    TextView tvDescripcion;
+    TextView tvNombre, tvCurso, tvAutores, tvDescripcion;
     RatingBar rbValoracionMedia;
-    String idProyec;
+    String idProyec, autores;
     Proyecto proyec;
-    String autores;
+    Button btnVerComentarios, btnComentar;
     Float valoracionMedia;
 
 
@@ -41,7 +41,12 @@ public class ProyectoDetalladoActivity extends AppCompatActivity {
         tvCurso = findViewById(R.id.tvCurso);
         tvAutores = findViewById(R.id.tvAutores);
         rbValoracionMedia =  findViewById(R.id.rbValoracionMedia);
+        btnComentar = findViewById(R.id.buttonComentar);
+
+        btnVerComentarios = findViewById(R.id.buttonVerComentarios);
+
         tvNombre = findViewById(R.id.tvNombre);
+
 
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(this);
         viewPager.setAdapter(viewPagerAdapter);
@@ -82,6 +87,27 @@ public class ProyectoDetalladoActivity extends AppCompatActivity {
 
 
         });
+
+        btnVerComentarios.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(ProyectoDetalladoActivity.this, VerComentariosActivity.class);
+                i.putExtra("id", idProyec );
+
+                ProyectoDetalladoActivity.this.startActivity(i);
+
+            }
+        });
+        btnComentar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent( ProyectoDetalladoActivity.this, ComentarActivity.class);
+                i.putExtra("id", idProyec );
+
+                ProyectoDetalladoActivity.this.startActivity(i);
+            }
+        });
+
 
     }
 }
