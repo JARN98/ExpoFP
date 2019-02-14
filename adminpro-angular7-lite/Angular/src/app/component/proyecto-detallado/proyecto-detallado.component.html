@@ -4,7 +4,19 @@
             <div class="card-body">
                 <div id="titulo">
                     <h3 class="card-title">{{proyect.nombre}}</h3>
-                    <button mat-icon-button><i class="fab fa-twitter fa-2x"></i></button>
+                    
+                    <button mat-icon-button>
+                        <a class="twitter-share-button"
+                            href="https://twitter.com/intent/tweet?text=Fantásticos%20los%20proyectos%20de%20los%20alumnos%20de%20Salesianos%20Triana%20Visitanos:%20@salesianotriana"
+                            target="_blank|_parent"
+                            data-size="large"
+                            data-hashtags="example"
+                            data-via="twitterdev"
+                            data-url="www.google.com"
+                            data-related="twitterapi,twitter">
+                            <i class="fab fa-twitter fa-2x"></i>
+                        </a>
+                    </button>
                 </div>
                 
                 <button class="btn btn-warning" *ngIf="isAdmin()" (click)="openDialogEditPhoto()">Editar Fotos</button>
