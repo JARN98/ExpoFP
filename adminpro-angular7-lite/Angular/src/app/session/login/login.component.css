@@ -23,3 +23,8 @@
 .snackLogin{
     color: blue;
 }
+
+.alert-danger {
+    width: 30%;
+    margin: 0 auto;
+}

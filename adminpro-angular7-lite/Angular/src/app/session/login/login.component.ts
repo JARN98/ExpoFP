@@ -5,7 +5,7 @@ import { LoginDto } from '../../dto/login.dto';
 import { UserDto } from '../../dto/adduser.dto';
 import { UploadImageDto } from '../../dto/uploadimage.dto';
 import { UploadImageImgurService } from '../../services/upload-image-imgur.service';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, NgForm } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
 
 let ImagenB64: File = null;
@@ -31,6 +31,8 @@ export class LoginComponent implements OnInit {
     private uploadImageImgurService: UploadImageImgurService,
     private fb: FormBuilder, private snackBar: MatSnackBar) { }
 
+    public isError = false;
+
   ngOnInit() {
     this.form = this.fb.group({
       email: [null, Validators.compose([Validators.required])],
@@ -38,18 +40,22 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  doLogin() {
-    const loginDto = new LoginDto(this.email, this.password);
-    this.loginService.login(loginDto).subscribe(loginResp => {
-      console.log(loginResp);
-      this.loginService.setLoginData(loginResp);
-      console.log('ROL: ' + localStorage.getItem('role'));
-      this.router.navigate(['/component/proyectos']);
-    }, error => {
-      this.snackBar.open('Error en peticion de login', 'x', { duration: 1000, panelClass: ['style-success'] });
-      console.log('Error en petición de login');
+  doLogin(form: NgForm) {
+    if(form.valid) {
+      const loginDto = new LoginDto(this.email, this.password);
+      this.loginService.login(loginDto).subscribe(loginResp => {
+        console.log(loginResp);
+        this.loginService.setLoginData(loginResp);
+        console.log('ROL: ' + localStorage.getItem('role'));
+        this.router.navigate(['/component/proyectos']);
+      }, error => {
+        this.snackBar.open('Error en peticion de login', 'x', { duration: 1000, panelClass: ['style-success'] });
+        console.log('Error en petición de login');
+      }
+      );
+    }else{
+      this.onIsError();
     }
-    );
   }
 
   doLoginGoogle() {
@@ -60,27 +66,30 @@ export class LoginComponent implements OnInit {
     }));
   }
 
-  doSignup() {
+  doSignup(form: NgForm) {
 
+    if(form.valid) {
 
-    this.uploadImageImgurService.UploadImage(this.uploadImageDto).subscribe(imagen => {
-      this.urlImagen = imagen.data.link;
-      this.usuario = new UserDto(this.email, this.password, this.name, this.urlImagen, 'user');
-      this.loginService.registro(this.usuario).subscribe(signupResp => {
+      this.uploadImageImgurService.UploadImage(this.uploadImageDto).subscribe(imagen => {
+        this.urlImagen = imagen.data.link;
+        this.usuario = new UserDto(this.email, this.password, this.name, this.urlImagen, 'user');
+        this.loginService.registro(this.usuario).subscribe(signupResp => {
 
-        this.loginService.setLoginData(signupResp);
+          this.loginService.setLoginData(signupResp);
 
-        this.router.navigate(['/component/proyectos']);
-      }, error => {
-        console.log('Error en el registro');
+          this.router.navigate(['/component/proyectos']);
+          this.isError = false;
+        }, error => {
+          console.log('Error en el registro');
+        });
+      }, err => {
+        console.log('Error subiendo la imagen');
+        console.log(err);
       });
-    }, err => {
-      console.log('Error subiendo la imagen');
-      console.log(err);
-    });
 
-
-
+    } else {
+      this.onIsError();
+    }
 
   }
 
@@ -97,4 +106,10 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  onIsError(): void {
+    this.isError = true;
+          setTimeout(() => {
+            this.isError = false;
+          }, 4000);
+  }
 }
