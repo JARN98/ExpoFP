@@ -59,6 +59,7 @@ import retrofit2.Response;
 
 import static android.support.constraint.Constraints.TAG;
 import static android.view.View.generateViewId;
+import static android.view.View.getDefaultSize;
 import static com.google.android.gms.auth.api.Auth.GOOGLE_SIGN_IN_API;
 
 
@@ -249,6 +250,7 @@ public class LoginFragment extends Fragment implements GoogleApiClient.OnConnect
         // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
         if (requestCode == RC_SIGN_IN) {
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+            /*handleSignInResult(task);*/
             try {
                 // Google Sign In was successful, authenticate with Firebase
                 GoogleSignInAccount account = task.getResult(ApiException.class);
@@ -260,6 +262,20 @@ public class LoginFragment extends Fragment implements GoogleApiClient.OnConnect
             }
         }
     }
+
+    /*private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
+        try {
+            GoogleSignInAccount account = completedTask.getResult(ApiException.class);
+
+            // Signed in successfully, show authenticated UI.
+            updateUI(account);
+        } catch (ApiException e) {
+            // The ApiException status code indicates the detailed failure reason.
+            // Please refer to the GoogleSignInStatusCodes class reference for more information.
+            Log.w(TAG, "signInResult:failed code=" + e.getStatusCode());
+            updateUI(null);
+        }
+    }*/
 
 
 

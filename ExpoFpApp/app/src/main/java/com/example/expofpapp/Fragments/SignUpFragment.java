@@ -31,6 +31,9 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 
+/*
+import de.hdodenhof.circleimageview.CircleImageView;
+*/
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -44,6 +47,7 @@ public class SignUpFragment extends Fragment {
     private EditText etNombre;
     private EditText etPassword;
     private EditText etPasswordRep;
+    /*private CircleImageView ivImagenPerfil;*/
     private ImageView ivImagenPerfil;
     private Button btnSubirImagen;
     Uri uriSelected;

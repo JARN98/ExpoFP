@@ -2,6 +2,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Fragments.LoginFragment">
@@ -9,21 +10,32 @@
     <!-- TODO: Update blank fragment layout -->
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@android:color/white">
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="wrap_content"
+            android:layout_height="298dp"
+            android:src="@drawable/icono"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
             android:id="@+id/editTextEmailLogin"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:ems="10"
             android:hint="@string/Email"
             android:inputType="textEmailAddress"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
         <EditText
             android:id="@+id/editTextPasswordLogin"
@@ -46,7 +58,9 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
+            android:background="@color/design_default_color_primary"
             android:text="@string/Registro"
+            android:textColor="@android:color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/buttonLogin" />
@@ -58,7 +72,9 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="60dp"
             android:layout_marginEnd="8dp"
+            android:background="@color/colorPrimary"
             android:text="@string/Login"
+            android:textColor="@android:color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/editTextPasswordLogin" />
@@ -75,6 +91,7 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/buttonRegistro" />
+
     </android.support.constraint.ConstraintLayout>
 
 </FrameLayout>
