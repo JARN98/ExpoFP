@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -48,6 +49,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
+import java.util.Collections;
 import java.util.concurrent.Executor;
 
 import okhttp3.Credentials;
@@ -56,6 +58,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import static android.support.constraint.Constraints.TAG;
+import static android.view.View.generateViewId;
 import static com.google.android.gms.auth.api.Auth.GOOGLE_SIGN_IN_API;
 
 
@@ -67,7 +70,7 @@ import static com.google.android.gms.auth.api.Auth.GOOGLE_SIGN_IN_API;
  * Use the {@link LoginFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class LoginFragment extends Fragment implements GoogleApiClient.OnConnectionFailedListener {
+public class LoginFragment extends Fragment implements GoogleApiClient.OnConnectionFailedListener{
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -90,6 +93,8 @@ public class LoginFragment extends Fragment implements GoogleApiClient.OnConnect
     private SignInButton signInButton;
     GoogleApiClient mGoogleApiClient;
     GoogleSignInClient googleSignInClient;
+    GoogleSignInOptions gso;
+    Intent signInIntent;
 
     public LoginFragment() {
         // Required empty public constructor
@@ -150,12 +155,46 @@ public class LoginFragment extends Fragment implements GoogleApiClient.OnConnect
 
 
         // Configure Google Sign In
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+        gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
                 .build();
 
         mAuth = FirebaseAuth.getInstance();
+        /*mGoogleApiClient = new GoogleApiClient.Builder(getContext())
+                .enableAutoManage(getActivity(), this)
+                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
+                .build();*/
+        /*GLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                startActivityForResult(
+                        AuthUI.getInstance()
+                                .createSignInIntentBuilder()
+                                .setIsSmartLockEnabled(false)
+                                .setProviders(Collections.singletonList(new AuthUI.IdpConfig.Builder(AuthUI.GOOGLE_PROVIDER).build()
+                                ))
+                                .build(),
+                        RC_SIGN_IN);
+
+
+
+
+            }
+        });*/
+
+
+        /*mGoogleApiClient = new GoogleApiClient.Builder(this)
+                .addApi(gso)
+                .addScope(Drive.SCOPE_FILE)
+                .addConnectionCallbacks(this)
+                .addOnConnectionFailedListener(this)
+                .build();*/
+
+/*
+        mGoogleApiClient.connect();
+*/
 
         signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -168,16 +207,18 @@ public class LoginFragment extends Fragment implements GoogleApiClient.OnConnect
 
 
     private void signIn() {
-        Intent signInIntent = googleSignInClient.getSignInIntent();
+        googleSignInClient = GoogleSignIn.getClient(getView().getContext(), gso);
+        signInIntent = googleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
 
-/*    @Override
+    /*@Override
     public void onStart() {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
         updateUI(currentUser);
+
     }*/
 
     private void updateUI(FirebaseUser currentUser) {
@@ -271,8 +312,7 @@ public class LoginFragment extends Fragment implements GoogleApiClient.OnConnect
                 Toast.makeText(getActivity(), "Error de conexión", Toast.LENGTH_SHORT).show();
             }
         });
-
-            }
+    }
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
