@@ -1,5 +1,6 @@
 package com.example.expofpapp.Services;
 
+import com.example.expofpapp.Model.DisableEncuestaDto;
 import com.example.expofpapp.Model.LoginResponse;
 import com.example.expofpapp.Model.PassDto;
 import com.example.expofpapp.Model.User;
@@ -29,5 +30,8 @@ public interface AuthService {
                                    @Part("email") RequestBody email,
                                    @Part("password") RequestBody password,
                                    @Part("name") RequestBody name);
+
+    @PUT("/users/{id}/encuesta")
+    Call<User> disableEncuesta(@Path("id") String id, @Body DisableEncuestaDto disableEncuestaDto);
 
 }

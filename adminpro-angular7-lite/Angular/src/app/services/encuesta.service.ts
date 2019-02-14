@@ -77,7 +77,7 @@ export class EncuestaService {
         'Access-Control-Allow-Origin': '*'
       })
     };
-    return this.http.put(`${environment.ApiUrl}/illo`, preguntas, requestOptions)
+    return this.http.put(`${environment.ApiUrl}/illo`, preguntas, requestOptions);
   }
 
   disableEncuesta(id: String, user: DisableEncuestaDto): Observable<User> {
