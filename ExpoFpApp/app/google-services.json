@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "473316374076",
+    "firebase_url": "https://expofp-salesianos.firebaseio.com",
+    "project_id": "expofp-salesianos",
+    "storage_bucket": "expofp-salesianos.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:473316374076:android:756c63e232baed63",
+        "android_client_info": {
+          "package_name": "com.example.expofpapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "473316374076-j1pgf9l496r5uoaau1u5g3hi1fplpd7b.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.expofpapp",
+            "certificate_hash": "30a48dbe76ecc51b2cb4eacb905abebfac099e6f"
+          }
+        },
+        {
+          "client_id": "473316374076-54h2si550tno8ecq9sdmqlgos0qj98lh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAutsZFTuUkMhZJDCmJMJ8rx6HDIASITPc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "473316374076-54h2si550tno8ecq9sdmqlgos0qj98lh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
