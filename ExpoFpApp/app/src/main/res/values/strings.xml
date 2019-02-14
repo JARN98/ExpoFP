@@ -24,4 +24,5 @@
     <string name="dialog_message">¿Estás seguro?</string>
     <string name="dialog_title">¿Quieres cerrar sesión?</string>
     <string name="boton_enviarencuesta">Enviar Encuesta</string>
+    <!--<string name="default_web_client_id">75cdd6b393c9eac9233c4d1c7a2b64cae244e769</string>-->
 </resources>
