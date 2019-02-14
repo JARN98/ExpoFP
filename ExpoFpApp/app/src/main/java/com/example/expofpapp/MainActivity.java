@@ -3,11 +3,13 @@ package com.example.expofpapp;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AlertDialog;
@@ -39,12 +41,28 @@ import com.example.expofpapp.Services.AuthService;
 import com.example.expofpapp.Services.EncuestaService;
 import com.example.expofpapp.Services.ProyectoService;
 import com.example.expofpapp.ViewModels.EncuestaViewModel;
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.SignInButton;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GoogleAuthProvider;
 
 import java.util.List;
+import java.util.concurrent.Executor;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static android.support.constraint.Constraints.TAG;
 
 
 public class MainActivity extends AppCompatActivity implements ProyectoResListener, EncuestaListener {
@@ -54,9 +72,14 @@ public class MainActivity extends AppCompatActivity implements ProyectoResListen
     private MenuItem encuesta;
     private FloatingActionButton fab;
     EncuestaViewModel encuestaViewModel;
+
+
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
         Fragment f = null;
+
+
+
 
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -89,6 +112,8 @@ public class MainActivity extends AppCompatActivity implements ProyectoResListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        FirebaseApp.initializeApp(this);
+
 
         mTextMessage =  findViewById(R.id.message);
         BottomNavigationView navigation = findViewById(R.id.navigation);
@@ -100,6 +125,7 @@ public class MainActivity extends AppCompatActivity implements ProyectoResListen
         fab = findViewById(R.id.fab);
         fab.hide();
 
+
         encuestaViewModel = ViewModelProviders.of((FragmentActivity) this).get(EncuestaViewModel.class);
 
         encuestaViewModel.selected().observe(this, new Observer<List<Pregunta>>() {
@@ -108,6 +134,10 @@ public class MainActivity extends AppCompatActivity implements ProyectoResListen
                 Toast.makeText(MainActivity.this, "" + encuestaViewModel.listaPreguntas.getValue().get(0), Toast.LENGTH_SHORT).show();
             }
         });
+
+
+
+
 
 
         fab.setOnClickListener(new View.OnClickListener() {
@@ -216,6 +246,9 @@ public class MainActivity extends AppCompatActivity implements ProyectoResListen
 
         dialog.show();
     }
+
+
+
     public void ocultarEncuesta(Menu menu){
         if(UtilUser.getEncuesta(this)){
             MenuItem item = menu.findItem(R.id.navigation_encuesta);

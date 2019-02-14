@@ -9,6 +9,16 @@ public class User {
     private String role;
     private boolean encuesta;
 
+    public User(String id, String name, String picture, String email) {
+        this.id = id;
+        this.name = name;
+        this.picture = picture;
+        this.email = email;
+    }
+
+    public User() {
+    }
+
     public boolean isEncuesta() {
         return encuesta;
     }

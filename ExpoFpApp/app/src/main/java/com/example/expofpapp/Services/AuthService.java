@@ -31,6 +31,9 @@ public interface AuthService {
                                    @Part("password") RequestBody password,
                                    @Part("name") RequestBody name);
 
+    @POST("/auth/google")
+    Call<LoginResponse> doLoginGoogle(@Path("access_token") String access_token);
+    
     @PUT("/users/{id}/encuesta")
     Call<User> disableEncuesta(@Path("id") String id, @Body DisableEncuestaDto disableEncuestaDto);
 
