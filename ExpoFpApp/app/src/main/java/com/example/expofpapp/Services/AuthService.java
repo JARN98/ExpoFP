@@ -1,5 +1,6 @@
 package com.example.expofpapp.Services;
 
+import com.example.expofpapp.Model.DisableEncuestaDto;
 import com.example.expofpapp.Model.LoginResponse;
 import com.example.expofpapp.Model.PassDto;
 import com.example.expofpapp.Model.User;
@@ -24,13 +25,18 @@ public interface AuthService {
     Call<User> updatePass(@Header("Authorization") String authorization, @Path("id") String id, @Body PassDto pass);
 
     @Multipart
-    @POST("/users")
+    @POST("/users/android")
     Call<LoginResponse> doRegister(@Part MultipartBody.Part picture,
                                    @Part("email") RequestBody email,
                                    @Part("password") RequestBody password,
                                    @Part("name") RequestBody name);
 
+<<<<<<< HEAD
     @POST("/auth/google")
     Call<LoginResponse> doLoginGoogle(@Path("access_token") String access_token);
+=======
+    @PUT("/users/{id}/encuesta")
+    Call<User> disableEncuesta(@Path("id") String id, @Body DisableEncuestaDto disableEncuestaDto);
+>>>>>>> ef46193e1b0d8c0ede11c031ced2ee1df26bdb3c
 
 }

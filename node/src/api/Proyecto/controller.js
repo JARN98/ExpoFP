@@ -122,19 +122,36 @@ export const update = async ({ bodymen: { body }, params }, res, next) => {
     .then(success(res))
     .catch(next)
 
-  await ProyectoRes.update({ "proyecto": proyectoG.id }, {
-    $set: {
-      nombre: proyectoG.nombre,
-      curso: proyectoG.curso,
-      imagen: proyectoG.imagenes
-    }
-  }, (res, next) => {
-    if (next) {
-      return next
-    }
+  if (proyectoG.imagenes === undefined) {
+    await ProyectoRes.update({ "proyecto": proyectoG.id }, {
+      $set: {
+        nombre: proyectoG.nombre,
+        curso: proyectoG.curso
+      }
+    }, (res, next) => {
+      if (next) {
+        return next
+      }
 
-    res.send(res);
-  });
+      res.send(res);
+    });
+  } else {
+    await ProyectoRes.update({ "proyecto": proyectoG.id }, {
+      $set: {
+        nombre: proyectoG.nombre,
+        curso: proyectoG.curso,
+        imagen: proyectoG.imagenes
+      }
+    }, (res, next) => {
+      if (next) {
+        return next
+      }
+
+      res.send(res);
+    });
+  }
+
+
 }
 
 
@@ -203,7 +220,7 @@ export const destroyUltimoComentarioAdmin = async ({ params }, res, next) => {
           proyecto.comentarios.splice(index, 1);
 
           console.log(proyecto.comentarios);
-          
+
         }
 
       }

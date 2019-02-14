@@ -1,24 +1,43 @@
 package com.example.expofpapp.Model;
 
 public class Comentario {
-
+    private String id;
     private String nombreAutor;
     private String contenido;
-    private int valoracion;
+    private double valoracion;
     private boolean valido;
     private String imagenAutor;
     private String proyecto;
+    private String autor;
 
     public Comentario() {
     }
 
-    public Comentario(String nombreAutor, String contenido, int valoracion, boolean valido, String imagenAutor, String proyecto) {
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public Comentario(String id, String nombreAutor, String contenido, int valoracion, boolean valido, String imagenAutor, String proyecto, String autor) {
+        this.id = id;
         this.nombreAutor = nombreAutor;
         this.contenido = contenido;
         this.valoracion = valoracion;
         this.valido = valido;
         this.imagenAutor = imagenAutor;
         this.proyecto = proyecto;
+        this.autor = autor;
+    }
+
+    public String getAutor() {
+        return autor;
+    }
+
+    public void setAutor(String autor) {
+        this.autor = autor;
     }
 
     public String getNombreAutor() {
@@ -29,7 +48,7 @@ public class Comentario {
         return contenido;
     }
 
-    public int getValoracion() {
+    public double getValoracion() {
         return valoracion;
     }
 
@@ -53,7 +72,7 @@ public class Comentario {
         this.contenido = contenido;
     }
 
-    public void setValoracion(int valoracion) {
+    public void setValoracion(double valoracion) {
         this.valoracion = valoracion;
     }
 

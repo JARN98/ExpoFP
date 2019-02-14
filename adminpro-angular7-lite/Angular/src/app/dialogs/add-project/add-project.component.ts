@@ -34,7 +34,7 @@ export class AddProjectComponent implements OnInit {
   urlImagenes: any;
   autores: Autor[] = [
   ];
-  owners: String[]
+  owners: String[];
   urlImagen: any;
   dtoImagenUpload: UploadImageDto;
   editProjectDto: EditProjectDto;
@@ -76,10 +76,6 @@ export class AddProjectComponent implements OnInit {
       this.edit = true;
     }
     this.admin = this.loginService.isAdmin();
-
-    for(let a of this.autores){
-
-    }
   }
 
   getOneProject(id) {
@@ -94,6 +90,7 @@ export class AddProjectComponent implements OnInit {
         descripcion: [this.data.proyecto.descripcion, Validators.compose([Validators.required])]
       });
       this.autores = this.data.proyecto.autores;
+      this.owners = this.data.proyecto.autores;
       console.log(this.data.proyecto.autores);
     }, err => {
       console.log(err);
@@ -214,21 +211,57 @@ export class AddProjectComponent implements OnInit {
     }
   }
 
+  addEdit(event: MatChipInputEvent): void {
+    const input = event.input;
+    const value = event.value;
+
+    // Add our fruit
+    if ((value || '').trim()) {
+      this.owners.push(value.trim());
+    }
+
+    // Reset the input value
+    if (input) {
+      input.value = '';
+    }
+  }
+
   editProject(id) {
-    // for(let a of this.autores){
-    //   if(this.owners==undefined){
-    //     this.owners=[a.nombre]
-    //   } else {
-    //     this.owners.push(a.nombre);
-    //   }
-    // }
-    // tslint:disable-next-line:max-line-length
-    this.editProjectDto = new EditProjectDto(this.form.controls['title'].value, this.owners, this.form.controls['curso'].value, this.form.controls['descripcion'].value, this.urlImagen);
-    this.editProjectService.editPro(this.editProjectDto, localStorage.getItem('idDeProyecto')).subscribe(proyecto => {
-      this.dialogRef.close();
-    }, err => {
-      console.log(err);
-    });
+
+    if (this.uploadImageDto === undefined) {
+
+      this.editProjectDto = new EditProjectDto(this.form.controls['title'].value,
+        this.owners,
+        this.form.controls['curso'].value,
+        this.form.controls['descripcion'].value,
+        this.urlImagen);
+
+
+      this.editProjectService.editPro(this.editProjectDto, localStorage.getItem('idDeProyecto')).subscribe(proyecto => {
+        this.dialogRef.close();
+      }, err => {
+        console.log(err);
+      });
+    } else {
+      this.uploadImageImgurService.UploadImage(this.uploadImageDto).subscribe(imagen => {
+
+
+        this.urlImagen = imagen.data.link;
+
+        this.editProjectDto = new EditProjectDto(this.form.controls['title'].value,
+          this.owners,
+          this.form.controls['curso'].value,
+          this.form.controls['descripcion'].value,
+          this.urlImagen);
+
+
+        this.editProjectService.editPro(this.editProjectDto, localStorage.getItem('idDeProyecto')).subscribe(proyecto => {
+          this.dialogRef.close();
+        }, err => {
+          console.log(err);
+        });
+      }, err => console.log(err));
+    }
 
   }
 

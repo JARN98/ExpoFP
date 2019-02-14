@@ -25,4 +25,8 @@
     <string name="dialog_title">¿Quieres cerrar sesión?</string>
     <string name="boton_enviarencuesta">Enviar Encuesta</string>
     <string name="default_web_client_id">913096805564-3lt17rhipkbd6ar0p1r4lcf4u6725nv4.apps.googleusercontent.com</string>
+    <string name="Escriba_Comentario">Escriba su comentario y de una valoración</string>
+    <string name="Comentar">Comentar</string>
+    <string name="EscribaComentario">Escriba su comentario</string>
+    <string name="Eliminar">Eliminar</string>
 </resources>

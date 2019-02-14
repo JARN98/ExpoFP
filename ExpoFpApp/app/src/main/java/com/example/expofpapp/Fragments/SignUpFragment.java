@@ -16,6 +16,11 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.example.expofpapp.Generator.ServiceGenerator;
+
+import com.example.expofpapp.Generator.UtilUser;
+
+import com.example.expofpapp.MainActivity;
+
 import com.example.expofpapp.Model.LoginResponse;
 import com.example.expofpapp.R;
 import com.example.expofpapp.Services.AuthService;
@@ -33,14 +38,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link SignUpFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link SignUpFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class SignUpFragment extends Fragment {
     private static final int READ_REQUEST_CODE = 42;
     private EditText etEmail;
@@ -166,6 +163,8 @@ public class SignUpFragment extends Fragment {
                         if (response.isSuccessful()) {
                             Log.d("Uploaded", "Éxito");
                             Log.d("Uploaded", response.body().toString());
+                            UtilUser.setUserInfo(getActivity(), response.body().getUser());
+                            startActivity(new Intent(getActivity(), MainActivity.class));
                         } else {
                             Log.e("Upload error", response.errorBody().toString());
                         }
