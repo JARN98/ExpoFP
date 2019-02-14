@@ -24,20 +24,17 @@ import com.example.expofpapp.Generator.ServiceGenerator;
 import com.example.expofpapp.Generator.UtilToken;
 import com.example.expofpapp.Model.LoginResponse;
 import com.example.expofpapp.Services.AuthService;
-<<<<<<< HEAD
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
-=======
 import com.example.expofpapp.SessionActivity;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
->>>>>>> loginGoogle
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
@@ -58,11 +55,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-<<<<<<< HEAD
 import static android.support.constraint.Constraints.TAG;
-=======
 import static com.google.android.gms.auth.api.Auth.GOOGLE_SIGN_IN_API;
->>>>>>> loginGoogle
 
 
 /**
@@ -78,11 +72,8 @@ public class LoginFragment extends Fragment implements GoogleApiClient.OnConnect
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-<<<<<<< HEAD
     private static final int RC_SIGN_IN = 777;
-=======
     private static final int RC_SIGN_IN = 1;
->>>>>>> loginGoogle
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -131,10 +122,7 @@ public class LoginFragment extends Fragment implements GoogleApiClient.OnConnect
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
 
-<<<<<<< HEAD
-=======
         FirebaseApp.initializeApp(getContext());
->>>>>>> loginGoogle
     }
 
 
@@ -161,9 +149,7 @@ public class LoginFragment extends Fragment implements GoogleApiClient.OnConnect
         });
 
 
-<<<<<<< HEAD
 
-=======
         // Configure Google Sign In
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
@@ -178,7 +164,6 @@ public class LoginFragment extends Fragment implements GoogleApiClient.OnConnect
                 signIn();
             }
         });
->>>>>>> loginGoogle
         return view;
     }
 
@@ -301,12 +286,10 @@ public class LoginFragment extends Fragment implements GoogleApiClient.OnConnect
 
     }
 
-<<<<<<< HEAD
 
 
 
 
-=======
     private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
         Log.d("tal", "firebaseAuthWithGoogle:" + acct.getId());
 
@@ -330,5 +313,4 @@ public class LoginFragment extends Fragment implements GoogleApiClient.OnConnect
                     }
                 });
     }
->>>>>>> loginGoogle
 }

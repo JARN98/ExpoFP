@@ -78,12 +78,9 @@ public class MainActivity extends AppCompatActivity implements ProyectoResListen
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
         Fragment f = null;
 
-<<<<<<< HEAD
 
 
 
-=======
->>>>>>> loginGoogle
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
