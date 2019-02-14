@@ -1,6 +1,7 @@
 package com.example.expofpapp.Adapters;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -9,22 +10,31 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.RequestBuilder;
 import com.example.expofpapp.R;
+
+import java.util.List;
 
 public class ViewPagerAdapter extends PagerAdapter {
 
     private Context context;
     private LayoutInflater layoutInflater;
-    private Integer [] images = {R.drawable.ic_launcher_background, R.drawable.ic_account_circle_black_24dp, R.drawable.ic_home_black_24dp };
+    private List<String> images;
 
     public ViewPagerAdapter(Context context) {
         this.context = context;
     }
 
+    public ViewPagerAdapter(Context context, List<String> images) {
+        this.context = context;
+        this.images = images;
+    }
+
     @Override
     public int getCount() {
 
-        return images.length;
+        return images.size();
     }
 
     @Override
@@ -41,7 +51,10 @@ public class ViewPagerAdapter extends PagerAdapter {
 
         View view = layoutInflater.inflate(R.layout.custom_layout, null);
         ImageView imageView = (ImageView) view.findViewById(R.id.imageView);
-        imageView.setImageResource(images[position]);
+        Glide
+                .with(context)
+                .load(images.get(position))
+                .into(imageView);
 
         ViewPager vp = (ViewPager) container;
         vp.addView(view, 0);
