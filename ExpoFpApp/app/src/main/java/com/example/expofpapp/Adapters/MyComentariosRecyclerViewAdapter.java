@@ -2,22 +2,35 @@ package com.example.expofpapp.Adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
 import com.example.expofpapp.Fragments.VerComentariosFragment.OnListFragmentInteractionListener;
 
+import com.example.expofpapp.Generator.ServiceGenerator;
+import com.example.expofpapp.Generator.TipoAutenticacion;
+import com.example.expofpapp.Generator.UtilToken;
+import com.example.expofpapp.Generator.UtilUser;
 import com.example.expofpapp.Model.Comentario;
 import com.example.expofpapp.R;
+import com.example.expofpapp.Services.ComentarioService;
 
 
 import java.util.List;
+
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MyComentariosRecyclerViewAdapter extends RecyclerView.Adapter<MyComentariosRecyclerViewAdapter.ViewHolder> {
 
@@ -50,6 +63,17 @@ public class MyComentariosRecyclerViewAdapter extends RecyclerView.Adapter<MyCom
                 .into(holder.imagen);
         holder.valoracion.setRating((float)holder.mItem.getValoracion());
 
+        if(holder.mItem.getAutor().equalsIgnoreCase(UtilUser.getId(ctx)))
+            holder.btnEliminar.setVisibility(View.VISIBLE);
+
+        holder.btnEliminar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                deleteComentario(holder.mItem.getId());
+
+            }
+        });
+
     }
 
     @Override
@@ -60,10 +84,10 @@ public class MyComentariosRecyclerViewAdapter extends RecyclerView.Adapter<MyCom
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
         public Comentario mItem;
-        public final TextView autor;
-        public final TextView contenido;
+        public final TextView autor, contenido;
         public final ImageView imagen;
         public final RatingBar valoracion;
+        public final Button btnEliminar;
 
         public ViewHolder(View view) {
             super(view);
@@ -72,8 +96,30 @@ public class MyComentariosRecyclerViewAdapter extends RecyclerView.Adapter<MyCom
             imagen = view.findViewById(R.id.imageViewImgUserComentario);
             contenido = view.findViewById(R.id.textViewContenidoComentario);
             valoracion = view.findViewById(R.id.ratingBarValoracionComentario);
-
+            btnEliminar = view.findViewById(R.id.buttonEliminarComentario);
         }
 
+    }
+
+    public void deleteComentario(String id){
+        ComentarioService service = ServiceGenerator.createService(ComentarioService.class, UtilToken.getToken(ctx), TipoAutenticacion.JWT );
+        Call<ResponseBody> call = service.deleteComentaio(UtilUser.getId(ctx),id);
+
+        call.enqueue(new Callback<ResponseBody>() {
+
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if (response.code() != 200) {
+                    Toast.makeText(ctx, "Error en petición", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Log.e("NetworkFailure", t.getMessage());
+                Toast.makeText(ctx, "Error de conexión", Toast.LENGTH_SHORT).show();
+
+            }
+        });
     }
 }

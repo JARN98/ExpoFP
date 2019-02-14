@@ -97,16 +97,16 @@ public class VerComentariosFragment extends Fragment {
             cometariosList = new ArrayList<>();
 
             ComentarioService service = ServiceGenerator.createService(ComentarioService.class, UtilToken.getToken(ctx), TipoAutenticacion.JWT );
-            Call<ResponseContainer<Comentario>> call = service.getComentariosProyecto(mViewModel.getSelectedId().getValue());
+            Call<List<Comentario>> call = service.getComentariosProyecto(mViewModel.getSelectedId().getValue());
 
-            call.enqueue(new Callback<ResponseContainer<Comentario>>() {
+            call.enqueue(new Callback<List<Comentario>>() {
 
                              @Override
-                             public void onResponse(Call<ResponseContainer<Comentario>> call, Response<ResponseContainer<Comentario>> response) {
+                             public void onResponse(Call<List<Comentario>> call, Response<List<Comentario>> response) {
                                  if (response.code() != 200) {
                                      Toast.makeText(getActivity(), "Error en petición", Toast.LENGTH_SHORT).show();
                                  } else {
-                                     cometariosList = response.body().getRows();
+                                     cometariosList = response.body();
 
                                      adapter = new MyComentariosRecyclerViewAdapter(
                                              ctx,
@@ -118,7 +118,7 @@ public class VerComentariosFragment extends Fragment {
                              }
 
                              @Override
-                             public void onFailure(Call<ResponseContainer<Comentario>> call, Throwable t) {
+                             public void onFailure(Call<List<Comentario>> call, Throwable t) {
                                  Log.e("NetworkFailure", t.getMessage());
                                  Toast.makeText(getActivity(), "Error de conexión", Toast.LENGTH_SHORT).show();
 

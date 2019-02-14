@@ -23,15 +23,11 @@ import retrofit2.Response;
 public class ProyectoDetalladoActivity extends AppCompatActivity {
 
     ViewPager viewPager;
-    TextView tvNombre;
-    TextView tvCurso;
-    TextView tvAutores;
-    TextView tvDescripcion;
+    TextView tvNombre, tvCurso, tvAutores, tvDescripcion;
     RatingBar rbValoracionMedia;
-    String idProyec;
+    String idProyec, autores;
     Proyecto proyec;
-    String autores;
-    Button btnVerComentarios;
+    Button btnVerComentarios, btnComentar;
     Float valoracionMedia;
 
 
@@ -45,11 +41,12 @@ public class ProyectoDetalladoActivity extends AppCompatActivity {
         tvCurso = findViewById(R.id.tvCurso);
         tvAutores = findViewById(R.id.tvAutores);
         rbValoracionMedia =  findViewById(R.id.rbValoracionMedia);
-<<<<<<< HEAD
+        btnComentar = findViewById(R.id.buttonComentar);
+
         btnVerComentarios = findViewById(R.id.buttonVerComentarios);
-=======
+
         tvNombre = findViewById(R.id.tvNombre);
->>>>>>> 5410f81c04d80720071acb106ae2517485c06397
+
 
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(this);
         viewPager.setAdapter(viewPagerAdapter);
@@ -99,6 +96,15 @@ public class ProyectoDetalladoActivity extends AppCompatActivity {
 
                 ProyectoDetalladoActivity.this.startActivity(i);
 
+            }
+        });
+        btnComentar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent( ProyectoDetalladoActivity.this, ComentarActivity.class);
+                i.putExtra("id", idProyec );
+
+                ProyectoDetalladoActivity.this.startActivity(i);
             }
         });
 

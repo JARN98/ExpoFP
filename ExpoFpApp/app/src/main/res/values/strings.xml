@@ -24,4 +24,8 @@
     <string name="dialog_message">¿Estás seguro?</string>
     <string name="dialog_title">¿Quieres cerrar sesión?</string>
     <string name="boton_enviarencuesta">Enviar Encuesta</string>
+    <string name="Escriba_Comentario">Escriba su comentario y de una valoración</string>
+    <string name="Comentar">Comentar</string>
+    <string name="EscribaComentario">Escriba su comentario</string>
+    <string name="Eliminar">Eliminar</string>
 </resources>

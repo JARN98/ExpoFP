@@ -53,31 +53,30 @@
         android:id="@+id/buttonVerComentarios"
         android:layout_width="158dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="17dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:text="Ver Comentarios"
-        app:layout_constraintEnd_toStartOf="@+id/button2"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView3" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonComentar" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/buttonComentar"
         android:layout_width="136dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="18dp"
-        android:layout_marginEnd="69dp"
+        android:layout_marginStart="8dp"
+
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
         android:text="Comentar"
-<<<<<<< HEAD
-        app:layout_constraintBottom_toBottomOf="@+id/buttonVerComentarios"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/buttonVerComentarios" />
-=======
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/relative" />
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/button"
         app:layout_constraintTop_toBottomOf="@+id/scrollView3" />
->>>>>>> 5410f81c04d80720071acb106ae2517485c06397
+
 
     <TextView
         android:id="@+id/tvNombre"
