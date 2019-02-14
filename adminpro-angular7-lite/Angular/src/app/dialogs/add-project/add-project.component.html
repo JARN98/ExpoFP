@@ -14,9 +14,8 @@
 
 
 
-        <mat-form-field>
+        <!-- <mat-form-field>
             <div *ngIf="edit == false">
-                <!-- <input matInput placeholder="Autores..." [formControl]="form.controls['autores']"> -->
                 <mat-chip-list #chipList>
                     <mat-chip *ngFor="let autor of autores" [selectable]="selectable" [removable]="removable" (removed)="remove(autor)">
                         {{autor.nombre}}
@@ -28,7 +27,6 @@
                 </mat-chip-list>
             </div>
             <div *ngIf="edit">
-                    <!-- <input matInput placeholder="Autores..." [formControl]="form.controls['autores']"> -->
                     <mat-chip-list #chipList>
                         <mat-chip *ngFor="let autor of autores" [selectable]="selectable" [removable]="removable" (removed)="remove(autor)">
                             {{autor}}
@@ -37,6 +35,30 @@
                         <input placeholder="Autores..." [matChipInputFor]="chipList" [formControl]="form.controls['autores']"
                             [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
                             (matChipInputTokenEnd)="add($event)">
+                    </mat-chip-list>
+                </div>
+        </mat-form-field> -->
+        <mat-form-field>
+            <div *ngIf="edit == false">
+                <mat-chip-list #chipList>
+                    <mat-chip *ngFor="let autor of autores" [selectable]="selectable" [removable]="removable" (removed)="remove(autor)">
+                        {{autor.nombre}}
+                        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                    </mat-chip>
+                    <input placeholder="Autores..." [matChipInputFor]="chipList" [formControl]="form.controls['autores']"
+                        [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+                        (matChipInputTokenEnd)="add($event)">
+                </mat-chip-list>
+            </div>
+            <div *ngIf="edit">
+                    <mat-chip-list #chipList>
+                        <mat-chip *ngFor="let owner of owners" [selectable]="selectable" [removable]="removable" (removed)="remove(owner)">
+                            {{owner}}
+                            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                        </mat-chip>
+                        <input placeholder="Autores..." [matChipInputFor]="chipList" [formControl]="form.controls['autores']"
+                            [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+                            (matChipInputTokenEnd)="addEdit($event)">
                     </mat-chip-list>
                 </div>
         </mat-form-field>

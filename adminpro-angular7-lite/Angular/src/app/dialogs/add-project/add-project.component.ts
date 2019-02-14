@@ -90,6 +90,7 @@ export class AddProjectComponent implements OnInit {
         descripcion: [this.data.proyecto.descripcion, Validators.compose([Validators.required])]
       });
       this.autores = this.data.proyecto.autores;
+      this.owners = this.data.proyecto.autores;
       console.log(this.data.proyecto.autores);
     }, err => {
       console.log(err);
@@ -202,6 +203,21 @@ export class AddProjectComponent implements OnInit {
     // Add our fruit
     if ((value || '').trim()) {
       this.autores.push({ nombre: value.trim() });
+    }
+
+    // Reset the input value
+    if (input) {
+      input.value = '';
+    }
+  }
+
+  addEdit(event: MatChipInputEvent): void {
+    const input = event.input;
+    const value = event.value;
+
+    // Add our fruit
+    if ((value || '').trim()) {
+      this.owners.push(value.trim());
     }
 
     // Reset the input value
