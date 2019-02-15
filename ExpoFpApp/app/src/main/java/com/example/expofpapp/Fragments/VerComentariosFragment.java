@@ -111,6 +111,9 @@ public class VerComentariosFragment extends Fragment {
                     } else {
                         cometariosList = response.body();
 
+                        if(cometariosList.isEmpty())
+                            cometariosList.add(new Comentario("",""));
+
                         adapter = new MyComentariosRecyclerViewAdapter(
                                 ctx,
                                 cometariosList,
