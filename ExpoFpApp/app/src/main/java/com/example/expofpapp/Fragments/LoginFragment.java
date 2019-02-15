@@ -303,31 +303,38 @@ public class LoginFragment extends Fragment implements GoogleApiClient.OnConnect
 
         String credentials = Credentials.basic(email, password);
 
-        AuthService service = ServiceGenerator.createService(AuthService.class);
-        Call<LoginResponse> call = service.doLogin(credentials);
+        if (validarString(email) && validarString(password)) {
 
-        call.enqueue(new Callback<LoginResponse>() {
-            @Override
-            public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
-                if (response.code() != 201) {
-                    // error
-                    Log.e("RequestError", response.message());
+            AuthService service = ServiceGenerator.createService(AuthService.class);
+            Call<LoginResponse> call = service.doLogin(credentials);
 
-                } else {
+            call.enqueue(new Callback<LoginResponse>() {
+                @Override
+                public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+                    if (response.code() != 201) {
+                        // error
+                        Log.e("RequestError", response.message());
+                        Toast.makeText(getContext(), "Email o contraseña incorrecto", Toast.LENGTH_SHORT).show();
 
-                    UtilToken.setToken(getActivity(), response.body().getToken());
-                    UtilUser.setUserInfo(getActivity(), response.body().getUser());
+                    } else {
 
-                    startActivity(new Intent(getActivity(), MainActivity.class));
+                        UtilToken.setToken(getActivity(), response.body().getToken());
+                        UtilUser.setUserInfo(getActivity(), response.body().getUser());
+
+                        startActivity(new Intent(getActivity(), MainActivity.class));
+                    }
                 }
-            }
 
-            @Override
-            public void onFailure(Call<LoginResponse> call, Throwable t) {
-                Log.e("NetworkFailure", t.getMessage());
-                Toast.makeText(getActivity(), "Error de conexión", Toast.LENGTH_SHORT).show();
-            }
-        });
+                @Override
+                public void onFailure(Call<LoginResponse> call, Throwable t) {
+                    Log.e("NetworkFailure", t.getMessage());
+                    Toast.makeText(getActivity(), "Error de conexión", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }else {
+
+            Toast.makeText(getContext(), "Debes rellenar todos los campos", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
@@ -367,5 +374,9 @@ public class LoginFragment extends Fragment implements GoogleApiClient.OnConnect
                         // ...
                     }
                 });
+    }
+
+    Boolean validarString (String texto) {
+        return texto != null && texto.trim().length() > 0;
     }
 }

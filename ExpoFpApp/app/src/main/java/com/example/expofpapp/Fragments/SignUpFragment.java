@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.expofpapp.Generator.ServiceGenerator;
@@ -159,26 +160,32 @@ public class SignUpFragment extends Fragment {
                 RequestBody password = RequestBody.create(MultipartBody.FORM, etPassword.getText().toString().trim());
                 RequestBody nombre = RequestBody.create(MultipartBody.FORM, etNombre.getText().toString().trim());
 
-                Call<LoginResponse> callRegister = service.doRegister(body, email, password, nombre);
+                if (validarString(email) && validarString(password) && validarString(nombre)) {
 
-                callRegister.enqueue(new Callback<LoginResponse>() {
-                    @Override
-                    public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
-                        if (response.isSuccessful()) {
-                            Log.d("Uploaded", "Éxito");
-                            Log.d("Uploaded", response.body().toString());
-                            UtilUser.setUserInfo(getActivity(), response.body().getUser());
-                            startActivity(new Intent(getActivity(), MainActivity.class));
-                        } else {
-                            Log.e("Upload error", response.errorBody().toString());
+                    Call<LoginResponse> callRegister = service.doRegister(body, email, password, nombre);
+
+                    callRegister.enqueue(new Callback<LoginResponse>() {
+                        @Override
+                        public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+                            if (response.isSuccessful()) {
+                                Log.d("Uploaded", "Éxito");
+                                Log.d("Uploaded", response.body().toString());
+                                UtilUser.setUserInfo(getActivity(), response.body().getUser());
+                                startActivity(new Intent(getActivity(), MainActivity.class));
+                            } else {
+                                Log.e("Upload error", response.errorBody().toString());
+                            }
                         }
-                    }
 
-                    @Override
-                    public void onFailure(Call<LoginResponse> call, Throwable t) {
-                        Log.e("Upload error", t.getMessage());
-                    }
-                });
+                        @Override
+                        public void onFailure(Call<LoginResponse> call, Throwable t) {
+                            Log.e("Upload error", t.getMessage());
+                        }
+                    });
+
+                }else {
+                    Toast.makeText(getContext(), "Debes rellenar todos los campos", Toast.LENGTH_SHORT).show();
+                }
 
 
             } catch (FileNotFoundException e) {
@@ -263,4 +270,9 @@ public class SignUpFragment extends Fragment {
         void navegarLogin();
 
     }
+
+    Boolean validarString (RequestBody texto) {
+        return texto != null && texto.toString().length() >0;
+    }
+
 }
