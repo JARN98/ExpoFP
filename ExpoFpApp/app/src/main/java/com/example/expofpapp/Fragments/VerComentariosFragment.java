@@ -1,9 +1,12 @@
 package com.example.expofpapp.Fragments;
 
+import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -93,38 +96,38 @@ public class VerComentariosFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(ctx, mColumnCount));
             }
-            mViewModel = ViewModelProviders.of(getActivity()).get(ComentarioViewModel.class);
+            mViewModel = ViewModelProviders.of((FragmentActivity) ctx).get(ComentarioViewModel.class);
             cometariosList = new ArrayList<>();
 
             ComentarioService service = ServiceGenerator.createService(ComentarioService.class, UtilToken.getToken(ctx), TipoAutenticacion.JWT );
-            Call<List<Comentario>> call = service.getComentariosProyecto(mViewModel.getSelectedId().getValue());
+            Call<List<Comentario>> call = service.getComentariosProyecto(mViewModel.getSelectedIdProyec().getValue());
 
             call.enqueue(new Callback<List<Comentario>>() {
 
-                             @Override
-                             public void onResponse(Call<List<Comentario>> call, Response<List<Comentario>> response) {
-                                 if (response.code() != 200) {
-                                     Toast.makeText(getActivity(), "Error en petición", Toast.LENGTH_SHORT).show();
-                                 } else {
-                                     cometariosList = response.body();
+                @Override
+                public void onResponse(Call<List<Comentario>> call, Response<List<Comentario>> response) {
+                    if (response.code() != 200) {
+                        Toast.makeText(getActivity(), "Error en petición", Toast.LENGTH_SHORT).show();
+                    } else {
+                        cometariosList = response.body();
 
-                                     adapter = new MyComentariosRecyclerViewAdapter(
-                                             ctx,
-                                             cometariosList,
-                                             mListener
-                                     );
-                                     recyclerView.setAdapter(adapter);
-                                 }
-                             }
+                        adapter = new MyComentariosRecyclerViewAdapter(
+                                ctx,
+                                cometariosList,
+                                mListener
+                        );
+                        recyclerView.setAdapter(adapter);
+                    }
+                }
 
-                             @Override
-                             public void onFailure(Call<List<Comentario>> call, Throwable t) {
-                                 Log.e("NetworkFailure", t.getMessage());
-                                 Toast.makeText(getActivity(), "Error de conexión", Toast.LENGTH_SHORT).show();
+                @Override
+                public void onFailure(Call<List<Comentario>> call, Throwable t) {
+                    Log.e("NetworkFailure", t.getMessage());
+                    Toast.makeText(getActivity(), "Error de conexión", Toast.LENGTH_SHORT).show();
 
-                             }
-                            });
-
+                }
+            });
+            lanzarViewModel(ctx);
         }
         return view;
     }
@@ -147,10 +150,20 @@ public class VerComentariosFragment extends Fragment {
         mListener = null;
     }
 
+    private void lanzarViewModel(Context ctx) {
+        ComentarioViewModel comentarioViewModel = ViewModelProviders.of((FragmentActivity) ctx)
+                .get(ComentarioViewModel.class);
+        comentarioViewModel.getAll().observe(getActivity(), new Observer<List<Comentario>>() {
+            @Override
+            public void onChanged(@Nullable List<Comentario> comentarios) {
+                adapter.setNuevosComentarios(comentarios);
+            }
+        });
+    }
+
 
     public interface OnListFragmentInteractionListener {
 
     }
 
 }
-

@@ -1,6 +1,8 @@
 package com.example.expofpapp.Adapters;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,6 +16,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
+import com.example.expofpapp.Dialog.EliminarComentarioDialogFragment;
 import com.example.expofpapp.Fragments.VerComentariosFragment.OnListFragmentInteractionListener;
 
 import com.example.expofpapp.Generator.ServiceGenerator;
@@ -23,26 +26,37 @@ import com.example.expofpapp.Generator.UtilUser;
 import com.example.expofpapp.Model.Comentario;
 import com.example.expofpapp.R;
 import com.example.expofpapp.Services.ComentarioService;
+import com.example.expofpapp.ViewModels.ComentarioViewModel;
 
 
 import java.util.List;
 
 import okhttp3.ResponseBody;
+import okhttp3.internal.Util;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MyComentariosRecyclerViewAdapter extends RecyclerView.Adapter<MyComentariosRecyclerViewAdapter.ViewHolder> {
 
-    private final List<Comentario> mValues;
+    private List<Comentario> mValues;
     private final OnListFragmentInteractionListener mListener;
     private final Context ctx;
+    private ComentarioViewModel mViewModel;
+
+
 
 
     public MyComentariosRecyclerViewAdapter(Context cxt, List<Comentario> items, OnListFragmentInteractionListener listener) {
         ctx = cxt;
         mValues = items;
         mListener = listener;
+
+    }
+
+    public void setNuevosComentarios(List<Comentario> nuevosComentarios) {
+        this.mValues = nuevosComentarios;
+        notifyDataSetChanged();
     }
 
     @Override
@@ -57,6 +71,7 @@ public class MyComentariosRecyclerViewAdapter extends RecyclerView.Adapter<MyCom
         holder.mItem = mValues.get(position);
         holder.autor.setText(holder.mItem.getNombreAutor());
         holder.contenido.setText(holder.mItem.getContenido());
+
         Glide
                 .with(this.ctx)
                 .load(holder.mItem.getImagenAutor())
@@ -69,7 +84,10 @@ public class MyComentariosRecyclerViewAdapter extends RecyclerView.Adapter<MyCom
         holder.btnEliminar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                deleteComentario(holder.mItem.getId());
+                mViewModel = ViewModelProviders.of((FragmentActivity) ctx).get(ComentarioViewModel.class);
+                mViewModel.selectIdComentario(holder.mItem.getId());
+                EliminarComentarioDialogFragment dialogoEliminar = EliminarComentarioDialogFragment.newInstance();
+                dialogoEliminar.show(((FragmentActivity) ctx).getSupportFragmentManager(), "dialog");
 
             }
         });
@@ -101,25 +119,5 @@ public class MyComentariosRecyclerViewAdapter extends RecyclerView.Adapter<MyCom
 
     }
 
-    public void deleteComentario(String id){
-        ComentarioService service = ServiceGenerator.createService(ComentarioService.class, UtilToken.getToken(ctx), TipoAutenticacion.JWT );
-        Call<ResponseBody> call = service.deleteComentaio(UtilUser.getId(ctx),id);
 
-        call.enqueue(new Callback<ResponseBody>() {
-
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                if (response.code() != 200) {
-                    Toast.makeText(ctx, "Error en petición", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-                Log.e("NetworkFailure", t.getMessage());
-                Toast.makeText(ctx, "Error de conexión", Toast.LENGTH_SHORT).show();
-
-            }
-        });
-    }
 }

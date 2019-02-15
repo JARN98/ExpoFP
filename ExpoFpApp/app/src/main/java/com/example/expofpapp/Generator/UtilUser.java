@@ -129,5 +129,21 @@ public class UtilUser {
         setEncuesta(mContext, user.isEncuesta());
     }
 
+    public static void setIdComentario(Context mContext, String id) {
+        setSharedPreferences(mContext);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("IdComentario", id);
+        editor.commit();
+    }
+
+
+    public static String getIdComentario(Context mContext) {
+        setSharedPreferences(mContext);
+        String id = sharedPreferences
+                .getString("IdComentario", null);
+
+        return id;
+    }
+
 
 }

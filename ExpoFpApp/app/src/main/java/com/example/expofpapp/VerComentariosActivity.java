@@ -17,7 +17,7 @@ public class VerComentariosActivity extends AppCompatActivity implements VerCome
 
         Bundle extras = getIntent().getExtras();
         mViewModel = ViewModelProviders.of(VerComentariosActivity.this).get(ComentarioViewModel.class);
-        mViewModel.selectId(extras.getString("id"));
+        mViewModel.selectIdProyec(extras.getString("id"));
 
         getSupportFragmentManager()
                 .beginTransaction()
