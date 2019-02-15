@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
     private uploadImageImgurService: UploadImageImgurService,
     private fb: FormBuilder, private snackBar: MatSnackBar) { }
 
-    public isError = false;
+  public isError = false;
 
   ngOnInit() {
     this.form = this.fb.group({
@@ -41,21 +41,18 @@ export class LoginComponent implements OnInit {
   }
 
   doLogin(form: NgForm) {
-    if(form.valid) {
-      const loginDto = new LoginDto(this.email, this.password);
-      this.loginService.login(loginDto).subscribe(loginResp => {
-        console.log(loginResp);
-        this.loginService.setLoginData(loginResp);
-        console.log('ROL: ' + localStorage.getItem('role'));
-        this.router.navigate(['/component/proyectos']);
-      }, error => {
-        this.snackBar.open('Error en peticion de login', 'x', { duration: 1000, panelClass: ['style-success'] });
-        console.log('Error en petición de login');
-      }
-      );
-    }else{
-      this.onIsError();
+
+    const loginDto = new LoginDto(this.email, this.password);
+    this.loginService.login(loginDto).subscribe(loginResp => {
+      console.log(loginResp);
+      this.loginService.setLoginData(loginResp);
+      console.log('ROL: ' + localStorage.getItem('role'));
+      this.router.navigate(['/component/proyectos']);
+    }, error => {
+      this.snackBar.open('Error en peticion de login', 'x', { duration: 1000, panelClass: ['style-success'] });
+      console.log('Error en petición de login');
     }
+    );
   }
 
   doLoginGoogle() {
@@ -68,7 +65,7 @@ export class LoginComponent implements OnInit {
 
   doSignup(form: NgForm) {
 
-    if(form.valid) {
+    if (form.valid) {
 
       this.uploadImageImgurService.UploadImage(this.uploadImageDto).subscribe(imagen => {
         this.urlImagen = imagen.data.link;
@@ -108,8 +105,8 @@ export class LoginComponent implements OnInit {
 
   onIsError(): void {
     this.isError = true;
-          setTimeout(() => {
-            this.isError = false;
-          }, 4000);
+    setTimeout(() => {
+      this.isError = false;
+    }, 4000);
   }
 }

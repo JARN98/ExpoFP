@@ -6,7 +6,7 @@
                         currentPage: p}">
                 <div class="card card-outline-inverse">
                     <div class="card-header">
-                        <h4 class="m-b-0 text-white">{{proyecto.nombre}} - {{proyecto.curso}}</h4>
+                        <h4 class="m-b-0 text-white contenido" id="proyectoTitulo">{{proyecto.nombre}} - {{proyecto.curso}}</h4>
                     </div>
                     <br>
                     <img class="card-img-top img-responsive" (click)="VerProyecto(proyecto.proyecto)" style="object-fit:scale-down; height:150px" src={{proyecto.imagen}} alt="Card image cap">
