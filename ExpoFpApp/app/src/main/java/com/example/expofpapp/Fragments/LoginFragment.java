@@ -71,7 +71,7 @@ import static com.google.android.gms.auth.api.Auth.GOOGLE_SIGN_IN_API;
  * Use the {@link LoginFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class LoginFragment extends Fragment implements GoogleApiClient.OnConnectionFailedListener{
+public class LoginFragment extends Fragment implements GoogleApiClient.OnConnectionFailedListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -154,48 +154,16 @@ public class LoginFragment extends Fragment implements GoogleApiClient.OnConnect
         });
 
 
-
         // Configure Google Sign In
         gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
                 .build();
 
+        googleSignInClient = GoogleSignIn.getClient(getContext(), gso);
+
         mAuth = FirebaseAuth.getInstance();
-        /*mGoogleApiClient = new GoogleApiClient.Builder(getContext())
-                .enableAutoManage(getActivity(), this)
-                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
-                .build();*/
-        /*GLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-                startActivityForResult(
-                        AuthUI.getInstance()
-                                .createSignInIntentBuilder()
-                                .setIsSmartLockEnabled(false)
-                                .setProviders(Collections.singletonList(new AuthUI.IdpConfig.Builder(AuthUI.GOOGLE_PROVIDER).build()
-                                ))
-                                .build(),
-                        RC_SIGN_IN);
-
-
-
-
-            }
-        });*/
-
-
-        /*mGoogleApiClient = new GoogleApiClient.Builder(this)
-                .addApi(gso)
-                .addScope(Drive.SCOPE_FILE)
-                .addConnectionCallbacks(this)
-                .addOnConnectionFailedListener(this)
-                .build();*/
-
-/*
-        mGoogleApiClient.connect();
-*/
 
         signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -208,7 +176,6 @@ public class LoginFragment extends Fragment implements GoogleApiClient.OnConnect
 
 
     private void signIn() {
-        googleSignInClient = GoogleSignIn.getClient(getView().getContext(), gso);
         signInIntent = googleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
@@ -224,24 +191,38 @@ public class LoginFragment extends Fragment implements GoogleApiClient.OnConnect
 
     private void updateUI(FirebaseUser currentUser) {
 
-        AuthService authService = ServiceGenerator.createService(AuthService.class);
+        if (currentUser != null) {
+            AuthService authService = ServiceGenerator.createService(AuthService.class);
 
-        Log.e("atris", "updateUI: " + currentUser.toString());
+            Log.e("atris", "updateUI: " + currentUser.toString());
 
-        Call<LoginResponse> call = authService.doLoginGoogle(currentUser.getIdToken(true).toString());
+            Call<LoginResponse> call = authService.doLoginGoogle(currentUser.getIdToken(true).toString());
 
-        call.enqueue(new Callback<LoginResponse>() {
-            @Override
-            public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
-                Toast.makeText(getContext(), response.code(), Toast.LENGTH_SHORT).show();
-            }
+            call.enqueue(new Callback<LoginResponse>() {
+                @Override
+                public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+                    Toast.makeText(getContext(), response.code(), Toast.LENGTH_SHORT).show();
+                }
 
-            @Override
-            public void onFailure(Call<LoginResponse> call, Throwable t) {
-                Toast.makeText(getContext(), "La conexión ha fallado", Toast.LENGTH_SHORT).show();
-            }
-        });
+                @Override
+                public void onFailure(Call<LoginResponse> call, Throwable t) {
+                    Toast.makeText(getContext(), "La conexión ha fallado", Toast.LENGTH_SHORT).show();
+                }
+            });
+        } else {
+            Toast.makeText(getContext(), "NANAI", Toast.LENGTH_SHORT).show();
+        }
+
+
     }
+
+    /*@Override
+    public void onStart() {
+        super.onStart();
+
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        updateUI(currentUser);
+    }*/
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -276,7 +257,6 @@ public class LoginFragment extends Fragment implements GoogleApiClient.OnConnect
             updateUI(null);
         }
     }*/
-
 
 
     @Override
@@ -331,7 +311,7 @@ public class LoginFragment extends Fragment implements GoogleApiClient.OnConnect
                     Toast.makeText(getActivity(), "Error de conexión", Toast.LENGTH_SHORT).show();
                 }
             });
-        }else {
+        } else {
 
             Toast.makeText(getContext(), "Debes rellenar todos los campos", Toast.LENGTH_SHORT).show();
         }
@@ -347,9 +327,6 @@ public class LoginFragment extends Fragment implements GoogleApiClient.OnConnect
         void navegarRegistro();
 
     }
-
-
-
 
 
     private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
@@ -376,7 +353,7 @@ public class LoginFragment extends Fragment implements GoogleApiClient.OnConnect
                 });
     }
 
-    Boolean validarString (String texto) {
+    Boolean validarString(String texto) {
         return texto != null && texto.trim().length() > 0;
     }
 }
