@@ -314,6 +314,7 @@ public class LoginFragment extends Fragment implements GoogleApiClient.OnConnect
                     if (response.code() != 201) {
                         // error
                         Log.e("RequestError", response.message());
+                        Toast.makeText(getContext(), "Email o contraseña incorrecto", Toast.LENGTH_SHORT).show();
 
                     } else {
 
