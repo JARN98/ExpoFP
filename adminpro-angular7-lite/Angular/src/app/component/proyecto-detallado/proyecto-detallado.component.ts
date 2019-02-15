@@ -141,6 +141,7 @@ export class ProyectoDetalladoComponent implements OnInit {
   openDialogEditPhoto() {
     const dialogoAddRec = this.dialog.open(EditPhotosComponent, {
       width: '80%',
+      height: '80%',
       data: { proyecto: this.proyect }
     });
 

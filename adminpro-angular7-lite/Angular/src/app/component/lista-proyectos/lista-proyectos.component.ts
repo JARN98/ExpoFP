@@ -39,14 +39,14 @@ import { FormControl, Validators } from '@angular/forms';
       }
     `
   ]
-  
+
 })
 export class ListaProyectosComponent implements OnInit {
   listaApi: ListApiResponse;
   listaProyectosRes: ListProjectsResponse[];
   proyectoFilter: any = { nombre: '' };
   admin: boolean;
-  user:boolean;
+  user: boolean;
   proyect: any;
   valoracionMedia: number;
   currentRate = 8;
@@ -76,6 +76,16 @@ export class ListaProyectosComponent implements OnInit {
     this.user = this.loginService.isUser();
     console.log(this.admin);
   }
+
+  //   truncateText(proyecto, maxLength) {
+  //     const element = document.querySelector('proyectoTitulo'),
+  //         truncated = element.innerHTML;
+
+  //     if (truncated.length > maxLength) {
+  //         truncated = truncated.substr(0, maxLength) + '...';
+  //     }
+  //     return truncated;
+  // }
   getAllProyectos() {
     this.projectService.listProjectsRes().subscribe(lista => {
       this.listaApi = lista;
@@ -114,9 +124,10 @@ export class ListaProyectosComponent implements OnInit {
 
   openDialogDeleteProject(proyecto) {
     const dialogoDeleteProject = this.dialog.open(DeleteProjectComponent, {
-      data: { id: proyecto.id,
-              nombre: proyecto.nombre
-            }
+      data: {
+        id: proyecto.id,
+        nombre: proyecto.nombre
+      }
     });
     dialogoDeleteProject.afterClosed().subscribe(result => {
       this.getAllProyectos();
