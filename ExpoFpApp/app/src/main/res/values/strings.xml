@@ -30,4 +30,5 @@
     <string name="Comentar">Comentar</string>
     <string name="EscribaComentario">Escriba su comentario</string>
     <string name="Eliminar">Eliminar</string>
+    <string name="NoHay">No hay comentarios en este proyecto.</string>
 </resources>

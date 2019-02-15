@@ -68,7 +68,19 @@ public class MyComentariosRecyclerViewAdapter extends RecyclerView.Adapter<MyCom
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
+
+
+
+
+        holder.noHay.setVisibility(View.GONE);
+
+
         holder.mItem = mValues.get(position);
+        if(holder.mItem.getId().isEmpty()) {
+            holder.valoracion.setVisibility(View.INVISIBLE);
+            holder.noHay.setVisibility(View.VISIBLE);
+        }
+
         holder.autor.setText(holder.mItem.getNombreAutor());
         holder.contenido.setText(holder.mItem.getContenido());
 
@@ -78,8 +90,9 @@ public class MyComentariosRecyclerViewAdapter extends RecyclerView.Adapter<MyCom
                 .into(holder.imagen);
         holder.valoracion.setRating((float)holder.mItem.getValoracion());
 
-        if(holder.mItem.getAutor().equalsIgnoreCase(UtilUser.getId(ctx)))
-            holder.btnEliminar.setVisibility(View.VISIBLE);
+        if(!(holder.mItem.getAutor().equals(UtilUser.getId(ctx))))
+            holder.btnEliminar.setVisibility(View.GONE);
+
 
         holder.btnEliminar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,10 +115,11 @@ public class MyComentariosRecyclerViewAdapter extends RecyclerView.Adapter<MyCom
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
         public Comentario mItem;
-        public final TextView autor, contenido;
+        public final TextView autor, contenido, noHay;
         public final ImageView imagen;
         public final RatingBar valoracion;
         public final Button btnEliminar;
+
 
         public ViewHolder(View view) {
             super(view);
@@ -115,6 +129,7 @@ public class MyComentariosRecyclerViewAdapter extends RecyclerView.Adapter<MyCom
             contenido = view.findViewById(R.id.textViewContenidoComentario);
             valoracion = view.findViewById(R.id.ratingBarValoracionComentario);
             btnEliminar = view.findViewById(R.id.buttonEliminarComentario);
+            noHay = view.findViewById(R.id.textViewNoHayComentarios);
         }
 
     }

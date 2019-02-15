@@ -13,6 +13,9 @@ public class Comentario {
     public Comentario() {
     }
 
+    public Comentario(String s, String s1, String s2, String s3, String s4) {
+    }
+
     public String getId() {
         return id;
     }
@@ -21,7 +24,7 @@ public class Comentario {
         this.id = id;
     }
 
-    public Comentario(String id, String nombreAutor, String contenido, int valoracion, boolean valido, String imagenAutor, String proyecto, String autor) {
+    public Comentario(String id, String nombreAutor, String contenido, String imagenAutor) {
         this.id = id;
         this.nombreAutor = nombreAutor;
         this.contenido = contenido;
@@ -29,6 +32,11 @@ public class Comentario {
         this.valido = valido;
         this.imagenAutor = imagenAutor;
         this.proyecto = proyecto;
+        this.autor = autor;
+    }
+
+    public Comentario(String id, String autor) {
+        this.id = id;
         this.autor = autor;
     }
 
