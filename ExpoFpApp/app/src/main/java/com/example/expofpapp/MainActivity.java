@@ -128,13 +128,6 @@ public class MainActivity extends AppCompatActivity implements ProyectoResListen
 
         encuestaViewModel = ViewModelProviders.of((FragmentActivity) this).get(EncuestaViewModel.class);
 
-        encuestaViewModel.selected().observe(this, new Observer<List<Pregunta>>() {
-            @Override
-            public void onChanged(@Nullable List<Pregunta> preguntas) {
-                Toast.makeText(MainActivity.this, "" + encuestaViewModel.listaPreguntas.getValue().get(0), Toast.LENGTH_SHORT).show();
-            }
-        });
-
 
 
 
@@ -232,6 +225,7 @@ public class MainActivity extends AppCompatActivity implements ProyectoResListen
         builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 // User clicked OK button
+                UtilUser.clearSharedPreferences(MainActivity.this);
                 finish();
             }
         });

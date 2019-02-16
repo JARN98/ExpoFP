@@ -48,7 +48,6 @@ public class MyProyectoResRecyclerViewAdapter extends RecyclerView.Adapter<MyPro
         holder.mItem = mValues.get(position);
         holder.textView_titulo.setText(mValues.get(position).getNombre());
         holder.textView_curso.setText(mValues.get(position).getCurso());
-        holder.rbValoracion.setRating((float)holder.mItem.getValoracionMedia());
 
 
         //pasar id de poryec
@@ -88,7 +87,6 @@ public class MyProyectoResRecyclerViewAdapter extends RecyclerView.Adapter<MyPro
         public final ImageView imageView;
         public ProyectoRes mItem;
         public final CardView cardView_proyectoRes;
-        public final RatingBar rbValoracion;
 
         public ViewHolder(View view) {
             super(view);
@@ -97,7 +95,6 @@ public class MyProyectoResRecyclerViewAdapter extends RecyclerView.Adapter<MyPro
             textView_titulo = view.findViewById(R.id.textView_titulo);
             imageView = view.findViewById(R.id.imageViewProyectoRes);
             cardView_proyectoRes = view.findViewById(R.id.cardView_proyectoRes);
-            rbValoracion = view.findViewById(R.id.ratingBarProyRes);
         }
     }
 }
