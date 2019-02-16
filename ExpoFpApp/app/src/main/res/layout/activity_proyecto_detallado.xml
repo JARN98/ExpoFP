@@ -6,6 +6,17 @@
     android:layout_height="match_parent"
     tools:context=".ProyectoDetalladoActivity">
 
+    <TextView
+        android:id="@+id/position"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="#6D000000"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="@+id/relative"
+        app:layout_constraintTop_toTopOf="@+id/relative" />
+
     <RelativeLayout
         android:id="@+id/relative"
         android:layout_width="match_parent"
