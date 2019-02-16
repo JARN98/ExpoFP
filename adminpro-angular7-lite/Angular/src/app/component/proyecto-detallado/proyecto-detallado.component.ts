@@ -79,6 +79,7 @@ export class ProyectoDetalladoComponent implements OnInit {
   esMio: String;
   admin: boolean;
   user: boolean;
+  valoracionMedia: number;
 
   comentarioForm: FormGroup;
 
@@ -106,7 +107,7 @@ export class ProyectoDetalladoComponent implements OnInit {
     config.showNavigationIndicators = true;
 
     this.comentarioForm = this.fb.group({
-      contenido: ['', Validators.required]
+      contenido: [null, Validators.compose([Validators.required])]
     });
     // console.log(this._route.snapshot.paramMap.get('id'));
   }
@@ -133,6 +134,7 @@ export class ProyectoDetalladoComponent implements OnInit {
       this.proyect = proyecto;
       this.listaImagenes = proyecto.imagenesDetalladas;
       this.ultimosComentarios = proyecto.ultimosComentarios.reverse();
+      this.proyect.valoracionMedia = parseFloat(this.proyect.valoracionMedia).toFixed(2);
     }, err => {
       console.log(err);
     });
