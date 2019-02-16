@@ -36,7 +36,7 @@ import retrofit2.Response;
 public class ProyectoDetalladoActivity extends AppCompatActivity {
 
     ViewPager viewPager;
-    TextView tvNombre, tvCurso, tvAutores, tvDescripcion;
+    TextView tvNombre, tvCurso, tvAutores, tvDescripcion, position;
     RatingBar rbValoracionMedia;
     String idProyec, autores;
     Proyecto proyec;
@@ -60,6 +60,7 @@ public class ProyectoDetalladoActivity extends AppCompatActivity {
         tvAutores = findViewById(R.id.tvAutores);
         rbValoracionMedia = findViewById(R.id.rbValoracionMedia);
         btnComentar = findViewById(R.id.buttonComentar);
+        position = findViewById(R.id.position);
 
         btnVerComentarios = findViewById(R.id.buttonVerComentarios);
 
@@ -134,7 +135,7 @@ public class ProyectoDetalladoActivity extends AppCompatActivity {
                     tvDescripcion.setText(proyec.getDescripcion());
                     rbValoracionMedia.setRating((float) proyec.getValoracionMedia());
                     imagenes = Arrays.asList(proyec.getImagenesDetalladas());
-                    ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(ProyectoDetalladoActivity.this, imagenes);
+                    ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(ProyectoDetalladoActivity.this, imagenes, position);
                     viewPager.setAdapter(viewPagerAdapter);
                     tweetDefault = "Disfrutando de la ExpoFP 2019 con " + proyec.getNombre();
 

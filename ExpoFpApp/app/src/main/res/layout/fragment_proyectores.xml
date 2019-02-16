@@ -2,7 +2,11 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+<<<<<<< HEAD
     android:id="@+id/constraintLayout2"
+=======
+    android:id="@+id/constraintLayout"
+>>>>>>> 4e6a9379502af86883deee6f736004f4830ee6ff
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -32,6 +36,10 @@
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="32dp"
+<<<<<<< HEAD
+=======
+                android:layout_marginBottom="16dp"
+>>>>>>> 4e6a9379502af86883deee6f736004f4830ee6ff
                 app:layout_constraintBottom_toTopOf="@+id/textView_titulo"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -41,9 +49,14 @@
             <TextView
                 android:id="@+id/textView_titulo"
                 android:layout_width="0dp"
+<<<<<<< HEAD
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
                 android:layout_marginTop="16dp"
+=======
+                android:layout_height="0dp"
+                android:layout_marginStart="12dp"
+>>>>>>> 4e6a9379502af86883deee6f736004f4830ee6ff
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp"
                 android:text="TextView"
@@ -58,6 +71,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
+<<<<<<< HEAD
+=======
+                android:layout_marginEnd="8dp"
+>>>>>>> 4e6a9379502af86883deee6f736004f4830ee6ff
                 android:layout_marginBottom="8dp"
                 android:text="TextView"
                 app:layout_constraintBottom_toBottomOf="parent"

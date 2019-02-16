@@ -225,6 +225,7 @@ public class MainActivity extends AppCompatActivity implements ProyectoResListen
         builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 // User clicked OK button
+                UtilUser.clearSharedPreferences(MainActivity.this);
                 finish();
             }
         });
