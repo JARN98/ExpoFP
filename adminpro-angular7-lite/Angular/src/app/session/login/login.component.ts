@@ -65,7 +65,6 @@ export class LoginComponent implements OnInit {
 
   doSignup(form: NgForm) {
 
-    if (form.valid) {
 
       this.uploadImageImgurService.UploadImage(this.uploadImageDto).subscribe(imagen => {
         this.urlImagen = imagen.data.link;
@@ -78,15 +77,12 @@ export class LoginComponent implements OnInit {
           this.isError = false;
         }, error => {
           console.log('Error en el registro');
+          this.onIsError();
         });
       }, err => {
         console.log('Error subiendo la imagen');
         console.log(err);
       });
-
-    } else {
-      this.onIsError();
-    }
 
   }
 

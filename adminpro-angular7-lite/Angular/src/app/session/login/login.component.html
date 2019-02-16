@@ -31,11 +31,11 @@
                                     </td>
                                 </tr>
                                 <div fxLayout="column" fxLayoutGap="2%">
-                                    <button mat-raised-button color="primary" id="login_boton" (click)="doLogin(example-form)" >Login</button>
+                                    <button mat-raised-button color="primary" id="login_boton" (click)="doLogin(example-form)">Login</button>
                                     <button mat-stroked-button color="primary" id="loginGogle_boton" (click)="doLoginGoogle()"><i class="fa fa-google"></i> &nbsp;&nbsp; Login Google</button>
                                     <br>
                                 </div>
-                                
+
                             </table>
                         </form>
                     </mat-tab>
@@ -89,5 +89,5 @@
     </div>
 </div>
 <div class="alert alert-danger" role="alert" *ngIf="isError">
-    Debes rellenar todos los campos
+    Error en el registro, por favor compruebe que están los campos rellenos correctamente
 </div>

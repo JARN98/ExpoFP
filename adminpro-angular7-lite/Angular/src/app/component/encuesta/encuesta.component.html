@@ -69,6 +69,6 @@
 
 </div>
 
-<div fxFlexFill *ngIf="isEncuesta()">
+<div fxFlexFill *ngIf="isEncuesta() && !isAdmin()">
     <p>Su encuesta ha sido recogida, muchas gracias por haber participado</p>
 </div>
