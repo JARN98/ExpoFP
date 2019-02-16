@@ -66,7 +66,6 @@ public class ProyectoDetalladoActivity extends AppCompatActivity {
         tvNombre = findViewById(R.id.tvNombre);
 
 
-
         btnTwitter = findViewById(R.id.btnTwitter);
 
         btnTwitter.setOnClickListener(new View.OnClickListener() {
@@ -81,6 +80,33 @@ public class ProyectoDetalladoActivity extends AppCompatActivity {
         idProyec = extras.getString("id");
 
 
+        btnVerComentarios.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(ProyectoDetalladoActivity.this, VerComentariosActivity.class);
+                i.putExtra("id", idProyec);
+
+                ProyectoDetalladoActivity.this.startActivity(i);
+
+            }
+        });
+        btnComentar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(ProyectoDetalladoActivity.this, ComentarActivity.class);
+                i.putExtra("id", idProyec);
+
+                ProyectoDetalladoActivity.this.startActivity(i);
+            }
+        });
+
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
         ProyectoService service = ServiceGenerator.createService(ProyectoService.class);
         Call<Proyecto> call = service.getProyecto(idProyec);
 
@@ -93,10 +119,10 @@ public class ProyectoDetalladoActivity extends AppCompatActivity {
                     Toast.makeText(ProyectoDetalladoActivity.this, "Error", Toast.LENGTH_SHORT).show();
                 } else {
                     proyec = response.body();
-
+                    autores = null;
                     for (String autor : proyec.getAutores()) {
-                        if(autores == null){
-                            autores = autor+"";
+                        if (autores == null) {
+                            autores = autor + "";
                         } else {
                             autores = autores + ", " + autor;
                         }
@@ -123,28 +149,6 @@ public class ProyectoDetalladoActivity extends AppCompatActivity {
 
 
         });
-
-        btnVerComentarios.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(ProyectoDetalladoActivity.this, VerComentariosActivity.class);
-                i.putExtra("id", idProyec);
-
-                ProyectoDetalladoActivity.this.startActivity(i);
-
-            }
-        });
-        btnComentar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(ProyectoDetalladoActivity.this, ComentarActivity.class);
-                i.putExtra("id", idProyec);
-
-                ProyectoDetalladoActivity.this.startActivity(i);
-            }
-        });
-
-
     }
 
     private void shareTwitter(String message) {
