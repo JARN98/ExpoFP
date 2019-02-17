@@ -21,6 +21,7 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { MatListModule } from '@angular/material/list';
 import { MatRadioModule, MatButtonModule, MatChipsModule } from '@angular/material';
 import { InicioComponent } from './inicio/inicio.component';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 @NgModule({
   imports: [
@@ -40,7 +41,8 @@ import { InicioComponent } from './inicio/inicio.component';
     MatListModule,
     MatRadioModule,
     MatButtonModule,
-    MatChipsModule
+    MatChipsModule,
+    MatPaginatorModule
 
   ],
   declarations: [
