@@ -1,5 +1,6 @@
 package com.example.expofpapp;
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
@@ -51,17 +52,6 @@ public class SessionActivity extends AppCompatActivity implements LoginFragment.
                 .add(R.id.contenedor, new LoginFragment())
                 .commit();
 
-        builder = new FirebaseOptions.Builder()
-                .setApplicationId("1:473316374076:android:756c63e232baed63")
-                .setApiKey("AAAAbjPatjw:APA91bHRvQcuvAOXoRlBJ3xhymCbE46B5nfVucZZChblmvKx2Zc0NM5sdc_UkFVmJUIFO0ElCJ6ZA8b__uM2f5C1qAhpLdEvSp6dkEmlV3GpNpaxTatn8WEwPCG-t3uz05DqG2lfRLZB")
-                .setDatabaseUrl("https://expofp-salesianos.firebaseio.com");
-        FirebaseApp.initializeApp(this, builder.build());
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-
         if (builder == null) {
             builder = new FirebaseOptions.Builder()
                     .setApplicationId("1:473316374076:android:756c63e232baed63")
@@ -69,6 +59,20 @@ public class SessionActivity extends AppCompatActivity implements LoginFragment.
                     .setDatabaseUrl("https://expofp-salesianos.firebaseio.com");
             FirebaseApp.initializeApp(this, builder.build());
         }
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+/*        if (builder == null) {
+            builder = new FirebaseOptions.Builder()
+                    .setApplicationId("1:473316374076:android:756c63e232baed63")
+                    .setApiKey("AAAAbjPatjw:APA91bHRvQcuvAOXoRlBJ3xhymCbE46B5nfVucZZChblmvKx2Zc0NM5sdc_UkFVmJUIFO0ElCJ6ZA8b__uM2f5C1qAhpLdEvSp6dkEmlV3GpNpaxTatn8WEwPCG-t3uz05DqG2lfRLZB")
+                    .setDatabaseUrl("https://expofp-salesianos.firebaseio.com");
+            FirebaseApp.initializeApp(this, builder.build());
+        }*/
 
         if (UtilUser.getEmail(this) != null) {
             startActivity(new Intent(SessionActivity.this, MainActivity.class));

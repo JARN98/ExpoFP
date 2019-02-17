@@ -23,16 +23,18 @@
 
     <RatingBar
         android:id="@+id/ratingBarValoracionComentar"
-        style="@style/Widget.AppCompat.RatingBar"
+        style="@style/Widget.AppCompat.RatingBar.Indicator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         android:isIndicator="false"
-        android:numStars="5"
+        android:numStars="10"
         android:stepSize="0.5"
+        app:layout_constraintBottom_toTopOf="@+id/editTextComentario"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewEscComentario" />
 
@@ -46,6 +48,7 @@
         android:ems="10"
         android:hint="@string/EscribaComentario"
         android:inputType="textPersonName|textNoSuggestions"
+        app:layout_constraintBottom_toTopOf="@+id/buttonComentar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ratingBarValoracionComentar" />

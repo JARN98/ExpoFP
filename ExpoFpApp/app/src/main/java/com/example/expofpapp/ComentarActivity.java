@@ -31,7 +31,7 @@ public class ComentarActivity extends AppCompatActivity {
     Button btnComentar;
     double valoracion;
     String contenidoComentario, autor,idProyec;
-    int dobleRating = 2;
+    int dobleRating = 1;
     ComentarioDto comentario;
 
     @Override
