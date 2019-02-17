@@ -57,7 +57,10 @@ public class SessionActivity extends AppCompatActivity implements LoginFragment.
                     .setApplicationId("1:473316374076:android:756c63e232baed63")
                     .setApiKey("AAAAbjPatjw:APA91bHRvQcuvAOXoRlBJ3xhymCbE46B5nfVucZZChblmvKx2Zc0NM5sdc_UkFVmJUIFO0ElCJ6ZA8b__uM2f5C1qAhpLdEvSp6dkEmlV3GpNpaxTatn8WEwPCG-t3uz05DqG2lfRLZB")
                     .setDatabaseUrl("https://expofp-salesianos.firebaseio.com");
-            FirebaseApp.initializeApp(this, builder.build());
+            
+            if(FirebaseApp.getApps(this).isEmpty())
+                FirebaseApp.initializeApp(this, builder.build());
+
         }
 
     }

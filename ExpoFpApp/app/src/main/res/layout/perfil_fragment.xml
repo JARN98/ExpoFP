@@ -34,10 +34,9 @@
             android:id="@+id/textViewNombrePerfil"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginStart="8dp"
             android:text="TextView"
-            app:layout_constraintStart_toEndOf="@+id/imageViewPerfil"
+            app:layout_constraintStart_toEndOf="@+id/textView"
             app:layout_constraintTop_toTopOf="@+id/imageViewPerfil" />
 
         <TextView
@@ -66,7 +65,7 @@
             android:layout_marginEnd="8dp"
             android:ems="10"
             android:hint="@string/Password"
-            android:inputType="textPersonName"
+            android:inputType="textPassword"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/buttonCambiarPass" />
@@ -78,7 +77,7 @@
             android:layout_marginTop="16dp"
             android:ems="10"
             android:hint="@string/NuevaPass"
-            android:inputType="textPersonName"
+            android:inputType="textPassword"
             app:layout_constraintEnd_toEndOf="@+id/editTextPassPerfil"
             app:layout_constraintStart_toStartOf="@+id/editTextPassPerfil"
             app:layout_constraintTop_toBottomOf="@+id/editTextPassPerfil" />
@@ -91,7 +90,39 @@
             android:text="@string/Cambiar"
             app:layout_constraintEnd_toEndOf="@+id/editTextNuevaPassPerfil"
             app:layout_constraintStart_toStartOf="@+id/editTextNuevaPassPerfil"
+            app:layout_constraintTop_toBottomOf="@+id/editTextRepetirPass" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="@string/NombrePerfil"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/imageViewPerfil"
+            app:layout_constraintTop_toTopOf="@+id/imageViewPerfil" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/EmailPerfil"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/imageViewPerfil"
+            app:layout_constraintStart_toStartOf="@+id/textView" />
+
+        <EditText
+            android:id="@+id/editTextRepetirPass"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:ems="10"
+            android:hint="@string/RepetirPass"
+            android:inputType="textPassword"
+            app:layout_constraintEnd_toEndOf="@+id/editTextNuevaPassPerfil"
+            app:layout_constraintStart_toStartOf="@+id/editTextNuevaPassPerfil"
             app:layout_constraintTop_toBottomOf="@+id/editTextNuevaPassPerfil" />
+
     </android.support.constraint.ConstraintLayout>
 
 </FrameLayout>

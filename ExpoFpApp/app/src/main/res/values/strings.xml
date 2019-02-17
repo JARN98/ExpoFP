@@ -31,4 +31,8 @@
     <string name="EscribaComentario">Escriba su comentario</string>
     <string name="Eliminar">Eliminar</string>
     <string name="NoHay">No hay comentarios en este proyecto.</string>
+    <string name="NombrePerfil">Nombre:</string>
+    <string name="EmailPerfil">Email:</string>
+    <string name="RepitPass">Repita su contraseña</string>
+    <string name="Comprobar">Comprobar</string>
 </resources>

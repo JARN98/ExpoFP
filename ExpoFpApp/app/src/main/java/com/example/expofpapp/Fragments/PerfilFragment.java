@@ -38,7 +38,7 @@ public class PerfilFragment extends Fragment {
 
     private PerfilViewModel mViewModel;
     private TextView tvNombre, tvEmail;
-    private EditText etPass, etNewPass;
+    private EditText etPass, etNewPass, etRepeatPass;
     private ImageView ivImagen;
     private Button btnLogout,btnCambiarPass, btnCambiar;
 
@@ -59,10 +59,12 @@ public class PerfilFragment extends Fragment {
         btnCambiar = view.findViewById(R.id.buttonUpdatePass);
         etPass = view.findViewById(R.id.editTextPassPerfil);
         etNewPass = view.findViewById(R.id.editTextNuevaPassPerfil);
+        etRepeatPass = view.findViewById(R.id.editTextRepetirPass);
 
         btnCambiar.setVisibility(View.GONE);
         etPass.setVisibility(View.GONE);
         etNewPass.setVisibility(View.GONE);
+        etRepeatPass.setVisibility(View.GONE);
 
         tvNombre.setText(UtilUser.getNombre(getActivity()));
         tvEmail.setText(UtilUser.getEmail(getActivity()));
@@ -86,12 +88,17 @@ public class PerfilFragment extends Fragment {
                 btnCambiar.setVisibility(View.VISIBLE);
                 etPass.setVisibility(View.VISIBLE);
                 etNewPass.setVisibility(View.VISIBLE);
+                etRepeatPass.setVisibility(View.VISIBLE);
             }
         });
 
         btnCambiar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(!etNewPass.getText().toString().equals(etRepeatPass.getText().toString()))
+                    Toast.makeText(getActivity(), "Las contraseñas no son iguales", Toast.LENGTH_SHORT).show();
+
+                else
                 updatePass();
             }
         });
