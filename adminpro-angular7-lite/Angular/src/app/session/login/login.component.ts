@@ -59,6 +59,9 @@ export class LoginComponent implements OnInit {
     this.loginService.googleLogin().then(r => r.subscribe(res => {
       this.loginService.setLoginData(res);
       this.router.navigate(['/component/proyectos']).then();
+      setTimeout(ola => {
+        console.log('ola');
+      }, 500);
       window.location.reload();
     }));
   }

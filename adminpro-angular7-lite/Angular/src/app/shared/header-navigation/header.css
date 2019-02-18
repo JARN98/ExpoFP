@@ -1,6 +1,23 @@
 @media only screen and (max-width: 992px) {
+   
+        .prueba{
+            transform: translate(0px, 0px);
+            left: 0;
+        }
+    
     .OcultarMovil {
         display: none;
     }
     
+}
+
+
+.prueba{
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -ms-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+
+    transform: translate(0px, 0px);
 }
