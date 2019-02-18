@@ -134,7 +134,8 @@ export class ProyectoDetalladoComponent implements OnInit {
     this.oneProjectService.getOneProject().subscribe(proyecto => {
       this.proyect = proyecto;
       this.listaImagenes = proyecto.imagenesDetalladas;
-      this.ultimosComentarios = proyecto.ultimosComentarios.reverse();
+        this.ultimosComentarios = proyecto.ultimosComentarios.reverse();
+      // this.ultimosComentarios = proyecto.ultimosComentarios.reverse();
       this.proyect.valoracionMedia = parseFloat(this.proyect.valoracionMedia).toFixed(2);
     }, err => {
       console.log(err);

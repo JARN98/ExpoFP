@@ -7,11 +7,11 @@ import { AddProjectComponent } from './dialogs/add-project/add-project.component
 
 export const Approutes: Routes = [
   {
-    path: '',
+    path: 'component',
     component: FullComponent,
     children: [
       {
-        path: 'component',
+        path: '',
         loadChildren: './component/component.module#ComponentsModule'
       }
     ]

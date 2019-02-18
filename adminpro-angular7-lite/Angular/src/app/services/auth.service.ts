@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 import { auth } from 'firebase/app';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
-import { switchMap} from 'rxjs/operators';
+import { switchMap } from 'rxjs/operators';
 import { promise } from 'protractor';
 
 const jwtDecode = require('jwt-decode');
@@ -45,26 +45,26 @@ export class AuthService {
   constructor(private http: HttpClient,
     private afAuth: AngularFireAuth,
     private afs: AngularFirestore,
-    private router: Router) { 
-      this.user = this.afAuth.authState.pipe(
-        switchMap(user => {
-          if (user) {
-            return this.afs.doc<GoogleLoginResponse>(`users/${user.uid}`).valueChanges()
-          } else {
-            return of(null)
-          }
-        })
-      )
+    private router: Router) {
+    this.user = this.afAuth.authState.pipe(
+      switchMap(user => {
+        if (user) {
+          return this.afs.doc<GoogleLoginResponse>(`users/${user.uid}`).valueChanges()
+        } else {
+          return of(null)
+        }
+      })
+    )
   }
 
   googleLogin(): Promise<Observable<LoginResponse>> {
     let googleToken: GoogleLoginResponse;
 
-  return this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider())
-    .then(res => {
-      googleToken = <GoogleLoginResponse><unknown>res.credential;
-      return this.http.post<LoginResponse>(`${environment.ApiUrl}/auth/google`, { 'access_token': googleToken.accessToken} );
-    });
+    return this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider())
+      .then(res => {
+        googleToken = <GoogleLoginResponse><unknown>res.credential;
+        return this.http.post<LoginResponse>(`${environment.ApiUrl}/auth/google`, { 'access_token': googleToken.accessToken });
+      });
   }
 
   login(loginDto: LoginDto): Observable<LoginResponse> {
@@ -104,7 +104,7 @@ export class AuthService {
   //   const key = new Metakey('583831561457-6g360hllfbr7ijkjihmhkrk1b0dq7lh3.apps.googleusercontent.com');
   //   return this.http.post<LoginResponse>(`${environment.ApiUrl}/auth/google`, key, requestOptions);
 
-    
+
   // }
 
   registro(userDto: UserDto): Observable<LoginResponse> {
@@ -132,35 +132,35 @@ export class AuthService {
 
 
   getToken() {
-    
+
     return localStorage.getItem('token');
   }
 
   getTokenDecode() {
     if (!(this.getToken() == null))
-    return jwtDecode(this.getToken());
+      return jwtDecode(this.getToken());
     else
-    return null
+      return null
   }
 
   isAdmin() {
-    if(!(this.getTokenDecode() == null)){
-    if (this.getTokenDecode().role === 'admin') {
-      return true;
-    } else {
+    if (!(this.getTokenDecode() == null)) {
+      if (this.getTokenDecode().role === 'admin') {
+        return true;
+      } else {
+        return false;
+      }
+    } else
       return false;
-    }
-  }else
-  return false;
   }
   isUser() {
-    if(!(this.getTokenDecode() == null)){
+    if (!(this.getTokenDecode() == null)) {
       if (this.getTokenDecode().role === 'user') {
         return true;
       } else {
         return false;
       }
-    }else
-    return false;
-}
+    } else
+      return false;
+  }
 }
