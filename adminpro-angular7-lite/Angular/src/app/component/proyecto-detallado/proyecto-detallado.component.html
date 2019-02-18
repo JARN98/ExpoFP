@@ -8,10 +8,7 @@
                     <button mat-icon-button>
                         <a class="twitter-share-button"
                             href="https://twitter.com/intent/tweet?text=Me+encuentro+en+la+Expo+FP+de+@salesianotriana%2C+disfrutando+de+{{proyect.nombre}}%2C+gran+trabajo+de+los+alumnos.%0ADisfruta+de+la+app+y+comparte+los+proyectos+mediante+enlacePlayStore.%0AO+visítanos+en+la+web+enlaceWeb.+%23expoFP"
-                            target="_blank|_parent"
-                            data-size="large"
-                            data-hashtags="example"
-                            data-via="twitterdev"
+                            target="_blank|_parent" data-size="large" data-hashtags="example" data-via="twitterdev"
                             data-related="twitterapi,twitter">
                             <i class="fab fa-twitter fa-2x"></i>
                         </a>
@@ -64,10 +61,12 @@
                 <h4 class="m-b-0 text-white">Añade un comentario y tu valoración</h4>
             </div>
             <div class="card-body">
-                <input formControlName="contenido" class="form-control" id="contenido" [(ngModel)]="contenido" placeholder="comentario" type="text">
+                <input formControlName="contenido" class="form-control" id="contenido" [(ngModel)]="contenido"
+                    placeholder="comentario" type="text">
                 <br>
                 <br>
-                <div *ngIf="comentarioForm.controls['contenido'].invalid && (comentarioForm.controls['contenido'].touched)" class="alert alert-danger">
+                <div *ngIf="comentarioForm.controls['contenido'].invalid && (comentarioForm.controls['contenido'].touched)"
+                    class="alert alert-danger">
                     <div *ngIf="comentarioForm.controls['contenido'].errors.required">
                         ¡No olvides escribir tu comentario!
                     </div>
@@ -80,30 +79,37 @@
                 </ngb-rating>
                 <br>
                 <br>
-                <button class="btn btn-inverse" (click)="addComentario()" [disabled]="!comentarioForm.valid">Comentar</button>
+                <button class="btn btn-inverse" (click)="addComentario()"
+                    [disabled]="!comentarioForm.valid">Comentar</button>
             </div>
         </form>
     </div>
 </div>
-<div *ngFor="let comentario of ultimosComentarios" class="col-md-11">
-    <div class="card">
-        <div class="card-body">
-            <div class="u-img"><img class="u-img" src={{comentario.imagenAutor}} alt="user"></div>
-            <h3 class="card-title">{{comentario.nombreAutor}}</h3>
-            <h6 class="card-subtitle">{{comentario.contenido}}</h6>
-            <ngb-rating [readonly]="true" [(rate)]="comentario.valoracion">
-                <ng-template let-fill="fill">
-                    <span class="star" [class.filled]="fill === 100">&#9733;</span>
-                </ng-template>
-            </ngb-rating>
+<div *ngIf="user || admin">
+    <div *ngFor="let comentario of proyect.ultimosComentarios" class="col-md-11">
+        <div class="card">
+            <div class="card-body">
+                <div class="u-img"><img class="u-img" src={{comentario.imagenAutor}} alt="user"></div>
+                <h3 class="card-title">{{comentario.nombreAutor}}</h3>
+                <h6 class="card-subtitle">{{comentario.contenido}}</h6>
+                <ngb-rating [readonly]="true" [(rate)]="comentario.valoracion">
+                    <ng-template let-fill="fill">
+                        <span class="star" [class.filled]="fill === 100">&#9733;</span>
+                    </ng-template>
+                </ngb-rating>
 
-            <div class="m-t-10">Valoración:
-                <b>{{comentario.valoracion}}</b>
+                <div class="m-t-10">Valoración:
+                    <b>{{comentario.valoracion}}</b>
+                </div>
+                <button class="btn btn-danger" *ngIf="esMioElComentario(comentario.autor) && !masComentarios"
+                    (click)="deleteComentarioUser(comentario.id)">Eliminar</button>
+                <button class="btn btn-danger" *ngIf="isAdmin() && !masComentarios"
+                    (click)="deleteComentario(comentario.id)">Eliminar</button>
+                <button class="btn btn-danger" *ngIf="esMioElComentario(comentario.autor) && masComentarios"
+                    (click)="deleteUltimoComentario(comentario.autor, comentario.contenido)">Eliminar</button>
+                <button class="btn btn-danger" *ngIf="isAdmin() && masComentarios"
+                    (click)="deleteUltimoComentario(comentario.autor, comentario.contenido)">Eliminar</button>
             </div>
-            <button class="btn btn-danger" *ngIf="esMioElComentario(comentario.autor) && !masComentarios" (click)="deleteComentarioUser(comentario.id)">Eliminar</button>
-            <button class="btn btn-danger" *ngIf="isAdmin() && !masComentarios" (click)="deleteComentario(comentario.id)">Eliminar</button>
-            <button class="btn btn-danger" *ngIf="esMioElComentario(comentario.autor) && masComentarios" (click)="deleteUltimoComentario(comentario.autor, comentario.contenido)">Eliminar</button>
-            <button class="btn btn-danger" *ngIf="isAdmin() && masComentarios" (click)="deleteUltimoComentario(comentario.autor, comentario.contenido)">Eliminar</button>
         </div>
     </div>
 </div>
@@ -112,7 +118,7 @@
     <div class="col-md-5">
 
     </div>
-    <div class="col-md-2" *ngIf="masComentarios">
+    <div class="col-md-2" *ngIf="masComentarios && (admin || user)">
         <button class="btn btn-primary" (click)="verTodosComentarios()">
             Ver más comentarios
         </button>
