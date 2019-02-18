@@ -23,10 +23,9 @@
                 <br>
                 <ngb-carousel class="carousel">
                     <ng-template ngbSlide *ngFor="let imagen of listaImagenes">
-                        <img class="c-img" src="{{imagen}}" alt="Random first slide">
+                        <img class="c-img resolucionImagen" src="{{imagen}}" alt="Random first slide">
                         <div class="carousel-caption">
                             <h3 class="text-white font-bold">Imagenes del proyecto {{proyect.nombre}}</h3>
-                            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
                         </div>
                     </ng-template>
                 </ngb-carousel>
