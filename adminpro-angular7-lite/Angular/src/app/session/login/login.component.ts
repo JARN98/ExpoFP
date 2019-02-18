@@ -40,19 +40,25 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  doLogin(form: NgForm) {
+  doLogin() {
 
-    const loginDto = new LoginDto(this.email, this.password);
-    this.loginService.login(loginDto).subscribe(loginResp => {
-      console.log(loginResp);
-      this.loginService.setLoginData(loginResp);
-      console.log('ROL: ' + localStorage.getItem('role'));
-      this.router.navigate(['/component/proyectos']);
-    }, error => {
-      this.snackBar.open('Error en peticion de login', 'x', { duration: 1000, panelClass: ['style-success'] });
-      console.log('Error en petición de login');
-    }
-    );
+    
+
+      const loginDto = new LoginDto(this.email, this.password);
+      this.loginService.login(loginDto).subscribe(loginResp => {
+        console.log(loginResp);
+        this.loginService.setLoginData(loginResp);
+        console.log('ROL: ' + localStorage.getItem('role'));
+        this.router.navigate(['/component/proyectos']);
+        
+      }, error => {
+        this.isError=true;
+        setTimeout(() => {
+          this.isError = false;
+        }, 4000);
+      }
+      );
+   
   }
 
   doLoginGoogle() {
@@ -66,10 +72,9 @@ export class LoginComponent implements OnInit {
     }));
   }
 
-  doSignup(form: NgForm) {
+  doSignup() {
 
-
-      this.uploadImageImgurService.UploadImage(this.uploadImageDto).subscribe(imagen => {
+        this.uploadImageImgurService.UploadImage(this.uploadImageDto).subscribe(imagen => {
         this.urlImagen = imagen.data.link;
         this.usuario = new UserDto(this.email, this.password, this.name, this.urlImagen, 'user');
         this.loginService.registro(this.usuario).subscribe(signupResp => {
@@ -77,11 +82,14 @@ export class LoginComponent implements OnInit {
           this.loginService.setLoginData(signupResp);
 
           this.router.navigate(['/component/proyectos']);
-          this.isError = false;
         }, error => {
           console.log('Error en el registro');
           this.onIsError();
-        });
+          this.isError=true;
+          setTimeout(() => {
+            this.isError = false;
+          }, 4000);
+          });
       }, err => {
         console.log('Error subiendo la imagen');
         console.log(err);

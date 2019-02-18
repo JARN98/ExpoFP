@@ -2,8 +2,7 @@
     <input style="margin-bottom: 4%; margin-left:1%;" type="text" [(ngModel)]="proyectoFilter.nombre" placeholder="Buscar por nombre">
     <div class="col-12">
         <div class="row">
-            <div class="col-lg-3 col-md-6" style="height:300px"*ngFor="let proyecto of listaProyectosRes | filterBy: proyectoFilter | paginate: { itemsPerPage: 14,
-                        currentPage: p}">
+            <div class="col-lg-3 col-md-6" style="height:300px"*ngFor="let proyecto of listaProyectosRes | filterBy: proyectoFilter">
                 <div class="card card-outline-inverse">
                     <div class="card-header">
                         <h4 class="m-b-0 text-white contenido" id="proyectoTitulo">{{proyecto.nombre}} - {{proyecto.curso}}</h4>
@@ -30,9 +29,6 @@
                 </div>
             </div>
             <div>
-                <pagination-controls *ngIf="(listaProyectosRes | filterBy: proyectoFilter) >= 14" (pageChange)="p = $event"
-                    previousLabel="Anterior" nextLabel="Siguiente">
-                </pagination-controls>
             </div>
         </div>
     </div>

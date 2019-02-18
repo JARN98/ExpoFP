@@ -3,11 +3,11 @@
         <div class="card">
             <div class="card-body">
                 <div id="titulo">
-                    <h3 class="card-title">{{proyect.nombre}}</h3>
+                    <h3 class="card-title">Nombre: {{proyect.nombre}}</h3>
 
                     <button mat-icon-button>
                         <a class="twitter-share-button"
-                            href="https://twitter.com/intent/tweet?text=Fantásticos%20los%20proyectos%20de%20los%20alumnos%20de%20Salesianos%20Triana%20Visitanos:%20@salesianotriana"
+                            href="https://twitter.com/intent/tweet?text=Me+encuentro+en+la+Expo+FP+de+@salesianotriana%2C+disfrutando+de+{{proyect.nombre}}%2C+gran+trabajo+de+los+alumnos.%0ADisfruta+de+la+app+y+comparte+los+proyectos+mediante+enlacePlayStore.%0AO+visítanos+en+la+web+enlaceWeb.+%23expoFP"
                             target="_blank|_parent"
                             data-size="large"
                             data-hashtags="example"
@@ -66,12 +66,13 @@
             </div>
             <div class="card-body">
                 <input formControlName="contenido" class="form-control" id="contenido" [(ngModel)]="contenido" placeholder="comentario" type="text">
-                <div *ngIf="comentarioForm.controls['contenido'].invalid && (comentarioForm.controls['contenido'].dirty || comentarioForm.controls['contenido'].touched)" class="alert alert-danger">
+                <br>
+                <br>
+                <div *ngIf="comentarioForm.controls['contenido'].invalid && (comentarioForm.controls['contenido'].touched)" class="alert alert-danger">
                     <div *ngIf="comentarioForm.controls['contenido'].errors.required">
                         ¡No olvides escribir tu comentario!
                     </div>
                 </div>
-                <br>
                 <br>
                 <ngb-rating [(ngModel)]="valoracion" [(rate)]="valoracion" id="valoracion">
                     <ng-template let-fill="fill">
