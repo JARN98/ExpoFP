@@ -11,8 +11,10 @@ img {
     min-width: 100%;
 }
 
-.col-md-10 {
+.col-md-5 {
     margin: 0 auto;
+    float: left;
+    margin-left: 5%;
 }
 
 button {
@@ -22,5 +24,12 @@ button {
     display:block;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 4%;
+    margin-top: 10%;
 }
+
+#mapid {
+
+    height: 180px; 
+}
+
+

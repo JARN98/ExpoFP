@@ -25,5 +25,5 @@ export const Approutes: Routes = [
       }
     ]
   },
-  { path: '', redirectTo: '/session/login', pathMatch: 'full' },
+  { path: '', redirectTo: '/component/inicio', pathMatch: 'full' },
 ];

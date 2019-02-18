@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ContentChild } from '@angular/core';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
@@ -82,6 +82,7 @@ export class ProyectoDetalladoComponent implements OnInit {
   valoracionMedia: number;
 
   comentarioForm: FormGroup;
+  
 
 
   toggle() {
