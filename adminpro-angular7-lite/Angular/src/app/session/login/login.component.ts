@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  doLogin(form: NgForm) {
+  doLogin() {
 
     
 
@@ -69,7 +69,7 @@ export class LoginComponent implements OnInit {
     }));
   }
 
-  doSignup(form: NgForm) {
+  doSignup() {
 
         this.uploadImageImgurService.UploadImage(this.uploadImageDto).subscribe(imagen => {
         this.urlImagen = imagen.data.link;
